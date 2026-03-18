@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>U&I株倶楽部新聞 — 2026年3月18日</title>
+<meta property="og:title" content="U&I株倶楽部新聞 — 2026年3月18日 朝刊">
+<meta property="og:description" content="NVIDIA GTC効果で反発、本日FOMC+ドットプロット — VIX急落。マーケットサマリー・主要ニュース・経済イベント・決算予定。">
+<meta property="og:image" content="https://yskzz121.github.io/ui-kabu-times/assets/hero-bg.jpg">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yskzz121.github.io/ui-kabu-times/morning/2026/03/18.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/jpeg" href="https://yskzz121.github.io/ui-kabu-times/assets/hero-bg.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
 <style>
@@ -76,6 +83,22 @@ body {
   padding: 32px 20px 24px;
   text-align: center;
   position: relative;
+  background: url('https://yskzz121.github.io/ui-kabu-times/assets/hero-bg.jpg') center/cover no-repeat;
+  overflow: hidden;
+}
+.paper-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, rgba(13,17,23,.65) 0%, rgba(13,17,23,.85) 100%);
+  z-index: 0;
+}
+[data-theme="light"] .paper-header::before {
+  background: linear-gradient(to bottom, rgba(245,240,232,.7) 0%, rgba(245,240,232,.9) 100%);
+}
+.paper-header > * {
+  position: relative;
+  z-index: 1;
 }
 
 .paper-header::after {
@@ -84,6 +107,7 @@ body {
   bottom: -3px; left: 0; right: 0;
   height: 3px;
   background: var(--border);
+  z-index: 1;
 }
 
 .paper-date {
@@ -209,7 +233,7 @@ body {
 
 .section-label-text {
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 900;
   letter-spacing: .04em;
 }
@@ -238,9 +262,9 @@ body {
 
 .summary-topic {
   display: block;
-  font-size: 17px;
+  font-size: 22px;
   font-weight: 800;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   letter-spacing: -.01em;
 }
 
@@ -321,6 +345,7 @@ body {
   display: block;
   position: relative;
   overflow: hidden;
+  cursor: default;
 }
 
 .top-story::before {
@@ -392,7 +417,7 @@ body {
   border-radius: var(--radius-lg);
   padding: 22px;
   transition: all var(--transition);
-  cursor: pointer;
+  cursor: default;
   text-decoration: none;
   color: inherit;
   display: flex;
@@ -727,14 +752,190 @@ body {
   .summary-ticker { padding: 6px 10px; font-size: 12px; }
   .earnings-grid { grid-template-columns: repeat(2, 1fr); }
   .back-link { top: 10px; left: 10px; padding: 6px 10px; font-size: .7rem; }
+  .calendar-item { flex-wrap: wrap; gap: 6px 12px; }
+  .calendar-event { flex-basis: 100%; order: 2; padding-left: 68px; }
+  .calendar-detail { flex-basis: 100%; order: 3; padding-left: 68px; white-space: normal; }
   .fomc-grid { grid-template-columns: 1fr; }
+  .section-label-text { font-size: 20px; }
+  .summary-topic { font-size: 18px; }
+  .term .tip { width: 260px; font-size: 12px; }
+  .section-hero img { height: 160px; }
+  .section-hero.small img { height: 120px; }
+  .news-card-img { height: 110px; }
+}
+
+/* ==========================================
+   Tooltip
+   ========================================== */
+.term {
+  position: relative;
+  color: var(--accent);
+  font-weight: 700;
+  cursor: help;
+  border-bottom: 1px dotted var(--accent);
+}
+.term .tip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  background: #1c2333;
+  color: #e6edf3;
+  border: 1px solid #3d4a5c;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.7;
+  white-space: normal;
+  z-index: 100;
+  pointer-events: none;
+  transition: opacity .2s, visibility .2s;
+  box-shadow: 0 8px 24px rgba(0,0,0,.5);
+}
+[data-theme="light"] .term .tip {
+  background: #fff;
+  color: #2c2418;
+  border-color: #ddd4c6;
+  box-shadow: 0 4px 16px rgba(44,36,24,.12);
+}
+.term .tip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #3d4a5c;
+}
+[data-theme="light"] .term .tip::after { border-top-color: #ddd4c6; }
+.term:hover .tip,
+.term:focus .tip {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+.tip-title {
+  display: block;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+.term.tip-right .tip { left: 0; transform: translateX(0); }
+.term.tip-right .tip::after { left: 24px; transform: none; }
+.term.tip-left .tip { left: auto; right: 0; transform: translateX(0); }
+.term.tip-left .tip::after { left: auto; right: 24px; transform: none; }
+
+/* ==========================================
+   Section Hero Image
+   ========================================== */
+.section-hero {
+  width: 100%;
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.section-hero img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+.section-hero.small img { height: 160px; }
+.section-hero-caption {
+  padding: 8px 14px;
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+}
+.news-card-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: 4px;
+  border: 1px solid var(--border);
+}
+
+/* ==========================================
+   Footer
+   ========================================== */
+.paper-footer {
+  text-align: center;
+  padding: 30px 20px;
+  border-top: 2px solid var(--border);
+  margin-top: 20px;
+  max-width: var(--max-w);
+  margin-left: auto;
+  margin-right: auto;
+}
+.paper-footer p {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+.paper-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.paper-footer a:hover { text-decoration: underline; }
+.paper-footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.earnings-sub-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  padding-left: 2px;
+}
+
+/* ==========================================
+   Print
+   ========================================== */
+@media print {
+  [data-theme="dark"] {
+    --bg-primary: #fff;
+    --bg-card: #f9f9f9;
+    --text-primary: #111;
+    --text-secondary: #444;
+    --text-muted: #777;
+    --border: #ddd;
+    --accent: #0066cc;
+    --accent-green: #1a7f37;
+    --accent-red: #cf222e;
+    --accent-amber: #9a6700;
+    --accent-purple: #7c3aed;
+    --shadow-card: none;
+  }
+  .back-link, .theme-toggle { display: none !important; }
+  .paper-header { background: none !important; }
+  .paper-header::before { display: none !important; }
+  body { padding: 0; }
+  .main { padding: 20px 0; }
+  .news-card:hover, .top-story:hover, .earnings-item:hover { transform: none; box-shadow: none; }
+  .term { border-bottom: none; color: inherit; }
+  .term .tip { display: none; }
+  .section-hero img { height: auto; max-height: 200px; }
 }
 </style>
 </head>
 <body>
 
 <!-- Back Link -->
-<a class="back-link" href="https://yskzz121.github.io/ui-kabu-club/">
+<a class="back-link" href="https://yskzz121.github.io/ui-kabu-times/">
 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>ポータル</a>
 
 <!-- Theme Toggle -->
@@ -767,19 +968,19 @@ body {
       <div class="summary-text">
         <p>
           <span class="summary-topic positive">NVIDIA GTC効果でテック主導の反発 — NASDAQ +0.47%、VIX急落</span>
-          NVIDIA GTC 2026でJensen Huang CEOが「Blackwell + Vera Rubinの受注が2027年までに<span class="summary-num up">1兆ドル</span>に達する見通し」と発表し、AI半導体セクターに強烈な追い風。
+          NVIDIA <span class="term tip-right">GTC<span class="tip"><span class="tip-title">GTC（GPU Technology Conference）</span>NVIDIAが毎年開催する技術カンファレンス。新GPU・AI技術の発表の場として世界最大規模。</span></span> 2026でJensen Huang CEOが「Blackwell + <span class="term">Vera Rubin<span class="tip"><span class="tip-title">Vera Rubin</span>NVIDIAの次世代AIチッププラットフォーム。暗黒物質の存在を示した天文学者にちなんで命名。Blackwellの後継で2026年後半出荷予定。</span></span>の受注が2027年までに<span class="summary-num up">1兆ドル</span>に達する見通し」と発表し、AI半導体セクターに強烈な追い風。
           <span class="summary-label">NASDAQ</span>は<span class="summary-num up">+0.47%</span>の22,479、<span class="summary-label">S&P 500</span>は<span class="summary-num up">+0.25%</span>の6,716と3月の3週連続下落からの反発が継続しました。
           <span class="summary-label">ダウ</span>は<span class="summary-num up">+46pt（+0.10%）</span>の46,993と小幅高。
-          <span class="summary-label">VIX</span>は<span class="summary-num up">23.51（-13.5%）</span>と急落し、数週間ぶりの低水準。地政学リスクが続く中でもボラティリティが後退した点が注目されます。
+          <span class="term">VIX<span class="tip"><span class="tip-title">VIX（恐怖指数）</span>S&P 500オプションの予想変動率から算出される指標。数値が高いほど市場の不安が大きいことを示します。通常20以下が安定、30超は高ストレス状態。</span></span>は<span class="summary-num up">23.51（-13.5%）</span>と急落し、数週間ぶりの低水準。地政学リスクが続く中でもボラティリティが後退した点が注目されます。
         </p>
         <p>
           <span class="summary-topic neutral">債券・為替 — FOMC前夜で様子見、ドル円は159円手前</span>
-          本日のFOMC金利決定を控え、<span class="summary-label">米10年債利回り</span>は<span class="summary-num">4.20%</span>と小幅低下。金利据え置きは98.9%織り込みですが、SEP（経済見通し）のドットプロットが最大の焦点です。
+          本日の<span class="term">FOMC<span class="tip"><span class="tip-title">FOMC（連邦公開市場委員会）</span>FRB（米連邦準備制度理事会）が年8回開催する金融政策を決定する会合。政策金利の変更やドットプロットの公表を行います。</span></span>金利決定を控え、<span class="summary-label">米10年債利回り</span>は<span class="summary-num">4.20%</span>と小幅低下。金利据え置きは98.9%織り込みですが、<span class="term">SEP<span class="tip"><span class="tip-title">SEP（経済見通し要約）</span>Summary of Economic Projections。FOMCメンバーによる経済見通しの要約。GDP成長率・失業率・インフレ率・政策金利の予測が含まれます。四半期に1回公表。</span></span>（経済見通し）の<span class="term">ドットプロット<span class="tip"><span class="tip-title">ドットプロット</span>FOMCメンバー各自が予想する将来の政策金利水準を点（ドット）で示したチャート。利下げ/利上げの回数やペースの見通しを読み取る重要な指標。</span></span>が最大の焦点です。
           <span class="summary-label">ドル円</span>は<span class="summary-num">158.95円</span>と159円手前で推移。原油高が続く中、FRBの利下げパスに変更があればドルの方向感が一変する可能性があります。
         </p>
         <p>
           <span class="summary-topic negative">原油$96維持、金は$5,000台 — 地政学リスクは依然くすぶる</span>
-          ホルムズ海峡リスクが引き続き意識され、<span class="summary-label">WTI原油</span>は<span class="summary-num down">$96.07</span>と高止まり。Brent原油は$100超を維持しています。
+          ホルムズ海峡リスクが引き続き意識され、<span class="summary-label">WTI原油</span>は<span class="summary-num down">$96.07</span>と高止まり。<span class="term tip-left">Brent原油<span class="tip"><span class="tip-title">Brent原油（北海ブレント原油）</span>国際的な原油価格のベンチマーク（基準価格）。WTI原油と並ぶ世界の二大指標で、欧州・アジアの取引で主に使われます。</span></span>は$100超を維持しています。
           <span class="summary-label">金</span>は<span class="summary-num">$5,010</span>とドル高が重しながらも$5,000台をキープ。
           <span class="summary-label">ビットコイン</span>は一時$75,000を突破後に反落し<span class="summary-num up">$73,700</span>。デリバティブ主導の動きで方向感を欠いています。
         </p>
@@ -824,17 +1025,17 @@ body {
         <div class="summary-ticker">
           <span class="summary-ticker-name">WTI原油</span>
           <span class="summary-ticker-val">$96.07</span>
-          <span class="summary-ticker-chg down">高止まり</span>
+          <span class="summary-ticker-chg down">+5.2%</span>
         </div>
         <div class="summary-ticker">
           <span class="summary-ticker-name">Gold</span>
           <span class="summary-ticker-val">$5,010</span>
-          <span class="summary-ticker-chg up">$5,000維持</span>
+          <span class="summary-ticker-chg down">-1.25%</span>
         </div>
         <div class="summary-ticker">
           <span class="summary-ticker-name">BTC</span>
           <span class="summary-ticker-val">$73,700</span>
-          <span class="summary-ticker-chg up">一時$75K突破</span>
+          <span class="summary-ticker-chg up">+5.0%</span>
         </div>
       </div>
     </div>
@@ -849,7 +1050,11 @@ body {
     </div>
 
     <!-- Top Story -->
-    <a href="#" class="top-story">
+    <div class="top-story">
+      <div class="section-hero">
+        <img src="https://blogs.nvidia.com/wp-content/uploads/2026/03/gtc26-keynote-kit-corp-blog-1920x1080-1-960x540.jpg" alt="NVIDIA GTC 2026 キーノート">
+        <div class="section-hero-caption">📷 NVIDIA GTC 2026 基調講演 — Jensen Huang CEO（NVIDIA公式）</div>
+      </div>
       <span class="top-story-badge">TOP STORY</span>
       <h2 class="top-story-title">NVIDIA GTC 2026 — Jensen Huang CEOが「受注1兆ドル」宣言、Vera Rubinは年後半出荷へ</h2>
       <p class="top-story-body">
@@ -860,12 +1065,12 @@ body {
         <span>·</span>
         <span>テクノロジー</span>
       </div>
-    </a>
+    </div>
 
     <!-- Sub News -->
     <div class="news-grid">
 
-      <a href="#" class="news-card economy">
+      <div class="news-card economy">
         <div class="news-card-meta">
           <span class="news-card-tag economy">マーケット</span>
           <span class="news-card-source">Muddy Waters</span>
@@ -877,9 +1082,9 @@ body {
           <span>·</span>
           <span>フィンテック</span>
         </div>
-      </a>
+      </div>
 
-      <a href="#" class="news-card earnings">
+      <div class="news-card earnings">
         <div class="news-card-meta">
           <span class="news-card-tag earnings">決算</span>
           <span class="news-card-source">Lululemon IR</span>
@@ -891,9 +1096,9 @@ body {
           <span>·</span>
           <span>小売</span>
         </div>
-      </a>
+      </div>
 
-      <a href="#" class="news-card earnings">
+      <div class="news-card earnings">
         <div class="news-card-meta">
           <span class="news-card-tag earnings">決算</span>
           <span class="news-card-source">TME IR</span>
@@ -905,9 +1110,9 @@ body {
           <span>·</span>
           <span>エンタメ</span>
         </div>
-      </a>
+      </div>
 
-      <a href="#" class="news-card tech">
+      <div class="news-card tech">
         <div class="news-card-meta">
           <span class="news-card-tag tech">テクノロジー</span>
           <span class="news-card-source">Bloomberg</span>
@@ -919,9 +1124,9 @@ body {
           <span>·</span>
           <span>AI</span>
         </div>
-      </a>
+      </div>
 
-      <a href="#" class="news-card geopolitics">
+      <div class="news-card geopolitics">
         <div class="news-card-meta">
           <span class="news-card-tag geopolitics">地政学</span>
           <span class="news-card-source">CNN / Fortune</span>
@@ -933,9 +1138,9 @@ body {
           <span>·</span>
           <span>米国政治</span>
         </div>
-      </a>
+      </div>
 
-      <a href="#" class="news-card earnings">
+      <div class="news-card earnings">
         <div class="news-card-meta">
           <span class="news-card-tag earnings">決算</span>
           <span class="news-card-source">Delta IR</span>
@@ -947,7 +1152,7 @@ body {
           <span>·</span>
           <span>航空</span>
         </div>
-      </a>
+      </div>
 
     </div>
   </section>
@@ -964,7 +1169,7 @@ body {
       <div class="fomc-title">FOMC金利決定 + SEP（経済見通し）+ パウエル議長会見</div>
       <div class="fomc-grid">
         <div class="fomc-stat">
-          <div class="fomc-stat-label">現在のFF金利</div>
+          <div class="fomc-stat-label">現在の<span class="term">FF金利<span class="tip"><span class="tip-title">FF金利（フェデラルファンド金利）</span>米国の銀行間で資金を貸し借りする際の金利。FRBの金融政策の主要ツールで、経済全体の金利水準に影響します。</span></span></div>
           <div class="fomc-stat-value">3.50-3.75%</div>
         </div>
         <div class="fomc-stat">
@@ -979,7 +1184,7 @@ body {
       <ul class="fomc-points">
         <li><strong>金利据え置きは確実。</strong>今回の焦点はSEP（四半期経済見通し）付きの重要会合</li>
         <li><strong>ドットプロット:</strong> 中央値は2026年中に25bp利下げ1回維持の見込みだが、インフレ見通し上方修正の可能性</li>
-        <li><strong>市場の予想:</strong> 「ホーキッシュ・ホールド（タカ派的据え置き）」が優勢</li>
+        <li><strong>市場の予想:</strong> 「<span class="term">ホーキッシュ・ホールド<span class="tip"><span class="tip-title">ホーキッシュ・ホールド（タカ派的据え置き）</span>金利は据え置くが、将来の利下げに慎重な姿勢を示すこと。声明文やドットプロットでインフレ警戒を強調するパターン。</span></span>（タカ派的据え置き）」が優勢</li>
         <li><strong>注目テーマ:</strong> イラン紛争による原油高のインフレ影響 / トランプ関税の経済見通し織り込み / スタグフレーション懸念へのスタンス</li>
         <li><strong>パウエル議長会見（27:30〜）:</strong> 「会合ごとにデータを見て判断」の姿勢維持か、ハト派/タカ派いずれに傾くかが最大の注目点</li>
       </ul>
@@ -998,7 +1203,7 @@ body {
       <div class="calendar-item">
         <span class="calendar-time">21:30</span>
         <span class="calendar-flag">🇺🇸</span>
-        <span class="calendar-event">PPI（生産者物価指数）2月・前月比</span>
+        <span class="calendar-event"><span class="term tip-right">PPI<span class="tip"><span class="tip-title">PPI（生産者物価指数）</span>Producer Price Index。企業間で取引される財・サービスの価格変動を測定する指標。CPIと並ぶ重要なインフレ指標。</span></span>（生産者物価指数）2月・前月比</span>
         <span class="calendar-importance high">重要</span>
         <span class="calendar-detail">予想: +0.3% / 前回: +0.5%</span>
       </div>
@@ -1041,6 +1246,7 @@ body {
       <span class="section-label-line"></span>
     </div>
 
+    <div class="earnings-sub-label">本日の決算</div>
     <div class="earnings-grid">
       <div class="earnings-item" data-ticker="MU">
         <div class="earnings-item-header">
@@ -1048,7 +1254,7 @@ body {
           <span class="earnings-item-timing amc">本日 引け後</span>
         </div>
         <div class="earnings-item-name">Micron Technology</div>
-        <span class="earnings-item-sector">半導体（HBM/AI）</span>
+        <span class="earnings-item-sector">半導体（<span class="term">HBM<span class="tip"><span class="tip-title">HBM（高帯域幅メモリ）</span>High Bandwidth Memory。AI処理に必要な大量のデータを超高速でやり取りするための積層型メモリ技術。Micronの主力成長分野。</span></span>/AI）</span>
         <div class="earnings-item-consensus">
           <span>EPS予: $9.19</span>
           <span>売上予: $19.77B</span>
@@ -1078,6 +1284,9 @@ body {
           <span>売上予: $7.75B</span>
         </div>
       </div>
+    </div>
+    <div class="earnings-sub-label" style="margin-top:20px">今週のその他注目</div>
+    <div class="earnings-grid">
       <div class="earnings-item" data-ticker="ACN">
         <div class="earnings-item-header">
           <span class="earnings-item-ticker">ACN</span>
@@ -1119,6 +1328,15 @@ body {
 
 </main>
 
+<footer class="paper-footer">
+  <div class="paper-footer-nav">
+    <a href="https://yskzz121.github.io/ui-kabu-times/morning/2026/03/13.html">← 前号（3/13）</a>
+    <a href="https://yskzz121.github.io/ui-kabu-times/morning/">アーカイブ</a>
+  </div>
+  <p>U&I株倶楽部新聞 ｜ <a href="https://yskzz121.github.io/ui-kabu-times/">新聞ポータル</a> ｜ <a href="https://yskzz121.github.io/ui-kabu-reports/">決算分析</a></p>
+  <p>&copy; 2026 U&I株倶楽部</p>
+</footer>
+
 <script>
 // Theme Toggle
 (function() {
@@ -1157,6 +1375,30 @@ body {
       item.appendChild(link);
     }
   });
+})();
+
+// Mobile: tap-to-toggle tooltips
+(function() {
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    document.querySelectorAll('.term').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelectorAll('.term.active').forEach(function(other) {
+          if (other !== el) other.classList.remove('active');
+        });
+        el.classList.toggle('active');
+      });
+    });
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.term.active').forEach(function(el) {
+        el.classList.remove('active');
+      });
+    });
+    var style = document.createElement('style');
+    style.textContent = '.term.active .tip { visibility: visible; opacity: 1; pointer-events: auto; }';
+    document.head.appendChild(style);
+  }
 })();
 </script>
 
