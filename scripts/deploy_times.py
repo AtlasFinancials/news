@@ -203,21 +203,21 @@ def rebuild_portal_index():
     with open(index_path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    # 号外リスト再構築
+    # 号外リスト再構築（バナー形式）
     extras = scan_articles("extra", "extra")
     if extras:
         extra_items = ""
         for dt, rel, headline in extras:
             date_str = dt.strftime("%Y/%m/%d")
             title = headline if headline else os.path.basename(rel).replace(".html", "")
-            extra_items += f'      <a class="article-item" href="{rel}">\n'
-            extra_items += f'        <span class="article-date">{date_str}</span>\n'
-            extra_items += f'        <span class="article-title">{title}</span>\n'
-            extra_items += f'        <span class="article-tag extra">号外</span>\n'
+            extra_items += f'      <a class="extra-banner-item" href="{rel}">\n'
+            extra_items += f'        <span class="extra-banner-badge">号外</span>\n'
+            extra_items += f'        <span class="extra-banner-date">{date_str}</span>\n'
+            extra_items += f'        <span class="extra-banner-title">{title}</span>\n'
             extra_items += f'      </a>\n'
-        extra_block = f'    <div class="article-list">\n{extra_items}    </div>'
+        extra_block = f'    <div class="extra-banner-list" id="extraList">\n{extra_items}    </div>'
     else:
-        extra_block = '    <div class="article-list">\n      <div class="empty-state">号外はまだありません。</div>\n    </div>'
+        extra_block = '    <div class="extra-banner-list" id="extraList">\n    </div>'
 
     # 朝刊リスト再構築
     mornings = scan_articles("morning", "morning")
@@ -231,21 +231,21 @@ def rebuild_portal_index():
             morning_items += f'        <span class="article-title">{title}</span>\n'
             morning_items += f'        <span class="article-tag morning">朝刊</span>\n'
             morning_items += f'      </a>\n'
-        morning_block = f'    <div class="article-list">\n{morning_items}    </div>'
+        morning_block = f'    <div class="article-list" id="morningList">\n{morning_items}    </div>'
     else:
-        morning_block = '    <div class="article-list">\n      <div class="empty-state">朝刊の記事はまだありません。近日公開予定です。</div>\n    </div>'
+        morning_block = '    <div class="article-list" id="morningList">\n      <div class="empty-state">朝刊の記事はまだありません。近日公開予定です。</div>\n    </div>'
 
-    # 号外セクションの article-list を置換
+    # 号外バナーの内部リストを置換
     content = re.sub(
-        r'(<!-- 号外 -->.*?<div class="article-list">)(.*?)(</div>\s*</div>)',
-        lambda m: m.group(1).split('<div class="article-list">')[0] + extra_block + '\n  </div>',
+        r'(<!-- 号外 -->.*?)<div class="extra-banner-list" id="extraList">.*?</div>',
+        lambda m: m.group(1) + extra_block,
         content, count=1, flags=re.DOTALL
     )
 
     # 朝刊セクションの article-list を置換
     content = re.sub(
-        r'(<!-- 朝刊 -->.*?<div class="article-list">)(.*?)(</div>\s*</div>)',
-        lambda m: m.group(1).split('<div class="article-list">')[0] + morning_block + '\n  </div>',
+        r'(<!-- 朝刊 -->.*?)<div class="article-list" id="morningList">.*?</div>',
+        lambda m: m.group(1) + morning_block,
         content, count=1, flags=re.DOTALL
     )
 

@@ -6,11 +6,12 @@
 <title>U&I株倶楽部新聞 — ポータル</title>
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root {
   --font-sans: 'Noto Sans JP', 'Inter', -apple-system, sans-serif;
   --font-serif: 'Noto Serif JP', serif;
+  --font-display: 'Playfair Display', 'Noto Serif JP', serif;
   --bg-primary: #0d1117;
   --bg-card: #161b22;
   --bg-card-hover: #21262d;
@@ -42,20 +43,69 @@ body {
   padding: 0 20px;
 }
 
-/* Header */
+/* ==========================================
+   Header — Newspaper Style
+   ========================================== */
 .portal-header {
-  border-bottom: 1px solid var(--border);
-  padding: 48px 20px 36px;
-  text-align: center;
   position: relative;
+  text-align: center;
+  padding: 52px 20px 40px;
+  overflow: hidden;
+  border-bottom: 3px double var(--border);
 }
+
+/* 新聞紙テクスチャ背景 */
+.portal-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    url('assets/hero-bg.jpg') center/cover no-repeat;
+  opacity: .18;
+  z-index: 0;
+}
+
+/* グラデーションオーバーレイ */
 .portal-header::after {
   content: '';
   position: absolute;
-  bottom: -3px; left: 0; right: 0;
-  height: 3px;
-  background: var(--border);
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg,
+    rgba(13,17,23,.6) 0%,
+    rgba(13,17,23,.85) 60%,
+    rgba(13,17,23,.95) 100%);
+  z-index: 1;
 }
+
+.portal-header > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* 英字新聞風の装飾ライン */
+.header-rule {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+.header-rule-line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: var(--text-muted);
+  opacity: .4;
+}
+.header-rule-text {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .3em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
 .portal-title {
   font-family: var(--font-serif);
   font-size: 48px;
@@ -63,22 +113,107 @@ body {
   letter-spacing: .12em;
   line-height: 1.2;
 }
+
 .portal-subtitle {
   display: block;
-  font-size: 13px;
-  font-family: var(--font-sans);
-  font-weight: 600;
-  letter-spacing: .25em;
-  color: var(--text-secondary);
-  margin-top: 6px;
-}
-.portal-desc {
+  font-family: var(--font-display);
   font-size: 14px;
-  color: var(--text-muted);
-  margin-top: 16px;
+  font-weight: 700;
+  letter-spacing: .35em;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  text-transform: uppercase;
 }
 
-/* Section */
+/* 英字新聞風の下部装飾 */
+.header-bottom-rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: .06em;
+}
+.header-bottom-rule .hbr-line {
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: var(--text-muted);
+  opacity: .3;
+}
+.header-bottom-rule .hbr-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  opacity: .4;
+}
+
+/* ==========================================
+   号外バナー（ヘッダー直下）
+   ========================================== */
+.extra-banner {
+  display: none;
+}
+.extra-banner.has-items {
+  display: block;
+}
+.extra-banner-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 12px 20px;
+}
+.extra-banner-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.extra-banner-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(248,81,73,.04);
+  border: 1px solid rgba(248,81,73,.15);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: all .2s;
+}
+.extra-banner-item:hover {
+  background: rgba(248,81,73,.08);
+  border-color: rgba(248,81,73,.3);
+  transform: translateY(-1px);
+}
+.extra-banner-badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(248,81,73,.12);
+  color: var(--accent-red);
+  white-space: nowrap;
+  letter-spacing: .04em;
+}
+.extra-banner-date {
+  font-family: 'Inter', var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.extra-banner-title {
+  font-size: 13px;
+  font-weight: 700;
+  flex: 1;
+  color: var(--text-primary);
+}
+
+/* ==========================================
+   Section
+   ========================================== */
 .section {
   padding: 36px 0;
 }
@@ -95,31 +230,10 @@ body {
   gap: 10px;
 }
 .section-title-icon { font-size: 22px; }
-.section-badge {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 10px;
-  border-radius: 4px;
-  margin-left: 8px;
-}
-.section-badge.weekly {
-  background: rgba(63,185,80,.12);
-  color: var(--accent-green);
-}
-.section-badge.irregular {
-  background: rgba(248,81,73,.12);
-  color: var(--accent-red);
-}
-.section-badge.learning {
-  background: rgba(188,140,255,.12);
-  color: #bc8cff;
-}
-.article-tag.glossary {
-  background: rgba(188,140,255,.12);
-  color: #bc8cff;
-}
 
-/* Article List */
+/* ==========================================
+   Article List
+   ========================================== */
 .article-list {
   display: flex;
   flex-direction: column;
@@ -172,7 +286,85 @@ body {
   color: var(--accent);
 }
 
-/* Empty state */
+/* ==========================================
+   Month Group (for older articles)
+   ========================================== */
+.month-group {
+  margin-top: 20px;
+}
+.month-group-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+.month-group-header:hover .month-group-label {
+  color: var(--accent);
+}
+.month-group-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: color .15s;
+}
+.month-group-count {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(255,255,255,.04);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.month-group-arrow {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-left: auto;
+  transition: transform .2s;
+}
+.month-group.collapsed .month-group-arrow {
+  transform: rotate(-90deg);
+}
+.month-group-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.month-group.collapsed .month-group-body {
+  display: none;
+}
+
+/* Show More */
+.show-more-btn {
+  display: none;
+  width: 100%;
+  padding: 12px;
+  margin-top: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--accent);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  text-align: center;
+}
+.show-more-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent);
+}
+.show-more-btn.visible {
+  display: block;
+}
+
+/* ==========================================
+   Empty state
+   ========================================== */
 .empty-state {
   padding: 32px;
   text-align: center;
@@ -183,7 +375,9 @@ body {
   border-radius: 12px;
 }
 
-/* Footer */
+/* ==========================================
+   Footer
+   ========================================== */
 .portal-footer {
   text-align: center;
   padding: 30px 20px;
@@ -201,70 +395,64 @@ body {
 }
 .portal-footer a:hover { text-decoration: underline; }
 
-/* Structure info */
-.structure-info {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-  margin-top: 12px;
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.8;
-}
-.structure-info code {
-  font-family: 'Inter', monospace;
-  font-size: 12px;
-  background: rgba(255,255,255,.06);
-  padding: 1px 6px;
-  border-radius: 4px;
-  color: var(--accent-green);
-}
-
-/* Responsive */
+/* ==========================================
+   Responsive
+   ========================================== */
 @media (max-width: 767px) {
   .portal-title { font-size: 32px; }
+  .portal-header { padding: 36px 16px 28px; }
+  .header-rule-text { font-size: 9px; letter-spacing: .2em; }
+  .header-rule-line { max-width: 60px; }
   .article-item { flex-direction: column; align-items: flex-start; gap: 6px; }
   .article-date { min-width: auto; }
+  .extra-banner-item { flex-wrap: wrap; gap: 6px; }
+  .extra-banner-title { flex-basis: 100%; }
 }
 </style>
 </head>
 <body>
 
 <header class="portal-header">
+  <div class="header-rule">
+    <span class="header-rule-line"></span>
+    <span class="header-rule-text">Est. 2026 — U.S. Stock Market Intelligence</span>
+    <span class="header-rule-line"></span>
+  </div>
   <h1 class="portal-title">
     U&I株倶楽部新聞
-    <span class="portal-subtitle">U & I KABU CLUB TIMES</span>
   </h1>
-  <p class="portal-desc">U&I株倶楽部が発行する米国株マーケットニュースレター</p>
+  <span class="portal-subtitle">U & I Kabu Club Times</span>
+  <div class="header-bottom-rule">
+    <span class="hbr-line"></span>
+    <span class="hbr-dot"></span>
+    <span>米国株マーケットニュースレター</span>
+    <span class="hbr-dot"></span>
+    <span class="hbr-line"></span>
+  </div>
 </header>
 
-<main class="container">
-
-  <!-- 号外 -->
-  <div class="section">
-    <h2 class="section-title">
-      <span class="section-title-icon">🔴</span>
-      号外
-      <span class="section-badge irregular">不定期</span>
-    </h2>
-                                            <div class="article-list">
-      <a class="article-item" href="extra/2026/03/17-gtc-2026.html">
-        <span class="article-date">2026/03/17</span>
-        <span class="article-title">受注額が1兆ドル（約150兆円）に到達 — AI半導体の需要は衰えず</span>
-        <span class="article-tag extra">号外</span>
+<!-- 号外 -->
+<div class="extra-banner" id="extraBanner">
+  <div class="extra-banner-inner">
+            <div class="extra-banner-list" id="extraList">
+      <a class="extra-banner-item" href="extra/2026/03/17-gtc-2026.html">
+        <span class="extra-banner-badge">号外</span>
+        <span class="extra-banner-date">2026/03/17</span>
+        <span class="extra-banner-title">受注額が1兆ドル（約150兆円）に到達 — AI半導体の需要は衰えず</span>
       </a>
     </div>
   </div>
+</div>
+
+<main class="container">
 
   <!-- 朝刊 -->
   <div class="section">
     <h2 class="section-title">
       <span class="section-title-icon">📰</span>
       朝刊
-      <span class="section-badge weekly">週3〜5回</span>
     </h2>
-                                            <div class="article-list">
+            <div class="article-list" id="morningList">
       <a class="article-item" href="morning/2026/03/20.html">
         <span class="article-date">2026/03/20</span>
         <span class="article-title">ホルムズ海峡危機激化 — イランがカタールLNG施設攻撃、原油一時$119突破</span>
@@ -286,23 +474,8 @@ body {
         <span class="article-tag morning">朝刊</span>
       </a>
     </div>
-  </div>
-
-
-  <!-- 学ぶ -->
-  <div class="section">
-    <h2 class="section-title">
-      <span class="section-title-icon">📚</span>
-      学ぶ
-      <span class="section-badge learning">常設</span>
-    </h2>
-    <div class="article-list">
-      <a class="article-item" href="glossary/">
-        <span class="article-date">📖</span>
-        <span class="article-title">金融用語辞典 — 投資に必要な専門用語をわかりやすく解説</span>
-        <span class="article-tag glossary">辞典</span>
-      </a>
-    </div>
+    <button class="show-more-btn" id="showMoreBtn" onclick="toggleOlderArticles()">過去の朝刊をもっと見る</button>
+    <div id="olderArticles"></div>
   </div>
 
 </main>
@@ -312,5 +485,84 @@ body {
   <p>© 2026 U&I株倶楽部</p>
 </footer>
 
+<script>
+// 号外バナーの表示制御
+(function() {
+  var list = document.getElementById('extraList');
+  var banner = document.getElementById('extraBanner');
+  if (list && list.children.length > 0) {
+    banner.classList.add('has-items');
+  }
+})();
+
+// 朝刊の整理: 7件超の場合、8件目以降を月別グループに分割
+(function() {
+  var MAX_RECENT = 7;
+  var list = document.getElementById('morningList');
+  var btn = document.getElementById('showMoreBtn');
+  var older = document.getElementById('olderArticles');
+  if (!list || !older) return;
+
+  var items = Array.from(list.querySelectorAll('.article-item'));
+  if (items.length <= MAX_RECENT) return;
+
+  // 8件目以降を月別にグルーピング
+  var overflow = items.slice(MAX_RECENT);
+  var groups = {};
+  overflow.forEach(function(item) {
+    var dateText = item.querySelector('.article-date').textContent.trim();
+    var parts = dateText.split('/');
+    var key = parts[0] + '/' + parts[1]; // "2026/03"
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(item);
+  });
+
+  // 月別グループのHTMLを生成
+  var sortedKeys = Object.keys(groups).sort().reverse();
+  sortedKeys.forEach(function(key) {
+    var parts = key.split('/');
+    var label = parts[0] + '年' + parseInt(parts[1]) + '月';
+    var count = groups[key].length;
+
+    var groupDiv = document.createElement('div');
+    groupDiv.className = 'month-group collapsed';
+
+    var header = document.createElement('div');
+    header.className = 'month-group-header';
+    header.innerHTML = '<span class="month-group-label">' + label + '</span>' +
+                       '<span class="month-group-count">' + count + '件</span>' +
+                       '<span class="month-group-arrow">▼</span>';
+    header.addEventListener('click', function() {
+      groupDiv.classList.toggle('collapsed');
+    });
+
+    var body = document.createElement('div');
+    body.className = 'month-group-body';
+    groups[key].forEach(function(item) {
+      list.removeChild(item);
+      body.appendChild(item);
+    });
+
+    groupDiv.appendChild(header);
+    groupDiv.appendChild(body);
+    older.appendChild(groupDiv);
+  });
+
+  btn.classList.add('visible');
+  older.style.display = 'none';
+})();
+
+function toggleOlderArticles() {
+  var older = document.getElementById('olderArticles');
+  var btn = document.getElementById('showMoreBtn');
+  if (older.style.display === 'none') {
+    older.style.display = 'block';
+    btn.textContent = '折りたたむ';
+  } else {
+    older.style.display = 'none';
+    btn.textContent = '過去の朝刊をもっと見る';
+  }
+}
+</script>
 </body>
 </html>
