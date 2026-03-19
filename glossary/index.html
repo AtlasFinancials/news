@@ -365,11 +365,11 @@ body {
 .term-body {
   max-height: 0;
   overflow: hidden;
-  transition: max-height .35s ease, opacity .25s ease;
+  transition: max-height .45s ease, opacity .3s ease;
   opacity: 0;
 }
 .term-card.expanded .term-body {
-  max-height: 600px;
+  max-height: 3000px;
   opacity: 1;
 }
 .term-body-inner {
@@ -382,6 +382,222 @@ body {
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.85;
+}
+
+/* Visual content inside term body */
+.term-visual {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.term-visual img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.term-visual .img-caption {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: -12px;
+}
+
+/* Diagram box */
+.vis-diagram {
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+}
+.vis-diagram-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+/* Flow diagram with arrows */
+.vis-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+}
+.vis-flow-step {
+  background: rgba(88,166,255,.1);
+  border: 1px solid rgba(88,166,255,.3);
+  border-radius: 8px;
+  padding: 8px 14px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.vis-flow-step.negative {
+  background: rgba(248,81,73,.1);
+  border-color: rgba(248,81,73,.3);
+}
+.vis-flow-step.positive {
+  background: rgba(63,185,80,.1);
+  border-color: rgba(63,185,80,.3);
+}
+.vis-flow-arrow {
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+/* Gauge/meter */
+.vis-gauge {
+  margin: 8px 0;
+}
+.vis-gauge-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.vis-gauge-bar {
+  height: 24px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #3fb950 0%, #3fb950 40%, #d29922 40%, #d29922 60%, #f85149 60%, #f85149 100%);
+  position: relative;
+  overflow: hidden;
+}
+.vis-gauge-marker {
+  position: absolute;
+  top: -4px;
+  width: 4px;
+  height: 32px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 6px rgba(0,0,0,.5);
+}
+
+/* CSS horizontal bar chart */
+.vis-bars { display: flex; flex-direction: column; gap: 8px; }
+.vis-bar-item { display: flex; align-items: center; gap: 10px; }
+.vis-bar-label { min-width: 80px; font-size: 12px; color: var(--text-secondary); text-align: right; }
+.vis-bar-track { flex: 1; height: 22px; background: rgba(255,255,255,.04); border-radius: 6px; overflow: hidden; position: relative; }
+.vis-bar-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 11px; font-weight: 700; color: #fff; transition: width .6s ease; }
+.vis-bar-fill.blue { background: var(--accent); }
+.vis-bar-fill.green { background: var(--accent-green); }
+.vis-bar-fill.red { background: var(--accent-red); }
+.vis-bar-fill.amber { background: var(--accent-amber); }
+
+/* Comparison table */
+.vis-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.vis-table th { text-align: left; padding: 8px 10px; background: rgba(255,255,255,.04); border-bottom: 1px solid var(--border); color: var(--accent); font-weight: 700; }
+.vis-table td { padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,.04); color: var(--text-secondary); }
+
+/* Callout/tip box */
+.vis-callout {
+  background: rgba(88,166,255,.06);
+  border: 1px solid rgba(88,166,255,.2);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.vis-callout strong { color: var(--accent); }
+.vis-callout.warning {
+  background: rgba(248,81,73,.06);
+  border-color: rgba(248,81,73,.2);
+}
+.vis-callout.warning strong { color: var(--accent-red); }
+.vis-callout.tip {
+  background: rgba(63,185,80,.06);
+  border-color: rgba(63,185,80,.2);
+}
+.vis-callout.tip strong { color: var(--accent-green); }
+
+/* Dot plot CSS dots */
+.vis-dotplot-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 0;
+}
+.vis-dotplot-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.vis-dotplot-rate {
+  min-width: 52px;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+}
+.vis-dotplot-dots {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.vis-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.vis-dot.y2027 { background: var(--accent-green); }
+.vis-dot.y2028 { background: var(--accent-amber); }
+
+/* Timeline */
+.vis-timeline {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 600;
+}
+.vis-timeline-block {
+  padding: 10px 8px;
+  text-align: center;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+.vis-timeline-block .tl-label {
+  font-size: 10px;
+  opacity: .7;
+}
+
+/* HBM stack */
+.vis-hbm-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 0;
+}
+.vis-hbm-layer {
+  width: 160px;
+  height: 18px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+}
+.vis-hbm-layer.die { background: var(--accent); }
+.vis-hbm-layer.tsv { background: rgba(255,255,255,.1); height: 6px; width: 140px; }
+.vis-hbm-layer.base { background: var(--accent-green); }
+.vis-hbm-arrow {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin: 2px 0;
 }
 
 /* No results */
@@ -416,6 +632,15 @@ body {
 .footer-copy {
   font-size: 12px;
   color: var(--text-muted);
+}
+
+/* Responsive for visuals */
+@media (max-width: 767px) {
+  .vis-flow { flex-direction: column; }
+  .vis-flow-arrow { transform: rotate(90deg); }
+  .vis-bar-label { min-width: 60px; font-size: 11px; }
+  .term-visual img { height: 140px; }
+  .vis-timeline { flex-wrap: wrap; }
 }
 
 /* Mobile */
@@ -515,7 +740,8 @@ var TERMS = [
     catIcon: "🏦",
     morning: true,
     short: "連邦公開市場委員会。年8回の金融政策決定会合",
-    full: "FRB（米連邦準備制度理事会）が開催する金融政策を決定する最重要会合。年8回、約6週間ごとに開催される。FRB理事7名と地区連銀総裁5名の計12名が投票権を持ち、政策金利（FF金利）の変更、量的緩和/引き締めの方針を決定する。会合後に声明文が公表され、3週間後に議事要旨（Minutes）が公開される。四半期に1回はSEP（経済見通し要約）とドットプロットも同時に発表される。"
+    full: "FRB（米連邦準備制度理事会）が開催する金融政策を決定する最重要会合。年8回、約6週間ごとに開催される。FRB理事7名と地区連銀総裁5名の計12名が投票権を持ち、政策金利（FF金利）の変更、量的緩和/引き締めの方針を決定する。会合後に声明文が公表され、3週間後に議事要旨（Minutes）が公開される。四半期に1回はSEP（経済見通し要約）とドットプロットも同時に発表される。",
+    visual: '<img src="https://images.pexels.com/photos/31965503/pexels-photo-31965503.jpeg?auto=compress&cs=tinysrgb&w=800" alt="連邦準備制度理事会ビル" loading="lazy"><div class="img-caption">Photo: Federal Reserve Building, Washington D.C.</div><div class="vis-diagram"><div class="vis-diagram-title">FOMC 意思決定プロセス</div><div class="vis-flow"><div class="vis-flow-step">FOMC会合<br><small>年8回開催</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">声明文発表<br><small>会合当日</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">市場反応<br><small>株・債券・為替</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">議事要旨公開<br><small>3週間後</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">2026年 FOMC開催スケジュール</div><table class="vis-table"><tr><th>回</th><th>開催日</th><th>SEP・ドットプロット</th></tr><tr><td>第1回</td><td>1月28-29日</td><td>-</td></tr><tr><td>第2回</td><td>3月18-19日</td><td>あり</td></tr><tr><td>第3回</td><td>5月6-7日</td><td>-</td></tr><tr><td>第4回</td><td>6月16-17日</td><td>あり</td></tr><tr><td>第5回</td><td>7月28-29日</td><td>-</td></tr><tr><td>第6回</td><td>9月15-16日</td><td>あり</td></tr><tr><td>第7回</td><td>10月28-29日</td><td>-</td></tr><tr><td>第8回</td><td>12月15-16日</td><td>あり</td></tr></table></div>'
   },
   {
     id: "ffrate",
@@ -526,7 +752,8 @@ var TERMS = [
     catIcon: "🏦",
     morning: true,
     short: "フェデラルファンド金利。FRBの金融政策の主要ツール",
-    full: "米国の銀行間で翌日物（オーバーナイト）の資金を貸し借りする際の金利。FOMCが誘導目標レンジ（例: 3.50-3.75%）を設定し、公開市場操作で実効金利をこのレンジ内に誘導する。FF金利は住宅ローン、自動車ローン、クレジットカード金利など、あらゆる金利のベースとなるため「金利の金利」とも呼ばれる。利下げは景気刺激、利上げは景気抑制の効果がある。"
+    full: "米国の銀行間で翌日物（オーバーナイト）の資金を貸し借りする際の金利。FOMCが誘導目標レンジ（例: 3.50-3.75%）を設定し、公開市場操作で実効金利をこのレンジ内に誘導する。FF金利は住宅ローン、自動車ローン、クレジットカード金利など、あらゆる金利のベースとなるため「金利の金利」とも呼ばれる。利下げは景気刺激、利上げは景気抑制の効果がある。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">FF金利の現在位置（過去の推移レンジ: 0% ～ 5.50%）</div><div class="vis-gauge"><div class="vis-gauge-label"><span>0%</span><span>1%</span><span>2%</span><span>3%</span><span>4%</span><span>5.5%</span></div><div class="vis-gauge-bar"><div class="vis-gauge-marker" style="left:64%"></div></div></div><div style="text-align:center;font-size:13px;color:var(--accent);font-weight:700;margin-top:8px">現在: 3.50-3.75%（2026年3月時点）</div></div><div class="vis-diagram"><div class="vis-diagram-title">FF金利が日常生活に与える影響</div><div class="vis-flow"><div class="vis-flow-step negative">FF金利↑</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">住宅ローン金利↑</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">消費減</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">景気減速</div></div></div><div class="vis-callout tip"><strong>💡 ポイント:</strong> FF金利は「全ての金利の基準」。FRBがFF金利を動かすと、住宅ローン・自動車ローン・預金金利・企業の借入コストまで連鎖的に変動する。投資判断でも最重要の指標の一つ。</div>'
   },
   {
     id: "dotplot",
@@ -537,7 +764,8 @@ var TERMS = [
     catIcon: "🏦",
     morning: true,
     short: "FOMCメンバーの政策金利予想を点で示したチャート",
-    full: "FOMC参加者19名（理事7名＋地区連銀総裁12名）が、各年末時点の適切な政策金利水準を予想し、それを匿名の「点（ドット）」としてチャート上に表示したもの。四半期に1回、SEPと同時に公表される。市場は中央値（メディアン）から利下げ/利上げの回数を読み取り、ドットの分布の変化から「タカ派（利上げ寄り）」「ハト派（利下げ寄り）」の傾向を判断する。ただし、各ドットが誰の予想かは公表されない。"
+    full: "FOMC参加者19名（理事7名＋地区連銀総裁12名）が、各年末時点の適切な政策金利水準を予想し、それを匿名の「点（ドット）」としてチャート上に表示したもの。四半期に1回、SEPと同時に公表される。市場は中央値（メディアン）から利下げ/利上げの回数を読み取り、ドットの分布の変化から「タカ派（利上げ寄り）」「ハト派（利下げ寄り）」の傾向を判断する。ただし、各ドットが誰の予想かは公表されない。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">ドットプロット イメージ図（2026年3月会合）</div><div class="vis-dotplot-grid"><div class="vis-dotplot-row"><div class="vis-dotplot-rate">4.50%</div><div class="vis-dotplot-dots"><div class="vis-dot y2028"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">4.25%</div><div class="vis-dotplot-dots"><div class="vis-dot y2028"></div><div class="vis-dot y2028"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">4.00%</div><div class="vis-dotplot-dots"><div class="vis-dot y2027"></div><div class="vis-dot y2028"></div><div class="vis-dot y2028"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">3.75%</div><div class="vis-dotplot-dots"><div class="vis-dot"></div><div class="vis-dot"></div><div class="vis-dot y2027"></div><div class="vis-dot y2027"></div><div class="vis-dot y2028"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">3.50%</div><div class="vis-dotplot-dots"><div class="vis-dot"></div><div class="vis-dot"></div><div class="vis-dot"></div><div class="vis-dot y2027"></div><div class="vis-dot y2027"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">3.25%</div><div class="vis-dotplot-dots"><div class="vis-dot"></div><div class="vis-dot"></div><div class="vis-dot"></div><div class="vis-dot"></div><div class="vis-dot y2027"></div><div class="vis-dot y2027"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">3.00%</div><div class="vis-dotplot-dots"><div class="vis-dot"></div><div class="vis-dot y2027"></div><div class="vis-dot y2027"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">2.75%</div><div class="vis-dotplot-dots"><div class="vis-dot y2027"></div></div></div></div><div style="display:flex;gap:16px;justify-content:center;margin-top:10px;font-size:11px"><div style="display:flex;align-items:center;gap:4px"><div class="vis-dot" style="width:8px;height:8px"></div> 2026年末</div><div style="display:flex;align-items:center;gap:4px"><div class="vis-dot y2027" style="width:8px;height:8px"></div> 2027年末</div><div style="display:flex;align-items:center;gap:4px"><div class="vis-dot y2028" style="width:8px;height:8px"></div> 2028年末</div></div></div><div class="vis-callout"><strong>📌 読み方のコツ:</strong> ドットが下に集まるほど「ハト派（利下げ方向）」、上に集まるほど「タカ派（利上げ方向）」。中央値の変化に注目し、前回との比較で市場のサプライズを読み取る。</div>'
   },
   {
     id: "sep",
@@ -548,7 +776,8 @@ var TERMS = [
     catIcon: "🏦",
     morning: true,
     short: "FOMC経済見通し要約。四半期ごとに公表",
-    full: "FOMCメンバーによる主要経済指標の見通しをまとめた文書。GDP成長率、失業率、PCEインフレ率、コアPCEインフレ率、FF金利の予測が含まれる。3月・6月・9月・12月のFOMCで公表され、ドットプロットもSEPの一部。前回との変化（例: GDP見通しの上方/下方修正）が市場に大きなインパクトを与えることが多い。"
+    full: "FOMCメンバーによる主要経済指標の見通しをまとめた文書。GDP成長率、失業率、PCEインフレ率、コアPCEインフレ率、FF金利の予測が含まれる。3月・6月・9月・12月のFOMCで公表され、ドットプロットもSEPの一部。前回との変化（例: GDP見通しの上方/下方修正）が市場に大きなインパクトを与えることが多い。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">SEP 主要予測値（2026年3月会合・イメージ）</div><table class="vis-table"><tr><th>指標</th><th>2026年</th><th>2027年</th><th>2028年</th><th>長期</th></tr><tr><td>GDP成長率</td><td>1.7%</td><td>1.8%</td><td>2.0%</td><td>1.8%</td></tr><tr><td>失業率</td><td>4.4%</td><td>4.3%</td><td>4.2%</td><td>4.2%</td></tr><tr><td>PCEインフレ率</td><td>2.7%</td><td>2.2%</td><td>2.0%</td><td>2.0%</td></tr><tr><td>コアPCE</td><td>2.8%</td><td>2.3%</td><td>2.0%</td><td>-</td></tr><tr><td>FF金利（中央値）</td><td>3.50%</td><td>3.00%</td><td>2.75%</td><td>2.75%</td></tr></table></div><div class="vis-callout"><strong>📌 なぜSEPが重要なのか:</strong> SEPの数値が前回から変わった方向（上方修正 or 下方修正）が、今後の金融政策の方向性を示す最も強いシグナル。特にGDP見通しの下方修正とインフレ見通しの上方修正が同時に起きると「スタグフレーション懸念」として市場に大きなインパクトを与える。</div>'
   },
   {
     id: "bp",
@@ -559,7 +788,8 @@ var TERMS = [
     catIcon: "🏦",
     morning: false,
     short: "金利の変動幅の単位。1bp = 0.01%",
-    full: "金利や利回りの変動を表す最小単位。1ベーシスポイント = 0.01%。例えば「25bp利下げ」は金利を0.25%引き下げることを意味する。パーセントの「パーセント」を表す単位と考えるとわかりやすい。「金利が0.5%上がった」よりも「50bp上昇」のほうが金融の世界では正確で誤解が生じにくい。"
+    full: "金利や利回りの変動を表す最小単位。1ベーシスポイント = 0.01%。例えば「25bp利下げ」は金利を0.25%引き下げることを意味する。パーセントの「パーセント」を表す単位と考えるとわかりやすい。「金利が0.5%上がった」よりも「50bp上昇」のほうが金融の世界では正確で誤解が生じにくい。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">ベーシスポイント 換算スケール</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">25bp</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:25%">0.25%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">50bp</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:50%">0.50%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">75bp</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:75%">0.75%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">100bp</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:100%">1.00%</div></div></div></div></div><div class="vis-callout tip"><strong>💡 金融ニュースで最頻出の単位:</strong> 「FRBが25bp利下げ」「10年債利回りが15bp上昇」など、毎日のように登場する。通常の利下げ/利上げ幅は25bpで、50bp以上の変更は「ビッグステップ」と呼ばれ、緊急対応を示す。</div>'
   },
   {
     id: "qt",
@@ -570,7 +800,8 @@ var TERMS = [
     catIcon: "🏦",
     morning: false,
     short: "FRBが保有資産を減らし市場から資金を回収すること",
-    full: "QE（量的緩和）の逆のプロセス。FRBが保有する国債やMBS（住宅ローン担保証券）の満期償還分を再投資せずにバランスシートを縮小し、市場から流動性（資金）を回収する。金利引き上げと合わせて実施されることが多く、「ステルス利上げ」とも呼ばれる。QTのペース変更（加速/減速）も市場に大きな影響を与える。"
+    full: "QE（量的緩和）の逆のプロセス。FRBが保有する国債やMBS（住宅ローン担保証券）の満期償還分を再投資せずにバランスシートを縮小し、市場から流動性（資金）を回収する。金利引き上げと合わせて実施されることが多く、「ステルス利上げ」とも呼ばれる。QTのペース変更（加速/減速）も市場に大きな影響を与える。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">QT（量的引き締め）のメカニズム</div><div class="vis-flow"><div class="vis-flow-step">FRB保有資産<br><small>国債・MBS</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">国債が満期</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">再投資しない</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">市場の資金量↓</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">金利上昇圧力</div></div></div><div class="vis-diagram"><div class="vis-diagram-title">QE（緩和）vs QT（引き締め）比較</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">QE期間</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:90%">資産買入で市場に資金供給</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">QT期間</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:65%">満期償還で市場から資金回収</div></div></div></div></div><div class="vis-callout warning"><strong>⚠️ 注意:</strong> QTは「ステルス利上げ」とも呼ばれ、FF金利の引き上げと同時に行われると、金融引き締め効果が二重になる。QTのペース減速（テーパリング）は市場にとってポジティブなシグナル。</div>'
   },
   {
     id: "forwardguidance",
@@ -581,7 +812,8 @@ var TERMS = [
     catIcon: "🏦",
     morning: false,
     short: "中央銀行が将来の金融政策の方向性を事前に示すこと",
-    full: "中央銀行が「今後の金融政策の方向性」を市場に事前に伝えるコミュニケーション手法。「次回会合で利上げの可能性がある」「当面は緩和的な政策を維持する」といった発言が該当する。市場の期待を安定させ、急激な金利変動を防ぐ目的がある。パウエル議長の記者会見での発言は、最も注目されるフォワードガイダンスの一つ。"
+    full: "中央銀行が「今後の金融政策の方向性」を市場に事前に伝えるコミュニケーション手法。「次回会合で利上げの可能性がある」「当面は緩和的な政策を維持する」といった発言が該当する。市場の期待を安定させ、急激な金利変動を防ぐ目的がある。パウエル議長の記者会見での発言は、最も注目されるフォワードガイダンスの一つ。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">フォワードガイダンスの伝達メカニズム</div><div class="vis-flow"><div class="vis-flow-step">中央銀行が発言<br><small>記者会見・声明文</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">市場の期待形成<br><small>利下げ/利上げ織り込み</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">金利・株価に反映<br><small>先回りの価格調整</small></div></div></div><div class="vis-callout"><strong>📌 代表的なフォワードガイダンスの表現:</strong><br>🔹 タカ派:「更なる引き締めが適切かもしれない」→ 利上げ示唆<br>🔹 ハト派:「緩和的な姿勢を当面維持する」→ 利下げ or 据え置き<br>🔹 中立:「データ次第で判断する」→ 明確な方向性なし<br><br>パウエル議長の一言で市場が数%動くこともあり、「Fed語」の解読は投資家の必須スキル。</div>'
   },
   {
     id: "ppi",
@@ -592,7 +824,8 @@ var TERMS = [
     catIcon: "📊",
     morning: false,
     short: "生産者物価指数。企業間取引の価格変動を測定",
-    full: "企業が製品を出荷する段階での価格変動を測定する指標。「川上のインフレ指標」とも呼ばれ、CPIに先行する傾向がある。原材料→中間財→最終財の3段階で測定され、原材料の上昇は数ヶ月後にCPI（消費者物価）に波及しやすい。毎月中旬に米労働統計局（BLS）が発表。前月比と前年比の両方が注目される。"
+    full: "企業が製品を出荷する段階での価格変動を測定する指標。「川上のインフレ指標」とも呼ばれ、CPIに先行する傾向がある。原材料→中間財→最終財の3段階で測定され、原材料の上昇は数ヶ月後にCPI（消費者物価）に波及しやすい。毎月中旬に米労働統計局（BLS）が発表。前月比と前年比の両方が注目される。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">インフレの伝搬パイプライン（川上→川下）</div><div class="vis-flow"><div class="vis-flow-step">原材料PPI<br><small>鉄鋼・原油・穀物</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">中間財PPI<br><small>部品・素材</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">最終財PPI<br><small>完成品・出荷価格</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">CPI<br><small>消費者が支払う価格</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">PPI 前年比推移（イメージ）</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">2024 Q2</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:50%">2.5%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">2024 Q4</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:44%">2.2%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">2025 Q2</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:36%">1.8%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">2025 Q4</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:46%">2.3%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">2026 Q1</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:40%">2.0%</div></div></div></div></div><div class="vis-callout tip"><strong>💡 投資家のチェックポイント:</strong> PPIが上昇傾向にある場合、数ヶ月後にCPIも上昇する可能性が高い。PPIの「先行性」を利用して、インフレ動向を先読みする。</div>'
   },
   {
     id: "cpi",
@@ -603,7 +836,8 @@ var TERMS = [
     catIcon: "📊",
     morning: true,
     short: "消費者物価指数。一般消費者が購入する財・サービスの価格変動",
-    full: "都市部の消費者が購入する財・サービスのバスケット（約80,000品目）の価格変動を測定する指標。「ヘッドラインCPI」は食品・エネルギーを含む総合指数、「コアCPI」は変動の激しい食品・エネルギーを除いた指数。毎月中旬にBLSが発表し、FRBの金融政策判断に大きな影響を与える。市場予想との乖離が大きいと株式・債券市場が大きく動く。"
+    full: "都市部の消費者が購入する財・サービスのバスケット（約80,000品目）の価格変動を測定する指標。「ヘッドラインCPI」は食品・エネルギーを含む総合指数、「コアCPI」は変動の激しい食品・エネルギーを除いた指数。毎月中旬にBLSが発表し、FRBの金融政策判断に大きな影響を与える。市場予想との乖離が大きいと株式・債券市場が大きく動く。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">CPI 構成ウェイト（概算）</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">住居費</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:40%">約40%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">食品</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:14%">約14%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">交通</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:10%">約10%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">医療</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:8%">約8%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">教育・通信</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:7%">約7%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">その他</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:21%">約21%</div></div></div></div></div><img src="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=800" alt="スーパーマーケットの商品棚" loading="lazy"><div class="img-caption">Photo: Consumer prices are measured across ~80,000 items</div><div class="vis-callout"><strong>📌 ヘッドライン vs コア:</strong> 食品・エネルギーは天候や地政学で激しく変動するため、FRBは「コアCPI」をより重視する。ただし消費者の実感に近いのは「ヘッドラインCPI」。両方の乖離が大きい時は要注意。</div>'
   },
   {
     id: "pce",
@@ -614,7 +848,8 @@ var TERMS = [
     catIcon: "📊",
     morning: true,
     short: "個人消費支出物価指数。FRBが最も重視するインフレ指標",
-    full: "米商務省が発表する物価指標で、FRBが金融政策の目標として最も重視するインフレ指標。CPIとの違いは、(1)対象範囲が広い（保険や金融サービスも含む）、(2)消費者の代替行動を考慮する（牛肉が高くなれば鶏肉に切り替えるなど）、(3)支出ウェイトが毎月更新される。FRBのインフレ目標は「PCE前年比2%」。"
+    full: "米商務省が発表する物価指標で、FRBが金融政策の目標として最も重視するインフレ指標。CPIとの違いは、(1)対象範囲が広い（保険や金融サービスも含む）、(2)消費者の代替行動を考慮する（牛肉が高くなれば鶏肉に切り替えるなど）、(3)支出ウェイトが毎月更新される。FRBのインフレ目標は「PCE前年比2%」。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">CPI vs PCE 比較表</div><table class="vis-table"><tr><th>比較項目</th><th>CPI</th><th>PCE</th></tr><tr><td>発表元</td><td>労働統計局（BLS）</td><td>商務省経済分析局（BEA）</td></tr><tr><td>対象範囲</td><td>都市部消費者の直接支出</td><td>全消費者＋雇用主負担分含む</td></tr><tr><td>ウェイト更新</td><td>2年に1回</td><td>毎月更新</td></tr><tr><td>代替効果</td><td>考慮しない</td><td>考慮する（連鎖加重）</td></tr><tr><td>住居費ウェイト</td><td>約40%（大きい）</td><td>約15%（小さい）</td></tr><tr><td>FRBの重視度</td><td>参考指標</td><td>★ 公式目標指標</td></tr></table></div><div class="vis-callout"><strong>📌 FRBの物価目標は「PCE 2%」:</strong> CPIの方が先に発表されるため市場の注目を集めやすいが、FRBが金融政策の判断基準にしているのはPCE。両指標の乖離が大きい時は、PCEの方向性を優先して解釈する。</div>'
   },
   {
     id: "stagflation",
@@ -625,7 +860,8 @@ var TERMS = [
     catIcon: "📊",
     morning: false,
     short: "景気停滞とインフレが同時に起きる状態",
-    full: "景気停滞（Stagnation）とインフレーション（Inflation）を合わせた造語。通常、景気が悪化すれば需要が減り物価は下がる（デフレ）が、原油価格の急騰や供給制約などの外部ショックにより、不景気なのに物価が上がり続ける異常事態。中央銀行にとって最も対応が難しい状況で、利下げすればインフレ加速、利上げすれば景気悪化というジレンマに陥る。1970年代のオイルショック時が典型例。投資では株式・債券ともに不利で、金・コモディティ・エネルギー株が相対的に有利とされる。"
+    full: "景気停滞（Stagnation）とインフレーション（Inflation）を合わせた造語。通常、景気が悪化すれば需要が減り物価は下がる（デフレ）が、原油価格の急騰や供給制約などの外部ショックにより、不景気なのに物価が上がり続ける異常事態。中央銀行にとって最も対応が難しい状況で、利下げすればインフレ加速、利上げすれば景気悪化というジレンマに陥る。1970年代のオイルショック時が典型例。投資では株式・債券ともに不利で、金・コモディティ・エネルギー株が相対的に有利とされる。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">スタグフレーションの悪循環</div><div class="vis-flow"><div class="vis-flow-step negative">原油高・供給制約</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">コスト上昇</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">物価↑ + 企業利益↓</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">雇用↓ → 消費↓</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">景気停滞</div></div></div><img src="https://images.pexels.com/photos/3656855/pexels-photo-3656855.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ガソリンスタンド" loading="lazy"><div class="img-caption">Photo: 原油価格の急騰はスタグフレーションの主因の一つ</div><div class="vis-diagram"><div class="vis-diagram-title">1970年代 vs 2026年の経済環境比較</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">1974年CPI</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:88%">11.0%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">1974年失業率</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:56%">7.0%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">2026年CPI</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:24%">3.0%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">2026年失業率</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:35%">4.4%</div></div></div></div></div><div class="vis-callout warning"><strong>⚠️ 中央銀行のジレンマ:</strong> スタグフレーション下では「利下げ→インフレ加速」「利上げ→景気悪化」のどちらを選んでも副作用がある。FRBにとって最も対応が難しいシナリオ。</div>'
   },
   {
     id: "vix",
@@ -636,7 +872,8 @@ var TERMS = [
     catIcon: "📈",
     morning: true,
     short: "S&P 500オプションの予想変動率。恐怖指数とも呼ばれる",
-    full: "シカゴ・オプション取引所（CBOE）が算出する、S&P 500の今後30日間の予想変動率を示す指数。「恐怖指数」の別名を持つ。20以下は市場が安定、20-30はやや警戒、30超は高ストレス（パニック）状態を示す。2020年3月のコロナショック時には82.69まで急騰した。VIX自体を売買するETFや先物もあり、ヘッジ手段としても利用される。"
+    full: "シカゴ・オプション取引所（CBOE）が算出する、S&P 500の今後30日間の予想変動率を示す指数。「恐怖指数」の別名を持つ。20以下は市場が安定、20-30はやや警戒、30超は高ストレス（パニック）状態を示す。2020年3月のコロナショック時には82.69まで急騰した。VIX自体を売買するETFや先物もあり、ヘッジ手段としても利用される。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">VIX レベルゲージ</div><div class="vis-gauge"><div class="vis-gauge-label"><span>0</span><span>15 安定</span><span>20 通常</span><span>30 警戒</span><span>50+</span></div><div class="vis-gauge-bar" style="background:linear-gradient(90deg, #3fb950 0%, #3fb950 30%, #58a6ff 30%, #58a6ff 40%, #d29922 40%, #d29922 60%, #f85149 60%, #f85149 100%)"><div class="vis-gauge-marker" style="left:28%"></div></div></div><div style="text-align:center;font-size:12px;margin-top:8px"><span style="color:var(--accent-green)">■ 0-15 安定</span> ｜ <span style="color:var(--accent)">■ 15-20 通常</span> ｜ <span style="color:var(--accent-amber)">■ 20-30 警戒</span> ｜ <span style="color:var(--accent-red)">■ 30+ パニック</span></div></div><div class="vis-diagram"><div class="vis-diagram-title">過去のVIXスパイク</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">コロナ2020</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:100%">82.69</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">VIXショック2018</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:43%">36.07</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">関税ショック2025</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:60%">50.04</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">平常時</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:18%">12-15</div></div></div></div></div><div class="vis-callout"><strong>📌 VIXの使い方:</strong> VIXが急上昇（30超）した時は「恐怖のピーク＝買い場」となることが多い（逆張り指標）。ただし上昇途中で買うのは危険。VIXがピークをつけて下降に転じてからのエントリーが定石。</div>'
   },
   {
     id: "topix",
@@ -647,7 +884,8 @@ var TERMS = [
     catIcon: "📈",
     morning: false,
     short: "東証プライム全銘柄の時価総額加重型株価指数",
-    full: "東京証券取引所プライム市場に上場する全銘柄を対象とした時価総額加重型の株価指数。日経平均株価が225銘柄の株価単純平均であるのに対し、TOPIXは時価総額の大きい企業ほどウェイトが高い。そのため、TOPIXは市場全体の実態をより正確に反映するとされる。基準日は1968年1月4日（=100）。"
+    full: "東京証券取引所プライム市場に上場する全銘柄を対象とした時価総額加重型の株価指数。日経平均株価が225銘柄の株価単純平均であるのに対し、TOPIXは時価総額の大きい企業ほどウェイトが高い。そのため、TOPIXは市場全体の実態をより正確に反映するとされる。基準日は1968年1月4日（=100）。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">TOPIX vs 日経平均 比較</div><table class="vis-table"><tr><th>比較項目</th><th>TOPIX</th><th>日経平均株価</th></tr><tr><td>算出方式</td><td>時価総額加重平均</td><td>株価単純平均（除数修正）</td></tr><tr><td>対象銘柄数</td><td>プライム全銘柄（約1,800）</td><td>225銘柄（選定）</td></tr><tr><td>値がさ株の影響</td><td>小さい（時価総額ベース）</td><td>大きい（株価が高い銘柄の影響大）</td></tr><tr><td>代表的ETF</td><td>1306（TOPIX連動型）</td><td>1321（日経225連動型）</td></tr><tr><td>特徴</td><td>市場全体の動きを反映</td><td>ファストリ・ソフバンクGの影響大</td></tr></table></div><div class="vis-callout tip"><strong>💡 使い分け:</strong> 日本株全体のトレンドを見るならTOPIX、個別の値がさ株の影響を含むセンチメントを見るなら日経平均。機関投資家のベンチマークはTOPIXが多い。</div>'
   },
   {
     id: "brent",
@@ -658,7 +896,8 @@ var TERMS = [
     catIcon: "📈",
     morning: false,
     short: "北海ブレント原油。国際的な原油価格ベンチマーク",
-    full: "北海（イギリス・ノルウェー沖）で産出される原油の価格指標。世界の原油取引の約2/3がBrent原油を基準に値付けされるため、国際的な原油価格のベンチマークとなっている。米国の指標であるWTI（West Texas Intermediate）よりも国際的な影響力が大きい。ロンドンのICE取引所で取引され、地政学リスク（中東情勢等）に敏感に反応する。"
+    full: "北海（イギリス・ノルウェー沖）で産出される原油の価格指標。世界の原油取引の約2/3がBrent原油を基準に値付けされるため、国際的な原油価格のベンチマークとなっている。米国の指標であるWTI（West Texas Intermediate）よりも国際的な影響力が大きい。ロンドンのICE取引所で取引され、地政学リスク（中東情勢等）に敏感に反応する。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">原油価格が経済に波及するメカニズム</div><div class="vis-flow"><div class="vis-flow-step negative">Brent原油↑</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">ガソリン価格↑</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">輸送コスト↑</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">CPI上昇</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">FRB利上げ圧力</div></div></div><img src="https://images.pexels.com/photos/10020724/pexels-photo-10020724.jpeg?auto=compress&cs=tinysrgb&w=800" alt="石油タンカー" loading="lazy"><div class="img-caption">Photo: 世界の原油取引の約2/3がBrentを基準に値付け</div><div class="vis-callout"><strong>📌 Brent vs WTI:</strong> Brentは国際指標（欧州・アジア・中東）、WTIは北米指標。通常BrentはWTIより$2-5高く取引される。地政学リスクではBrentの方が敏感に反応する。</div>'
   },
   {
     id: "eps",
@@ -669,7 +908,8 @@ var TERMS = [
     catIcon: "💰",
     morning: false,
     short: "1株当たり利益。純利益÷発行済株式数",
-    full: "企業の純利益を発行済株式数で割った値で、株主1人あたりがどれだけの利益を得ているかを示す最も基本的な収益性指標。GAAP EPS（会計基準に従った数値）とNon-GAAP EPS（一時的な費用を除いた調整後の数値）がある。決算発表ではアナリストのコンセンサス予想と実績の比較が最も注目され、予想を上回れば「ビート」、下回れば「ミス」と呼ばれる。"
+    full: "企業の純利益を発行済株式数で割った値で、株主1人あたりがどれだけの利益を得ているかを示す最も基本的な収益性指標。GAAP EPS（会計基準に従った数値）とNon-GAAP EPS（一時的な費用を除いた調整後の数値）がある。決算発表ではアナリストのコンセンサス予想と実績の比較が最も注目され、予想を上回れば「ビート」、下回れば「ミス」と呼ばれる。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">EPS 計算式</div><div class="vis-flow"><div class="vis-flow-step">純利益<br><small>（Net Income）</small></div><div class="vis-flow-arrow">÷</div><div class="vis-flow-step">発行済株式数<br><small>（Shares Outstanding）</small></div><div class="vis-flow-arrow">=</div><div class="vis-flow-step positive">EPS<br><small>1株当たり利益</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">コンセンサスEPS vs 実績EPS（例: A社）</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">Q1 予想</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:60%">$1.20</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Q1 実績</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:70%">$1.40 ✓ビート</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Q2 予想</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:65%">$1.30</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Q2 実績</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:55%">$1.10 ✗ミス</div></div></div></div></div><div class="vis-callout"><strong>📌 GAAP vs Non-GAAP:</strong> GAAP EPSは会計基準通りの数値（株式報酬費用や一時費用を含む）。Non-GAAP EPSはこれらを除外した「実力ベース」の数値。テック企業ではNon-GAAPが重視されるが、GAAPとの乖離が大きすぎる場合は要注意。</div>'
   },
   {
     id: "guidance",
@@ -680,7 +920,8 @@ var TERMS = [
     catIcon: "💰",
     morning: false,
     short: "企業が発表する次期の業績見通し",
-    full: "企業が決算発表時に提示する、次の四半期や通期の業績予想。売上高とEPSのレンジ（例: 売上$10.0B-$10.5B）で示されることが多い。実績がどれだけ良くても、ガイダンスが市場予想を下回ると株価は下落する傾向がある。「ガイダンス上方修正」は最も強い買いシグナルの一つ。逆に「ガイダンス撤回」は経営陣が先行きを読めない不確実性の表れで、株価には大きなマイナス。"
+    full: "企業が決算発表時に提示する、次の四半期や通期の業績予想。売上高とEPSのレンジ（例: 売上$10.0B-$10.5B）で示されることが多い。実績がどれだけ良くても、ガイダンスが市場予想を下回ると株価は下落する傾向がある。「ガイダンス上方修正」は最も強い買いシグナルの一つ。逆に「ガイダンス撤回」は経営陣が先行きを読めない不確実性の表れで、株価には大きなマイナス。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">ガイダンスの市場インパクト</div><div class="vis-flow"><div class="vis-flow-step">ガイダンス発表<br><small>売上・EPSの見通し</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">コンセンサスと比較</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">上方修正 → 買い↑</div></div><div style="height:8px"></div><div class="vis-flow"><div class="vis-flow-step" style="visibility:hidden">spacer</div><div class="vis-flow-arrow" style="visibility:hidden">→</div><div class="vis-flow-step" style="visibility:hidden">spacer</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">下方修正 → 売り↓</div></div></div><div class="vis-callout"><strong>📌 実例で理解するガイダンスの重要性:</strong><br>🔹 <strong>最強パターン:</strong> 実績ビート + ガイダンス上方修正 → 株価急騰<br>🔹 <strong>要注意パターン:</strong> 実績ビート + ガイダンス下方修正 → 実績は良くても株価下落<br>🔹 <strong>最悪パターン:</strong> 実績ミス + ガイダンス撤回 → 経営不透明で売り殺到<br><br>「過去の成績より未来の見通し」が株価を動かす。</div>'
   },
   {
     id: "afterhours",
@@ -691,7 +932,8 @@ var TERMS = [
     catIcon: "💰",
     morning: false,
     short: "通常取引時間後の時間外取引",
-    full: "米国市場の通常取引時間（9:30-16:00 ET）の後に行われる延長取引（16:00-20:00 ET）。決算発表は通常取引終了後に行われることが多いため、決算への最初の市場反応はアフターアワーズで出る。ただし流動性が低く、スプレッドが広いため、翌日の通常取引で反転することも珍しくない。「AH: +5%」のように略記される。寄り前の取引はプレマーケット（PM）と呼ばれる。"
+    full: "米国市場の通常取引時間（9:30-16:00 ET）の後に行われる延長取引（16:00-20:00 ET）。決算発表は通常取引終了後に行われることが多いため、決算への最初の市場反応はアフターアワーズで出る。ただし流動性が低く、スプレッドが広いため、翌日の通常取引で反転することも珍しくない。「AH: +5%」のように略記される。寄り前の取引はプレマーケット（PM）と呼ばれる。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">米国株式市場の取引時間帯（東部時間）</div><div class="vis-timeline"><div class="vis-timeline-block" style="flex:2.5;background:rgba(88,166,255,.12);border:1px solid rgba(88,166,255,.3)"><div>PM（プレマーケット）</div><div class="tl-label">4:00 - 9:30</div></div><div class="vis-timeline-block" style="flex:3;background:rgba(63,185,80,.15);border:1px solid rgba(63,185,80,.3)"><div>通常取引</div><div class="tl-label">9:30 - 16:00</div></div><div class="vis-timeline-block" style="flex:2;background:rgba(210,153,34,.12);border:1px solid rgba(210,153,34,.3)"><div>AH（アフターアワーズ）</div><div class="tl-label">16:00 - 20:00</div></div></div><div style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:6px">日本時間: PM=翌5:00-22:30 ／ 通常=22:30-翌5:00 ／ AH=翌5:00-9:00（冬時間+1h）</div></div><div class="vis-callout tip"><strong>💡 決算シーズンのTips:</strong> 決算はAMC（引け後）発表が多く、最初の反応はアフターアワーズで出る。ただしAHは出来高が少なく値が飛びやすい。翌日の寄り付きで方向が変わることも多いので、AHの動きだけで判断するのは危険。</div>'
   },
   {
     id: "buyback",
@@ -702,7 +944,8 @@ var TERMS = [
     catIcon: "💰",
     morning: false,
     short: "企業が市場で自社株を買い戻すこと",
-    full: "企業が市場で自社の発行済株式を買い戻すこと。発行済株式数が減少するためEPSが向上し、1株あたりの価値が高まる。配当と並ぶ株主還元策で、米国企業では年間$1兆以上が自社株買いに使われている。経営陣が「自社の株価が割安」と判断していることの表れとも解釈される。税制面では配当より有利な場合が多い。"
+    full: "企業が市場で自社の発行済株式を買い戻すこと。発行済株式数が減少するためEPSが向上し、1株あたりの価値が高まる。配当と並ぶ株主還元策で、米国企業では年間$1兆以上が自社株買いに使われている。経営陣が「自社の株価が割安」と判断していることの表れとも解釈される。税制面では配当より有利な場合が多い。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">自社株買いのメカニズム</div><div class="vis-flow"><div class="vis-flow-step">自社株買い実施</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">発行済株式数↓</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">EPS↑</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">株価↑</div></div></div><div class="vis-diagram"><div class="vis-diagram-title">米国企業 自社株買い規模ランキング（年間・概算）</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">Apple</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:100%">$1,000億+</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Alphabet</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:65%">$650億</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Meta</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:50%">$500億</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">NVIDIA</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:40%">$400億</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Microsoft</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:35%">$350億</div></div></div></div></div><div class="vis-callout tip"><strong>💡 自社株買いの見方:</strong> 大型の自社株買い発表は株価の下支え要因。ただし「借金して自社株買い」は財務リスク。フリーキャッシュフローで賄える自社株買いが健全。</div>'
   },
   {
     id: "marketcap",
@@ -713,7 +956,8 @@ var TERMS = [
     catIcon: "💰",
     morning: false,
     short: "株価×発行済株式数。企業の市場での評価額",
-    full: "株価 × 発行済株式数で算出される、企業の市場における評価額。例えばAppleの時価総額が$3兆なら、全株式を今の株価で買い占めるのに$3兆必要という意味。大型株（Large Cap: $10B以上）、中型株（Mid Cap: $2-10B）、小型株（Small Cap: $2B以下）の分類に使われる。S&P 500は時価総額加重型のため、Apple、Microsoft、NVIDIAなどの超大型株の動きが指数全体に大きく影響する。"
+    full: "株価 × 発行済株式数で算出される、企業の市場における評価額。例えばAppleの時価総額が$3兆なら、全株式を今の株価で買い占めるのに$3兆必要という意味。大型株（Large Cap: $10B以上）、中型株（Mid Cap: $2-10B）、小型株（Small Cap: $2B以下）の分類に使われる。S&P 500は時価総額加重型のため、Apple、Microsoft、NVIDIAなどの超大型株の動きが指数全体に大きく影響する。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">世界の時価総額トップ企業（2026年3月概算）</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">Apple</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:100%">$3.5T</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">NVIDIA</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:83%">$2.9T</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Microsoft</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:80%">$2.8T</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Alphabet</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:57%">$2.0T</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Amazon</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:54%">$1.9T</div></div></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">時価総額の分類</div><table class="vis-table"><tr><th>分類</th><th>時価総額</th><th>特徴</th></tr><tr><td>メガキャップ</td><td>$200B以上</td><td>GAFAM等。S&P 500を大きく左右</td></tr><tr><td>ラージキャップ</td><td>$10B-$200B</td><td>安定した大企業。機関投資家の主力</td></tr><tr><td>ミッドキャップ</td><td>$2B-$10B</td><td>成長余地と安定のバランス</td></tr><tr><td>スモールキャップ</td><td>$2B以下</td><td>高成長期待。ボラティリティ大</td></tr></table></div>'
   },
   {
     id: "hbm",
@@ -724,7 +968,8 @@ var TERMS = [
     catIcon: "🔧",
     morning: false,
     short: "高帯域幅メモリ。AI処理用の積層型メモリ技術",
-    full: "AI/ML処理に必要な大量のデータを超高速でやり取りするための積層型メモリ技術。従来のDDR5メモリと比べて帯域幅が数倍〜10倍以上。メモリチップを縦に積層し、TSV（Through-Silicon Via）で接続することで高速化を実現。NVIDIAのH100/H200/B200 GPUに搭載されており、SK Hynix、Samsung、Micronの3社が供給。AI需要の急拡大に伴い供給不足が続いている。"
+    full: "AI/ML処理に必要な大量のデータを超高速でやり取りするための積層型メモリ技術。従来のDDR5メモリと比べて帯域幅が数倍〜10倍以上。メモリチップを縦に積層し、TSV（Through-Silicon Via）で接続することで高速化を実現。NVIDIAのH100/H200/B200 GPUに搭載されており、SK Hynix、Samsung、Micronの3社が供給。AI需要の急拡大に伴い供給不足が続いている。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">HBM 積層構造イメージ</div><div class="vis-hbm-stack"><div class="vis-hbm-layer die">DRAM Die #8</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #7</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #6</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #5</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #4</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #3</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #2</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #1</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer base">ベースダイ（ロジック）</div></div><div style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:4px">↕ TSV（Through-Silicon Via）で縦方向接続</div></div><img src="https://images.pexels.com/photos/3520679/pexels-photo-3520679.jpeg?auto=compress&cs=tinysrgb&w=800" alt="半導体基板" loading="lazy"><div class="img-caption">Photo: 高密度半導体メモリ技術</div><div class="vis-diagram"><div class="vis-diagram-title">HBM vs DDR5 スペック比較</div><table class="vis-table"><tr><th>比較項目</th><th>HBM3E</th><th>DDR5</th></tr><tr><td>帯域幅</td><td>1.2 TB/s</td><td>約50 GB/s</td></tr><tr><td>容量（1スタック）</td><td>24-36 GB</td><td>16-64 GB（1DIMM）</td></tr><tr><td>構造</td><td>8-12層積層 + TSV</td><td>平面実装</td></tr><tr><td>消費電力効率</td><td>高い（pJ/bit低い）</td><td>標準</td></tr><tr><td>コスト</td><td>非常に高い</td><td>標準</td></tr><tr><td>主な用途</td><td>AI GPU（H100/B200等）</td><td>PC・サーバー汎用</td></tr></table></div>'
   },
   {
     id: "gtc",
@@ -735,7 +980,8 @@ var TERMS = [
     catIcon: "🔧",
     morning: false,
     short: "NVIDIAの年次技術カンファレンス",
-    full: "NVIDIAが毎年開催する技術カンファレンス（GPU Technology Conference）。新世代GPU、AIプラットフォーム、ソフトウェア開発キットの発表の場として、半導体・AI銘柄の株価を大きく動かすイベント。ジェンスン・ファンCEOの基調講演は「AIのワールドカップ」とも呼ばれ、発表内容は数日にわたり市場に影響を与える。"
+    full: "NVIDIAが毎年開催する技術カンファレンス（GPU Technology Conference）。新世代GPU、AIプラットフォーム、ソフトウェア開発キットの発表の場として、半導体・AI銘柄の株価を大きく動かすイベント。ジェンスン・ファンCEOの基調講演は「AIのワールドカップ」とも呼ばれ、発表内容は数日にわたり市場に影響を与える。",
+    visual: '<img src="https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=800" alt="テクノロジーカンファレンス" loading="lazy"><div class="img-caption">Photo: GTC — NVIDIAの年次技術カンファレンス</div><div class="vis-diagram"><div class="vis-diagram-title">直近GTCの主要発表タイムライン</div><table class="vis-table"><tr><th>年</th><th>主要発表</th><th>市場インパクト</th></tr><tr><td>GTC 2024</td><td>Blackwell B200 GPU発表</td><td>NVDA +2%, AI関連株全面高</td></tr><tr><td>GTC 2025</td><td>Vera Rubin アーキテクチャ</td><td>半導体セクター大幅上昇</td></tr><tr><td>GTC 2026</td><td>次世代プラットフォーム</td><td>AI投資テーマ再加速</td></tr></table></div><div class="vis-callout"><strong>📌 GTCの市場インパクト:</strong> GTCでの発表内容はNVIDIA株だけでなく、TSMC・SK Hynix・AVGO・ARMなどサプライチェーン全体に波及する。基調講演の「ワンモアシング」的な新製品発表が最大の注目ポイント。</div>'
   },
   {
     id: "hormuz",
@@ -746,7 +992,8 @@ var TERMS = [
     catIcon: "🌍",
     morning: false,
     short: "ペルシャ湾の出口。世界原油輸送の約20%が通過",
-    full: "イランとオマーンに挟まれた、ペルシャ湾からアラビア海への唯一の出口。最も狭い部分は約33km。サウジアラビア、イラク、クウェート、UAE、カタールなどの産油国からの原油輸出の大部分がここを通過し、世界の原油輸送量の約20%（日量約2,100万バレル）を占める。イランが封鎖を示唆するだけで原油価格が急騰するため、地政学リスクの最重要ポイントの一つ。"
+    full: "イランとオマーンに挟まれた、ペルシャ湾からアラビア海への唯一の出口。最も狭い部分は約33km。サウジアラビア、イラク、クウェート、UAE、カタールなどの産油国からの原油輸出の大部分がここを通過し、世界の原油輸送量の約20%（日量約2,100万バレル）を占める。イランが封鎖を示唆するだけで原油価格が急騰するため、地政学リスクの最重要ポイントの一つ。",
+    visual: '<img src="https://images.pexels.com/photos/10020724/pexels-photo-10020724.jpeg?auto=compress&cs=tinysrgb&w=800" alt="石油タンカー" loading="lazy"><div class="img-caption">Photo: ペルシャ湾の原油輸送</div><div class="vis-diagram"><div class="vis-diagram-title">世界の原油チョークポイント通過量シェア</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">ホルムズ海峡</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:100%">日量2,100万bbl（20%）</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">マラッカ海峡</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:76%">日量1,600万bbl</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">スエズ運河</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:48%">日量1,000万bbl</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">バブ・エル・マンデブ</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:33%">日量700万bbl</div></div></div></div></div><div class="vis-callout warning"><strong>⚠️ 地政学リスク:</strong> イランが「ホルムズ海峡封鎖」を示唆するだけで原油先物が急騰する。湾岸諸国の原油輸出の約90%がここを通過するため、封鎖されれば世界的なエネルギー危機に直結。投資家にとって中東情勢は原油価格を通じて全市場に影響する最重要リスク。</div>'
   },
   {
     id: "jonesact",
@@ -757,7 +1004,8 @@ var TERMS = [
     catIcon: "🌍",
     morning: false,
     short: "米国の海運保護法。国内輸送を米国籍船に限定",
-    full: "1920年制定の米国商船法（Merchant Marine Act）のセクション27。米国の港間の貨物輸送を、米国籍・米国建造・米国人乗組員の船舶に限定する法律。海運業界と造船業界を保護する目的だが、輸送コストの高止まりの原因としても批判される。緊急時（ハリケーン、エネルギー危機等）に大統領令で一時停止されることがあり、外国船が参入することで輸送コストの低下が期待される。"
+    full: "1920年制定の米国商船法（Merchant Marine Act）のセクション27。米国の港間の貨物輸送を、米国籍・米国建造・米国人乗組員の船舶に限定する法律。海運業界と造船業界を保護する目的だが、輸送コストの高止まりの原因としても批判される。緊急時（ハリケーン、エネルギー危機等）に大統領令で一時停止されることがあり、外国船が参入することで輸送コストの低下が期待される。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">ジョーンズ法の適用 vs 停止時の比較</div><div class="vis-flow"><div class="vis-flow-step negative">現行: 米国船のみ<br><small>高コスト・限られた船腹</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">大統領令で停止</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">外国船も参入<br><small>競争激化</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">輸送コスト↓<br><small>エネルギー価格↓</small></div></div></div><div class="vis-callout"><strong>📌 なぜ投資家に関係するのか:</strong> ジョーンズ法の一時停止が発表されると、LNG（液化天然ガス）や石油製品の国内輸送コストが低下し、エネルギー価格の下押し要因になる。ハリケーン被害時の停止は緊急エネルギー対策として頻繁にニュースになる。海運株（MATX, KEX等）にとっては収益圧迫要因。</div>'
   },
   {
     id: "section301",
@@ -768,7 +1016,8 @@ var TERMS = [
     catIcon: "🌍",
     morning: false,
     short: "不公正な貿易慣行に対する大統領の報復権限",
-    full: "1974年米国通商法の第301条。外国政府の不合理・不公正な貿易慣行に対し、大統領に関税引き上げ等の報復措置をとる権限を与える条項。2018年にトランプ政権が中国の知的財産権侵害を理由に301条を発動し、対中関税の法的根拠とした。WTOの紛争解決手続きを経ずに一方的に制裁を課せるため、「アメリカファースト」の通商政策の象徴的ツール。"
+    full: "1974年米国通商法の第301条。外国政府の不合理・不公正な貿易慣行に対し、大統領に関税引き上げ等の報復措置をとる権限を与える条項。2018年にトランプ政権が中国の知的財産権侵害を理由に301条を発動し、対中関税の法的根拠とした。WTOの紛争解決手続きを経ずに一方的に制裁を課せるため、「アメリカファースト」の通商政策の象徴的ツール。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">通商法301条の発動プロセス</div><div class="vis-flow"><div class="vis-flow-step">USTR調査開始<br><small>不公正貿易の調査</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">不公正認定<br><small>知財侵害・補助金等</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">報復関税発動<br><small>大統領権限</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">貿易相手国への影響<br><small>輸出減・報復関税</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">対中301条関税率の推移</div><table class="vis-table"><tr><th>対象</th><th>2018年発動時</th><th>2024年改定後</th><th>影響</th></tr><tr><td>半導体</td><td>25%</td><td>50%</td><td>サプライチェーン再編加速</td></tr><tr><td>EV（電気自動車）</td><td>27.5%</td><td>100%</td><td>中国EVの米国進出を事実上遮断</td></tr><tr><td>太陽光パネル</td><td>25%</td><td>50%</td><td>国内製造回帰を促進</td></tr><tr><td>鉄鋼・アルミ</td><td>25%</td><td>25%</td><td>維持（232条と併用）</td></tr><tr><td>リチウム電池</td><td>7.5%</td><td>25%</td><td>バッテリーサプライチェーン再編</td></tr></table></div><div class="vis-callout warning"><strong>⚠️ 市場への影響:</strong> 301条関税の発動・拡大はサプライチェーンのコスト増→企業収益圧迫→株価下落の経路で市場に波及する。特に中国売上比率の高い企業（半導体・アパレル・自動車）は要注意。</div>'
   }
 ];
 
@@ -860,6 +1109,9 @@ function renderTerms() {
     h += '</div>';
     h += '<div class="term-body"><div class="term-body-inner">';
     h += '<div class="term-full">' + highlightMatch(t.full, q) + '</div>';
+    if (t.visual) {
+      h += '<div class="term-visual">' + t.visual + '</div>';
+    }
     h += '</div></div>';
     h += '</div>';
     return h;
