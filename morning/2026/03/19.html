@@ -506,6 +506,34 @@ body {
   color: var(--text-muted);
 }
 
+/* News Card Image */
+.news-card-img {
+  margin: -22px -22px 12px -22px;
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.news-card-img img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  transition: transform .3s ease;
+}
+.news-card:hover .news-card-img img {
+  transform: scale(1.03);
+}
+.news-card-img-caption {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 3px 10px;
+  font-size: 10px;
+  color: rgba(255,255,255,.7);
+  background: rgba(0,0,0,.5);
+  border-radius: var(--radius-sm) 0 0 0;
+}
+
 /* ==========================================
    3. Economic Calendar
    ========================================== */
@@ -580,7 +608,16 @@ body {
 .earnings-item-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 6px;
+}
+
+.earnings-item-logo {
+  height: 22px;
+  width: auto;
+  max-width: 80px;
+  object-fit: contain;
+  opacity: .85;
+  flex-shrink: 0;
 }
 
 .earnings-item-ticker {
@@ -596,6 +633,7 @@ body {
   border-radius: 4px;
   background: rgba(255,255,255,.06);
   color: var(--text-muted);
+  margin-left: auto;
 }
 
 .earnings-item-timing.bmo { background: var(--accent-amber-light); color: var(--accent-amber); }
@@ -917,6 +955,7 @@ body {
   .term .tip { width: 260px; font-size: 12px; }
   .section-hero img { height: 160px; }
   .section-hero.small img { height: 120px; }
+  .news-card-img img { height: 120px; }
   .fomc-dot-table { font-size: 11px; }
   .fomc-dot-table th, .fomc-dot-table td { padding: 6px 4px; }
 }
@@ -948,6 +987,8 @@ body {
   .term { border-bottom: none; color: inherit; }
   .term .tip { display: none; }
   .section-hero img { height: auto; max-height: 200px; }
+  .news-card-img img { height: auto; max-height: 120px; }
+  .news-card:hover .news-card-img img { transform: none; }
 }
 </style>
 </head>
@@ -1069,6 +1110,10 @@ body {
     <!-- Top Story -->
     <div class="top-story">
       <span class="top-story-badge">TOP STORY</span>
+      <div class="section-hero">
+        <img src="https://images.pexels.com/photos/31965503/pexels-photo-31965503.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="連邦準備制度を想起させるネオクラシカル建築" loading="lazy">
+        <div class="section-hero-caption">Photo: Pexels / Azamat Hatypov</div>
+      </div>
       <h2 class="top-story-title">FOMC据え置き — ドットプロット「年1回利下げ」維持もタカ派傾斜、パウエル議長は「不確実性」連発</h2>
       <p class="top-story-body">
         FRBは3月FOMCで政策金利を3.50-3.75%で据え置き（11対1）。ドットプロット中央値は2026年中25bp利下げ1回を維持したが、委員19名中7名が「年内据え置き」を支持し前回（4名）から増加。SEPでは2026年PCEインフレ見通しを2.5%→2.7%に上方修正、GDP成長率見通しを2.1%→1.7%に下方修正し、スタグフレーション的な見通しが色濃くなった。パウエル議長は会見で「インフレは進展しているが期待したほどではない」「関税や中東情勢が短期のインフレ期待を押し上げている」と述べ、「データを見て判断する」姿勢を改めて強調。市場は利下げ先送りを織り込み、3指数とも急落した。
@@ -1084,6 +1129,10 @@ body {
     <div class="news-grid">
 
       <div class="news-card earnings">
+        <div class="news-card-img">
+          <img src="https://images.pexels.com/photos/3520679/pexels-photo-3520679.jpeg?auto=compress&cs=tinysrgb&w=800" alt="半導体チップ基板" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
         <div class="news-card-meta">
           <span class="news-card-tag earnings">決算</span>
           <span class="news-card-source">CNBC</span>
@@ -1098,6 +1147,10 @@ body {
       </div>
 
       <div class="news-card geopolitics">
+        <div class="news-card-img">
+          <img src="https://images.pexels.com/photos/10020724/pexels-photo-10020724.jpeg?auto=compress&cs=tinysrgb&w=800" alt="海上の石油タンカー" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
         <div class="news-card-meta">
           <span class="news-card-tag geopolitics">地政学</span>
           <span class="news-card-source">Al Jazeera / CNN</span>
@@ -1112,6 +1165,10 @@ body {
       </div>
 
       <div class="news-card tech">
+        <div class="news-card-img">
+          <img src="https://images.pexels.com/photos/8622911/pexels-photo-8622911.jpeg?auto=compress&cs=tinysrgb&w=800" alt="NVIDIAグラフィックカード" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
         <div class="news-card-meta">
           <span class="news-card-tag tech">テクノロジー</span>
           <span class="news-card-source">Reuters</span>
@@ -1126,6 +1183,10 @@ body {
       </div>
 
       <div class="news-card policy">
+        <div class="news-card-img">
+          <img src="https://images.pexels.com/photos/4705378/pexels-photo-4705378.jpeg?auto=compress&cs=tinysrgb&w=800" alt="米国議事堂" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
         <div class="news-card-meta">
           <span class="news-card-tag policy">政策</span>
           <span class="news-card-source">Tax Foundation / AP</span>
@@ -1140,6 +1201,10 @@ body {
       </div>
 
       <div class="news-card tech">
+        <div class="news-card-img">
+          <img src="https://images.pexels.com/photos/459411/pexels-photo-459411.jpeg?auto=compress&cs=tinysrgb&w=800" alt="回路基板" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
         <div class="news-card-meta">
           <span class="news-card-tag tech">テクノロジー</span>
           <span class="news-card-source">Qualcomm IR</span>
@@ -1154,6 +1219,10 @@ body {
       </div>
 
       <div class="news-card economy">
+        <div class="news-card-img">
+          <img src="https://images.pexels.com/photos/210607/pexels-photo-210607.jpeg?auto=compress&cs=tinysrgb&w=800" alt="株式市場ボード" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
         <div class="news-card-meta">
           <span class="news-card-tag economy">マーケット</span>
           <span class="news-card-source">Trading Economics</span>
@@ -1413,18 +1482,31 @@ body {
   });
 })();
 
-// 決算プレビュー — ポータルリンク自動付与
+// 決算プレビュー — ポータルリンク＋ロゴ自動付与
 (function() {
   var portalBase = 'https://yskzz121.github.io/ui-kabu-reports/';
+  var logoBase = 'https://yskzz121.github.io/ui-kabu-reports/logos/';
   var portalTickers = [
     'ADBE','ADI','ALAB','AMZN','AVGO','CIEN','COST','DDOG',
     'FN','GOOGL','IOT','LLY','META','MRVL','MSFT','MU',
     'NKE','NVDA','OKTA','ORCL','PANW','PATH','RBRK','RDDT',
     'S','SNAP','TSLA','TXN','ZS'
   ];
+  var pngLogos = ['CIEN','S'];
   document.querySelectorAll('.earnings-item[data-ticker]').forEach(function(item) {
     var ticker = item.getAttribute('data-ticker');
     if (portalTickers.indexOf(ticker) !== -1) {
+      // ロゴ挿入
+      var ext = pngLogos.indexOf(ticker) !== -1 ? '.png' : '.svg';
+      var logo = document.createElement('img');
+      logo.src = logoBase + ticker + ext;
+      logo.alt = ticker;
+      logo.className = 'earnings-item-logo';
+      var header = item.querySelector('.earnings-item-header');
+      if (header) {
+        header.insertBefore(logo, header.firstChild);
+      }
+      // ポータルリンク
       var link = document.createElement('a');
       link.href = portalBase + ticker + '/';
       link.target = '_blank';
