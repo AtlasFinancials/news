@@ -930,33 +930,39 @@ body {
 .ft-text { font-size: 14px; font-weight: 600; }
 .ft-detail { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
 .profile-card {
-  display: flex;
-  gap: 18px;
-  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 0;
   background: rgba(188,140,255,.06);
   border: 1px solid rgba(188,140,255,.15);
   border-radius: var(--radius-md);
   margin: 16px 0;
-  align-items: flex-start;
+  overflow: hidden;
+  position: relative;
+}
+.profile-info {
+  padding: 24px;
+}
+.profile-photo {
   position: relative;
   overflow: hidden;
 }
-.profile-card::before {
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.profile-photo::after {
   content: '';
   position: absolute;
-  top: 0; right: 0;
-  width: 55%;
+  top: 0; left: 0;
+  width: 40px;
   height: 100%;
-  background: url('takaosuguru.jpg') center top / cover no-repeat;
-  opacity: .12;
-  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.6) 40%, rgba(0,0,0,1) 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.6) 40%, rgba(0,0,0,1) 100%);
+  background: linear-gradient(to right, rgba(188,140,255,.06), transparent);
   pointer-events: none;
-  z-index: 0;
 }
-.profile-card > * { position: relative; z-index: 1; }
-.profile-icon { font-size: 40px; flex-shrink: 0; }
-.profile-info { flex: 1; }
 .profile-name { font-size: 18px; font-weight: 800; margin-bottom: 2px; }
 .profile-role { font-size: 12px; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; }
 .profile-bio { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
@@ -980,8 +986,9 @@ body {
   .feature-body { padding: 20px 20px 24px; }
   .feature-title { font-size: 22px; }
   .feature-chapter { font-size: 16px; }
-  .profile-card { flex-direction: column; gap: 12px; }
-  .profile-card::before { width: 100%; opacity: .08; mask-image: linear-gradient(to top, transparent 0%, rgba(0,0,0,.5) 50%, rgba(0,0,0,.8) 100%); -webkit-mask-image: linear-gradient(to top, transparent 0%, rgba(0,0,0,.5) 50%, rgba(0,0,0,.8) 100%); }
+  .profile-card { grid-template-columns: 1fr; }
+  .profile-photo { height: 220px; }
+  .profile-photo::after { width: 100%; height: 40px; top: auto; bottom: 0; left: 0; background: linear-gradient(to top, rgba(188,140,255,.06), transparent); }
   .profile-stats { grid-template-columns: repeat(3, 1fr); }
 }
 
@@ -1297,6 +1304,9 @@ body {
                 <div class="profile-stat-label">ゴルフ会合</div>
               </div>
             </div>
+          </div>
+          <div class="profile-photo">
+            <img src="takaosuguru.jpg" alt="高尾直氏">
           </div>
         </div>
 
