@@ -1044,6 +1044,18 @@ var TERMS = [
     visual: '<div class="vis-diagram"><div class="vis-diagram-title">LNGのサプライチェーン</div><div class="vis-flow"><div class="vis-flow-step">天然ガス採掘<br><small>ガス田</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">液化プラント<br><small>-162℃に冷却</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">LNGタンカー<br><small>海上輸送</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">受入基地<br><small>再気化→発電・都市ガス</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">世界のLNG供給国シェア（2025年）</div><div class="vis-bars"><div class="vis-bar-row"><span class="vis-bar-label">カタール</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:22%">22%</div></div></div><div class="vis-bar-row"><span class="vis-bar-label">オーストラリア</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:21%">21%</div></div></div><div class="vis-bar-row"><span class="vis-bar-label">米国</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:20%">20%</div></div></div><div class="vis-bar-row"><span class="vis-bar-label">ロシア</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:8%">8%</div></div></div><div class="vis-bar-row"><span class="vis-bar-label">マレーシア</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:7%">7%</div></div></div></div></div><div class="vis-callout warning"><strong>⚠️ 日本への影響:</strong> 日本の電力の約35%がLNG火力発電。カタール産LNGがホルムズ海峡封鎖で途絶えた場合、電力供給と都市ガス料金に直接影響する。</div>'
   },
   {
+    id: "200day-ma",
+    ja: "200日移動平均線",
+    en: "200-Day Moving Average",
+    cat: "market",
+    catLabel: "マーケット",
+    catIcon: "📊",
+    morning: true,
+    short: "過去200営業日の終値の平均値を結んだライン。株価がこの線を下回ると弱気転換のシグナルとされ、機関投資家のリスク削減が加速しやすい。",
+    full: "過去200営業日（約10ヶ月分）の終値の平均値を結んだテクニカル指標。株式市場で最も広く使われている中長期トレンド判定の指標で、株価がこの線の上にあれば「強気相場」、下にあれば「弱気相場」と判断される。年金基金やCTAファンドの多くは200日線をリスク管理のトリガーとして使用し、株価がこの線を割ると自動的に株式配分を削減する。2022年の利上げサイクルではS&P 500が200日線を割った後に約20%の弱気相場入りとなったが、2023年10月にはV字回復した例もあり、割れ＝暴落確定ではない。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">200日移動平均線の使い方</div><div class="vis-flow"><div class="vis-flow-step">株価が200日線の上<br><small>強気相場（ブル）</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">200日線を下回る<br><small>⚠️ 弱気転換シグナル</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">機関の売り加速<br><small>CTAファンド等</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">反発 or 弱気定着<br><small>ファンダ次第</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">S&P 500 — 200日線割れの過去事例</div><table class="vis-table"><tr><th>時期</th><th>トリガー</th><th>結果</th></tr><tr><td>2020年2月</td><td>コロナショック</td><td>-34%後にV字回復</td></tr><tr><td>2022年1月</td><td>利上げサイクル</td><td>-20%の弱気相場</td></tr><tr><td>2023年10月</td><td>金利上昇</td><td>一時的、V字回復</td></tr><tr><td>2026年3月</td><td>FOMC+中東+SMCI</td><td>進行中</td></tr></table></div><div class="vis-callout tip"><strong>💡 投資家へのヒント:</strong> 200日線割れ直後は「ダマシ」の可能性もある。週足の終値で確認し、来週以降のファンダメンタルズ（PCE等）と合わせて判断を。</div>'
+  },
+  {
     id: "triple-witching",
     ja: "トリプルウィッチング",
     en: "Triple Witching",
