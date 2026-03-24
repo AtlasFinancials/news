@@ -940,31 +940,61 @@ body {
 }
 
 /* ==========================================
-   Editorial Insight
+   Editorial Insight — Infographic
    ========================================== */
 .editorial-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 28px;
+  padding: 0;
   position: relative;
   overflow: hidden;
 }
-.editorial-card::before {
+/* Hero banner */
+.ed-hero {
+  position: relative;
+  padding: 36px 32px 28px;
+  background: linear-gradient(135deg, rgba(210,153,34,.12) 0%, rgba(248,81,73,.08) 50%, rgba(13,17,23,0) 100%);
+  border-bottom: 1px solid var(--border);
+}
+[data-theme="light"] .ed-hero {
+  background: linear-gradient(135deg, rgba(210,153,34,.08) 0%, rgba(248,81,73,.05) 50%, rgba(255,255,255,0) 100%);
+}
+.ed-hero::before {
   content: '';
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 4px;
-  background: linear-gradient(90deg, var(--accent-amber), var(--accent-red));
+  background: linear-gradient(90deg, var(--accent-amber), var(--accent-red), var(--accent-purple));
+}
+.ed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: 100px;
+  background: rgba(210,153,34,.15);
+  color: var(--accent-amber);
+  letter-spacing: .04em;
+  margin-bottom: 12px;
 }
 .editorial-headline {
   font-family: var(--font-serif);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 900;
-  margin-bottom: 16px;
   line-height: 1.5;
+  margin-bottom: 8px;
 }
+.ed-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+/* Body area */
 .editorial-body {
+  padding: 28px 32px;
   font-size: 14px;
   line-height: 2;
   color: var(--text-secondary);
@@ -972,91 +1002,361 @@ body {
 .editorial-body p { margin-bottom: 16px; }
 .editorial-body p:last-child { margin-bottom: 0; }
 .editorial-body strong { color: var(--text-primary); }
-.editorial-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 16px 0;
-  font-size: 13px;
-}
-.editorial-table th {
-  text-align: left;
-  padding: 10px 12px;
-  background: rgba(255,255,255,.03);
-  border-bottom: 2px solid var(--border);
-  font-weight: 700;
+.ed-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 800;
   color: var(--text-primary);
-  font-size: 12px;
-}
-.editorial-table td {
-  padding: 10px 12px;
+  margin: 28px 0 16px;
+  padding-bottom: 8px;
   border-bottom: 1px solid var(--border);
-  color: var(--text-secondary);
-  line-height: 1.6;
 }
-[data-theme="light"] .editorial-table th { background: rgba(0,0,0,.02); }
+.ed-section-title:first-child { margin-top: 0; }
+.ed-section-icon {
+  font-size: 18px;
+}
+
+/* ---- Countdown Gauge ---- */
+.ed-countdown {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+.ed-gauge-wrap {
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+[data-theme="light"] .ed-gauge-wrap { background: rgba(0,0,0,.015); }
+.ed-gauge-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.ed-gauge-label .ed-days {
+  font-family: 'Inter', var(--font-sans);
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--accent-amber);
+}
+.ed-gauge-label .ed-days-unit {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+.ed-gauge-track {
+  position: relative;
+  height: 28px;
+  background: rgba(255,255,255,.04);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  overflow: visible;
+}
+[data-theme="light"] .ed-gauge-track { background: rgba(0,0,0,.04); }
+.ed-gauge-fill {
+  height: 100%;
+  border-radius: 14px;
+  transition: width .8s ease;
+}
+.ed-gauge-fill.phase1 {
+  background: linear-gradient(90deg, var(--accent-green), var(--accent-amber));
+}
+.ed-gauge-fill.phase2 {
+  background: linear-gradient(90deg, var(--accent-amber), var(--accent-red));
+}
+.ed-gauge-marker {
+  position: absolute;
+  top: -8px;
+  width: 3px;
+  height: calc(100% + 16px);
+  background: var(--accent);
+  border-radius: 2px;
+}
+.ed-gauge-marker-label {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.ed-gauge-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ---- Timeline ---- */
 .editorial-timeline {
   list-style: none;
   padding: 0;
   margin: 16px 0;
-  border-left: 3px solid var(--accent-amber);
-  padding-left: 20px;
+  position: relative;
+}
+.editorial-timeline::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--accent-green), var(--accent-amber), var(--accent-red));
+  border-radius: 2px;
 }
 .editorial-timeline li {
   position: relative;
-  margin-bottom: 14px;
+  padding-left: 44px;
+  margin-bottom: 16px;
   font-size: 13px;
   line-height: 1.7;
 }
+.editorial-timeline li:last-child { margin-bottom: 0; }
 .editorial-timeline li::before {
   content: '';
   position: absolute;
-  left: -26px;
-  top: 7px;
-  width: 10px;
-  height: 10px;
+  left: 10px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: var(--accent-amber);
-  border: 2px solid var(--bg-card);
+  background: var(--bg-card);
+  border: 3px solid var(--accent-amber);
+  z-index: 1;
 }
+.editorial-timeline li.tl-past::before { border-color: var(--accent-green); background: var(--accent-green); }
+.editorial-timeline li.tl-now::before { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 8px rgba(88,166,255,.5); }
+.editorial-timeline li.tl-future::before { border-color: var(--accent-amber); }
+.editorial-timeline li.tl-critical::before { border-color: var(--accent-red); }
 .editorial-timeline li strong {
   color: var(--accent);
   font-weight: 700;
 }
-.editorial-timeline li .tl-date {
+.tl-date {
   display: inline-block;
   font-weight: 800;
   color: var(--text-primary);
-  min-width: 80px;
-}
-.editorial-callout {
-  background: rgba(210,153,34,.08);
-  border: 1px solid rgba(210,153,34,.2);
-  border-radius: var(--radius-sm);
-  padding: 14px 16px;
-  margin-top: 16px;
-  font-size: 13px;
-  line-height: 1.8;
-}
-.editorial-callout::before {
-  content: '🔭 編集部の見立て';
-  display: block;
-  font-weight: 800;
+  min-width: 64px;
   font-size: 12px;
+  font-family: 'Inter', var(--font-sans);
+}
+.tl-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.tl-tag.done { background: var(--accent-green-light); color: var(--accent-green); }
+.tl-tag.active { background: rgba(88,166,255,.12); color: var(--accent); }
+.tl-tag.warn { background: var(--accent-amber-light); color: var(--accent-amber); }
+.tl-tag.danger { background: var(--accent-red-light); color: var(--accent-red); }
+
+/* ---- Vote Chart ---- */
+.ed-vote-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 16px 0;
+}
+.ed-vote-card {
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+[data-theme="light"] .ed-vote-card { background: rgba(0,0,0,.015); }
+.ed-vote-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.ed-vote-bar-wrap {
+  display: flex;
+  height: 28px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.ed-vote-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  transition: width .6s ease;
+}
+.ed-vote-bar.nay { background: var(--accent-red); }
+.ed-vote-bar.yea { background: var(--accent-green); }
+.ed-vote-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ---- Scenario Cards ---- */
+.ed-scenarios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 16px 0;
+}
+.ed-scenario {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,.02);
+}
+[data-theme="light"] .ed-scenario { background: rgba(0,0,0,.015); }
+.ed-scenario::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+}
+.ed-scenario.s1::before { background: var(--accent-green); }
+.ed-scenario.s2::before { background: var(--accent-amber); }
+.ed-scenario.s3::before { background: var(--accent-red); }
+.ed-scenario-num {
+  font-family: 'Inter', var(--font-sans);
+  font-size: 32px;
+  font-weight: 900;
+  opacity: .15;
+  position: absolute;
+  top: 10px;
+  right: 14px;
+}
+.ed-scenario-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.ed-scenario-prob {
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.ed-scenario.s1 .ed-scenario-prob { color: var(--accent-green); }
+.ed-scenario.s2 .ed-scenario-prob { color: var(--accent-amber); }
+.ed-scenario.s3 .ed-scenario-prob { color: var(--accent-red); }
+.ed-scenario-body {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.ed-scenario-impact {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.ed-scenario-impact strong { color: var(--text-primary); font-size: 11px; }
+
+/* ---- Legal Framework ---- */
+.ed-law-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 16px 0;
+}
+.ed-law-item {
+  display: flex;
+  gap: 12px;
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+}
+[data-theme="light"] .ed-law-item { background: rgba(0,0,0,.015); }
+.ed-law-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.ed-law-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+.ed-law-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.ed-law-status {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+.ed-law-status.done { background: var(--accent-green-light); color: var(--accent-green); }
+.ed-law-status.pending { background: var(--accent-amber-light); color: var(--accent-amber); }
+.ed-law-status.none { background: var(--accent-red-light); color: var(--accent-red); }
+
+/* ---- Callout / Note ---- */
+.editorial-callout {
+  background: rgba(210,153,34,.06);
+  border: 1px solid rgba(210,153,34,.18);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-top: 24px;
+  font-size: 14px;
+  line-height: 1.9;
+}
+.editorial-callout-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 14px;
   color: var(--accent-amber);
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 .editorial-note {
   font-size: 11px;
   color: var(--text-muted);
-  margin-top: 16px;
+  margin: 0;
+  padding: 16px 32px;
   line-height: 1.6;
   border-top: 1px solid var(--border);
-  padding-top: 12px;
+  background: rgba(255,255,255,.01);
 }
+
+/* ---- Editorial Responsive ---- */
 @media (max-width: 767px) {
+  .ed-hero { padding: 24px 20px 20px; }
   .editorial-headline { font-size: 18px; }
-  .editorial-table { font-size: 12px; }
-  .editorial-table th, .editorial-table td { padding: 8px; }
+  .editorial-body { padding: 20px; }
+  .ed-scenarios { grid-template-columns: 1fr; }
+  .ed-vote-grid { grid-template-columns: 1fr; }
+  .ed-law-grid { grid-template-columns: 1fr; }
+  .ed-gauge-label .ed-days { font-size: 22px; }
+  .editorial-note { padding: 12px 20px; }
+  .ed-scenario-num { font-size: 24px; }
 }
 
 /* ==========================================
@@ -1436,75 +1736,166 @@ body {
     </div>
 
     <div class="editorial-card">
-      <div class="editorial-headline">イラン紛争の「タイムリミット」 — 戦争権限法60日ルールが迫る終戦シナリオ</div>
-      <div class="editorial-body">
-        <p>
-          昨夜のリリーフラリーを受けて「停戦が近い」との楽観論が広がっていますが、当編集部がより注目しているのは、<strong>米国憲法と戦争権限法（War Powers Resolution）が設定する法的タイムリミット</strong>です。トランプ大統領は議会の宣戦布告を経ずに軍事作戦を開始しています。これは合衆国憲法第2条の統帥権に基づく大統領権限ですが、1973年制定の<span class="term tip-right">戦争権限法<span class="tip"><span class="tip-title">戦争権限法（War Powers Resolution）</span>1973年、ベトナム戦争の反省から制定。大統領が議会承認なしに軍を敵対行為に投入できる期間を60日に制限（+撤退のための30日延長）。48時間以内の議会通知も義務付け。</span></span>がこの権限に「60日」という明確な期限を設けています。
-        </p>
 
-        <p><strong>【事実整理】イラン軍事作戦と議会の動き</strong></p>
+      <!-- Hero Banner -->
+      <div class="ed-hero">
+        <div class="ed-badge">🔍 DEEP DIVE</div>
+        <div class="editorial-headline">イラン紛争の「タイムリミット」<br>— 戦争権限法60日ルールが迫る終戦シナリオ</div>
+        <div class="ed-subtitle">トランプ大統領は議会承認なしに軍事作戦を遂行中。1973年<span class="term tip-right">戦争権限法<span class="tip"><span class="tip-title">戦争権限法（War Powers Resolution）</span>1973年、ベトナム戦争の反省から制定。大統領が議会承認なしに軍を敵対行為に投入できる期間を60日に制限（+撤退のための30日延長）。48時間以内の議会通知も義務付け。</span></span>が定める「60日制限」は、法的にも市場的にもこの紛争の時間軸を規定しています。</div>
+      </div>
+
+      <div class="editorial-body">
+
+        <!-- ===== Countdown Gauge ===== -->
+        <div class="ed-section-title"><span class="ed-section-icon">⏱</span> 60日カウントダウン</div>
+
+        <div class="ed-countdown">
+          <div class="ed-gauge-wrap">
+            <div class="ed-gauge-label">
+              <span>開戦 2/28 → <strong style="color:var(--accent-amber)">60日期限 4/29</strong></span>
+              <span><span class="ed-days">24</span><span class="ed-days-unit">日経過 / 残り36日</span></span>
+            </div>
+            <div class="ed-gauge-track">
+              <div class="ed-gauge-fill phase1" style="width:40%"></div>
+              <div class="ed-gauge-marker" style="left:40%">
+                <span class="ed-gauge-marker-label">← 今日（3/24）</span>
+              </div>
+            </div>
+            <div class="ed-gauge-ticks">
+              <span>2/28 開戦</span>
+              <span>3/23 攻撃停止</span>
+              <span style="color:var(--accent-amber);font-weight:800">4/29 60日期限</span>
+              <span style="color:var(--accent-red);font-weight:800">5/29 最終期限</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Timeline ===== -->
+        <div class="ed-section-title"><span class="ed-section-icon">📋</span> イラン軍事作戦タイムライン</div>
+
         <ul class="editorial-timeline">
-          <li><span class="tl-date">2/28</span> 米・イスラエルがイラン各地に奇襲空爆を開始。最高指導者ハメネイ師を殺害</li>
-          <li><span class="tl-date">3/2</span> トランプ政権が戦争権限法に基づく<strong>48時間通知報告書</strong>を議会に提出</li>
-          <li><span class="tl-date">3/4</span> 上院がWar Powers撤退決議案を<strong>47対53で否決</strong>（Rand Paul のみ共和党から賛成）</li>
-          <li><span class="tl-date">3/5</span> 下院が同決議案を<strong>212対219で否決</strong>（共和党からMassie・Davidsonの2名のみ賛成）</li>
-          <li><span class="tl-date">3/23</span> トランプ大統領がイラン攻撃を5日間停止。「生産的な交渉」に言及（イランは否定）</li>
-          <li><span class="tl-date" style="color:var(--accent-amber)">4/29頃</span> <strong>60日期限の到来</strong>（起算日 2/28の場合）</li>
-          <li><span class="tl-date" style="color:var(--accent-red)">5/29頃</span> <strong>30日撤退猶予の最終期限</strong></li>
+          <li class="tl-past"><span class="tl-date">2/28</span> 米・イスラエルがイラン各地に奇襲空爆を開始。最高指導者ハメネイ師を殺害 <span class="tl-tag done">完了</span></li>
+          <li class="tl-past"><span class="tl-date">3/2</span> トランプ政権が戦争権限法に基づく<strong>48時間通知報告書</strong>を議会に提出 <span class="tl-tag done">提出済</span></li>
+          <li class="tl-past"><span class="tl-date">3/4</span> 上院：War Powers撤退決議を<strong>47対53で否決</strong>（Rand Paulのみ共和党から賛成）</li>
+          <li class="tl-past"><span class="tl-date">3/5</span> 下院：同決議を<strong>212対219で否決</strong>（共和党からMassie・Davidsonの2名のみ賛成）</li>
+          <li class="tl-now"><span class="tl-date">3/23</span> トランプ大統領がイラン攻撃を5日間停止。「生産的な交渉」に言及 <span class="tl-tag active">現在地</span></li>
+          <li class="tl-future"><span class="tl-date">3/28頃</span> 5日間停止の期限 — 交渉進展の有無が焦点 <span class="tl-tag warn">今週</span></li>
+          <li class="tl-future"><span class="tl-date">4/29頃</span> <strong>60日期限の到来</strong>（起算日 2/28の場合） <span class="tl-tag warn">約36日後</span></li>
+          <li class="tl-critical"><span class="tl-date">5/29頃</span> <strong>30日撤退猶予の最終期限</strong> <span class="tl-tag danger">最終</span></li>
         </ul>
 
-        <p><strong>【法的枠組み】60日ルールの仕組み</strong></p>
-        <table class="editorial-table">
-          <thead>
-            <tr>
-              <th>条件</th>
-              <th>内容</th>
-              <th>期限</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>48時間通知</td>
-              <td>軍投入後48時間以内に議会へ書面通知（義務）</td>
-              <td>3/2 提出済み</td>
-            </tr>
-            <tr>
-              <td>60日制限</td>
-              <td>議会が宣戦布告 or 武力行使授権（AUMF）を行わない限り、60日以内に撤退義務</td>
-              <td>約4月29日</td>
-            </tr>
-            <tr>
-              <td>30日延長</td>
-              <td>「避けられない軍事的必要性」を証明すれば撤退のため30日延長可</td>
-              <td>約5月29日</td>
-            </tr>
-            <tr>
-              <td>議会撤退決議</td>
-              <td>議会はいつでも合同決議で撤退を命令可能（ただし3月に否決済み）</td>
-              <td>随時</td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- ===== Vote Chart ===== -->
+        <div class="ed-section-title"><span class="ed-section-icon">🗳</span> 議会投票結果 — 撤退決議は否決</div>
 
-        <p>
-          重要なのは、<strong>現時点でイランに対する新たなAUMF（武力行使授権決議）は議会に提出されていない</strong>という事実です。共和党多数派はトランプ大統領を支持していますが、正式な戦争授権に踏み込むことには慎重です。歴代大統領はこの60日ルールを「違憲」と主張して無視してきた前例がありますが（オバマ政権のリビア介入など）、今回のイラン作戦は規模・期間ともにリビアを大きく上回っており、同じ論理で押し通せるかは不透明です。
+        <div class="ed-vote-grid">
+          <div class="ed-vote-card">
+            <div class="ed-vote-title">🏛 上院（3/4 投票）</div>
+            <div class="ed-vote-bar-wrap">
+              <div class="ed-vote-bar yea" style="width:47%">47</div>
+              <div class="ed-vote-bar nay" style="width:53%">53</div>
+            </div>
+            <div class="ed-vote-legend">
+              <span>🟢 撤退賛成 47（民主+Rand Paul）</span>
+              <span>🔴 反対 53（共和）</span>
+            </div>
+          </div>
+          <div class="ed-vote-card">
+            <div class="ed-vote-title">🏠 下院（3/5 投票）</div>
+            <div class="ed-vote-bar-wrap">
+              <div class="ed-vote-bar yea" style="width:49.2%">212</div>
+              <div class="ed-vote-bar nay" style="width:50.8%">219</div>
+            </div>
+            <div class="ed-vote-legend">
+              <span>🟢 撤退賛成 212</span>
+              <span>🔴 反対 219（僅差7票）</span>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-top:4px">
+          いずれも否決されたが、<strong>下院はわずか7票差</strong>。共和党からもMassie・Davidsonの2名が賛成に回っており、作戦が長期化すれば造反が増える可能性がある。<strong>現時点でイランに対する新たなAUMF（武力行使授権決議）は議会に提出されていない。</strong>
         </p>
 
+        <!-- ===== Legal Framework ===== -->
+        <div class="ed-section-title"><span class="ed-section-icon">⚖️</span> 法的枠組み — 戦争権限法の4条件</div>
+
+        <div class="ed-law-grid">
+          <div class="ed-law-item">
+            <div class="ed-law-icon">📝</div>
+            <div>
+              <div class="ed-law-label">48時間通知</div>
+              <div class="ed-law-desc">軍投入後48時間以内に議会へ書面通知</div>
+              <span class="ed-law-status done">3/2 提出済み ✓</span>
+            </div>
+          </div>
+          <div class="ed-law-item">
+            <div class="ed-law-icon">⏰</div>
+            <div>
+              <div class="ed-law-label">60日制限</div>
+              <div class="ed-law-desc">議会の宣戦布告 or AUMF授権がなければ60日で撤退義務</div>
+              <span class="ed-law-status pending">4/29 期限接近</span>
+            </div>
+          </div>
+          <div class="ed-law-item">
+            <div class="ed-law-icon">🔄</div>
+            <div>
+              <div class="ed-law-label">30日延長</div>
+              <div class="ed-law-desc">「軍事的必要性」証明で撤退猶予30日を追加可能</div>
+              <span class="ed-law-status pending">最大 5/29</span>
+            </div>
+          </div>
+          <div class="ed-law-item">
+            <div class="ed-law-icon">🏛</div>
+            <div>
+              <div class="ed-law-label">AUMF（武力行使授権）</div>
+              <div class="ed-law-desc">議会がイラン向け新AUMFを可決すれば期限なく継続可</div>
+              <span class="ed-law-status none">未提出</span>
+            </div>
+          </div>
+        </div>
+
         <p>
-          トランプ政権の法的根拠は、合衆国憲法第2条の統帥権と「自衛権」です。しかし法学者の多くは「自衛権は差し迫った脅威が前提であり、4週間に及ぶ継続的軍事作戦を正当化するには不十分」と指摘しています。
+          トランプ政権の法的根拠は憲法第2条の統帥権と「自衛権」。しかし法学者の多くは「自衛権は差し迫った脅威が前提であり、4週間に及ぶ継続的軍事作戦を正当化するには不十分」と指摘。歴代大統領はこの60日ルールを「違憲」と主張して無視してきた前例がありますが（オバマ政権のリビア介入など）、今回のイラン作戦は規模・期間ともにリビアを大きく上回っています。
         </p>
 
+        <!-- ===== Scenario Cards ===== -->
+        <div class="ed-section-title"><span class="ed-section-icon">🔭</span> 編集部の見立て — 3つのシナリオ</div>
+
+        <div class="ed-scenarios">
+          <div class="ed-scenario s1">
+            <span class="ed-scenario-num">01</span>
+            <div class="ed-scenario-title">4月末までに停戦</div>
+            <div class="ed-scenario-prob">可能性: 高</div>
+            <div class="ed-scenario-body">最もクリーンな出口。昨夜の「5日間停止」はこのシナリオの布石。60日期限前に合意に至れば法的問題を完全回避できる。</div>
+            <div class="ed-scenario-impact"><strong>市場影響:</strong> 原油$70台へ急落、航空・消費関連↑、防衛関連↓、FRB利下げ期待復活</div>
+          </div>
+          <div class="ed-scenario s2">
+            <span class="ed-scenario-num">02</span>
+            <div class="ed-scenario-title">議会にAUMFを要求</div>
+            <div class="ed-scenario-prob">可能性: 中</div>
+            <div class="ed-scenario-body">戦争の正式な授権。共和党多数派の支持で可決可能だが、中間選挙を見据えた議員にとって「戦争賛成票」は政治的コスト大。</div>
+            <div class="ed-scenario-impact"><strong>市場影響:</strong> 紛争長期化を織り込み、原油$90〜100維持、VIX高止まり</div>
+          </div>
+          <div class="ed-scenario s3">
+            <span class="ed-scenario-num">03</span>
+            <div class="ed-scenario-title">60日ルールを無視</div>
+            <div class="ed-scenario-prob">可能性: 低</div>
+            <div class="ed-scenario-body">オバマ政権のリビア前例があるが、規模が桁違い。憲法危機に発展するリスク。最高裁が介入する可能性も。</div>
+            <div class="ed-scenario-impact"><strong>市場影響:</strong> 政治リスク急上昇、ドル安・金高騰、VIX 30超</div>
+          </div>
+        </div>
+
+        <!-- ===== Conclusion Callout ===== -->
         <div class="editorial-callout">
-          <strong>「60日ルール」が事実上の終戦タイムラインを規定している</strong>、というのが編集部の見立てです。トランプ政権には大きく3つの選択肢があります：<br><br>
-          <strong>① 4月末までに停戦・戦争終結を実現する</strong> — 最もクリーンな出口。昨夜の「5日間停止」はこのシナリオの布石と読めます。イラン側との交渉が進めば、4月中に何らかの合意に至る可能性があります。<br><br>
-          <strong>② 議会にAUMFを求める</strong> — 戦争の正式な授権。共和党多数派の支持があるため可決の可能性は高いですが、「戦争を承認した」という政治的コストを議員が負うことになり、中間選挙を見据えた共和党議員には重い判断です。<br><br>
-          <strong>③ 60日ルールを無視して継続する</strong> — オバマ政権のリビア前例があるが、規模が桁違いのため政治的・法的リスクが極めて高い。<br><br>
-          <strong>いずれにせよ、遅くとも5月末までには何らかの結論が出る</strong>構造になっています。市場にとっては、この「法的タイムリミット」が地政学リスクの時間軸を明確にしてくれる面があります。原油・防衛関連・航空株のポジションを考える上で、<strong>4月末〜5月末</strong>が最重要のマイルストーンです。
+          <div class="editorial-callout-header">🔭 結論: 5月末がデッドライン</div>
+          <strong>「60日ルール」が事実上の終戦タイムラインを規定している</strong>、というのが編集部の見立てです。いずれのシナリオでも、<strong>遅くとも5月末までには何らかの結論が出る</strong>構造になっています。市場にとっては、この「法的タイムリミット」が地政学リスクの時間軸を明確にしてくれる面があります。<br><br>
+          原油・防衛関連・航空株のポジションを考える上で、<strong style="color:var(--accent-amber)">4月末〜5月末</strong>が最重要のマイルストーンです。今週金曜（3/28）の5日間停止期限も短期の重要ポイントです。
         </div>
+      </div>
 
-        <div class="editorial-note">
-          ※ 本コーナーは公開情報に基づく編集部の考察であり、投資助言ではありません。歴代大統領は戦争権限法の合憲性を争っており、最高裁の直接判断は出ていません。60日期限の法的拘束力には議論があります。議会への通知日（3/2）を起算点とする場合、60日期限は5/1頃となります。
-        </div>
+      <!-- Disclaimer -->
+      <div class="editorial-note">
+        ※ 本コーナーは公開情報に基づく編集部の考察であり、投資助言ではありません。歴代大統領は戦争権限法の合憲性を争っており、最高裁の直接判断は出ていません。60日期限の法的拘束力には議論があります。議会への通知日（3/2）を起算点とする場合、60日期限は5/1頃となります。
       </div>
     </div>
   </section>
