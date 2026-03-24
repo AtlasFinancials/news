@@ -944,6 +944,126 @@ body {
 }
 
 /* ==========================================
+   Editorial Insight
+   ========================================== */
+.editorial-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.editorial-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg, var(--accent-amber), var(--accent-red));
+}
+.editorial-headline {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.editorial-body {
+  font-size: 14px;
+  line-height: 2;
+  color: var(--text-secondary);
+}
+.editorial-body p { margin-bottom: 16px; }
+.editorial-body p:last-child { margin-bottom: 0; }
+.editorial-body strong { color: var(--text-primary); }
+.editorial-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 13px;
+}
+.editorial-table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: rgba(255,255,255,.03);
+  border-bottom: 2px solid var(--border);
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 12px;
+}
+.editorial-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+[data-theme="light"] .editorial-table th { background: rgba(0,0,0,.02); }
+.editorial-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+  border-left: 3px solid var(--accent-amber);
+  padding-left: 20px;
+}
+.editorial-timeline li {
+  position: relative;
+  margin-bottom: 14px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.editorial-timeline li::before {
+  content: '';
+  position: absolute;
+  left: -26px;
+  top: 7px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-amber);
+  border: 2px solid var(--bg-card);
+}
+.editorial-timeline li strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+.editorial-timeline li .tl-date {
+  display: inline-block;
+  font-weight: 800;
+  color: var(--text-primary);
+  min-width: 80px;
+}
+.editorial-callout {
+  background: rgba(210,153,34,.08);
+  border: 1px solid rgba(210,153,34,.2);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.editorial-callout::before {
+  content: '🔭 編集部の見立て';
+  display: block;
+  font-weight: 800;
+  font-size: 12px;
+  color: var(--accent-amber);
+  margin-bottom: 6px;
+}
+.editorial-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 16px;
+  line-height: 1.6;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+@media (max-width: 767px) {
+  .editorial-headline { font-size: 18px; }
+  .editorial-table { font-size: 12px; }
+  .editorial-table th, .editorial-table td { padding: 8px; }
+}
+
+/* ==========================================
    Responsive
    ========================================== */
 @media (min-width: 768px) {
@@ -1307,6 +1427,88 @@ body {
         </div>
 
         <a class="keyword-glossary-link" href="https://yskzz121.github.io/ui-kabu-times/glossary/">📚 用語辞典で詳しく学ぶ →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 編集部の目線 ===== -->
+  <section class="section">
+    <div class="section-label">
+      <span class="section-label-icon">🔍</span>
+      <span class="section-label-text">編集部の目線</span>
+      <span class="section-label-line"></span>
+    </div>
+
+    <div class="editorial-card">
+      <div class="editorial-headline">イラン紛争の「タイムリミット」 — 戦争権限法60日ルールが迫る終戦シナリオ</div>
+      <div class="editorial-body">
+        <p>
+          昨夜のリリーフラリーを受けて「停戦が近い」との楽観論が広がっていますが、当編集部がより注目しているのは、<strong>米国憲法と戦争権限法（War Powers Resolution）が設定する法的タイムリミット</strong>です。トランプ大統領は議会の宣戦布告を経ずに軍事作戦を開始しています。これは合衆国憲法第2条の統帥権に基づく大統領権限ですが、1973年制定の<span class="term tip-right">戦争権限法<span class="tip"><span class="tip-title">戦争権限法（War Powers Resolution）</span>1973年、ベトナム戦争の反省から制定。大統領が議会承認なしに軍を敵対行為に投入できる期間を60日に制限（+撤退のための30日延長）。48時間以内の議会通知も義務付け。</span></span>がこの権限に「60日」という明確な期限を設けています。
+        </p>
+
+        <p><strong>【事実整理】イラン軍事作戦と議会の動き</strong></p>
+        <ul class="editorial-timeline">
+          <li><span class="tl-date">2/28</span> 米・イスラエルがイラン各地に奇襲空爆を開始。最高指導者ハメネイ師を殺害</li>
+          <li><span class="tl-date">3/2</span> トランプ政権が戦争権限法に基づく<strong>48時間通知報告書</strong>を議会に提出</li>
+          <li><span class="tl-date">3/4</span> 上院がWar Powers撤退決議案を<strong>47対53で否決</strong>（Rand Paul のみ共和党から賛成）</li>
+          <li><span class="tl-date">3/5</span> 下院が同決議案を<strong>212対219で否決</strong>（共和党からMassie・Davidsonの2名のみ賛成）</li>
+          <li><span class="tl-date">3/23</span> トランプ大統領がイラン攻撃を5日間停止。「生産的な交渉」に言及（イランは否定）</li>
+          <li><span class="tl-date" style="color:var(--accent-amber)">4/29頃</span> <strong>60日期限の到来</strong>（起算日 2/28の場合）</li>
+          <li><span class="tl-date" style="color:var(--accent-red)">5/29頃</span> <strong>30日撤退猶予の最終期限</strong></li>
+        </ul>
+
+        <p><strong>【法的枠組み】60日ルールの仕組み</strong></p>
+        <table class="editorial-table">
+          <thead>
+            <tr>
+              <th>条件</th>
+              <th>内容</th>
+              <th>期限</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>48時間通知</td>
+              <td>軍投入後48時間以内に議会へ書面通知（義務）</td>
+              <td>3/2 提出済み</td>
+            </tr>
+            <tr>
+              <td>60日制限</td>
+              <td>議会が宣戦布告 or 武力行使授権（AUMF）を行わない限り、60日以内に撤退義務</td>
+              <td>約4月29日</td>
+            </tr>
+            <tr>
+              <td>30日延長</td>
+              <td>「避けられない軍事的必要性」を証明すれば撤退のため30日延長可</td>
+              <td>約5月29日</td>
+            </tr>
+            <tr>
+              <td>議会撤退決議</td>
+              <td>議会はいつでも合同決議で撤退を命令可能（ただし3月に否決済み）</td>
+              <td>随時</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          重要なのは、<strong>現時点でイランに対する新たなAUMF（武力行使授権決議）は議会に提出されていない</strong>という事実です。共和党多数派はトランプ大統領を支持していますが、正式な戦争授権に踏み込むことには慎重です。歴代大統領はこの60日ルールを「違憲」と主張して無視してきた前例がありますが（オバマ政権のリビア介入など）、今回のイラン作戦は規模・期間ともにリビアを大きく上回っており、同じ論理で押し通せるかは不透明です。
+        </p>
+
+        <p>
+          トランプ政権の法的根拠は、合衆国憲法第2条の統帥権と「自衛権」です。しかし法学者の多くは「自衛権は差し迫った脅威が前提であり、4週間に及ぶ継続的軍事作戦を正当化するには不十分」と指摘しています。
+        </p>
+
+        <div class="editorial-callout">
+          <strong>「60日ルール」が事実上の終戦タイムラインを規定している</strong>、というのが編集部の見立てです。トランプ政権には大きく3つの選択肢があります：<br><br>
+          <strong>① 4月末までに停戦・戦争終結を実現する</strong> — 最もクリーンな出口。昨夜の「5日間停止」はこのシナリオの布石と読めます。イラン側との交渉が進めば、4月中に何らかの合意に至る可能性があります。<br><br>
+          <strong>② 議会にAUMFを求める</strong> — 戦争の正式な授権。共和党多数派の支持があるため可決の可能性は高いですが、「戦争を承認した」という政治的コストを議員が負うことになり、中間選挙を見据えた共和党議員には重い判断です。<br><br>
+          <strong>③ 60日ルールを無視して継続する</strong> — オバマ政権のリビア前例があるが、規模が桁違いのため政治的・法的リスクが極めて高い。<br><br>
+          <strong>いずれにせよ、遅くとも5月末までには何らかの結論が出る</strong>構造になっています。市場にとっては、この「法的タイムリミット」が地政学リスクの時間軸を明確にしてくれる面があります。原油・防衛関連・航空株のポジションを考える上で、<strong>4月末〜5月末</strong>が最重要のマイルストーンです。
+        </div>
+
+        <div class="editorial-note">
+          ※ 本コーナーは公開情報に基づく編集部の考察であり、投資助言ではありません。歴代大統領は戦争権限法の合憲性を争っており、最高裁の直接判断は出ていません。60日期限の法的拘束力には議論があります。議会への通知日（3/2）を起算点とする場合、60日期限は5/1頃となります。
+        </div>
       </div>
     </div>
   </section>
