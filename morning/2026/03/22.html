@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ja" data-theme="dark">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>U&I株倶楽部新聞 — 2026年3月22日</title>
-<meta property="og:title" content="U&I株倶楽部新聞 — 2026年3月22日 朝刊">
+<title>Atlas Daily — 2026年3月22日</title>
+<meta property="og:title" content="Atlas Daily — 2026年3月22日 朝刊">
 <meta property="og:description" content="SMCI暴落-28% — Nvidia AIチップ中国密輸で起訴。S&P 500が200日線割れ、4週連続安。VIX 26.78に急騰。">
 <meta property="og:image" content="https://atlasfinancials.github.io/ui-kabu-times/assets/hero-bg.jpg">
 <meta property="og:type" content="article">
@@ -12,55 +12,32 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/jpeg" href="https://atlasfinancials.github.io/ui-kabu-times/assets/hero-bg.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@700;900&family=Playfair+Display:wght@700&family=Shippori+Mincho+B1:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --font-sans: 'Noto Sans JP', 'Inter', -apple-system, sans-serif;
-  --font-serif: 'Noto Serif JP', serif;
+  --font-serif: 'Shippori Mincho B1', 'Noto Serif JP', serif;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --transition: .25s cubic-bezier(.4,0,.2,1);
   --max-w: 1100px;
-}
-
-[data-theme="dark"] {
-  --bg-primary: #0d1117;
-  --bg-card: #161b22;
-  --bg-card-hover: #21262d;
-  --text-primary: #e6edf3;
-  --text-secondary: #8b949e;
-  --text-muted: #6e7681;
-  --border: #30363d;
-  --accent: #58a6ff;
-  --accent-green: #3fb950;
-  --accent-green-light: rgba(63,185,80,.12);
-  --accent-red: #f85149;
-  --accent-red-light: rgba(248,81,73,.12);
-  --accent-amber: #d29922;
-  --accent-amber-light: rgba(210,153,34,.12);
-  --accent-purple: #bc8cff;
-  --accent-purple-light: rgba(188,140,255,.12);
-  --shadow-card: 0 2px 8px rgba(0,0,0,.3);
-}
-
-[data-theme="light"] {
-  --bg-primary: #f5f0e8;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f0ebe3;
-  --text-primary: #2c2418;
-  --text-secondary: #6b5d4d;
-  --text-muted: #9a8c7c;
+  --bg-primary: #F5F2EC;
+  --bg-card: #FDFCFA;
+  --bg-card-hover: #f3f0e8;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #7a7a7a;
   --border: #ddd4c6;
-  --accent: #2563b8;
-  --accent-green: #1a7f37;
-  --accent-green-light: rgba(26,127,55,.1);
-  --accent-red: #cf222e;
-  --accent-red-light: rgba(207,34,46,.1);
-  --accent-amber: #9a6700;
-  --accent-amber-light: rgba(154,103,0,.1);
-  --accent-purple: #7c3aed;
-  --accent-purple-light: rgba(124,58,237,.1);
+  --accent: #1A2540;
+  --accent-green: #B8912A;
+  --accent-green-light: rgba(184,145,42,.12);
+  --accent-red: #8B2020;
+  --accent-red-light: rgba(139,32,32,.12);
+  --accent-amber: #B8912A;
+  --accent-amber-light: rgba(184,145,42,.12);
+  --accent-purple: #5a4a8a;
+  --accent-purple-light: rgba(90,74,138,.12);
   --shadow-card: 0 1px 4px rgba(44,36,24,.08), 0 2px 8px rgba(44,36,24,.04);
 }
 
@@ -83,18 +60,15 @@ body {
   padding: 32px 20px 24px;
   text-align: center;
   position: relative;
-  background: url('https://atlasfinancials.github.io/ui-kabu-times/assets/hero-bg.jpg') center/cover no-repeat;
+  background: #1A2540;
   overflow: hidden;
 }
 .paper-header::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(to bottom, rgba(13,17,23,.65) 0%, rgba(13,17,23,.85) 100%);
+  background: linear-gradient(135deg, #1A2540 0%, #0f1a30 50%, #1a1a2e 100%);
   z-index: 0;
-}
-[data-theme="light"] .paper-header::before {
-  background: linear-gradient(to bottom, rgba(245,240,232,.7) 0%, rgba(245,240,232,.9) 100%);
 }
 .paper-header > * {
   position: relative;
@@ -113,7 +87,7 @@ body {
 .paper-date {
   font-size: 14px;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: rgba(255,255,255,.7);
   letter-spacing: .08em;
   margin-bottom: 12px;
 }
@@ -131,7 +105,7 @@ body {
   top: 50%;
   width: 60px;
   height: 2px;
-  background: var(--text-primary);
+  background: rgba(255,255,255,.3);
   opacity: .3;
 }
 
@@ -144,7 +118,7 @@ body {
   font-weight: 900;
   letter-spacing: .12em;
   line-height: 1.2;
-  color: var(--text-primary);
+  color: #ffffff;
   position: relative;
   display: inline-block;
 }
@@ -155,7 +129,7 @@ body {
   font-family: var(--font-sans);
   font-weight: 600;
   letter-spacing: .25em;
-  color: var(--text-secondary);
+  color: rgba(255,255,255,.5);
   margin-top: 4px;
 }
 
@@ -164,12 +138,12 @@ body {
   margin-top: 10px;
   font-size: 12px;
   font-weight: 700;
-  color: var(--accent);
-  border: 1px solid var(--border);
+  color: #D4A843;
+  border: 1px solid rgba(212,168,67,.3);
   border-radius: 6px;
   padding: 3px 14px;
   letter-spacing: .06em;
-  background: var(--bg-card);
+  background: rgba(255,255,255,.08);
 }
 
 /* ==========================================
@@ -189,20 +163,6 @@ body {
 .back-link:hover { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); }
 .back-link svg { flex-shrink: 0; }
 
-.theme-toggle {
-  position: fixed; top: 16px; right: 16px; z-index: 999;
-  width: 42px; height: 42px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-  color: var(--text-secondary);
-  transition: all .15s;
-  box-shadow: var(--shadow-card);
-}
-.theme-toggle:hover { background: var(--bg-card-hover); border-color: var(--accent); }
 
 /* ==========================================
    Main Content
@@ -303,7 +263,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255,255,255,.04);
+  background: rgba(26,37,64,.04);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 8px 14px;
@@ -311,7 +271,6 @@ body {
   font-weight: 600;
 }
 
-[data-theme="light"] .summary-ticker { background: rgba(0,0,0,.02); }
 
 .summary-ticker-name { color: var(--text-secondary); }
 
@@ -358,8 +317,8 @@ body {
 
 .top-story:hover {
   background: var(--bg-card-hover);
-  box-shadow: 0 4px 20px rgba(0,0,0,.4);
-  border-color: #484f58;
+  box-shadow: 0 4px 20px rgba(0,0,0,.1);
+  border-color: #c0b8a8;
 }
 
 .top-story-badge {
@@ -439,9 +398,9 @@ body {
 
 .news-card:hover {
   background: var(--bg-card-hover);
-  box-shadow: 0 4px 16px rgba(0,0,0,.4);
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
   transform: translateY(-2px);
-  border-color: #484f58;
+  border-color: #c0b8a8;
 }
 
 .news-card:hover::before { opacity: 1; }
@@ -466,7 +425,7 @@ body {
   letter-spacing: .02em;
 }
 
-.news-card-tag.economy { background: rgba(88,166,255,.12); color: var(--accent); }
+.news-card-tag.economy { background: rgba(26,37,64,.12); color: var(--accent); }
 .news-card-tag.tech { background: var(--accent-green-light); color: var(--accent-green); }
 .news-card-tag.earnings { background: var(--accent-amber-light); color: var(--accent-amber); }
 .news-card-tag.geopolitics { background: var(--accent-red-light); color: var(--accent-red); }
@@ -509,7 +468,7 @@ body {
 .news-why {
   font-size: 12px;
   color: var(--accent);
-  background: rgba(88,166,255,.06);
+  background: rgba(26,37,64,.06);
   border-left: 3px solid var(--accent);
   padding: 8px 12px;
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
@@ -592,7 +551,7 @@ body {
 
 .calendar-importance.high { background: var(--accent-red-light); color: var(--accent-red); }
 .calendar-importance.medium { background: var(--accent-amber-light); color: var(--accent-amber); }
-.calendar-importance.low { background: rgba(255,255,255,.06); color: var(--text-muted); }
+.calendar-importance.low { background: rgba(26,37,64,.06); color: var(--text-muted); }
 
 .calendar-event { flex: 1; font-size: 14px; font-weight: 600; }
 .calendar-flag { font-size: 16px; }
@@ -657,7 +616,7 @@ body {
   font-weight: 700;
   padding: 2px 8px;
   border-radius: 4px;
-  background: rgba(255,255,255,.06);
+  background: rgba(26,37,64,.06);
   color: var(--text-muted);
   margin-left: auto;
 }
@@ -673,14 +632,13 @@ body {
   color: var(--text-muted);
   padding: 1px 6px;
   border-radius: 3px;
-  background: rgba(255,255,255,.04);
+  background: rgba(26,37,64,.04);
   border: 1px solid var(--border);
   display: inline-block;
   align-self: flex-start;
   line-height: 1.4;
 }
 
-[data-theme="light"] .earnings-item-sector { background: rgba(0,0,0,.03); }
 
 .earnings-item-consensus {
   font-size: 12px;
@@ -762,9 +720,9 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 300px;
-  background: #1c2333;
+  background: #1A2540;
   color: #e6edf3;
-  border: 1px solid #3d4a5c;
+  border: 1px solid #2a3a5c;
   border-radius: 10px;
   padding: 14px 16px;
   font-size: 12.5px;
@@ -776,12 +734,6 @@ body {
   transition: opacity .2s, visibility .2s;
   box-shadow: 0 8px 24px rgba(0,0,0,.5);
 }
-[data-theme="light"] .term .tip {
-  background: #fff;
-  color: #2c2418;
-  border-color: #ddd4c6;
-  box-shadow: 0 4px 16px rgba(44,36,24,.12);
-}
 .term .tip::after {
   content: '';
   position: absolute;
@@ -789,9 +741,8 @@ body {
   left: 50%;
   transform: translateX(-50%);
   border: 6px solid transparent;
-  border-top-color: #3d4a5c;
+  border-top-color: #2a3a5c;
 }
-[data-theme="light"] .term .tip::after { border-top-color: #ddd4c6; }
 .term:hover .tip,
 .term:focus .tip {
   visibility: visible;
@@ -893,7 +844,7 @@ body {
   margin: 16px 0;
 }
 .keyword-points li {
-  background: rgba(255,255,255,.03);
+  background: rgba(26,37,64,.03);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 12px 14px;
@@ -907,8 +858,8 @@ body {
   margin-bottom: 4px;
 }
 .keyword-relevance {
-  background: rgba(88,166,255,.06);
-  border: 1px solid rgba(88,166,255,.15);
+  background: rgba(26,37,64,.06);
+  border: 1px solid rgba(26,37,64,.15);
   border-radius: var(--radius-sm);
   padding: 14px 16px;
   margin-top: 16px;
@@ -929,7 +880,7 @@ body {
   font-size: 12px;
   color: var(--accent);
   text-decoration: none;
-  border: 1px solid rgba(88,166,255,.3);
+  border: 1px solid rgba(26,37,64,.3);
   padding: 6px 14px;
   border-radius: 6px;
   transition: all .15s;
@@ -995,21 +946,7 @@ body {
    Print
    ========================================== */
 @media print {
-  [data-theme="dark"] {
-    --bg-primary: #fff;
-    --bg-card: #f9f9f9;
-    --text-primary: #111;
-    --text-secondary: #444;
-    --text-muted: #777;
-    --border: #ddd;
-    --accent: #0066cc;
-    --accent-green: #1a7f37;
-    --accent-red: #cf222e;
-    --accent-amber: #9a6700;
-    --accent-purple: #7c3aed;
-    --shadow-card: none;
-  }
-  .back-link, .theme-toggle { display: none !important; }
+  .back-link { display: none !important; }
   .paper-header { background: none !important; }
   .paper-header::before { display: none !important; }
   body { padding: 0; }
@@ -1025,20 +962,19 @@ body {
 </head>
 <body>
 
-<!-- Back Link -->
-<a class="back-link" href="https://atlasfinancials.github.io/ui-kabu-times/">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>ポータル</a>
-
-<!-- Theme Toggle -->
-<button class="theme-toggle" id="themeToggle" aria-label="テーマ切替">☀️</button>
+<header style="background:rgba(26,37,64,0.97);padding:0 5vw;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(184,145,42,0.12)">
+<div style="display:flex;justify-content:space-between;align-items:center;height:52px;max-width:1100px;margin:0 auto">
+<a href="https://atlasfinancials.github.io/portal/" style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;text-decoration:none">Atlas<span style="color:#D4A843">.</span></a>
+<nav style="display:flex;gap:20px"><a href="https://atlasfinancials.github.io/news/" style="font-size:12px;color:#D4A843;text-decoration:none">朝刊</a><a href="https://atlasfinancials.github.io/reports/" style="font-size:12px;color:#D4A843;text-decoration:none">分析</a><a href="https://atlasfinancials.github.io/news/glossary/" style="font-size:12px;color:#D4A843;text-decoration:none">用語辞典</a></nav>
+</div></header>
 
 <!-- ===== Newspaper Header ===== -->
 <header class="paper-header">
   <div class="paper-date">2026年3月22日（日曜日）</div>
   <div class="paper-logo">
     <h1 class="paper-title">
-      U&I株倶楽部新聞
-      <span class="paper-accent">U & I KABU CLUB TIMES</span>
+      Atlas Daily
+      <span class="paper-accent">ATLAS DAILY — 2026年3月22日</span>
     </h1>
   </div>
   <div class="paper-edition">日曜版</div>
@@ -1305,7 +1241,7 @@ body {
           3月20日は米国オプションエクスポージャーの約35%がロールオフする過去最大規模のトリプルウィッチングでした。しかし、FOMC後の利下げ期待後退・中東地政学リスク・SMCI暴落という実体的な悪材料が重なったため、デルタヘッジの機械的な買いでは下支えしきれず、3指数とも大幅安で引けました。来週以降は満期通過後の「真の方向性」が見えてくる可能性があります。
         </div>
 
-        <a class="keyword-glossary-link" href="https://atlasfinancials.github.io/ui-kabu-times/glossary/">📚 用語辞典で詳しく学ぶ →</a>
+        <a class="keyword-glossary-link" href="https://atlasfinancials.github.io/news/glossary/">📚 用語辞典で詳しく学ぶ →</a>
       </div>
     </div>
   </section>
@@ -1499,33 +1435,16 @@ body {
 
 </main>
 
-<footer class="paper-footer">
-  <div class="paper-footer-nav">
-    <a href="https://atlasfinancials.github.io/ui-kabu-times/morning/2026/03/21.html">← 前号（3/21）</a>
-    <a href="https://atlasfinancials.github.io/ui-kabu-times/morning/">アーカイブ</a>
+<footer class="paper-footer" style="background:#1A2540;border-top:none;padding:40px 20px;margin-top:40px;max-width:100%;border-radius:0">
+  <div class="paper-footer-nav" style="color:#D4A843">
+    <a href="https://atlasfinancials.github.io/ui-kabu-times/morning/2026/03/21.html" style="color:#D4A843">← 前号（3/21）</a>
+    <a href="https://atlasfinancials.github.io/news/" style="color:#D4A843">アーカイブ</a>
   </div>
-  <p>U&I株倶楽部新聞 ｜ <a href="https://atlasfinancials.github.io/ui-kabu-times/">新聞ポータル</a> ｜ <a href="https://atlasfinancials.github.io/ui-kabu-reports/">決算分析</a></p>
-  <p>&copy; 2026 U&I株倶楽部</p>
+  <p style="color:rgba(255,255,255,.6)">Atlas Daily ｜ <a href="https://atlasfinancials.github.io/portal/" style="color:#D4A843">ポータル</a> ｜ <a href="https://atlasfinancials.github.io/news/" style="color:#D4A843">朝刊アーカイブ</a> ｜ <a href="https://atlasfinancials.github.io/reports/" style="color:#D4A843">決算分析</a></p>
+  <p style="color:rgba(255,255,255,.4)">&copy; 2026 Atlas Financials</p>
 </footer>
 
 <script>
-// Theme Toggle
-(function() {
-  var toggle = document.getElementById('themeToggle');
-  var html = document.documentElement;
-  var saved = localStorage.getItem('morning-theme');
-  if (saved) {
-    html.setAttribute('data-theme', saved);
-    toggle.textContent = saved === 'dark' ? '☀️' : '🌙';
-  }
-  toggle.addEventListener('click', function() {
-    var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
-    localStorage.setItem('morning-theme', next);
-  });
-})();
-
 // 決算プレビュー — ポータルリンク＋ロゴ自動付与
 (function() {
   var portalBase = 'https://atlasfinancials.github.io/ui-kabu-reports/';

@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="ja" data-theme="dark">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>金融用語辞典 — U&I株倶楽部新聞</title>
+<title>Atlas 用語辞典</title>
 <link rel="icon" type="image/png" href="../assets/favicon.png">
-<meta name="description" content="U&I株倶楽部新聞の金融用語辞典。FOMC、CPI、EPS、VIXなど投資に必要な用語をわかりやすく解説。">
-<meta property="og:title" content="金融用語辞典 — U&I株倶楽部新聞">
+<meta name="description" content="Atlas 金融用語辞典。FOMC、CPI、EPS、VIXなど投資に必要な用語をわかりやすく解説。">
+<meta property="og:title" content="Atlas 用語辞典">
 <meta property="og:description" content="投資に必要な金融用語をわかりやすく解説">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@700;900&family=Shippori+Mincho+B1:wght@500;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
   --font-sans: 'Noto Sans JP', 'Inter', -apple-system, sans-serif;
-  --font-serif: 'Noto Serif JP', serif;
-  --bg-primary: #0d1117;
-  --bg-card: #161b22;
-  --bg-card-hover: #1c2129;
-  --text-primary: #e6edf3;
-  --text-secondary: #8b949e;
-  --text-muted: #6e7681;
-  --border: #30363d;
-  --accent: #58a6ff;
-  --accent-green: #3fb950;
-  --accent-red: #f85149;
-  --accent-amber: #d29922;
-  --accent-purple: #bc8cff;
-  --shadow-card: 0 2px 8px rgba(0,0,0,.3);
+  --font-serif: 'Shippori Mincho B1', 'Noto Serif JP', serif;
+  --bg-primary: #F5F2EC;
+  --bg-card: #FDFCFA;
+  --bg-card-hover: #f0ebe3;
+  --text-primary: #1A2540;
+  --text-secondary: #4a5568;
+  --text-muted: #8c8c8c;
+  --border: #ddd4c6;
+  --accent: #B8912A;
+  --accent-green: #B8912A;
+  --accent-red: #8B2020;
+  --accent-amber: #B8912A;
+  --accent-purple: #6b4c9a;
+  --shadow-card: 0 1px 4px rgba(26,37,64,.06), 0 2px 8px rgba(26,37,64,.04);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,34 +47,11 @@ body {
   padding: 0 20px;
 }
 
-/* Back link */
-.back-link {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  background: #161b22;
-  border: 1px solid #30363d;
-  color: #58a6ff;
-  text-decoration: none;
-  font-size: .78rem;
-  font-weight: 500;
-  font-family: var(--font-sans);
-  transition: all .15s;
-  box-shadow: 0 2px 8px rgba(0,0,0,.3);
-}
-.back-link:hover { background: #58a6ff; color: #0d1117; border-color: #58a6ff; }
-.back-link svg { flex-shrink: 0; }
 
 /* Header */
 .header {
-  background: linear-gradient(135deg, #1a2332 0%, #0d1117 50%, #1a1a2e 100%);
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, #1A2540 0%, #0f1a30 50%, #1A2540 100%);
+  border-bottom: 1px solid rgba(184,145,42,0.15);
   padding: 56px 20px 40px;
   text-align: center;
   position: relative;
@@ -85,32 +62,33 @@ body {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background:
-    radial-gradient(ellipse at 30% 50%, rgba(88,166,255,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse at 70% 50%, rgba(46,160,67,0.06) 0%, transparent 60%);
+    radial-gradient(ellipse at 30% 50%, rgba(184,145,42,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 50%, rgba(212,168,67,0.04) 0%, transparent 60%);
 }
 .header-content { position: relative; z-index: 1; }
 .header-icon { font-size: 2.8em; margin-bottom: 8px; }
 .header h1 {
   font-family: var(--font-serif);
   font-size: 2.2em;
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: .06em;
   margin-bottom: 4px;
+  color: #fff;
 }
 .header .subtitle {
-  color: var(--text-secondary);
+  color: #bbb;
   font-size: 1em;
   font-weight: 500;
   letter-spacing: .08em;
 }
 .header .paper-badge {
   display: inline-block;
-  background: rgba(88,166,255,0.12);
-  border: 1px solid rgba(88,166,255,0.25);
+  background: rgba(184,145,42,0.15);
+  border: 1px solid rgba(184,145,42,0.3);
   border-radius: 20px;
   padding: 4px 16px;
   font-size: 12px;
-  color: var(--accent);
+  color: #D4A843;
   margin-top: 14px;
   letter-spacing: .05em;
 }
@@ -139,7 +117,7 @@ body {
 .search-box input::placeholder { color: var(--text-muted); }
 .search-box input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(88,166,255,0.15);
+  box-shadow: 0 0 0 3px rgba(184,145,42,0.15);
 }
 .search-icon {
   position: absolute;
@@ -185,16 +163,16 @@ body {
 .filter-btn:hover {
   border-color: var(--accent);
   color: var(--text-primary);
-  background: rgba(88,166,255,0.06);
+  background: rgba(184,145,42,0.06);
 }
 .filter-btn.active {
-  background: rgba(88,166,255,0.15);
+  background: rgba(184,145,42,0.15);
   border-color: var(--accent);
   color: var(--accent);
 }
 .filter-btn .count-badge {
   display: inline-block;
-  background: rgba(255,255,255,0.08);
+  background: rgba(26,37,64,0.06);
   border-radius: 10px;
   padding: 1px 7px;
   font-size: 11px;
@@ -202,7 +180,7 @@ body {
   margin-left: 2px;
 }
 .filter-btn.active .count-badge {
-  background: rgba(88,166,255,0.2);
+  background: rgba(184,145,42,0.2);
   color: var(--accent);
 }
 
@@ -232,9 +210,9 @@ body {
   color: var(--text-primary);
 }
 .sort-btn.active {
-  background: rgba(188,140,255,0.12);
-  border-color: var(--accent-purple);
-  color: var(--accent-purple);
+  background: rgba(184,145,42,0.12);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* Terms list */
@@ -274,11 +252,11 @@ body {
   transition: border-color .2s, box-shadow .2s;
 }
 .term-card:hover {
-  border-color: #3a424a;
+  border-color: #c8bfad;
 }
 .term-card.expanded {
-  border-color: rgba(88,166,255,0.3);
-  box-shadow: 0 2px 12px rgba(0,0,0,.2);
+  border-color: rgba(184,145,42,0.3);
+  box-shadow: 0 2px 12px rgba(26,37,64,.08);
 }
 .term-header {
   display: flex;
@@ -328,8 +306,8 @@ body {
   font-size: 10px;
   padding: 2px 8px;
   border-radius: 10px;
-  background: rgba(63,185,80,0.12);
-  border: 1px solid rgba(63,185,80,0.25);
+  background: rgba(184,145,42,0.1);
+  border: 1px solid rgba(184,145,42,0.2);
   color: var(--accent-green);
   white-space: nowrap;
 }
@@ -340,8 +318,8 @@ body {
   font-size: 10px;
   padding: 2px 8px;
   border-radius: 10px;
-  background: rgba(88,166,255,0.08);
-  border: 1px solid rgba(88,166,255,0.15);
+  background: rgba(26,37,64,0.05);
+  border: 1px solid rgba(26,37,64,0.1);
   color: var(--text-muted);
   white-space: nowrap;
 }
@@ -407,7 +385,7 @@ body {
 
 /* Diagram box */
 .vis-diagram {
-  background: rgba(255,255,255,.03);
+  background: rgba(26,37,64,.03);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 20px;
@@ -415,7 +393,7 @@ body {
 .vis-diagram-title {
   font-size: 13px;
   font-weight: 700;
-  color: var(--accent);
+  color: #1A2540;
   margin-bottom: 12px;
 }
 
@@ -429,8 +407,8 @@ body {
   font-size: 13px;
 }
 .vis-flow-step {
-  background: rgba(88,166,255,.1);
-  border: 1px solid rgba(88,166,255,.3);
+  background: rgba(26,37,64,.06);
+  border: 1px solid rgba(26,37,64,.15);
   border-radius: 8px;
   padding: 8px 14px;
   text-align: center;
@@ -438,12 +416,12 @@ body {
   color: var(--text-primary);
 }
 .vis-flow-step.negative {
-  background: rgba(248,81,73,.1);
-  border-color: rgba(248,81,73,.3);
+  background: rgba(139,32,32,.08);
+  border-color: rgba(139,32,32,.2);
 }
 .vis-flow-step.positive {
-  background: rgba(63,185,80,.1);
-  border-color: rgba(63,185,80,.3);
+  background: rgba(184,145,42,.08);
+  border-color: rgba(184,145,42,.2);
 }
 .vis-flow-arrow {
   color: var(--text-muted);
@@ -482,7 +460,7 @@ body {
 .vis-bars { display: flex; flex-direction: column; gap: 8px; }
 .vis-bar-item { display: flex; align-items: center; gap: 10px; }
 .vis-bar-label { min-width: 80px; font-size: 12px; color: var(--text-secondary); text-align: right; }
-.vis-bar-track { flex: 1; height: 22px; background: rgba(255,255,255,.04); border-radius: 6px; overflow: hidden; position: relative; }
+.vis-bar-track { flex: 1; height: 22px; background: rgba(26,37,64,.06); border-radius: 6px; overflow: hidden; position: relative; }
 .vis-bar-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 11px; font-weight: 700; color: #fff; transition: width .6s ease; }
 .vis-bar-fill.blue { background: var(--accent); }
 .vis-bar-fill.green { background: var(--accent-green); }
@@ -491,28 +469,28 @@ body {
 
 /* Comparison table */
 .vis-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-.vis-table th { text-align: left; padding: 8px 10px; background: rgba(255,255,255,.04); border-bottom: 1px solid var(--border); color: var(--accent); font-weight: 700; }
-.vis-table td { padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,.04); color: var(--text-secondary); }
+.vis-table th { text-align: left; padding: 8px 10px; background: rgba(26,37,64,.04); border-bottom: 1px solid var(--border); color: #1A2540; font-weight: 700; }
+.vis-table td { padding: 8px 10px; border-bottom: 1px solid rgba(26,37,64,.06); color: var(--text-secondary); }
 
 /* Callout/tip box */
 .vis-callout {
-  background: rgba(88,166,255,.06);
-  border: 1px solid rgba(88,166,255,.2);
+  background: rgba(184,145,42,.06);
+  border: 1px solid rgba(184,145,42,.15);
   border-radius: 10px;
   padding: 14px 16px;
   font-size: 13px;
   line-height: 1.7;
   color: var(--text-secondary);
 }
-.vis-callout strong { color: var(--accent); }
+.vis-callout strong { color: #1A2540; }
 .vis-callout.warning {
-  background: rgba(248,81,73,.06);
-  border-color: rgba(248,81,73,.2);
+  background: rgba(139,32,32,.06);
+  border-color: rgba(139,32,32,.15);
 }
 .vis-callout.warning strong { color: var(--accent-red); }
 .vis-callout.tip {
-  background: rgba(63,185,80,.06);
-  border-color: rgba(63,185,80,.2);
+  background: rgba(184,145,42,.06);
+  border-color: rgba(184,145,42,.15);
 }
 .vis-callout.tip strong { color: var(--accent-green); }
 
@@ -592,7 +570,7 @@ body {
   color: #fff;
 }
 .vis-hbm-layer.die { background: var(--accent); }
-.vis-hbm-layer.tsv { background: rgba(255,255,255,.1); height: 6px; width: 140px; }
+.vis-hbm-layer.tsv { background: rgba(26,37,64,.08); height: 6px; width: 140px; }
 .vis-hbm-layer.base { background: var(--accent-green); }
 .vis-hbm-arrow {
   font-size: 10px;
@@ -657,7 +635,6 @@ body {
   .term-body-inner { padding: 0 14px 14px; padding-top: 14px; }
   .term-full { font-size: 13px; }
   .category-header h2 { font-size: .95em; }
-  .back-link { padding: 6px 10px; font-size: .7rem; }
 }
 @media (max-width: 480px) {
   .header h1 { font-size: 1.3em; }
@@ -667,18 +644,19 @@ body {
 </head>
 <body>
 
-<!-- Back link -->
-<a class="back-link" href="https://atlasfinancials.github.io/ui-kabu-times/">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-ポータル</a>
+<header style="background:rgba(26,37,64,0.97);padding:0 5vw;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(184,145,42,0.12)">
+<div style="display:flex;justify-content:space-between;align-items:center;height:52px;max-width:1100px;margin:0 auto">
+<a href="https://atlasfinancials.github.io/portal/" style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;text-decoration:none">Atlas<span style="color:#D4A843">.</span></a>
+<nav style="display:flex;gap:20px"><a href="https://atlasfinancials.github.io/news/" style="font-size:12px;color:#D4A843;text-decoration:none">朝刊</a><a href="https://atlasfinancials.github.io/reports/" style="font-size:12px;color:#D4A843;text-decoration:none">分析</a><a href="https://atlasfinancials.github.io/news/glossary/" style="font-size:12px;color:#D4A843;text-decoration:none">用語辞典</a></nav>
+</div></header>
 
 <!-- Header -->
 <div class="header">
   <div class="header-content">
     <div class="header-icon">📖</div>
-    <h1>金融用語辞典</h1>
+    <h1>Atlas 用語辞典</h1>
     <div class="subtitle">Financial Glossary</div>
-    <div class="paper-badge">U&I株倶楽部新聞</div>
+    <div class="paper-badge">Atlas Financials</div>
   </div>
 </div>
 
@@ -719,13 +697,13 @@ body {
 </div>
 
 <!-- Footer -->
-<div class="footer">
+<div class="footer" style="background:#1A2540;border-top:1px solid rgba(184,145,42,0.15);">
   <div class="footer-links">
-    <a href="https://atlasfinancials.github.io/ui-kabu-times/">朝刊ポータル</a>
-    <a href="https://atlasfinancials.github.io/ui-kabu-times/morning/latest.html">最新の朝刊</a>
-    <a href="https://atlasfinancials.github.io/ui-kabu-reports/">決算レポート</a>
+    <a href="https://atlasfinancials.github.io/news/" style="color:#D4A843;">朝刊ポータル</a>
+    <a href="https://atlasfinancials.github.io/news/" style="color:#D4A843;">最新の朝刊</a>
+    <a href="https://atlasfinancials.github.io/reports/" style="color:#D4A843;">決算レポート</a>
   </div>
-  <div class="footer-copy">&copy; 2026 U&I株倶楽部新聞</div>
+  <div class="footer-copy" style="color:#888;">&copy; 2026 Atlas Financials</div>
 </div>
 
 <script>
@@ -1418,7 +1396,7 @@ function highlightMatch(text, q) {
   var idx = text.toLowerCase().indexOf(q);
   if (idx === -1) return text;
   return text.substring(0, idx) +
-    '<mark style="background:rgba(88,166,255,0.2);color:var(--accent);border-radius:2px;padding:0 2px">' +
+    '<mark style="background:rgba(184,145,42,0.15);color:var(--accent);border-radius:2px;padding:0 2px">' +
     text.substring(idx, idx + q.length) + '</mark>' +
     text.substring(idx + q.length);
 }

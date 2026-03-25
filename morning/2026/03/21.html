@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ja" data-theme="dark">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>U&I株倶楽部新聞 — 2026年3月21日</title>
-<meta property="og:title" content="U&I株倶楽部新聞 — 2026年3月21日 朝刊">
+<title>Atlas Daily — 2026年3月21日</title>
+<meta property="og:title" content="Atlas Daily — 2026年3月21日 朝刊">
 <meta property="og:description" content="S&P 500が200日線割れ、4週連続安。SMCI-33%暴落、トリプルウィッチング×FOMC×原油高の4重苦。VIX 26.78に急騰。">
 <meta property="og:image" content="https://atlasfinancials.github.io/ui-kabu-times/assets/hero-bg.jpg">
 <meta property="og:type" content="article">
@@ -12,55 +12,32 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/jpeg" href="https://atlasfinancials.github.io/ui-kabu-times/assets/hero-bg.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@700;900&family=Playfair+Display:wght@700&family=Shippori+Mincho+B1:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --font-sans: 'Noto Sans JP', 'Inter', -apple-system, sans-serif;
-  --font-serif: 'Noto Serif JP', serif;
+  --font-serif: 'Shippori Mincho B1', 'Noto Serif JP', serif;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --transition: .25s cubic-bezier(.4,0,.2,1);
   --max-w: 1100px;
-}
-
-[data-theme="dark"] {
-  --bg-primary: #0d1117;
-  --bg-card: #161b22;
-  --bg-card-hover: #21262d;
-  --text-primary: #e6edf3;
-  --text-secondary: #8b949e;
-  --text-muted: #6e7681;
-  --border: #30363d;
-  --accent: #58a6ff;
-  --accent-green: #3fb950;
-  --accent-green-light: rgba(63,185,80,.12);
-  --accent-red: #f85149;
-  --accent-red-light: rgba(248,81,73,.12);
-  --accent-amber: #d29922;
-  --accent-amber-light: rgba(210,153,34,.12);
-  --accent-purple: #bc8cff;
-  --accent-purple-light: rgba(188,140,255,.12);
-  --shadow-card: 0 2px 8px rgba(0,0,0,.3);
-}
-
-[data-theme="light"] {
-  --bg-primary: #f5f0e8;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f0ebe3;
-  --text-primary: #2c2418;
-  --text-secondary: #6b5d4d;
-  --text-muted: #9a8c7c;
+  --bg-primary: #F5F2EC;
+  --bg-card: #FDFCFA;
+  --bg-card-hover: #f3f0e8;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #7a7a7a;
   --border: #ddd4c6;
-  --accent: #2563b8;
-  --accent-green: #1a7f37;
-  --accent-green-light: rgba(26,127,55,.1);
-  --accent-red: #cf222e;
-  --accent-red-light: rgba(207,34,46,.1);
-  --accent-amber: #9a6700;
-  --accent-amber-light: rgba(154,103,0,.1);
-  --accent-purple: #7c3aed;
-  --accent-purple-light: rgba(124,58,237,.1);
+  --accent: #1A2540;
+  --accent-green: #B8912A;
+  --accent-green-light: rgba(184,145,42,.12);
+  --accent-red: #8B2020;
+  --accent-red-light: rgba(139,32,32,.12);
+  --accent-amber: #B8912A;
+  --accent-amber-light: rgba(184,145,42,.12);
+  --accent-purple: #5a4a8a;
+  --accent-purple-light: rgba(90,74,138,.12);
   --shadow-card: 0 1px 4px rgba(44,36,24,.08), 0 2px 8px rgba(44,36,24,.04);
 }
 
@@ -80,18 +57,15 @@ body {
   padding: 32px 20px 24px;
   text-align: center;
   position: relative;
-  background: url('https://atlasfinancials.github.io/ui-kabu-times/assets/hero-bg.jpg') center/cover no-repeat;
+  background: #1A2540;
   overflow: hidden;
 }
 .paper-header::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(to bottom, rgba(13,17,23,.65) 0%, rgba(13,17,23,.85) 100%);
+  background: linear-gradient(135deg, #1A2540 0%, #0f1a30 50%, #1a1a2e 100%);
   z-index: 0;
-}
-[data-theme="light"] .paper-header::before {
-  background: linear-gradient(to bottom, rgba(245,240,232,.7) 0%, rgba(245,240,232,.9) 100%);
 }
 .paper-header > * { position: relative; z-index: 1; }
 .paper-header::after {
@@ -102,21 +76,19 @@ body {
   background: var(--border);
   z-index: 1;
 }
-.paper-date { font-size: 14px; font-weight: 600; color: var(--text-secondary); letter-spacing: .08em; margin-bottom: 12px; }
+.paper-date { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.7); letter-spacing: .08em; margin-bottom: 12px; }
 .paper-logo { display: inline-block; position: relative; padding: 0 32px; }
-.paper-logo::before, .paper-logo::after { content: ''; position: absolute; top: 50%; width: 60px; height: 2px; background: var(--text-primary); opacity: .3; }
+.paper-logo::before, .paper-logo::after { content: ''; position: absolute; top: 50%; width: 60px; height: 2px; background: rgba(255,255,255,.3); opacity: .3; }
 .paper-logo::before { right: 100%; margin-right: 8px; }
 .paper-logo::after { left: 100%; margin-left: 8px; }
-.paper-title { font-family: var(--font-serif); font-size: 42px; font-weight: 900; letter-spacing: .12em; line-height: 1.2; color: var(--text-primary); position: relative; display: inline-block; }
-.paper-title .paper-accent { display: block; font-size: 13px; font-family: var(--font-sans); font-weight: 600; letter-spacing: .25em; color: var(--text-secondary); margin-top: 4px; }
-.paper-edition { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 700; color: var(--accent); border: 1px solid var(--border); border-radius: 6px; padding: 3px 14px; letter-spacing: .06em; background: var(--bg-card); }
+.paper-title { font-family: var(--font-serif); font-size: 42px; font-weight: 900; letter-spacing: .12em; line-height: 1.2; color: #ffffff; position: relative; display: inline-block; }
+.paper-title .paper-accent { display: block; font-size: 13px; font-family: var(--font-sans); font-weight: 600; letter-spacing: .25em; color: rgba(255,255,255,.5); margin-top: 4px; }
+.paper-edition { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 700; color: #D4A843; border: 1px solid rgba(212,168,67,.3); border-radius: 6px; padding: 3px 14px; letter-spacing: .06em; background: rgba(255,255,255,.08); }
 
 .back-link { position: fixed; top: 16px; left: 16px; z-index: 999; display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border); color: var(--accent); text-decoration: none; font-size: .78rem; font-weight: 500; font-family: var(--font-sans); transition: all .15s; box-shadow: var(--shadow-card); }
 .back-link:hover { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); }
 .back-link svg { flex-shrink: 0; }
 
-.theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 999; width: 42px; height: 42px; border: 1px solid var(--border); background: var(--bg-card); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--text-secondary); transition: all .15s; box-shadow: var(--shadow-card); }
-.theme-toggle:hover { background: var(--bg-card-hover); border-color: var(--accent); }
 
 .main { max-width: var(--max-w); margin: 0 auto; padding: 28px 20px 60px; }
 .section { margin-bottom: 40px; }
@@ -138,8 +110,7 @@ body {
 .summary-num.down { color: var(--accent-red); }
 .summary-label { font-weight: 700; }
 .summary-tickers { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border); }
-.summary-ticker { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 14px; font-size: 13px; font-weight: 600; }
-[data-theme="light"] .summary-ticker { background: rgba(0,0,0,.02); }
+.summary-ticker { display: flex; align-items: center; gap: 8px; background: rgba(26,37,64,.04); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 14px; font-size: 13px; font-weight: 600; }
 .summary-ticker-name { color: var(--text-secondary); }
 .summary-ticker-val { font-family: 'Inter', var(--font-sans); font-weight: 800; color: var(--text-primary); }
 .summary-ticker-chg { font-family: 'Inter', var(--font-sans); font-weight: 700; font-size: 12px; }
@@ -148,7 +119,7 @@ body {
 
 .top-story { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; margin-bottom: 16px; transition: all var(--transition); text-decoration: none; color: inherit; display: block; position: relative; overflow: hidden; cursor: default; }
 .top-story::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--accent-red); }
-.top-story:hover { background: var(--bg-card-hover); box-shadow: 0 4px 20px rgba(0,0,0,.4); border-color: #484f58; }
+.top-story:hover { background: var(--bg-card-hover); box-shadow: 0 4px 20px rgba(0,0,0,.1); border-color: #c0b8a8; }
 .top-story-badge { display: inline-block; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 6px; background: var(--accent-red-light); color: var(--accent-red); letter-spacing: .04em; margin-bottom: 14px; }
 .top-story-title { font-family: var(--font-serif); font-size: 26px; font-weight: 900; line-height: 1.5; letter-spacing: -.01em; margin-bottom: 14px; }
 .top-story-body { font-size: 15px; color: var(--text-secondary); line-height: 1.9; }
@@ -158,7 +129,7 @@ body {
 .news-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .news-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; transition: all var(--transition); cursor: default; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden; }
 .news-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; border-radius: 4px 0 0 4px; opacity: 0; transition: opacity var(--transition); }
-.news-card:hover { background: var(--bg-card-hover); box-shadow: 0 4px 16px rgba(0,0,0,.4); transform: translateY(-2px); border-color: #484f58; }
+.news-card:hover { background: var(--bg-card-hover); box-shadow: 0 4px 16px rgba(0,0,0,.1); transform: translateY(-2px); border-color: #c0b8a8; }
 .news-card:hover::before { opacity: 1; }
 .news-card.economy::before { background: var(--accent); }
 .news-card.tech::before { background: var(--accent-green); }
@@ -167,7 +138,7 @@ body {
 .news-card.policy::before { background: var(--accent-purple); }
 .news-card-meta { display: flex; align-items: center; gap: 10px; }
 .news-card-tag { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; letter-spacing: .02em; }
-.news-card-tag.economy { background: rgba(88,166,255,.12); color: var(--accent); }
+.news-card-tag.economy { background: rgba(26,37,64,.12); color: var(--accent); }
 .news-card-tag.tech { background: var(--accent-green-light); color: var(--accent-green); }
 .news-card-tag.earnings { background: var(--accent-amber-light); color: var(--accent-amber); }
 .news-card-tag.geopolitics { background: var(--accent-red-light); color: var(--accent-red); }
@@ -176,7 +147,7 @@ body {
 .news-card-title { font-size: 16px; font-weight: 800; line-height: 1.5; letter-spacing: -.01em; }
 .news-card-excerpt { font-size: 13px; color: var(--text-secondary); line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
 .news-card-footer { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted); }
-.news-why { font-size: 12px; color: var(--accent); background: rgba(88,166,255,.06); border-left: 3px solid var(--accent); padding: 8px 12px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; line-height: 1.6; }
+.news-why { font-size: 12px; color: var(--accent); background: rgba(26,37,64,.06); border-left: 3px solid var(--accent); padding: 8px 12px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; line-height: 1.6; }
 .news-why::before { content: '💡 なぜ重要？'; display: block; font-weight: 800; font-size: 11px; margin-bottom: 2px; color: var(--accent); }
 
 .news-card-img { margin: -22px -22px 12px -22px; overflow: hidden; position: relative; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
@@ -192,7 +163,7 @@ body {
 .calendar-importance { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
 .calendar-importance.high { background: var(--accent-red-light); color: var(--accent-red); }
 .calendar-importance.medium { background: var(--accent-amber-light); color: var(--accent-amber); }
-.calendar-importance.low { background: rgba(255,255,255,.06); color: var(--text-muted); }
+.calendar-importance.low { background: rgba(26,37,64,.06); color: var(--text-muted); }
 .calendar-event { flex: 1; font-size: 14px; font-weight: 600; }
 .calendar-flag { font-size: 16px; }
 .calendar-detail { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
@@ -204,12 +175,11 @@ body {
 .earnings-item-header { display: flex; align-items: center; gap: 6px; }
 .earnings-item-logo { height: 22px; width: auto; max-width: 80px; object-fit: contain; opacity: .85; flex-shrink: 0; }
 .earnings-item-ticker { font-family: 'Inter', var(--font-sans); font-size: 18px; font-weight: 800; }
-.earnings-item-timing { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: rgba(255,255,255,.06); color: var(--text-muted); margin-left: auto; }
+.earnings-item-timing { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: rgba(26,37,64,.06); color: var(--text-muted); margin-left: auto; }
 .earnings-item-timing.bmo { background: var(--accent-amber-light); color: var(--accent-amber); }
 .earnings-item-timing.amc { background: var(--accent-purple-light); color: var(--accent-purple); }
 .earnings-item-name { font-size: 13px; color: var(--text-secondary); font-weight: 500; }
-.earnings-item-sector { font-size: 10px; font-weight: 600; color: var(--text-muted); padding: 1px 6px; border-radius: 3px; background: rgba(255,255,255,.04); border: 1px solid var(--border); display: inline-block; align-self: flex-start; line-height: 1.4; }
-[data-theme="light"] .earnings-item-sector { background: rgba(0,0,0,.03); }
+.earnings-item-sector { font-size: 10px; font-weight: 600; color: var(--text-muted); padding: 1px 6px; border-radius: 3px; background: rgba(26,37,64,.04); border: 1px solid var(--border); display: inline-block; align-self: flex-start; line-height: 1.4; }
 .earnings-item-consensus { font-size: 12px; color: var(--text-muted); display: flex; gap: 12px; }
 .earnings-item-consensus span { font-family: 'Inter', var(--font-sans); }
 .earnings-item-result { font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 4px; display: inline-block; align-self: flex-start; }
@@ -224,10 +194,8 @@ body {
 .section-hero-caption { padding: 8px 14px; font-size: 11px; color: var(--text-muted); background: var(--bg-card); border-top: 1px solid var(--border); }
 
 .term { position: relative; color: var(--accent); font-weight: 700; cursor: help; border-bottom: 1px dotted var(--accent); }
-.term .tip { visibility: hidden; opacity: 0; position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); width: 300px; background: #1c2333; color: #e6edf3; border: 1px solid #3d4a5c; border-radius: 10px; padding: 14px 16px; font-size: 12.5px; font-weight: 400; line-height: 1.7; white-space: normal; z-index: 100; pointer-events: none; transition: opacity .2s, visibility .2s; box-shadow: 0 8px 24px rgba(0,0,0,.5); }
-[data-theme="light"] .term .tip { background: #fff; color: #2c2418; border-color: #ddd4c6; box-shadow: 0 4px 16px rgba(44,36,24,.12); }
-.term .tip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #3d4a5c; }
-[data-theme="light"] .term .tip::after { border-top-color: #ddd4c6; }
+.term .tip { visibility: hidden; opacity: 0; position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); width: 300px; background: #1A2540; color: #e6edf3; border: 1px solid #2a3a5c; border-radius: 10px; padding: 14px 16px; font-size: 12.5px; font-weight: 400; line-height: 1.7; white-space: normal; z-index: 100; pointer-events: none; transition: opacity .2s, visibility .2s; box-shadow: 0 8px 24px rgba(0,0,0,.5); }
+.term .tip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #2a3a5c; }
 .term:hover .tip, .term:focus .tip { visibility: visible; opacity: 1; pointer-events: auto; }
 .tip-title { display: block; font-weight: 700; color: var(--accent); margin-bottom: 4px; font-size: 13px; }
 .term.tip-right .tip { left: 0; transform: translateX(0); }
@@ -249,11 +217,11 @@ body {
 .keyword-body p { margin-bottom: 12px; }
 .keyword-body strong { color: var(--text-primary); }
 .keyword-points { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
-.keyword-points li { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 13px; line-height: 1.6; }
+.keyword-points li { background: rgba(26,37,64,.03); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 13px; line-height: 1.6; }
 .keyword-points li strong { display: block; font-size: 12px; color: var(--accent); margin-bottom: 4px; }
-.keyword-relevance { background: rgba(88,166,255,.06); border: 1px solid rgba(88,166,255,.15); border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 16px; font-size: 13px; line-height: 1.7; }
+.keyword-relevance { background: rgba(26,37,64,.06); border: 1px solid rgba(26,37,64,.15); border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 16px; font-size: 13px; line-height: 1.7; }
 .keyword-relevance::before { content: '📌 今日との関連'; display: block; font-weight: 800; font-size: 12px; color: var(--accent); margin-bottom: 6px; }
-.keyword-glossary-link { display: inline-block; margin-top: 16px; font-size: 12px; color: var(--accent); text-decoration: none; border: 1px solid rgba(88,166,255,.3); padding: 6px 14px; border-radius: 6px; transition: all .15s; }
+.keyword-glossary-link { display: inline-block; margin-top: 16px; font-size: 12px; color: var(--accent); text-decoration: none; border: 1px solid rgba(26,37,64,.3); padding: 6px 14px; border-radius: 6px; transition: all .15s; }
 .keyword-glossary-link:hover { background: var(--accent); color: var(--bg-primary); }
 
 /* Crisis Card */
@@ -261,7 +229,7 @@ body {
 .crisis-card::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--accent-red); }
 .crisis-title { font-family: var(--font-serif); font-size: 20px; font-weight: 900; margin-bottom: 16px; color: var(--accent-red); }
 .crisis-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 18px; }
-.crisis-stat { text-align: center; padding: 14px; background: rgba(255,255,255,.03); border-radius: var(--radius-sm); border: 1px solid var(--border); }
+.crisis-stat { text-align: center; padding: 14px; background: rgba(26,37,64,.03); border-radius: var(--radius-sm); border: 1px solid var(--border); }
 .crisis-stat-label { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; }
 .crisis-stat-value { font-family: 'Inter', var(--font-sans); font-size: 20px; font-weight: 800; color: var(--text-primary); }
 .crisis-points { font-size: 14px; color: var(--text-secondary); line-height: 1.9; }
@@ -294,8 +262,7 @@ body {
   .news-card-img img { height: 120px; }
 }
 @media print {
-  [data-theme="dark"] { --bg-primary:#fff; --bg-card:#f9f9f9; --text-primary:#111; --text-secondary:#444; --text-muted:#777; --border:#ddd; --accent:#0066cc; --accent-green:#1a7f37; --accent-red:#cf222e; --accent-amber:#9a6700; --accent-purple:#7c3aed; --shadow-card:none; }
-  .back-link, .theme-toggle { display: none !important; }
+  .back-link { display: none !important; }
   .paper-header { background: none !important; }
   .paper-header::before { display: none !important; }
   body { padding: 0; }
@@ -311,14 +278,16 @@ body {
 </head>
 <body>
 
-<a class="back-link" href="https://atlasfinancials.github.io/ui-kabu-times/">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>ポータル</a>
-<button class="theme-toggle" id="themeToggle" aria-label="テーマ切替">☀️</button>
+<header style="background:rgba(26,37,64,0.97);padding:0 5vw;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(184,145,42,0.12)">
+<div style="display:flex;justify-content:space-between;align-items:center;height:52px;max-width:1100px;margin:0 auto">
+<a href="https://atlasfinancials.github.io/portal/" style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;text-decoration:none">Atlas<span style="color:#D4A843">.</span></a>
+<nav style="display:flex;gap:20px"><a href="https://atlasfinancials.github.io/news/" style="font-size:12px;color:#D4A843;text-decoration:none">朝刊</a><a href="https://atlasfinancials.github.io/reports/" style="font-size:12px;color:#D4A843;text-decoration:none">分析</a><a href="https://atlasfinancials.github.io/news/glossary/" style="font-size:12px;color:#D4A843;text-decoration:none">用語辞典</a></nav>
+</div></header>
 
 <header class="paper-header">
   <div class="paper-date">2026年3月21日（土曜日）</div>
   <div class="paper-logo">
-    <h1 class="paper-title">U&I株倶楽部新聞<span class="paper-accent">U & I KABU CLUB TIMES</span></h1>
+    <h1 class="paper-title">Atlas Daily<span class="paper-accent">ATLAS DAILY — 2026年3月21日</span></h1>
   </div>
   <div class="paper-edition">朝刊</div>
 </header>
@@ -557,7 +526,7 @@ body {
           S&P 500は3月20日の終値で200日移動平均線を終値ベースで下回りました。1月27日の史上最高値から-6.77%の水準です。来週金曜（3/28）の<strong>PCEデフレーター</strong>が予想以上のインフレを示せば、FRBの利下げ見送りが確定的になり、200日線の下での定着が進む可能性があります。逆にインフレ鈍化が確認されれば、V字回復のシナリオも。
         </div>
 
-        <a class="keyword-glossary-link" href="https://atlasfinancials.github.io/ui-kabu-times/glossary/">📚 用語辞典で詳しく学ぶ →</a>
+        <a class="keyword-glossary-link" href="https://atlasfinancials.github.io/news/glossary/">📚 用語辞典で詳しく学ぶ →</a>
       </div>
     </div>
   </section>
@@ -705,30 +674,17 @@ body {
 
 </main>
 
-<footer class="paper-footer">
-  <div class="paper-footer-nav">
-    <a href="https://atlasfinancials.github.io/ui-kabu-times/morning/2026/03/20.html">← 前号（3/20）</a>
-    <a href="https://atlasfinancials.github.io/ui-kabu-times/morning/2026/03/22.html">次号（3/22）→</a>
-    <a href="https://atlasfinancials.github.io/ui-kabu-times/morning/">アーカイブ</a>
+<footer class="paper-footer" style="background:#1A2540;border-top:none;padding:40px 20px;margin-top:40px;max-width:100%;border-radius:0">
+  <div class="paper-footer-nav" style="color:#D4A843">
+    <a href="https://atlasfinancials.github.io/ui-kabu-times/morning/2026/03/20.html" style="color:#D4A843">← 前号（3/20）</a>
+    <a href="https://atlasfinancials.github.io/ui-kabu-times/morning/2026/03/22.html" style="color:#D4A843">次号（3/22）→</a>
+    <a href="https://atlasfinancials.github.io/news/" style="color:#D4A843">アーカイブ</a>
   </div>
-  <p>U&I株倶楽部新聞 ｜ <a href="https://atlasfinancials.github.io/ui-kabu-times/">新聞ポータル</a> ｜ <a href="https://atlasfinancials.github.io/ui-kabu-reports/">決算分析</a></p>
-  <p>&copy; 2026 U&I株倶楽部</p>
+  <p style="color:rgba(255,255,255,.6)">Atlas Daily ｜ <a href="https://atlasfinancials.github.io/portal/" style="color:#D4A843">ポータル</a> ｜ <a href="https://atlasfinancials.github.io/news/" style="color:#D4A843">朝刊アーカイブ</a> ｜ <a href="https://atlasfinancials.github.io/reports/" style="color:#D4A843">決算分析</a></p>
+  <p style="color:rgba(255,255,255,.4)">&copy; 2026 Atlas Financials</p>
 </footer>
 
 <script>
-(function() {
-  var toggle = document.getElementById('themeToggle');
-  var html = document.documentElement;
-  var saved = localStorage.getItem('morning-theme');
-  if (saved) { html.setAttribute('data-theme', saved); toggle.textContent = saved === 'dark' ? '☀️' : '🌙'; }
-  toggle.addEventListener('click', function() {
-    var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
-    localStorage.setItem('morning-theme', next);
-  });
-})();
-
 (function() {
   var portalBase = 'https://atlasfinancials.github.io/ui-kabu-reports/';
   var logoBase = 'https://atlasfinancials.github.io/ui-kabu-reports/logos/';
