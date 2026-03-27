@@ -602,6 +602,56 @@ body {
   color: var(--slate-lt);
 }
 
+/* Editorial Take (hover expand) */
+.ed-take {
+  position: relative;
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(184,145,42,0.05);
+  border: 1px solid rgba(184,145,42,0.15);
+  cursor: pointer;
+  transition: all .25s ease;
+}
+.ed-take-icon { font-size: 14px; margin-right: 4px; }
+.ed-take-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .02em;
+}
+.ed-take-label::after {
+  content: ' ▸ ホバーで表示';
+  font-weight: 400;
+  font-size: 10px;
+  color: var(--slate-lt);
+}
+.ed-take-body {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin-top: 0;
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: var(--slate);
+  transition: max-height .4s ease, opacity .3s ease, margin-top .3s ease;
+}
+.ed-take:hover .ed-take-body,
+.ed-take.open .ed-take-body {
+  max-height: 600px;
+  opacity: 1;
+  margin-top: 10px;
+}
+.ed-take:hover { border-color: var(--gold); background: rgba(184,145,42,0.08); }
+.ed-take:hover .ed-take-label::after { content: ''; }
+[data-theme="dark"] .ed-take { background: rgba(184,145,42,0.06); border-color: rgba(184,145,42,0.12); }
+[data-theme="dark"] .ed-take:hover { background: rgba(184,145,42,0.1); border-color: var(--gold); }
+[data-theme="dark"] .ed-take-body { color: #8b949e; }
+[data-theme="dark"] .ed-take-body strong { color: #F5F2EC; }
+@media (max-width: 767px) {
+  .ed-take-label::after { content: ' ▸ タップで表示'; }
+}
+
 /* ==========================================
    Today's Keyword
    ========================================== */
@@ -1403,6 +1453,16 @@ body {
         <h3 class="news-card-title">Google「TurboQuant」発表でメモリ半導体株急落 — Micron -6.9%、AMD -7.5%</h3>
         <p class="news-card-excerpt">Google Researchが発表したAI推論向け圧縮アルゴリズム「TurboQuant」が半導体セクターを揺るがした。<span class="term tip-right">KVキャッシュ<span class="tip"><span class="tip-title">KVキャッシュ</span>LLMの推論時にKey-Valueペアを保存するメモリ領域。トークン数が増えるほど肥大化し、GPUメモリのボトルネックとなる。TurboQuantはこれを3ビットに圧縮する。</span></span>を3ビットに圧縮し、メモリ使用量1/6、推論速度最大8倍に。AI推進がハードウェア需要を牽引するという前提に疑問符。</p>
         <div class="news-why">AIの効率化がハードウェア需要を減少させる「AI効率化のパラドックス」が現実味を帯び、半導体セクターの成長ストーリーに構造的修正を迫る。</div>
+        <div class="ed-take">
+          <span class="ed-take-icon">🔍</span>
+          <span class="ed-take-label">編集部はこう見る</span>
+          <div class="ed-take-body">
+            <strong style="color:var(--gold)">ジェボンズのパラドックス</strong>が示唆するのは、市場の反応は過剰だという見立てだ。<br><br>
+            19世紀の経済学者ウィリアム・ジェボンズは、蒸気機関の効率が上がれば石炭の消費量は減るどころか<strong>逆に増える</strong>ことを発見した。コストが下がれば用途が爆発的に広がるからだ。<br><br>
+            <span class="term tip-right">ジェボンズのパラドックス<span class="tip"><span class="tip-title">ジェボンズのパラドックス</span>資源の利用効率が向上すると、その資源の消費量は減るどころか逆に増加するという経済学の逆説。1865年にW.S.ジェボンズが石炭について発見。IT分野ではストレージ・帯域幅・計算資源でも同様の現象が繰り返し観測されている。</span></span>をAI半導体に当てはめれば、TurboQuantのような圧縮技術で推論コストが1/6になれば、これまでコスト的に不可能だった用途（リアルタイム翻訳、自律エージェント、エッジAI等）が一気に実用化される。<strong>AI処理の総量は減るどころか爆発的に増大し、結局ハードウェア需要はむしろ拡大する</strong>。<br><br>
+            実際、過去にもNANDフラッシュの価格下落がストレージ需要を数十倍に膨張させ、通信帯域の効率化がデータ通信量を指数関数的に増やした。「効率化＝需要減」は短期的な市場の誤解であり、中長期では半導体セクターにはむしろ追い風と見る。
+          </div>
+        </div>
         <div class="news-card-footer">
           <span>テクノロジー</span>
           <span>·</span>
@@ -2198,6 +2258,11 @@ function toggleTheme(){
     }
   });
 })();
+
+// Editorial Take — tap toggle for mobile
+document.querySelectorAll('.ed-take').forEach(function(el){
+  el.addEventListener('click', function(){ el.classList.toggle('open'); });
+});
 
 // Mobile: tap-to-toggle tooltips
 (function() {
