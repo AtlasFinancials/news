@@ -11,6 +11,8 @@
 <meta property="og:url" content="https://atlasfinancials.github.io/ui-kabu-times/morning/2026/03/27.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="https://atlasfinancials.github.io/ui-kabu-times/assets/favicon.png">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -1556,68 +1558,18 @@ body {
           しかし本稿が注目するのは、<strong>何がトランプを「引かせる」のか</strong>という点だ。株式市場の急落にはトランプは比較的耐性があるが（S&P 500が-10%でも関税を維持した）、<strong style="color:var(--gold)">10年債利回りの急騰だけは耐えられない</strong>。ベッセント財務長官自身が「大統領と私は10年債利回りに集中している」と明言しており、これがトランプ政権のde factoの政策制約条件となっている。
         </p>
 
-        <!-- ===== Section 2: タイムライン ===== -->
-        <div class="ed-section-title"><span class="ed-section-icon">📅</span> TACOタイムライン — 利回りと政策転換の相関</div>
+        <!-- ===== Section 2: TACOチャート ===== -->
+        <div class="ed-section-title"><span class="ed-section-icon">📅</span> TACOタイムライン — 利回りと政策転換の相関チャート</div>
 
-        <ul class="editorial-timeline">
-          <li class="tl-past">
-            <span class="tl-date">2025/04/02</span>
-            <span class="tl-tag done">発動</span><br>
-            <strong>「Liberation Day」相互関税発表</strong> — 中国145%、他国10-50%。10年債利回り: 3.86%（発表直後は低下）
-          </li>
-          <li class="tl-past">
-            <span class="tl-date">2025/04/09</span>
-            <span class="tl-tag danger">TACO</span><br>
-            <strong>90日間関税延期</strong> — 利回りが3.86%→<strong style="color:var(--alert)">4.51%へ+65bp急騰</strong>。財務省が緊急警告、ベッセントが直接進言。S&P 500は+9.5%・$4兆回復。<strong>痛点: 4.5%</strong>
-          </li>
-          <li class="tl-past">
-            <span class="tl-date">2025/04月</span>
-            <span class="tl-tag danger">TACO</span><br>
-            <strong>パウエルFRB議長解任を撤回</strong> — 「解任するつもりはない」と発言。10年債利回り4.3-4.5%台で市場が動揺していた時期
-          </li>
-          <li class="tl-past">
-            <span class="tl-date">2026/01/08</span>
-            <span class="tl-tag warn">介入</span><br>
-            <strong>Fannie Mae・Freddie Macに$2000億MBS購入を指示</strong> — 住宅ローン金利が7%超に。10年債利回り<strong style="color:var(--alert)">4.3%付近</strong>。発表後2日で住宅ローン金利-20bp
-          </li>
-          <li class="tl-now">
-            <span class="tl-date">2026/03/20</span>
-            <span class="tl-tag active">現在地</span><br>
-            10年債利回り<strong style="color:var(--alert)">4.39%</strong> — 2025年7月以来最高水準に上昇。イラン紛争長期化で債券市場に圧力
-          </li>
-          <li class="tl-past">
-            <span class="tl-date">2026/03/23</span>
-            <span class="tl-tag danger">TACO</span><br>
-            <strong>イラン攻撃5日間停止を発表</strong> — $1.7兆が数分で株式市場に還流。10年債利回りは<strong style="color:var(--gold)">-4bp→4.35%</strong>に低下。原油-15%急落。<strong>痛点: 4.39%超</strong>
-          </li>
-          <li class="tl-future">
-            <span class="tl-date">2026/03/26</span>
-            <span class="tl-tag warn">延長</span><br>
-            <strong>攻撃停止を10日間延長（→4/6）</strong>。しかしイランは直接交渉を否定。利回り<strong style="color:var(--alert)">4.42%</strong>に再上昇。市場は懐疑的。
-          </li>
-        </ul>
-
-        <!-- ===== Section 3: ゲージチャート ===== -->
-        <div class="ed-section-title"><span class="ed-section-icon">📊</span> 10年債利回り「痛点ゲージ」</div>
-
-        <div class="ed-gauge-wrap">
-          <div class="ed-gauge-label">
-            <span>米10年債利回り → 政策転換トリガー</span>
-            <span><span class="ed-days" style="font-size:20px">4.42</span><span class="ed-days-unit">%（現在値）</span></span>
+        <div style="background:#0d1117;border-radius:12px;padding:16px 16px 8px;border:1px solid rgba(184,145,42,0.12);margin-bottom:24px">
+          <div class="taco-chart-wrap" style="position:relative;width:100%;height:360px">
+            <canvas id="tacoChart"></canvas>
           </div>
-          <div class="ed-gauge-track">
-            <div class="ed-gauge-fill phase1" style="width:60%"></div>
-            <div class="ed-gauge-marker" style="left:53%"><span class="ed-gauge-marker-label">MBS購入 4.3%</span></div>
-            <div class="ed-gauge-marker" style="left:65%"><span class="ed-gauge-marker-label">イラン停止 4.39%</span></div>
-            <div class="ed-gauge-marker" style="left:78%"><span class="ed-gauge-marker-label">関税撤回 4.51%</span></div>
-            <div class="ed-gauge-marker" style="left:92%;background:var(--alert)"><span class="ed-gauge-marker-label" style="color:var(--alert)">危険水域 5.0%</span></div>
-          </div>
-          <div class="ed-gauge-ticks">
-            <span>3.5%</span>
-            <span>4.0%</span>
-            <span>4.5%</span>
-            <span>5.0%</span>
-            <span>5.5%</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:8px;padding:8px 4px 0;border-top:1px solid rgba(255,255,255,0.06);font-size:11px;font-family:Inter,sans-serif;color:rgba(255,255,255,0.5)">
+            <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#D4A843;margin-right:4px;vertical-align:middle"></span>10年債利回り推移</span>
+            <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#E05555;margin-right:4px;vertical-align:middle"></span>TACO発動（政策撤回）</span>
+            <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#F0A030;margin-right:4px;vertical-align:middle"></span>市場介入</span>
+            <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#58a6ff;margin-right:4px;vertical-align:middle"></span>政策発動（強硬策）</span>
           </div>
         </div>
 
@@ -1994,6 +1946,257 @@ function toggleTheme(){
     var btn = document.getElementById('themeToggle');
     if(btn) btn.textContent = saved === 'dark' ? '🌙' : '☀️';
   }
+})();
+
+// ==========================================
+// TACO Chart — 10年債利回り × 政策転換
+// ==========================================
+(function(){
+  var canvas = document.getElementById('tacoChart');
+  if(!canvas) return;
+
+  var labels = [
+    '2025/01','2025/02','2025/03',
+    '04/02','04/09','04/22',
+    '2025/05','06','07','08',
+    '09','10','11','12',
+    '2026/01/08','02','03/01',
+    '03/20','03/23','03/26'
+  ];
+
+  var yields = [
+    4.55, 4.45, 4.25,
+    3.86, 4.51, 4.35,
+    4.45, 4.30, 4.50, 4.20,
+    4.30, 4.10, 4.05, 4.15,
+    4.30, 4.20, 4.25,
+    4.39, 4.35, 4.42
+  ];
+
+  // イベントポイント（利回りラインと同じ値で重ねる）
+  var evtData = [null,null,null,
+    3.86, 4.51, 4.35,
+    null,null,null,null,
+    null,null,null,null,
+    4.30, null,null,
+    4.39, 4.35, 4.42
+  ];
+
+  // 静的配列でポイントスタイル指定（関数の代わり）
+  var evtRadius = evtData.map(function(v){ return v !== null ? 9 : 0; });
+  var evtHoverRadius = evtData.map(function(v){ return v !== null ? 12 : 0; });
+  var evtColorArr = [null,null,null,
+    '#58a6ff','#E05555','#E05555',
+    null,null,null,null,
+    null,null,null,null,
+    '#F0A030',null,null,
+    '#58a6ff','#E05555','#F0A030'
+  ];
+  var evtBgColor = evtColorArr.map(function(c){ return c || 'rgba(0,0,0,0)'; });
+  var evtBdColor = evtColorArr.map(function(c){ return c ? '#0d1117' : 'rgba(0,0,0,0)'; });
+  var evtStyle = evtColorArr.map(function(c){
+    if(c === '#E05555') return 'triangle';
+    if(c === '#F0A030') return 'rectRot';
+    return 'circle';
+  });
+  var yieldRadius = evtData.map(function(v){ return v !== null ? 0 : 2.5; });
+
+  var evtLabelsMap = {
+    3: ['Liberation Day 関税発表','10年債: 3.86%'],
+    4: ['TACO: 90日間関税延期','利回り急騰 → 4.51%'],
+    5: ['TACO: パウエル解任撤回','利回り: 4.35%'],
+    14:['MBS $2000億購入指示','利回り: 4.30%'],
+    17:['イラン紛争激化','利回り: 4.39%'],
+    18:['TACO: イラン攻撃5日停止','利回り: 4.35%'],
+    19:['攻撃停止延長も交渉暗礁','利回り: 4.42%']
+  };
+
+  new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: '米10年債利回り',
+          data: yields,
+          borderColor: '#D4A843',
+          backgroundColor: 'rgba(212,168,67,0.06)',
+          borderWidth: 2.5,
+          fill: true,
+          tension: 0.35,
+          pointRadius: yieldRadius,
+          pointBackgroundColor: '#D4A843',
+          pointBorderColor: '#D4A843',
+          pointHoverRadius: 5,
+          order: 2
+        },
+        {
+          label: 'イベント',
+          data: evtData,
+          showLine: false,
+          pointRadius: evtRadius,
+          pointHoverRadius: evtHoverRadius,
+          pointBackgroundColor: evtBgColor,
+          pointBorderColor: evtBdColor,
+          pointBorderWidth: 2.5,
+          pointStyle: evtStyle,
+          order: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { top: 24, right: 12, bottom: 4, left: 4 } },
+      interaction: { mode: 'index', intersect: false },
+      scales: {
+        x: {
+          border: { display: false },
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: {
+            color: 'rgba(255,255,255,0.4)',
+            font: { family: 'Inter, sans-serif', size: 10 },
+            maxRotation: 50,
+            autoSkip: true,
+            maxTicksLimit: 10
+          }
+        },
+        y: {
+          min: 3.5,
+          max: 5.0,
+          border: { display: false },
+          grid: { color: 'rgba(255,255,255,0.06)' },
+          ticks: {
+            color: 'rgba(255,255,255,0.45)',
+            font: { family: 'Inter, sans-serif', size: 11, weight: '600' },
+            callback: function(v){ return v.toFixed(1) + '%'; },
+            stepSize: 0.25
+          }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1A2540',
+          titleColor: '#D4A843',
+          bodyColor: '#F5F2EC',
+          borderColor: 'rgba(184,145,42,0.3)',
+          borderWidth: 1,
+          padding: 12,
+          titleFont: { family: 'Inter, sans-serif', weight: '700', size: 12 },
+          bodyFont: { family: 'Noto Sans JP, sans-serif', size: 12 },
+          filter: function(item){ return item.raw !== null; },
+          callbacks: {
+            title: function(items){ return items[0].label; },
+            label: function(ctx){
+              if(ctx.datasetIndex === 1 && evtLabelsMap[ctx.dataIndex]){
+                return evtLabelsMap[ctx.dataIndex];
+              }
+              if(ctx.datasetIndex === 0){
+                return '10年債利回り: ' + ctx.parsed.y.toFixed(2) + '%';
+              }
+              return null;
+            }
+          }
+        },
+        annotation: {
+          annotations: {
+            painZone: {
+              type: 'box',
+              yMin: 4.3,
+              yMax: 5.0,
+              backgroundColor: 'rgba(224,85,85,0.05)',
+              borderWidth: 0
+            },
+            painLabel: {
+              type: 'label',
+              xValue: 1,
+              yValue: 4.88,
+              content: ['TACO発動ゾーン (4.3%〜)'],
+              font: { family: 'Noto Sans JP, sans-serif', size: 11, weight: '700' },
+              color: 'rgba(224,85,85,0.45)'
+            },
+            dangerLine: {
+              type: 'line',
+              yMin: 4.51,
+              yMax: 4.51,
+              borderColor: 'rgba(224,85,85,0.35)',
+              borderWidth: 1.5,
+              borderDash: [6, 4]
+            },
+            dangerLabel: {
+              type: 'label',
+              xValue: 17,
+              yValue: 4.55,
+              content: ['関税撤回ライン 4.51%'],
+              font: { family: 'Inter, sans-serif', size: 10, weight: '700' },
+              color: '#E05555',
+              backgroundColor: 'rgba(13,17,23,0.85)',
+              padding: { top: 3, bottom: 3, left: 8, right: 8 }
+            },
+            criticalLine: {
+              type: 'line',
+              yMin: 4.95,
+              yMax: 4.95,
+              borderColor: 'rgba(224,85,85,0.6)',
+              borderWidth: 2,
+              borderDash: [3, 3]
+            },
+            criticalLabel: {
+              type: 'label',
+              xValue: 2,
+              yValue: 4.95,
+              content: ['危険水域 5.0%'],
+              font: { family: 'Inter, sans-serif', size: 10, weight: '800' },
+              color: '#E05555',
+              backgroundColor: 'rgba(13,17,23,0.85)',
+              padding: { top: 3, bottom: 3, left: 8, right: 8 }
+            },
+            evt0: {
+              type: 'label', xValue: 3, yValue: 3.68,
+              content: ['Liberation Day','関税発表'],
+              font: { size: 9, weight: '600', family: 'Noto Sans JP, sans-serif' },
+              color: '#58a6ff',
+              backgroundColor: 'rgba(13,17,23,0.75)',
+              padding: { top: 2, bottom: 2, left: 5, right: 5 }
+            },
+            evt1: {
+              type: 'label', xValue: 4, yValue: 4.7,
+              content: ['TACO: 90日延期','4.51%'],
+              font: { size: 9, weight: '700', family: 'Noto Sans JP, sans-serif' },
+              color: '#E05555',
+              backgroundColor: 'rgba(13,17,23,0.75)',
+              padding: { top: 2, bottom: 2, left: 5, right: 5 }
+            },
+            evt2: {
+              type: 'label', xValue: 14, yValue: 4.12,
+              content: ['MBS$2000億','購入指示'],
+              font: { size: 9, weight: '600', family: 'Noto Sans JP, sans-serif' },
+              color: '#F0A030',
+              backgroundColor: 'rgba(13,17,23,0.75)',
+              padding: { top: 2, bottom: 2, left: 5, right: 5 }
+            },
+            evt3: {
+              type: 'label', xValue: 18, yValue: 4.17,
+              content: ['TACO: イラン','攻撃停止'],
+              font: { size: 9, weight: '700', family: 'Noto Sans JP, sans-serif' },
+              color: '#E05555',
+              backgroundColor: 'rgba(13,17,23,0.75)',
+              padding: { top: 2, bottom: 2, left: 5, right: 5 }
+            },
+            evt4: {
+              type: 'label', xValue: 19, yValue: 4.6,
+              content: ['延長も暗礁','4.42%'],
+              font: { size: 9, weight: '600', family: 'Noto Sans JP, sans-serif' },
+              color: '#F0A030',
+              backgroundColor: 'rgba(13,17,23,0.75)',
+              padding: { top: 2, bottom: 2, left: 5, right: 5 }
+            }
+          }
+        }
+      }
+    }
+  });
 })();
 
 // Mobile: tap-to-toggle tooltips
