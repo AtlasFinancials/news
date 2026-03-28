@@ -365,8 +365,11 @@ body {
 .summary-topic.positive { color: var(--gold); }
 .summary-topic.negative { color: var(--alert); }
 .summary-topic.neutral { color: var(--navy); }
-.summary-text p { margin-bottom: 18px; }
-.summary-text p:last-child { margin-bottom: 0; }
+.summary-text p { margin-bottom: 0; padding: 18px 0; border-bottom: 1px solid var(--paper-dk); position: relative; }
+.summary-text p:last-child { border-bottom: none; }
+.summary-text p:first-child { padding-top: 0; }
+.summary-num-label { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--gold); color: #fff; font-family: var(--font-data); font-size: 12px; font-weight: 800; margin-right: 8px; vertical-align: middle; flex-shrink: 0; }
+[data-theme="dark"] .summary-text p { border-bottom-color: rgba(184,145,42,0.12); }
 .summary-num {
   font-family: var(--font-data);
   font-weight: 700;
@@ -586,10 +589,6 @@ body {
   font-size: 13px;
   color: var(--slate);
   line-height: 1.7;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 .news-card-footer {
   display: flex;
@@ -1309,15 +1308,15 @@ body {
     <div class="summary-card">
       <div class="summary-text">
         <p>
-          <span class="summary-topic negative">ダウ調整局面入り — 793ポイント暴落、S&P 500は5週連続下落で2022年以来最長</span>
+          <span class="summary-num-label">1</span><span class="summary-topic negative">ダウ調整局面入り — 793ポイント暴落、S&P 500は5週連続下落で2022年以来最長</span>
           イラン紛争の泥沼化と原油価格の急騰がウォール街を直撃。<span class="summary-label">ダウ</span>は<span class="summary-num down">793.47ポイント（-1.73%）</span>暴落し、高値から10%超下落で正式に<span class="term tip-right">調整局面<span class="tip"><span class="tip-title">調整局面（コレクション）</span>直近高値から10%以上の下落。弱気相場（ベアマーケット）は20%以上の下落で、調整局面はその手前の段階。</span></span>入り。<span class="summary-label">S&P 500</span>は<span class="summary-num down">-1.67%</span>の6,368.85で引け、5週連続の下落は2022年のFRB利上げ局面以来最長。<span class="summary-label">NASDAQ</span>は<span class="summary-num down">-2.15%</span>。Nasdaq 100は10%超下落で既に調整局面に。<span class="summary-label">VIX</span>は<span class="summary-num down">31.05（+13%）</span>と昨年4月の関税混乱以来の最高水準に到達。
         </p>
         <p>
-          <span class="summary-topic negative">原油"三重苦" — Brent$112・イスラエルの核施設攻撃・ホルムズ海峡封鎖長期化</span>
+          <span class="summary-num-label">2</span><span class="summary-topic negative">原油"三重苦" — Brent$112・イスラエルの核施設攻撃・ホルムズ海峡封鎖長期化</span>
           <span class="term tip-right">Brent原油<span class="tip"><span class="tip-title">Brent原油</span>北海で産出される原油の国際指標価格。WTI原油とともに世界のエネルギー価格の基準。</span></span>は<span class="summary-num down">+4.22%の$112.57</span>と戦争開始以来の最高値を更新。<span class="summary-label">WTI</span>も<span class="summary-num down">+4.6%の$94.48</span>に急騰。イスラエルが「攻撃を拡大・強化する」と宣言しイランの核施設（アラク重水炉等）を攻撃。トランプ大統領はイラン攻撃猶予期限を4月6日に10日間延長し15項目の和平案を提示するも、イランは交渉に消極的。<span class="term tip-left">ホルムズ海峡<span class="tip"><span class="tip-title">ホルムズ海峡</span>ペルシャ湾とオマーン湾を結ぶ海峡。世界の海上石油輸送量の約20%が通過する戦略的要衝。封鎖されれば原油価格は急騰する。</span></span>の封鎖は長期化の様相。
         </p>
         <p>
-          <span class="summary-topic neutral">エネルギー株だけが勝者 — Exxon+3.47%、"Bits to Atoms"ローテーション加速</span>
+          <span class="summary-num-label">3</span><span class="summary-topic neutral">エネルギー株だけが勝者 — Exxon+3.47%、"Bits to Atoms"ローテーション加速</span>
           Exxon Mobil（<span class="summary-num up">+3.47%</span>）、Chevron（<span class="summary-num up">+1.70%</span>）、Suncor Energy（<span class="summary-num up">+2.58%</span>）とエネルギーセクターが唯一の勝者。年初来でエネルギーセクターは<span class="summary-num up">+30%</span>と市場を大幅アウトパフォーム。一方、<span class="summary-label">Nvidia</span>（<span class="summary-num down">-2.21%</span>）はForward PEがS&P 500を初めて下回り、<span class="summary-label">Meta</span>（<span class="summary-num down">-3.91%</span>）、<span class="summary-label">Alphabet</span>（<span class="summary-num down">-2.45%</span>）はソーシャルメディア中毒裁判の影響が継続。<span class="summary-label">Gold</span>は<span class="summary-num up">$4,433</span>と堅調。
         </p>
       </div>
@@ -1405,7 +1404,7 @@ body {
 
       <div class="news-card geopolitics">
         <div class="news-card-img">
-          <img src="https://images.pexels.com/photos/76964/pexels-photo-76964.jpeg?auto=compress&cs=tinysrgb&w=800" alt="戦闘機" loading="lazy">
+          <img src="https://images.pexels.com/photos/126623/pexels-photo-126623.jpeg?auto=compress&cs=tinysrgb&w=800" alt="戦闘機" loading="lazy">
           <span class="news-card-img-caption">Photo: Pexels</span>
         </div>
         <div class="news-card-meta">
