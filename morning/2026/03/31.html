@@ -227,22 +227,21 @@ body {
   margin-bottom: 12px;
 }
 .paper-logo {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
   position: relative;
-  padding: 0 32px;
 }
 .paper-logo::before,
 .paper-logo::after {
   content: '';
-  position: absolute;
-  top: 50%;
   width: 60px;
   height: 2px;
   background: var(--gold);
   opacity: .4;
+  flex-shrink: 0;
+  margin-bottom: 22px; /* accent行分だけ上にオフセットし、タイトル文字の中央に揃える */
 }
-.paper-logo::before { right: 100%; margin-right: 8px; }
-.paper-logo::after { left: 100%; margin-left: 8px; }
 
 .paper-title {
   font-family: var(--font-heading);
@@ -251,8 +250,7 @@ body {
   letter-spacing: .12em;
   line-height: 1.2;
   color: #fff;
-  position: relative;
-  display: inline-block;
+  text-align: center;
 }
 .paper-title .paper-accent {
   display: block;
@@ -990,7 +988,8 @@ body {
 @media (max-width: 767px) {
   .paper-title { font-size: 28px; letter-spacing: .08em; }
   .paper-title .paper-accent { font-size: 12px; }
-  .paper-logo::before, .paper-logo::after { width: 30px; }
+  .paper-logo::before, .paper-logo::after { width: 24px; margin-bottom: 18px; }
+  .paper-logo { gap: 10px; }
   .news-grid { grid-template-columns: 1fr; }
   .top-story { padding: 22px; }
   .top-story-title { font-size: 20px; }
