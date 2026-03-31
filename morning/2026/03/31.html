@@ -243,11 +243,15 @@ body {
    ========================================== */
 .paper-header {
   border-bottom: 1px solid rgba(184,145,42,0.15);
-  padding: 32px 20px 24px;
+  padding: 40px 20px;
   text-align: center;
   position: relative;
   background: var(--navy-deep);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .paper-header::before {
   content: '';
@@ -266,49 +270,57 @@ body {
 }
 .paper-header > * { position: relative; z-index: 1; }
 
+/* Symmetric spacing: date(top) — 16px — title row — 12px — accent(bottom) */
 .paper-date {
   font-family: var(--font-data);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  color: rgba(255,255,255,0.6);
-  letter-spacing: .08em;
-  margin-bottom: 12px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: .1em;
+  margin-bottom: 16px;
 }
+
+/* Title row: ── Atlas Daily ── */
 .paper-logo {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 16px;
-  position: relative;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 12px;
 }
 .paper-logo::before,
 .paper-logo::after {
   content: '';
   width: 60px;
-  height: 2px;
-  background: var(--gold);
-  opacity: .4;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+  opacity: .5;
   flex-shrink: 0;
-  margin-bottom: 22px; /* accent行分だけ上にオフセットし、タイトル文字の中央に揃える */
+}
+.paper-logo::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
 }
 
 .paper-title {
   font-family: var(--font-heading);
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 800;
-  letter-spacing: .12em;
-  line-height: 1.2;
+  letter-spacing: .14em;
+  line-height: 1;
   color: #fff;
-  text-align: center;
+  white-space: nowrap;
 }
-.paper-title .paper-accent {
+
+/* Accent subtitle — separated from h1, own block */
+.paper-accent {
   display: block;
-  font-size: 15px;
+  font-size: 13px;
   font-family: var(--font-display);
   font-weight: 400;
   font-style: italic;
-  letter-spacing: .15em;
+  letter-spacing: .2em;
   color: var(--gold);
-  margin-top: 6px;
+  opacity: .7;
 }
 
 /* ==========================================
@@ -1029,15 +1041,20 @@ body {
    ========================================== */
 @media (min-width: 768px) {
   .main { padding: 36px 40px 60px; }
-  .paper-header { padding: 40px 40px 28px; }
+  .paper-header { padding: 48px 40px; }
   .paper-title { font-size: 52px; }
+  .paper-logo::before, .paper-logo::after { width: 80px; }
+  .paper-logo { gap: 24px; }
+  .paper-date { margin-bottom: 20px; }
 }
 
 @media (max-width: 767px) {
+  .paper-header { padding: 28px 16px; }
   .paper-title { font-size: 28px; letter-spacing: .08em; }
-  .paper-title .paper-accent { font-size: 12px; }
-  .paper-logo::before, .paper-logo::after { width: 24px; margin-bottom: 18px; }
-  .paper-logo { gap: 10px; }
+  .paper-accent { font-size: 11px; letter-spacing: .15em; }
+  .paper-date { font-size: 11px; margin-bottom: 12px; }
+  .paper-logo { gap: 12px; margin-bottom: 8px; }
+  .paper-logo::before, .paper-logo::after { width: 24px; }
   .news-grid { grid-template-columns: 1fr; }
   .top-story { padding: 22px; }
   .top-story-title { font-size: 20px; }
@@ -1239,11 +1256,9 @@ body {
 <header class="paper-header">
   <div class="paper-date">2026年3月31日（火曜日）</div>
   <div class="paper-logo">
-    <h1 class="paper-title">
-      Atlas Daily
-      <span class="paper-accent">The Morning Briefing</span>
-    </h1>
+    <h1 class="paper-title">Atlas Daily</h1>
   </div>
+  <span class="paper-accent">The Morning Briefing</span>
 </header>
 
 <!-- ===== Main ===== -->
