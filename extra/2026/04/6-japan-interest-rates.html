@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@700;900&family=Shippori+Mincho+B1:wght@500;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
 <style>
 :root {
   --font-sans: 'Noto Sans JP', 'Inter', -apple-system, sans-serif;
@@ -128,14 +129,14 @@ body {
 .event-banner {
   border: 1px solid rgba(184,145,42,.25); border-radius: var(--radius-lg);
   margin-bottom: 36px; position: relative; overflow: hidden; text-align: center;
-  background: linear-gradient(135deg, #1a2332, #1A2540 60%, #0F1829);
+  background: url('https://images.pexels.com/photos/29916084/pexels-photo-29916084.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;
   padding: 48px 32px;
 }
 .event-banner::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background:
-    radial-gradient(ellipse at 20% 40%, rgba(184,145,42,.1) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 60%, rgba(139,32,32,.08) 0%, transparent 60%);
+    linear-gradient(to bottom, rgba(26,37,64,.7) 0%, rgba(26,37,64,.92) 100%),
+    radial-gradient(ellipse at 20% 40%, rgba(184,145,42,.1) 0%, transparent 60%);
 }
 .event-banner > * { position: relative; z-index: 1; }
 .event-badge {
@@ -226,8 +227,8 @@ body {
   content: ''; position: absolute; top: 0; left: 0;
   width: 4px; height: 100%;
 }
-.impact-card.winner::before { background: var(--theme-green); }
-.impact-card.loser::before { background: var(--theme-red); }
+.impact-card.winner::before { background: transparent; }
+.impact-card.loser::before { background: transparent; }
 .impact-card-badge {
   display: inline-block; font-size: 11px; font-weight: 800;
   padding: 3px 10px; border-radius: 100px; letter-spacing: .02em; margin-bottom: 10px;
@@ -258,7 +259,7 @@ body {
 }
 .top-story::before {
   content: ''; position: absolute; top: 0; left: 0;
-  width: 5px; height: 100%; background: var(--theme-accent);
+  width: 5px; height: 100%; background: transparent;
 }
 .top-story-badge {
   display: inline-block; font-size: 11px; font-weight: 800;
@@ -287,10 +288,10 @@ body {
   transition: opacity var(--transition);
 }
 .news-card:hover::before { opacity: 1; }
-.news-card.risk::before { background: var(--theme-red); }
-.news-card.chance::before { background: var(--theme-green); }
-.news-card.policy::before { background: var(--theme-accent); }
-.news-card.fx::before { background: var(--theme-blue); }
+.news-card.risk::before { background: transparent; }
+.news-card.chance::before { background: transparent; }
+.news-card.policy::before { background: transparent; }
+.news-card.fx::before { background: transparent; }
 .news-card-tag {
   display: inline-block; font-size: 11px; font-weight: 700;
   padding: 3px 10px; border-radius: 100px; letter-spacing: .02em; width: fit-content;
@@ -334,14 +335,14 @@ body {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: var(--radius-lg); padding: 24px; text-align: center;
 }
-.scenario-card.bear { border-top: 4px solid var(--theme-red); }
-.scenario-card.base { border-top: 4px solid var(--theme-accent); }
-.scenario-card.bull { border-top: 4px solid var(--theme-green); }
+.scenario-card.bear { border-top: none; }
+.scenario-card.base { border-top: none; }
+.scenario-card.bull { border-top: none; }
 .scenario-label { font-size: 12px; font-weight: 800; letter-spacing: .06em; margin-bottom: 8px; }
 .scenario-card.bear .scenario-label { color: var(--theme-red); }
 .scenario-card.base .scenario-label { color: var(--theme-accent); }
 .scenario-card.bull .scenario-label { color: var(--theme-green); }
-.scenario-value { font-family: var(--font-data); font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.scenario-value { font-family: 'Inter', var(--font-sans); font-size: 28px; font-weight: 800; margin-bottom: 4px; letter-spacing: -.02em; }
 .scenario-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.7; }
 
 /* Chart Container */
@@ -381,6 +382,107 @@ body {
   .event-title { font-size: 20px; }
   .paper-title { font-size: 26px; }
 }
+
+/* Accordion */
+.accordion-section { margin-top: 16px; }
+.accordion-item {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); margin-bottom: 12px; overflow: hidden;
+}
+.accordion-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 18px 22px; cursor: pointer; user-select: none;
+  font-size: 16px; font-weight: 700; color: var(--text-primary);
+  transition: background var(--transition);
+}
+.accordion-header:hover { background: var(--bg-card-hover); }
+.accordion-header .acc-icon { font-size: 20px; flex-shrink: 0; }
+.accordion-header .acc-arrow {
+  margin-left: auto; font-size: 12px; color: var(--text-muted);
+  transition: transform .25s;
+}
+.accordion-item.open .accordion-header .acc-arrow { transform: rotate(180deg); }
+.accordion-body {
+  max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s ease;
+  padding: 0 22px;
+}
+.accordion-item.open .accordion-body {
+  max-height: 2000px; padding: 0 22px 22px;
+}
+.accordion-body p { font-size: 14px; color: var(--text-secondary); line-height: 1.9; margin-bottom: 12px; }
+.accordion-body p:last-child { margin-bottom: 0; }
+.accordion-body .mini-card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+.mini-card {
+  background: var(--bg-primary); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 14px; text-align: center;
+}
+.mini-card-label { font-size: 11px; color: var(--text-muted); font-weight: 600; margin-bottom: 4px; }
+.mini-card-value { font-family: 'Inter', var(--font-sans); font-size: 20px; font-weight: 800; }
+.mini-card-desc { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+.acc-diagram {
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  gap: 8px; margin: 16px 0; font-size: 13px; font-weight: 600;
+}
+.acc-diagram .d-box {
+  background: var(--bg-primary); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 10px 16px; text-align: center;
+}
+.acc-diagram .d-arrow { color: var(--text-muted); font-size: 18px; }
+
+/* Loan Simulator */
+.sim-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+.sim-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px; text-align: center;
+  position: relative;
+}
+.sim-card.current { border-color: var(--border); border-width: 1px; }
+.sim-card.current::after {
+  content: '現在'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+  background: var(--theme-accent); color: #fff; font-size: 10px; font-weight: 800;
+  padding: 2px 10px; border-radius: 100px;
+}
+.sim-rate { font-family: 'Inter', var(--font-sans); font-size: 28px; font-weight: 800; margin-bottom: 4px; }
+.sim-monthly { font-size: 13px; color: var(--text-secondary); margin-bottom: 2px; }
+.sim-monthly strong { font-family: 'Inter', var(--font-sans); font-size: 18px; font-weight: 800; color: var(--text-primary); }
+.sim-total { font-size: 12px; color: var(--text-muted); }
+.sim-total strong { font-family: 'Inter', var(--font-sans); font-weight: 700; }
+.sim-diff { font-size: 12px; font-weight: 700; margin-top: 6px; color: var(--theme-red); }
+
+@media (max-width: 768px) {
+  .sim-grid { grid-template-columns: 1fr 1fr; }
+  .mini-card-grid { grid-template-columns: 1fr !important; }
+  .acc-diagram { font-size: 11px; }
+  .acc-diagram .d-box { padding: 8px 10px; }
+}
+@media (max-width: 480px) {
+  .sim-grid { grid-template-columns: 1fr; }
+}
+
+/* Section Hero Image */
+.section-hero {
+  width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-lg);
+  margin-bottom: 16px; display: block; filter: brightness(.85);
+}
+@media (max-width: 768px) { .section-hero { height: 150px; } }
+
+/* History Timeline */
+.history-events { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
+.history-event {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 14px; position: relative;
+  border-left: 4px solid var(--text-muted);
+}
+.history-event.bubble { border-left-color: var(--border); }
+.history-event.crash { border-left-color: var(--border); }
+.history-event.zero { border-left-color: var(--border); }
+.history-event.abenomics { border-left-color: var(--border); }
+.history-event.normalize { border-left-color: var(--border); }
+.history-event-year { font-family: 'Inter', var(--font-sans); font-size: 12px; font-weight: 800; color: var(--text-muted); }
+.history-event-title { font-size: 14px; font-weight: 800; margin: 2px 0; }
+.history-event-rate { font-family: 'Inter', var(--font-sans); font-size: 11px; font-weight: 700; }
+.history-event-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.7; margin-top: 4px; }
+@media (max-width: 768px) { .history-events { grid-template-columns: 1fr; } }
 
 /* Portal link */
 .portal-link{position:fixed;top:16px;left:16px;z-index:999;display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;background:#1A2540;border:1px solid rgba(184,145,42,0.2);color:#D4A843;text-decoration:none;font-size:.78rem;font-weight:500;font-family:"Noto Sans JP",sans-serif;transition:all .15s;box-shadow:0 2px 8px rgba(0,0,0,.15)}
@@ -513,6 +615,167 @@ body {
     </div>
   </section>
 
+  <!-- ===== 2.5 金利の基礎知識（アコーディオン） ===== -->
+  <section class="section">
+    <div class="section-label">
+      <span class="section-label-icon">📚</span>
+      <span class="section-label-text">金利の基礎知識</span>
+      <span class="section-label-line"></span>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">※ 金利に詳しい方はスキップしてください。各項目をタップ/クリックで展開できます。</p>
+
+    <div class="accordion-section">
+
+      <!-- 1. 金利とは何か -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">💡</span>
+          <span>そもそも「金利」とは何か？</span>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>金利とは「お金のレンタル料」</strong>です。お金を借りる人は「利息」を払い、お金を貸す人（預ける人）は「利息」を受け取ります。金利が高いほど、借りるコストは増え、預けるリターンも増えます。</p>
+          <div class="acc-diagram">
+            <div class="d-box">🏦 銀行<br><small>お金を貸す</small></div>
+            <span class="d-arrow">→ 💴 融資 →</span>
+            <div class="d-box">🏠 借り手<br><small>利息を払う</small></div>
+          </div>
+          <div class="acc-diagram">
+            <div class="d-box">👤 預金者<br><small>お金を預ける</small></div>
+            <span class="d-arrow">→ 💴 預金 →</span>
+            <div class="d-box">🏦 銀行<br><small>利息を払う</small></div>
+          </div>
+          <p>例えば、100万円を金利1%で1年間預けると、利息は<strong>1万円</strong>。金利0.002%（2024年以前のメガバンク）だと、たったの<strong>20円</strong>。この差が「金利のある世界」と「ない世界」の違いです。</p>
+        </div>
+      </div>
+
+      <!-- 2. 政策金利 -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">🏛️</span>
+          <span>「政策金利」とは？ — 金利の"元栓"</span>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>政策金利</strong>は、日本銀行（日銀）が決める「短期金利の基準」です。銀行同士が1日だけお金を貸し借りするときの金利（無担保コールレート）をコントロールします。</p>
+          <p>政策金利が上がると、銀行の調達コストが上がり、住宅ローンや企業向け融資の金利も上がります。逆に下がれば、借りやすくなります。つまり政策金利は<strong>経済全体の金利の"元栓"</strong>です。</p>
+          <div class="acc-diagram">
+            <div class="d-box" style="border-color:var(--theme-accent);">🏛️ 日銀<br><strong>政策金利 0.75%</strong></div>
+            <span class="d-arrow">→ 影響 →</span>
+            <div class="d-box">🏦 銀行の貸出金利↑</div>
+            <span class="d-arrow">→</span>
+            <div class="d-box">🏠 住宅ローン↑</div>
+          </div>
+          <div class="acc-diagram">
+            <div class="d-box" style="border-color:var(--theme-accent);">🏛️ 日銀<br><strong>政策金利 0.75%</strong></div>
+            <span class="d-arrow">→ 影響 →</span>
+            <div class="d-box">🏦 銀行の預金金利↑</div>
+            <span class="d-arrow">→</span>
+            <div class="d-box">👤 預金利息↑</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 長期金利と国債 -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">📈</span>
+          <span>「長期金利」と「国債」の関係</span>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>長期金利</strong>の代表格が「10年国債利回り」。国債は政府が発行する借用書で、投資家が買うと満期まで利息がもらえます。</p>
+          <p>国債の価格と利回りは<strong>逆の関係</strong>にあります。国債が売られると価格は下がり、利回りは上がる。買われると価格は上がり、利回りは下がります。</p>
+          <div class="mini-card-grid">
+            <div class="mini-card">
+              <div class="mini-card-label">短期金利</div>
+              <div class="mini-card-value" style="color:var(--theme-accent);">0.75%</div>
+              <div class="mini-card-desc">日銀がコントロール</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-label">長期金利（10年）</div>
+              <div class="mini-card-value" style="color:var(--theme-red);">2.40%</div>
+              <div class="mini-card-desc">市場が決める</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-label">超長期金利（30年）</div>
+              <div class="mini-card-value" style="color:var(--theme-red);">3.05%</div>
+              <div class="mini-card-desc">将来の期待を反映</div>
+            </div>
+          </div>
+          <p style="margin-top:12px;">長期金利は住宅ローンの固定金利に直結します。10年国債利回りが上がれば、フラット35などの固定金利も上がります。</p>
+        </div>
+      </div>
+
+      <!-- 4. 変動金利と固定金利 -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">🏠</span>
+          <span>「変動金利」と「固定金利」の違い</span>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>変動金利</strong>は政策金利（短期金利）に連動し、半年ごとに見直されます。金利が低い時期は固定より安いですが、利上げ局面では返済額が増えるリスクがあります。</p>
+          <p><strong>固定金利</strong>は長期金利（10年国債利回り）に連動し、借入時に金利が確定します。将来の金利上昇リスクから守られますが、変動より金利は高めです。</p>
+          <div class="data-table-wrap" style="margin-top:12px;">
+            <table class="data-table">
+              <thead><tr><th></th><th>変動金利</th><th>固定金利</th></tr></thead>
+              <tbody>
+                <tr><td class="highlight">連動する金利</td><td>政策金利（短期）</td><td>10年国債利回り（長期）</td></tr>
+                <tr><td class="highlight">現在の水準</td><td class="up">0.95〜1.1%</td><td class="up">2.49〜3.0%</td></tr>
+                <tr><td class="highlight">金利上昇時</td><td class="up">返済額が増える</td><td>変わらない（固定済み）</td></tr>
+                <tr><td class="highlight">メリット</td><td>低金利時は安い</td><td>将来の安心感</td></tr>
+                <tr><td class="highlight">リスク</td><td>利上げで負担増</td><td>金利が下がっても恩恵なし</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. 金利と為替 -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">💴</span>
+          <span>金利と為替（円安・円高）の関係</span>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>為替レートは2つの通貨の<strong>金利差</strong>に大きく影響されます。金利が高い通貨は投資家にとって魅力的（利息がたくさんもらえる）なので、買われやすくなります。</p>
+          <div class="acc-diagram">
+            <div class="d-box">🇺🇸 米国金利<br><strong style="color:var(--theme-red);">4.25〜4.50%</strong></div>
+            <span class="d-arrow">＞</span>
+            <div class="d-box">🇯🇵 日本金利<br><strong style="color:var(--theme-accent);">0.75%</strong></div>
+            <span class="d-arrow">→</span>
+            <div class="d-box" style="border-color:var(--theme-red);">💴 円安ドル高<br><strong style="color:var(--theme-red);">159円</strong></div>
+          </div>
+          <p>米国の金利が日本より<strong>3.5%以上</strong>高いため、投資家はドルで運用した方が有利。円を売ってドルを買う動き（キャリートレード）が続き、円安が進行しています。</p>
+          <p>日銀が利上げして金利差が縮まれば円高要因ですが、差がまだ大きいため、現状では利上げしても円安が止まらない状況です。</p>
+        </div>
+      </div>
+
+      <!-- 6. インフレと金利 -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">🔥</span>
+          <span>なぜ日銀は利上げするのか？ — インフレとの戦い</span>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>中央銀行の最大の使命は<strong>物価の安定</strong>。物価が上がりすぎる（インフレ）と、国民の購買力が落ちます。金利を上げると、借入コスト増→消費・投資が減速→物価上昇が抑えられます。</p>
+          <div class="acc-diagram">
+            <div class="d-box" style="border-color:var(--theme-red);">🔥 インフレ<br><small>物価上昇</small></div>
+            <span class="d-arrow">→ 対策 →</span>
+            <div class="d-box" style="border-color:var(--theme-accent);">🏛️ 日銀利上げ</div>
+            <span class="d-arrow">→ 結果 →</span>
+            <div class="d-box" style="border-color:var(--theme-green);">📉 消費減速<br><small>物価安定へ</small></div>
+          </div>
+          <p>逆にデフレ（物価下落）の時は金利を下げて経済を刺激します。日本は2013年から2024年まで、デフレ脱却のためにマイナス金利という異例の政策を続けてきました。今、ようやく「正常な金利のある世界」に戻りつつあります。</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ===== 3. 政策金利の推移 ===== -->
   <section class="section">
     <div class="section-label">
@@ -520,6 +783,7 @@ body {
       <span class="section-label-text">政策金利の推移</span>
       <span class="section-label-line"></span>
     </div>
+
 
     <div class="summary-card">
       <div class="chart-container">
@@ -562,6 +826,171 @@ body {
         </p>
       </div>
     </div>
+
+    <!-- イールドカーブ詳細解説（アコーディオン） -->
+    <div class="accordion-section" style="margin-top:20px;">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">※ イールドカーブを初めて見る方は、以下の解説をお読みください。</p>
+
+      <!-- YC基本 -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">📖</span>
+          <span>イールドカーブとは？ — 「金利の地形図」</span>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>イールドカーブ（利回り曲線）は、<strong>「お金を貸す期間」と「もらえる金利」の関係</strong>をグラフにしたものです。</p>
+          <p>わかりやすいメタファーで説明すると、<strong>「レンタカーの料金表」</strong>のようなものです。</p>
+          <div class="acc-diagram">
+            <div class="d-box">🚗 1日レンタル<br><strong>¥5,000</strong><br><small>＝短期金利（安い）</small></div>
+            <span class="d-arrow">→</span>
+            <div class="d-box">🚗 1週間レンタル<br><strong>¥25,000</strong><br><small>＝中期金利</small></div>
+            <span class="d-arrow">→</span>
+            <div class="d-box">🚗 1年レンタル<br><strong>¥200,000</strong><br><small>＝長期金利（高い）</small></div>
+          </div>
+          <p>レンタカーを長く借りるほど料金が高くなるように、お金も<strong>長く貸すほど金利が高くなる</strong>のが普通です。なぜなら、長く貸すほど「返ってこないかもしれないリスク」や「将来インフレで価値が下がるリスク」があるからです。</p>
+          <p>上のチャートの横軸は「貸す期間」（1年〜40年）、縦軸は「利回り（金利）」。<strong>この線の形が、経済の"健康診断"</strong>になるのです。</p>
+        </div>
+      </div>
+
+      <!-- 3つの形 -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">📐</span>
+          <span>イールドカーブの「3つの形」 — 経済の体温計</span>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>イールドカーブには大きく<strong>3つの形</strong>があり、それぞれ経済の状態を映し出しています。</p>
+
+          <div style="background:var(--theme-green-light);border:1px solid rgba(46,125,50,.2);border-radius:var(--radius-sm);padding:16px;margin-bottom:12px;">
+            <p style="margin:0;"><strong style="color:var(--theme-green);">① 順イールド（右肩上がり）⬆️ = 「健康体」</strong></p>
+            <p style="margin:4px 0 0;">短期金利 ＜ 長期金利。最も一般的な形。経済が正常に成長していることを示す。<br><strong>今の日本はこの形。</strong>「将来も経済は成長するだろう」と市場が見ている状態。</p>
+            <div class="acc-diagram" style="margin:12px 0 0;">
+              <div class="d-box">1年<br><strong>0.82%</strong></div>
+              <span class="d-arrow">＜</span>
+              <div class="d-box">10年<br><strong>2.40%</strong></div>
+              <span class="d-arrow">＜</span>
+              <div class="d-box">30年<br><strong>3.05%</strong></div>
+            </div>
+          </div>
+
+          <div style="background:var(--theme-accent-light);border:1px solid rgba(184,145,42,.2);border-radius:var(--radius-sm);padding:16px;margin-bottom:12px;">
+            <p style="margin:0;"><strong style="color:var(--theme-accent);">② フラット（平坦）➡️ = 「微熱」</strong></p>
+            <p style="margin:4px 0 0;">短期金利 ≒ 長期金利。短期も長期もほぼ同じ金利。景気の転換期に出現しやすく、<strong>「この先、景気が悪くなるかもしれない」</strong>というシグナル。投資家が「長期で貸してもそんなに得しない」と感じている。</p>
+          </div>
+
+          <div style="background:var(--theme-red-light);border:1px solid rgba(139,32,32,.2);border-radius:var(--radius-sm);padding:16px;margin-bottom:0;">
+            <p style="margin:0;"><strong style="color:var(--theme-red);">③ 逆イールド（右肩下がり）⬇️ = 「高熱＝景気後退の予兆」</strong></p>
+            <p style="margin:4px 0 0;">短期金利 ＞ 長期金利。異常な形。<strong>過去50年間、米国ではこの形が出ると1〜2年以内にほぼ必ず景気後退（リセッション）が起きています。</strong>市場が「近い将来、中央銀行が金利を大幅に下げざるを得なくなる（＝景気が悪くなる）」と予測しているサイン。</p>
+            <p style="margin:8px 0 0;font-size:12px;color:var(--text-muted);">※ 米国では2022〜2024年に逆イールドが発生し、景気後退警戒が高まりました。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- スティープ化とフラット化 -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">⛰️</span>
+          <span>「スティープ化」と「フラット化」 — 坂道の角度が変わる</span>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>イールドカーブを<strong>「坂道」</strong>に例えると、その傾きの変化にも重要な意味があります。</p>
+
+          <div style="background:var(--theme-blue-light);border:1px solid rgba(21,101,192,.2);border-radius:var(--radius-sm);padding:16px;margin-bottom:12px;">
+            <p style="margin:0;"><strong style="color:var(--theme-blue);">スティープ化（急勾配化）⛰️ = 坂道がもっと急になる</strong></p>
+            <p style="margin:4px 0 0;">長期金利が短期金利よりも速く上昇し、カーブの傾きが急になること。<br><strong>「市場が将来のインフレや経済成長を強く見込んでいる」</strong>状態。銀行にとっては利ざや（短期で借りて長期で貸す差額）が拡大し、収益が改善。</p>
+            <p style="margin:8px 0 0;font-weight:700;color:var(--theme-blue);">→ 今の日本はこの状態。長期金利の上昇が特に速い。</p>
+          </div>
+
+          <div style="background:var(--theme-accent-light);border:1px solid rgba(184,145,42,.2);border-radius:var(--radius-sm);padding:16px;margin-bottom:0;">
+            <p style="margin:0;"><strong style="color:var(--theme-accent);">フラット化（平坦化）🛤️ = 坂道が緩やかになる</strong></p>
+            <p style="margin:4px 0 0;">短期金利が上がる一方で長期金利があまり上がらず、差が縮まること。<br><strong>「市場が先行きに不安を感じ始めている」</strong>状態。利上げが続くと、将来的には景気が減速して金利が下がるだろうと市場が見ている。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- なぜ投資家はYCを見るのか -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">🔍</span>
+          <span>なぜ投資家はイールドカーブを見るのか？</span>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>イールドカーブは<strong>「市場参加者全員の経済予測の集合体」</strong>です。何千人ものプロの投資家・銀行・年金基金が、自分のお金を賭けて売買した結果がこの1本の線に凝縮されている。だから単なる「予測」よりも信頼性が高いのです。</p>
+
+          <p><strong>投資判断への影響:</strong></p>
+          <div class="data-table-wrap" style="margin-top:8px;">
+            <table class="data-table">
+              <thead><tr><th>YCの形</th><th>株式投資への示唆</th><th>債券投資への示唆</th><th>住宅ローンへの示唆</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="highlight" style="color:var(--theme-green);">順イールド（急勾配）</td>
+                  <td>銀行株・金融株に追い風。景気敏感株にもポジティブ</td>
+                  <td>短期債で回し、金利上昇に備える</td>
+                  <td>変動金利は上昇リスクあり。固定への切替を検討</td>
+                </tr>
+                <tr>
+                  <td class="highlight" style="color:var(--theme-accent);">フラット</td>
+                  <td>景気転換の可能性。ディフェンシブ銘柄にシフト</td>
+                  <td>長期債を少し増やしてもよい</td>
+                  <td>金利はピーク近い可能性。固定で確定するチャンス</td>
+                </tr>
+                <tr>
+                  <td class="highlight" style="color:var(--theme-red);">逆イールド</td>
+                  <td>景気後退警戒。現金比率を上げる。グロース株注意</td>
+                  <td>長期債が有利（金利低下で価格上昇）</td>
+                  <td>将来の金利低下を見込んで変動金利を維持する選択も</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 今のYCをどう読むか -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">🗾</span>
+          <span>今の日本のイールドカーブは何を語っているか？</span>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>上のチャートを見ると、2024年3月（灰色の点線）と2026年4月（赤の実線）でカーブが<strong>全体的に大きく上方シフト</strong>していることがわかります。</p>
+
+          <div class="mini-card-grid">
+            <div class="mini-card">
+              <div class="mini-card-label">短期（1年）の上昇幅</div>
+              <div class="mini-card-value" style="color:var(--theme-accent);">+0.80%</div>
+              <div class="mini-card-desc">0.02% → 0.82%</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-label">中期（10年）の上昇幅</div>
+              <div class="mini-card-value" style="color:var(--theme-red);">+1.65%</div>
+              <div class="mini-card-desc">0.75% → 2.40%</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-label">超長期（30年）の上昇幅</div>
+              <div class="mini-card-value" style="color:var(--theme-red);">+1.35%</div>
+              <div class="mini-card-desc">1.70% → 3.05%</div>
+            </div>
+          </div>
+
+          <p style="margin-top:14px;"><strong>読み取れるメッセージ:</strong></p>
+          <p>① <strong>スティープ化が進んでいる</strong> — 10年の上昇幅（+1.65%）が1年（+0.80%）より大きい。市場は「日銀はまだ利上げを続ける」「インフレは簡単に収まらない」と見ている。</p>
+          <p>② <strong>30年債の3%超え</strong> — 超長期金利が3%を超えたのは歴史的水準。住宅ローンの長期固定金利や、保険会社の運用利回りに直接影響。</p>
+          <p>③ <strong>まだ逆イールドではない</strong> — 景気後退の差し迫った警告サインは出ていない。ただし今後日銀が急速に利上げすれば、フラット化→逆イールドへの転換リスクもゼロではない。</p>
+
+          <div class="why-box neutral" style="margin-top:12px;">
+            <span class="why-icon">🎯</span>
+            <div><span class="why-label">覚えておくべき一言:</span> イールドカーブは「未来の金利を市場がどう予想しているか」を映す鏡。この鏡が歪み始めた時（逆イールド）が、最大の警戒サインです。</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </section>
 
   <!-- ===== 5. 住宅ローン金利 ===== -->
@@ -570,6 +999,73 @@ body {
       <span class="section-label-icon">🏠</span>
       <span class="section-label-text">住宅ローン金利の現状</span>
       <span class="section-label-line"></span>
+    </div>
+
+
+    <!-- 住宅ローン金利 45年の歴史 -->
+    <div class="summary-card" style="margin-bottom:20px;">
+      <h4 style="font-size:18px;font-weight:900;margin-bottom:4px;">📜 住宅ローン金利 45年の歴史（1980〜2026年）</h4>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">変動金利（基準金利）とフラット35（旧・住宅金融公庫基準金利）の推移。バブル、崩壊、ゼロ金利、そして正常化へ。</p>
+      <div class="chart-container" style="height:420px;">
+        <canvas id="historyRateChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 歴史イベント カード -->
+    <div class="history-events">
+      <div class="history-event bubble">
+        <div class="history-event-year">1980〜1985年</div>
+        <div class="history-event-title">高金利時代</div>
+        <div class="history-event-rate" style="color:var(--theme-red);">変動 7.2〜8.0% / 公庫 5.5%</div>
+        <div class="history-event-desc">第二次オイルショック後のインフレ対策で公定歩合が高水準。住宅ローンは「金利8%が当たり前」の時代。5,000万円を35年で借りると月額34万円、総返済額1.4億円超。</div>
+      </div>
+      <div class="history-event bubble">
+        <div class="history-event-year">1988〜1990年</div>
+        <div class="history-event-title">バブル絶頂 → 急速利上げ</div>
+        <div class="history-event-rate" style="color:var(--theme-red);">変動 最高8.5%（1990年10月）</div>
+        <div class="history-event-desc">地価・株価の異常な高騰を抑えるため、日銀が公定歩合を2.5%→6.0%に急速引き上げ。変動金利は史上最高の8.5%を記録。これがバブル崩壊の引き金に。</div>
+      </div>
+      <div class="history-event crash">
+        <div class="history-event-year">1991〜1995年</div>
+        <div class="history-event-title">バブル崩壊 → 急速利下げ</div>
+        <div class="history-event-rate" style="color:#6b4c9a;">変動 8.5% → 4.0% / 公庫 5.5% → 3.1%</div>
+        <div class="history-event-desc">日経平均が38,915円→14,000円台に暴落。不良債権問題が深刻化し、日銀は景気刺激のため急速に利下げ。地価は最大80%下落した地域も。「失われた10年」の始まり。</div>
+      </div>
+      <div class="history-event zero">
+        <div class="history-event-year">1999年</div>
+        <div class="history-event-title">ゼロ金利政策導入</div>
+        <div class="history-event-rate" style="color:var(--theme-blue);">変動 2.375% / 公庫 2.0%（史上最低）</div>
+        <div class="history-event-desc">日銀が史上初のゼロ金利政策を導入。住宅金融公庫の基準金利は2.0%と過去最低を記録。デフレが定着し始め、「金利が上がらない時代」が始まった。</div>
+      </div>
+      <div class="history-event zero">
+        <div class="history-event-year">2001〜2006年</div>
+        <div class="history-event-title">量的緩和 → 一時解除</div>
+        <div class="history-event-rate" style="color:var(--theme-blue);">変動 2.375% で長期固定</div>
+        <div class="history-event-desc">ITバブル崩壊を受け量的緩和を導入。変動金利の基準金利は2.375%で横ばいが続く。2006年にゼロ金利解除するも、変動金利は2.875%までの小幅上昇に留まる。</div>
+      </div>
+      <div class="history-event crash">
+        <div class="history-event-year">2008〜2009年</div>
+        <div class="history-event-title">リーマンショック</div>
+        <div class="history-event-rate" style="color:#6b4c9a;">変動 2.875% → 2.475%（以後15年間固定）</div>
+        <div class="history-event-desc">世界金融危機で日銀が再びゼロ金利へ。変動金利の基準金利は2.475%に低下し、ここから<strong>2024年まで約15年間一度も変わらない</strong>という異例の長期固定に。</div>
+      </div>
+      <div class="history-event abenomics">
+        <div class="history-event-year">2013〜2016年</div>
+        <div class="history-event-title">アベノミクス → マイナス金利</div>
+        <div class="history-event-rate" style="color:var(--theme-green);">フラット35 1.4〜1.8% / 変動 優遇後0.5%以下</div>
+        <div class="history-event-desc">黒田バズーカ（異次元緩和）で長期金利が急低下。2016年にマイナス金利導入、フラット35は1.1%まで下がった。優遇幅の拡大競争で変動金利の適用金利は0.3〜0.5%の超低水準に。</div>
+      </div>
+      <div class="history-event normalize">
+        <div class="history-event-year">2024〜2026年</div>
+        <div class="history-event-title">金利正常化 — 30年ぶりの転換</div>
+        <div class="history-event-rate" style="color:var(--theme-accent);">変動 基準2.625〜2.775% / フラット35 2.49%</div>
+        <div class="history-event-desc">マイナス金利解除→段階的利上げで0.75%に。変動金利の基準金利が15年ぶりに変動。フラット35は2.49%に上昇。<strong>「金利は変わらないもの」という常識が崩れた歴史的転換点。</strong></div>
+      </div>
+    </div>
+
+    <div class="why-box neutral" style="margin-top:14px;margin-bottom:24px;">
+      <span class="why-icon">📖</span>
+      <div><span class="why-label">45年の教訓:</span> 1990年に8.5%だった変動金利は、2024年には0.3%まで下がった。その差は<strong>28倍</strong>。金利は「常識」を簡単に超えて動く。今の1%が「低い」のか「高い」のかは、この歴史を見て初めて判断できます。</div>
     </div>
 
     <div class="top-story">
@@ -594,6 +1090,68 @@ body {
         </tbody>
       </table>
     </div>
+
+    <!-- 住宅ローンシミュレーション -->
+    <div style="margin-top:28px;">
+      <h3 style="font-size:20px;font-weight:900;margin-bottom:6px;">🧮 住宅ローン返済シミュレーション</h3>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">借入額 5,000万円・35年返済・元利均等の場合、金利が1%上がるごとに何が変わるか？</p>
+
+      <div class="sim-grid">
+        <div class="sim-card">
+          <div class="sim-rate" style="color:var(--theme-green);">0.5%</div>
+          <div class="sim-monthly">月額 <strong>¥129,792</strong></div>
+          <div class="sim-total">総返済額 <strong>約5,451万円</strong></div>
+          <div class="sim-diff" style="color:var(--text-muted);">2024年水準</div>
+        </div>
+        <div class="sim-card current">
+          <div class="sim-rate" style="color:var(--theme-accent);">1.0%</div>
+          <div class="sim-monthly">月額 <strong>¥141,142</strong></div>
+          <div class="sim-total">総返済額 <strong>約5,928万円</strong></div>
+          <div class="sim-diff">月+11,350円 / 総+477万円</div>
+        </div>
+        <div class="sim-card">
+          <div class="sim-rate" style="color:var(--theme-red);">2.0%</div>
+          <div class="sim-monthly">月額 <strong>¥165,631</strong></div>
+          <div class="sim-total">総返済額 <strong>約6,957万円</strong></div>
+          <div class="sim-diff">月+35,839円 / 総+1,506万円</div>
+        </div>
+        <div class="sim-card">
+          <div class="sim-rate" style="color:var(--theme-red);">3.0%</div>
+          <div class="sim-monthly">月額 <strong>¥192,425</strong></div>
+          <div class="sim-total">総返済額 <strong>約8,082万円</strong></div>
+          <div class="sim-diff">月+62,633円 / 総+2,631万円</div>
+        </div>
+      </div>
+
+      <!-- 返済額推移チャート -->
+      <div class="summary-card" style="margin-top:16px;">
+        <div class="chart-container" style="height:320px;">
+          <canvas id="loanSimChart"></canvas>
+        </div>
+      </div>
+
+      <!-- 詳細テーブル -->
+      <div class="data-table-wrap" style="margin-top:16px;">
+        <table class="data-table">
+          <thead>
+            <tr><th>金利</th><th>月額返済</th><th>年間返済</th><th>総返済額</th><th>利息総額</th><th>0.5%比 月額差</th><th>0.5%比 総額差</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="highlight">0.5%</td><td>¥129,792</td><td>¥1,557,504</td><td>¥54,512,640</td><td>¥4,512,640</td><td>—</td><td>—</td></tr>
+            <tr><td class="highlight" style="color:var(--theme-accent);">1.0%（現在）</td><td>¥141,142</td><td>¥1,693,704</td><td>¥59,279,640</td><td>¥9,279,640</td><td class="up">+¥11,350</td><td class="up">+¥4,767,000</td></tr>
+            <tr><td class="highlight">1.5%</td><td>¥153,092</td><td>¥1,837,104</td><td>¥64,298,640</td><td>¥14,298,640</td><td class="up">+¥23,300</td><td class="up">+¥9,786,000</td></tr>
+            <tr><td class="highlight" style="color:var(--theme-red);">2.0%</td><td>¥165,631</td><td>¥1,987,572</td><td>¥69,564,960</td><td>¥19,564,960</td><td class="up">+¥35,839</td><td class="up">+¥15,052,320</td></tr>
+            <tr><td class="highlight" style="color:var(--theme-red);">2.5%</td><td>¥178,740</td><td>¥2,144,880</td><td>¥75,070,800</td><td>¥25,070,800</td><td class="up">+¥48,948</td><td class="up">+¥20,558,160</td></tr>
+            <tr><td class="highlight" style="color:var(--theme-red);">3.0%</td><td>¥192,425</td><td>¥2,309,100</td><td>¥80,818,500</td><td>¥30,818,500</td><td class="up">+¥62,633</td><td class="up">+¥26,305,860</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="why-box negative" style="margin-top:12px;">
+        <span class="why-icon">⚠️</span>
+        <div><span class="why-label">重要:</span> 金利が0.5%→3.0%に上がると、月額返済は<strong>約6.3万円増</strong>、35年間の総返済額は<strong>約2,630万円増</strong>。つまり「もう1軒分の家賃」を利息として銀行に払うことになります。変動金利で借りている方は、今すぐ自分のローン金利と返済シミュレーションを確認してください。</div>
+      </div>
+    </div>
   </section>
 
   <!-- ===== 6. 預金・国債 ===== -->
@@ -603,6 +1161,7 @@ body {
       <span class="section-label-text">預金金利・個人向け国債</span>
       <span class="section-label-line"></span>
     </div>
+
 
     <div class="summary-card">
       <div class="summary-text">
@@ -642,6 +1201,7 @@ body {
       <span class="section-label-line"></span>
     </div>
 
+
     <div class="summary-card">
       <div class="summary-text">
         <p>
@@ -668,6 +1228,7 @@ body {
       <span class="section-label-line"></span>
     </div>
 
+
     <div class="summary-card">
       <div class="summary-text">
         <p>
@@ -678,6 +1239,28 @@ body {
           <span class="summary-topic gold">2026年末の見通し — 150〜165円のレンジ</span>
           佐々木融氏（ふくおかFG）は構造的円安を背景に<strong>2026年末165円</strong>を予想。一方、マネックス証券は日米金利差縮小による<strong>円高転換シナリオ</strong>も提示し、150円を予想。野村證券は「高市政権の円安許容度を試す展開」と分析。為替介入の可能性も排除されていない。
         </p>
+      </div>
+    </div>
+
+    <!-- 日米金利差 × ドル円 時系列チャート -->
+    <div class="summary-card" style="margin-top:20px;">
+      <h4 style="font-size:16px;font-weight:800;margin-bottom:4px;">日米政策金利とドル円の推移（2020〜2026）</h4>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">金利差の拡大・縮小と為替レートの連動を時間軸で確認</p>
+      <div class="chart-container" style="height:400px;">
+        <canvas id="jpUsRateChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 金利差と為替の相関 -->
+    <div class="summary-card" style="margin-top:16px;">
+      <h4 style="font-size:16px;font-weight:800;margin-bottom:4px;">日米金利差 × ドル円 相関マップ</h4>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">金利差が拡大するほど円安が進む傾向。ただし2025年以降は乖離も</p>
+      <div class="chart-container" style="height:360px;">
+        <canvas id="correlationChart"></canvas>
+      </div>
+      <div class="why-box neutral" style="margin-top:12px;">
+        <span class="why-icon">📊</span>
+        <div><span class="why-label">読み方:</span> 各ドットが時期ごとのデータ。右上に行くほど「金利差大＝円安」。2022〜2024年は強い正の相関だが、2025年以降は金利差が縮小しても円安が続く「構造的円安」の兆候が見られる。</div>
       </div>
     </div>
 
@@ -707,6 +1290,7 @@ body {
       <span class="section-label-text">金利上昇の勝者と敗者</span>
       <span class="section-label-line"></span>
     </div>
+
 
     <!-- 勝者 -->
     <div style="margin-bottom:20px;">
@@ -791,6 +1375,7 @@ body {
       <span class="section-label-line"></span>
     </div>
 
+
     <div class="summary-card">
       <div class="chart-container">
         <canvas id="forecastChart"></canvas>
@@ -837,6 +1422,7 @@ body {
       <span class="section-label-text">個人ができるアクション</span>
       <span class="section-label-line"></span>
     </div>
+
 
     <div class="news-grid">
       <div class="news-card chance">
@@ -976,6 +1562,12 @@ if('ontouchstart' in window || navigator.maxTouchPoints > 0){
   document.addEventListener('click', function(){ document.querySelectorAll('.term .tip').forEach(function(t){ t.style.visibility='hidden'; t.style.opacity='0'; }); });
 }
 
+// Accordion toggle
+function toggleAcc(header) {
+  var item = header.parentElement;
+  item.classList.toggle('open');
+}
+
 // Charts
 var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 var gridColor = isDark ? 'rgba(48,54,61,0.5)' : 'rgba(0,0,0,0.08)';
@@ -1055,6 +1647,250 @@ new Chart(document.getElementById('yieldCurveChart'), {
       x: {
         ticks: { color: textColor }, grid: { color: gridColor },
         title: { display: true, text: '残存期間', color: textColor }
+      }
+    }
+  }
+});
+
+// Housing Loan History Chart (1980-2026)
+var histAnnotations = {
+  bubble1: { type:'line', xMin:3, xMax:3, borderColor:'rgba(139,32,32,0.4)', borderWidth:1, borderDash:[4,4],
+    label:{ display:true, content:'第二次オイルショック', position:'start', backgroundColor:'rgba(139,32,32,0.8)', color:'#fff', font:{size:10}, padding:4 }},
+  bubble2: { type:'box', xMin:8, xMax:10, backgroundColor:'rgba(139,32,32,0.06)', borderColor:'rgba(139,32,32,0.2)', borderWidth:1,
+    label:{ display:true, content:'バブル絶頂', position:'start', color:'#8B2020', font:{size:10,weight:'bold'} }},
+  crash: { type:'line', xMin:11, xMax:11, borderColor:'rgba(107,76,154,0.5)', borderWidth:2, borderDash:[4,4],
+    label:{ display:true, content:'バブル崩壊', position:'start', backgroundColor:'rgba(107,76,154,0.8)', color:'#fff', font:{size:10}, padding:4 }},
+  zero: { type:'line', xMin:19, xMax:19, borderColor:'rgba(21,101,192,0.5)', borderWidth:2, borderDash:[4,4],
+    label:{ display:true, content:'ゼロ金利政策', position:'start', backgroundColor:'rgba(21,101,192,0.8)', color:'#fff', font:{size:10}, padding:4 }},
+  lehman: { type:'line', xMin:28, xMax:28, borderColor:'rgba(107,76,154,0.5)', borderWidth:2, borderDash:[4,4],
+    label:{ display:true, content:'リーマンショック', position:'start', backgroundColor:'rgba(107,76,154,0.8)', color:'#fff', font:{size:10}, padding:4 }},
+  abenomics: { type:'line', xMin:33, xMax:33, borderColor:'rgba(46,125,50,0.5)', borderWidth:2, borderDash:[4,4],
+    label:{ display:true, content:'アベノミクス', position:'start', backgroundColor:'rgba(46,125,50,0.8)', color:'#fff', font:{size:10}, padding:4 }},
+  minus: { type:'line', xMin:36, xMax:36, borderColor:'rgba(21,101,192,0.5)', borderWidth:1, borderDash:[4,4],
+    label:{ display:true, content:'マイナス金利', position:'end', backgroundColor:'rgba(21,101,192,0.8)', color:'#fff', font:{size:10}, padding:4 }},
+  normal: { type:'box', xMin:44, xMax:46, backgroundColor:'rgba(184,145,42,0.06)', borderColor:'rgba(184,145,42,0.3)', borderWidth:1,
+    label:{ display:true, content:'金利正常化', position:'start', color:'#B8912A', font:{size:10,weight:'bold'} }}
+};
+
+var histLabels = [
+  '1980','81','82','83','84','85','86','87','88','89',
+  '1990','91','92','93','94','95','96','97','98','99',
+  '2000','01','02','03','04','05','06','07','08','09',
+  '2010','11','12','13','14','15','16','17','18','19',
+  '2020','21','22','23','24','25','2026'
+];
+// 変動金利（基準金利/店頭金利）
+var histVariable = [
+  7.2, 7.5, 7.0, 6.5, 6.5, 6.3, 5.7, 5.4, 5.6, 6.5,
+  8.5, 7.6, 6.0, 4.9, 4.2, 3.4, 2.9, 2.7, 2.5, 2.375,
+  2.375, 2.375, 2.375, 2.375, 2.375, 2.375, 2.625, 2.875, 2.875, 2.475,
+  2.475, 2.475, 2.475, 2.475, 2.475, 2.475, 2.475, 2.475, 2.475, 2.475,
+  2.475, 2.475, 2.475, 2.475, 2.475, 2.625, 2.775
+];
+// フラット35（旧住宅金融公庫基準金利 → フラット35最頻金利）
+var histFixed = [
+  5.5, 5.5, 5.5, 5.5, 5.5, 5.5, 4.9, 4.6, 4.7, 5.1,
+  5.5, 5.5, 5.0, 4.2, 3.8, 3.3, 3.1, 3.0, 2.0, 2.2,
+  2.8, 2.7, 2.5, 2.3, 2.2, 2.7, 3.0, 2.8, 2.7, 2.6,
+  2.4, 2.2, 1.9, 1.8, 1.7, 1.6, 1.1, 1.1, 1.4, 1.2,
+  1.3, 1.3, 1.5, 1.8, 1.8, 2.1, 2.49
+];
+
+new Chart(document.getElementById('historyRateChart'), {
+  type: 'line',
+  data: {
+    labels: histLabels,
+    datasets: [
+      {
+        label: '変動金利（基準金利）',
+        data: histVariable,
+        borderColor: '#8B2020',
+        backgroundColor: 'rgba(139,32,32,0.08)',
+        fill: true, tension: 0.25, pointRadius: 0, pointHoverRadius: 5, borderWidth: 2.5
+      },
+      {
+        label: 'フラット35 / 旧公庫基準金利',
+        data: histFixed,
+        borderColor: '#1565C0',
+        backgroundColor: 'rgba(21,101,192,0.06)',
+        fill: true, tension: 0.25, pointRadius: 0, pointHoverRadius: 5, borderWidth: 2.5
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top', labels: { color: textColor, font: { size: 11 }, usePointStyle: true } },
+      tooltip: { callbacks: { label: function(c){ return c.dataset.label + ': ' + c.parsed.y + '%'; } } },
+      annotation: { annotations: histAnnotations }
+    },
+    scales: {
+      y: {
+        beginAtZero: true, max: 10,
+        ticks: { callback: function(v){ return v+'%'; }, color: textColor, stepSize: 1 },
+        grid: { color: gridColor },
+        title: { display: true, text: '金利 (%)', color: textColor }
+      },
+      x: {
+        ticks: { color: textColor, font: { size: 10 }, maxRotation: 45,
+          callback: function(val,idx){ return idx % 5 === 0 ? this.getLabelForValue(val) : ''; }
+        },
+        grid: { color: function(ctx){ return ctx.tick && ctx.tick.label && ctx.tick.label.length > 2 ? 'rgba(0,0,0,0.06)' : 'transparent'; } }
+      }
+    }
+  }
+});
+
+// JP-US Rate & USD/JPY Chart
+new Chart(document.getElementById('jpUsRateChart'), {
+  type: 'line',
+  data: {
+    labels: ['2020/1','2020/7','2021/1','2021/7','2022/1','2022/7','2023/1','2023/7','2024/1','2024/7','2025/1','2025/7','2026/1','2026/4'],
+    datasets: [
+      {
+        label: '米国政策金利 (FFレート上限 %)',
+        data: [1.75, 0.25, 0.25, 0.25, 0.25, 2.50, 4.50, 5.50, 5.50, 5.50, 4.50, 4.50, 4.50, 4.375],
+        borderColor: '#1565C0',
+        backgroundColor: 'rgba(21,101,192,0.08)',
+        fill: true, tension: 0.3, pointRadius: 3, borderWidth: 2.5,
+        yAxisID: 'y'
+      },
+      {
+        label: '日本政策金利 (%)',
+        data: [-0.10, -0.10, -0.10, -0.10, -0.10, -0.10, -0.10, -0.10, 0.05, 0.25, 0.50, 0.50, 0.75, 0.75],
+        borderColor: '#B8912A',
+        backgroundColor: 'rgba(184,145,42,0.08)',
+        fill: true, tension: 0.3, pointRadius: 3, borderWidth: 2.5,
+        yAxisID: 'y'
+      },
+      {
+        label: 'USD/JPY（右軸）',
+        data: [108, 107, 103, 110, 115, 136, 130, 143, 148, 154, 156, 158, 158, 159.6],
+        borderColor: '#8B2020',
+        borderDash: [4,4],
+        fill: false, tension: 0.3, pointRadius: 3, borderWidth: 2,
+        yAxisID: 'y1'
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top', labels: { color: textColor, font: { size: 11 }, usePointStyle: true } }
+    },
+    scales: {
+      y: {
+        position: 'left', beginAtZero: false, min: -0.5, max: 6,
+        ticks: { callback: function(v){ return v+'%'; }, color: textColor, font: { size: 11 } },
+        grid: { color: gridColor },
+        title: { display: true, text: '政策金利 (%)', color: textColor }
+      },
+      y1: {
+        position: 'right', beginAtZero: false, min: 100, max: 170,
+        ticks: { callback: function(v){ return '¥'+v; }, color: '#8B2020', font: { size: 11 } },
+        grid: { drawOnChartArea: false },
+        title: { display: true, text: 'USD/JPY', color: '#8B2020' }
+      },
+      x: { ticks: { color: textColor, font: { size: 10 }, maxRotation: 45 }, grid: { color: gridColor } }
+    }
+  }
+});
+
+// Correlation Scatter Chart
+new Chart(document.getElementById('correlationChart'), {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: '金利差 vs USD/JPY',
+      data: [
+        {x: 1.85, y: 108, label: '2020/1'},
+        {x: 0.35, y: 107, label: '2020/7'},
+        {x: 0.35, y: 103, label: '2021/1'},
+        {x: 0.35, y: 110, label: '2021/7'},
+        {x: 0.35, y: 115, label: '2022/1'},
+        {x: 2.60, y: 136, label: '2022/7'},
+        {x: 4.60, y: 130, label: '2023/1'},
+        {x: 5.60, y: 143, label: '2023/7'},
+        {x: 5.45, y: 148, label: '2024/1'},
+        {x: 5.25, y: 154, label: '2024/7'},
+        {x: 4.00, y: 156, label: '2025/1'},
+        {x: 4.00, y: 158, label: '2025/7'},
+        {x: 3.75, y: 158, label: '2026/1'},
+        {x: 3.625, y: 159.6, label: '2026/4'}
+      ],
+      backgroundColor: function(ctx) {
+        var x = ctx.raw ? ctx.raw.x : 0;
+        if(x < 1) return 'rgba(46,125,50,0.7)';
+        if(x < 3) return 'rgba(184,145,42,0.7)';
+        return 'rgba(139,32,32,0.7)';
+      },
+      pointRadius: 8,
+      pointHoverRadius: 11
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            var d = ctx.raw;
+            return (d.label||'') + ' | 金利差: ' + d.x + '% | USD/JPY: ¥' + d.y;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        title: { display: true, text: '日米政策金利差 (%)', color: textColor },
+        ticks: { callback: function(v){ return v+'%'; }, color: textColor },
+        grid: { color: gridColor }, min: -0.5, max: 6
+      },
+      y: {
+        title: { display: true, text: 'USD/JPY (円)', color: textColor },
+        ticks: { callback: function(v){ return '¥'+v; }, color: textColor },
+        grid: { color: gridColor }, min: 95, max: 170
+      }
+    }
+  }
+});
+
+// Loan Simulation Chart
+new Chart(document.getElementById('loanSimChart'), {
+  type: 'bar',
+  data: {
+    labels: ['0.5%', '1.0%（現在）', '1.5%', '2.0%', '2.5%', '3.0%'],
+    datasets: [
+      {
+        label: '元本返済',
+        data: [50, 50, 50, 50, 50, 50],
+        backgroundColor: 'rgba(184,145,42,0.6)',
+        borderColor: '#B8912A', borderWidth: 1, borderRadius: 4
+      },
+      {
+        label: '利息総額',
+        data: [4.5, 9.3, 14.3, 19.6, 25.1, 30.8],
+        backgroundColor: 'rgba(139,32,32,0.6)',
+        borderColor: '#8B2020', borderWidth: 1, borderRadius: 4
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { color: textColor, font: { size: 12 } } },
+      tooltip: { callbacks: { label: function(c){ return c.dataset.label + ': 約' + c.parsed.y + '百万円'; }}}
+    },
+    scales: {
+      x: { stacked: true, ticks: { color: textColor }, grid: { display: false } },
+      y: {
+        stacked: true, beginAtZero: true,
+        ticks: { callback: function(v){ return v+'百万円'; }, color: textColor },
+        grid: { color: gridColor },
+        title: { display: true, text: '35年間の総返済額（百万円）', color: textColor }
       }
     }
   }
