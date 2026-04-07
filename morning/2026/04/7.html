@@ -615,14 +615,54 @@ body {
   line-height: 1.85;
   color: var(--ink);
 }
+.risk-bars-accordion {
+  margin: 20px 0 16px;
+  border: 1px solid var(--paper-dk);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.risk-bars-accordion[open] {
+  background: transparent;
+}
 .risk-bars-title {
   font-family: var(--font-heading);
   font-size: 14px;
   font-weight: 700;
   color: var(--ink);
-  margin: 24px 0 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   letter-spacing: .02em;
+  user-select: none;
+  transition: background .15s;
 }
+.risk-bars-title::-webkit-details-marker { display: none; }
+.risk-bars-title::before {
+  content: '▶';
+  font-size: 10px;
+  color: var(--gold);
+  transition: transform .2s;
+  display: inline-block;
+}
+.risk-bars-accordion[open] .risk-bars-title::before {
+  transform: rotate(90deg);
+}
+.risk-bars-title:hover { background: var(--badge-bg); }
+.risk-acc-hint {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--slate-lt);
+  margin-left: auto;
+  font-family: var(--font-ui);
+}
+.risk-bars-accordion .risk-bars { padding: 4px 18px 18px; }
+[data-theme="dark"] .risk-bars-accordion { border-color: rgba(184,145,42,0.15); background: rgba(184,145,42,0.04); }
+[data-theme="dark"] .risk-bars-title { color: #F5F2EC; }
+[data-theme="dark"] .risk-bars-title:hover { background: rgba(184,145,42,0.08); }
 .risk-bars {
   display: flex;
   flex-direction: column;
@@ -1071,51 +1111,104 @@ body {
   overflow: hidden;
   box-shadow: var(--shadow-card);
 }
+.calendar-day-block {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  border-bottom: 1px solid var(--paper-dk);
+}
+.calendar-day-block:last-child { border-bottom: none; }
 .calendar-day-label {
+  font-family: var(--font-data);
   font-size: 13px;
   font-weight: 800;
   color: var(--gold);
-  padding: 12px 16px 4px;
-  letter-spacing: .02em;
+  padding: 18px 16px;
+  letter-spacing: .03em;
+  background: var(--badge-bg);
+  border-right: 1px solid var(--paper-dk);
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+.calendar-day-label .day-num {
+  font-size: 18px;
+  font-weight: 900;
+  display: block;
+  color: var(--navy);
+}
+.calendar-day-label .day-week {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold);
+  display: block;
+  margin-top: 2px;
+  letter-spacing: .05em;
+}
+.calendar-events {
+  display: flex;
+  flex-direction: column;
 }
 .calendar-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: 64px 24px 70px 1fr;
   align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
+  gap: 12px;
+  padding: 14px 18px;
   border-bottom: 1px solid var(--paper-dk);
-  transition: background .25s ease;
+  transition: background .15s ease;
 }
 .calendar-item:last-child { border-bottom: none; }
 .calendar-item:hover { background: var(--paper); }
+.calendar-item.is-star { background: linear-gradient(90deg, rgba(212,168,67,0.06) 0%, transparent 100%); }
+.calendar-item.is-star:hover { background: linear-gradient(90deg, rgba(212,168,67,0.12) 0%, rgba(212,168,67,0.02) 100%); }
 .calendar-time {
   font-family: var(--font-data);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
-  color: var(--gold);
-  min-width: 52px;
-  text-align: center;
+  color: var(--slate);
+  text-align: left;
+  letter-spacing: .02em;
 }
+.calendar-time.no-time { color: var(--slate-lt); font-weight: 500; }
+.calendar-flag { font-size: 18px; text-align: center; }
 .calendar-importance {
   font-family: var(--font-data);
   font-size: 10px;
-  font-weight: 700;
-  padding: 2px 8px;
+  font-weight: 800;
+  padding: 3px 0;
   border-radius: 4px;
-  white-space: nowrap;
+  text-align: center;
+  letter-spacing: .05em;
 }
 .calendar-importance.high { background: var(--alert-light); color: var(--alert); }
-.calendar-importance.medium { background: var(--gold-lt-light); color: var(--gold-lt); }
-.calendar-importance.low { background: var(--badge-bg); color: var(--slate-lt); border: 1px solid var(--paper-dk); }
+.calendar-importance.medium { background: var(--gold-lt-light); color: var(--gold); }
+.calendar-importance.low { background: var(--badge-bg); color: var(--slate-lt); }
+.calendar-event-body {
+  min-width: 0;
+}
 .calendar-event {
-  flex: 1;
   font-family: var(--font-ui);
   font-size: 14px;
   font-weight: 600;
   color: var(--navy);
+  line-height: 1.4;
 }
-.calendar-flag { font-size: 16px; }
-.calendar-detail { font-size: 12px; color: var(--slate-lt); white-space: nowrap; }
+.calendar-event .star-icon { color: var(--gold); margin-right: 4px; }
+.calendar-detail {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--slate-lt);
+  margin-top: 3px;
+  letter-spacing: .02em;
+}
+[data-theme="dark"] .calendar-day-label { background: rgba(184,145,42,0.08); border-right-color: rgba(184,145,42,0.12); }
+[data-theme="dark"] .calendar-day-label .day-num { color: #F5F2EC; }
+[data-theme="dark"] .calendar-day-block { border-bottom-color: rgba(184,145,42,0.12); }
+[data-theme="dark"] .calendar-item { border-bottom-color: rgba(184,145,42,0.08); }
+[data-theme="dark"] .calendar-event { color: #F5F2EC; }
+[data-theme="dark"] .calendar-time { color: #c9d1d9; }
 
 /* ==========================================
    Earnings Preview
@@ -1357,12 +1450,16 @@ body {
 
   .term .tip { pointer-events: auto; }
 
-  .calendar-item { flex-wrap: wrap; gap: 8px; }
-  .calendar-time { order: 1; min-width: auto; }
-  .calendar-flag { order: 2; }
-  .calendar-importance { order: 3; }
-  .calendar-event { order: 4; flex-basis: 100%; font-size: 13px; }
-  .calendar-detail { order: 5; flex-basis: 100%; }
+  .calendar-day-block { grid-template-columns: 70px 1fr; }
+  .calendar-day-label { padding: 14px 10px; }
+  .calendar-day-label .day-num { font-size: 16px; }
+  .calendar-day-label .day-week { font-size: 10px; }
+  .calendar-item { grid-template-columns: 56px 22px 56px 1fr; gap: 8px; padding: 12px 12px; }
+  .calendar-time { font-size: 11px; }
+  .calendar-flag { font-size: 16px; }
+  .calendar-importance { font-size: 9px; padding: 2px 0; }
+  .calendar-event { font-size: 13px; }
+  .calendar-detail { font-size: 10px; }
 
   .ed-take-label::after { content: ' \25B8 \30BF\30C3\30D7\3067\8868\793A'; }
 
@@ -1377,6 +1474,13 @@ body {
 @media (max-width: 480px) {
   .nav-links a:not(.nav-cta) { font-size: 10px; }
   .earnings-grid { grid-template-columns: 1fr; }
+  .calendar-day-block { grid-template-columns: 56px 1fr; }
+  .calendar-item { grid-template-columns: 48px 20px 48px 1fr; gap: 6px; padding: 10px 10px; }
+  .calendar-time { font-size: 10px; }
+  .calendar-flag { font-size: 14px; }
+  .calendar-importance { font-size: 8px; }
+  .calendar-event { font-size: 12px; }
+  .calendar-detail { font-size: 9px; }
 }
 
 /* ==========================================
@@ -1706,7 +1810,8 @@ body {
         </div>
       </div>
 
-      <div class="risk-bars-title">📊 8指標の内訳スコア</div>
+      <details class="risk-bars-accordion">
+        <summary class="risk-bars-title">📊 8指標の内訳スコアを表示 <span class="risk-acc-hint">（クリックで開閉）</span></summary>
       <div class="risk-bars">
         <div class="risk-bar-row">
           <div class="risk-bar-label"><span class="term">VIX<span class="tip"><span class="tip-title">VIX（恐怖指数）</span>S&amp;P 500オプションの予想ボラティリティを示す指数。20超で警戒圏、30超で恐怖圏。</span></span>（恐怖指数）</div>
@@ -1757,6 +1862,7 @@ body {
           <div class="risk-bar-score">48</div>
         </div>
       </div>
+      </details>
 
       <div class="risk-comment">
         複数の指標に警戒の芽が見られます。<strong>Fear &amp; Greed指数は19（Extreme Fear）</strong>と極端な恐怖状態にあり、<strong>SPXA50R（50日線上位比率）も27.6%</strong>と急落水準に達しています。一方でイールドカーブは正常域、EPSリビジョンは上方傾向を維持しており、ファンダメンタルズの崩壊には至っていません。イラン情勢の行方次第でスコアが急変動する可能性があり、新規ポジションの追加は慎重に。
@@ -1911,87 +2017,6 @@ body {
     </div>
   </section>
 
-  <!-- ===== 3. Editorial ===== -->
-  <section class="section-gap">
-    <div class="section-label">
-      <span class="section-label-icon">🖊️</span>
-      <span class="section-label-text">編集部の目線</span>
-      <span class="section-label-line"></span>
-    </div>
-
-    <div class="editorial-card">
-      <div class="ed-hero">
-        <div class="ed-badge">✍️ EDITORIAL</div>
-        <h2 class="editorial-headline">ホルムズ海峡の最後通牒 — 火曜夜以降の3つのシナリオ</h2>
-        <div class="editorial-sub">停戦・延長・エスカレーション — 確率と市場インパクトを整理</div>
-      </div>
-      <div class="editorial-body">
-        <p>トランプ大統領が設定した火曜20時（ET）の最終期限が、今週の市場を左右する最大の分岐点だ。ここでは3つのシナリオを整理する。</p>
-        <p><strong>シナリオ1: 停戦合意（確率 25%）</strong>　イランが45日間の停戦と海峡再開を受け入れ、トランプが「勝利」を宣言するケース。原油は$90台に急落し、S&amp;P 500は5〜7%のリリーフラリー。VIXは17〜18に急低下。最もマーケットフレンドリーだが、イラン国内の強硬派がこれを受け入れる可能性は低い。</p>
-        <p><strong>シナリオ2: 期限延長・交渉継続（確率 50%）</strong>　「重要な進展がある」として期限を数日延長。イランの10項目対案をベースに実務協議に入るケース。原油は$105〜115のレンジで高止まり。市場はじりじりとした値動きが続き、ボラティリティは高水準を維持。最も蓋然性が高いシナリオ。</p>
-        <p><strong>シナリオ3: エスカレーション（確率 25%）</strong>　期限切れで米軍がイランのインフラを攻撃。バブ・エル・マンデブ封鎖も発動し、原油$130超へ。S&amp;P 500は-3〜5%の急落、VIX 35超。ゴールド$5,000台への急騰。パニック底のシグナルが点灯する局面。</p>
-
-        <!-- Chart.js: WTI原油価格推移 -->
-        <div style="position:relative;height:360px;margin:24px 0">
-          <canvas id="wtiChart"></canvas>
-        </div>
-
-        <p>いずれのシナリオでも、金曜のCPI（3月分）がエネルギー高騰をどこまで反映するかが第二の焦点。2月CPIは+2.4% YoYと安定していたが、3月は原油$110超の影響でヘッドライン上振れリスクが高い。FRBの6月利下げ期待（現在約30%）はCPI次第でゼロに向かう可能性もある。</p>
-        <p><strong>来週の注目スケジュール:</strong> 火曜夜のホルムズ最終期限、水曜のデルタ航空Q1決算（Q1決算シーズンの幕開け）、木曜のGDP改定値、金曜のCPI（3月）。この4つのイベントが、停戦シナリオの行方とFRBの次の一手を決定づける。<span class="term">供給ショック<span class="tip"><span class="tip-title">供給ショック（Supply Shock）</span>原材料や商品の供給が突然大幅に減少（または増加）する事象。需要側ではなく供給側の変動が原因で価格が急変動するため、金融政策による制御が困難。1970年代のオイルショックが代表例。</span></span>主導のインフレに対して金融政策は無力という1970年代の教訓を、市場は再び問われている。</p>
-      </div>
-      <div class="editorial-note">※ 本稿は特定の有価証券の売買推奨を行うものではありません。投資判断はご自身の責任においてお願いします。</div>
-    </div>
-  </section>
-
-  <!-- ===== 4. Today's Keyword ===== -->
-  <section class="section-gap">
-    <div class="section-label">
-      <span class="section-label-icon">📚</span>
-      <span class="section-label-text">今日のキーワード</span>
-      <span class="section-label-line"></span>
-    </div>
-
-    <div class="keyword-card">
-      <div class="keyword-title">スタグフレーション</div>
-      <div class="keyword-sub">Stagflation</div>
-      <div class="keyword-overview">
-        景気停滞（Stagnation）とインフレーション（Inflation）が同時に進行する経済状態。通常、景気が悪化すれば需要が減って物価は下がるが、原油高騰のような<span class="term">供給ショック<span class="tip"><span class="tip-title">供給ショック（Supply Shock）</span>原材料や商品の供給が突然大幅に減少（または増加）する事象。需要側ではなく供給側の変動が原因で価格が急変動する。</span></span>が原因の場合、景気後退と物価上昇が同時に起こる。歴史的には1970年代のオイルショックが代表例で、中東戦争→原油禁輸→物価急騰＋失業率上昇という構図だった。当時、FRBのボルカー議長は最終的に金利を20%超に引き上げて「力ずくで」インフレを退治したが、その代償として深い景気後退を招いた。メカニズムは①外的供給ショック→②企業のコスト上昇・値上げ→③消費者の購買力低下・需要減→④雇用削減→⑤景気悪化とインフレの同時進行、という連鎖。FRBにとって金利を上げればインフレは収まるが失業が増え、下げれば雇用は守れるがインフレが加速するという「正解がない」状態となる。
-      </div>
-
-      <div class="keyword-perspectives">
-        <div class="keyword-perspective">
-          <div class="keyword-perspective-icon">😀</div>
-          <div class="keyword-perspective-label">楽観派の視点</div>
-          <div class="keyword-perspective-text">ISMの新規受注60.6は堅調を維持しており、需要は生きている。停戦が成立して原油が$90台に下がれば、物価指数の急騰も一時的な現象として収束し、スタグフレーション懸念は急速に後退する。1970年代と異なり、現代経済はサービス・テクノロジー中心で生産性向上の余地が大きい。</div>
-        </div>
-        <div class="keyword-perspective">
-          <div class="keyword-perspective-icon">😟</div>
-          <div class="keyword-perspective-label">慎重派の視点</div>
-          <div class="keyword-perspective-text">物価指数70.7は2022年10月以来の高水準で、エネルギーショックが長期化すればFRBの利下げ期待は完全に消失する。1970年代の教訓は、供給ショック型インフレに対して金融政策は無力で、解決には地政学的決着が必要だということ。雇用指数45.2の悪化は労働市場の構造的変化を示唆している可能性も。</div>
-        </div>
-        <div class="keyword-perspective">
-          <div class="keyword-perspective-icon">📜</div>
-          <div class="keyword-perspective-label">歴史的文脈</div>
-          <div class="keyword-perspective-text">1970年代は2度のオイルショック（1973年・1979年）で約10年の停滞を経験。今回も地政学リスクが原因な点は同じだが、テクノロジー（AI/クラウド）の生産性向上、エネルギー効率の改善、シェールガスによる米国のエネルギー自立化が緩衝材になりうる点は1970年代と異なる。</div>
-        </div>
-        <div class="keyword-perspective">
-          <div class="keyword-perspective-icon">💼</div>
-          <div class="keyword-perspective-label">投資への影響</div>
-          <div class="keyword-perspective-text">スタグフレーション局面ではゴールド・実物資産・エネルギー株がヘッジとして機能する。グロース株は金利・割引率の上昇で下落しやすく、バリュー株・配当株が相対的に底堅い。日本株は円安・資源高のダブルパンチで業種ごとの選別が重要になる。</div>
-        </div>
-      </div>
-
-      <div class="keyword-relation">
-        <span class="keyword-relation-label">📌 今日との関連</span>
-        ISMサービス業指数で雇用45.2（急落）＋物価70.7（急騰）が同時に観測され、スタグフレーション的な構図が鮮明に。イラン戦争による原油$113の高止まりが1970年代と類似のメカニズムを引き起こしつつある。ただし2020年代の経済はサービス中心でAI/テック企業の利益率が高く、構造が異なる点に注意が必要。金曜のCPIで「一時的な供給ショック」か「スタグフレーション入り」かの判定が下る。
-      </div>
-
-      <a class="keyword-glossary-link" href="https://atlasfinancials.github.io/ui-kabu-times/glossary/">
-        📖 用語辞典で詳しく見る →
-      </a>
-    </div>
-  </section>
-
   <!-- ===== 5. Economic Calendar ===== -->
   <section class="section-gap">
     <div class="section-label">
@@ -2001,70 +2026,106 @@ body {
     </div>
 
     <div class="calendar-list">
-      <div class="calendar-day-label">4/7（火）</div>
-      <div class="calendar-item">
-        <span class="calendar-time">—</span>
-        <span class="calendar-flag">🇺🇸</span>
-        <span class="calendar-importance low">LOW</span>
-        <span class="calendar-event">特になし（市場は通常取引）</span>
-        <span class="calendar-detail">★ 火曜20時ET ホルムズ最終期限</span>
+      <div class="calendar-day-block">
+        <div class="calendar-day-label"><div><span class="day-num">4/7</span><span class="day-week">火</span></div></div>
+        <div class="calendar-events">
+          <div class="calendar-item is-star">
+            <span class="calendar-time no-time">20:00 ET</span>
+            <span class="calendar-flag">🌍</span>
+            <span class="calendar-importance high">HIGH</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event"><span class="star-icon">★</span>ホルムズ海峡 最終期限</div>
+              <span class="calendar-detail">トランプ大統領が設定したイラン側回答期限</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="calendar-day-label">4/8（水）</div>
-      <div class="calendar-item">
-        <span class="calendar-time">06:30</span>
-        <span class="calendar-flag">🇺🇸</span>
-        <span class="calendar-importance high">HIGH</span>
-        <span class="calendar-event">デルタ航空Q1決算（BMO）</span>
-        <span class="calendar-detail">EPS予想: $0.64</span>
+      <div class="calendar-day-block">
+        <div class="calendar-day-label"><div><span class="day-num">4/8</span><span class="day-week">水</span></div></div>
+        <div class="calendar-events">
+          <div class="calendar-item">
+            <span class="calendar-time">06:30 ET</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance high">HIGH</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event">デルタ航空 Q1決算（BMO）</div>
+              <span class="calendar-detail">EPS予想 $0.64 ／ 売上予想 $14.82B</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="calendar-day-label">4/9（木）</div>
-      <div class="calendar-item">
-        <span class="calendar-time">08:30</span>
-        <span class="calendar-flag">🇺🇸</span>
-        <span class="calendar-importance medium">MEDIUM</span>
-        <span class="calendar-event">新規失業保険申請件数</span>
-        <span class="calendar-detail"></span>
-      </div>
-      <div class="calendar-item">
-        <span class="calendar-time">08:30</span>
-        <span class="calendar-flag">🇺🇸</span>
-        <span class="calendar-importance high">HIGH</span>
-        <span class="calendar-event">GDP改定値</span>
-        <span class="calendar-detail"></span>
-      </div>
-      <div class="calendar-item">
-        <span class="calendar-time">10:00</span>
-        <span class="calendar-flag">🇺🇸</span>
-        <span class="calendar-importance low">LOW</span>
-        <span class="calendar-event">卸売在庫</span>
-        <span class="calendar-detail"></span>
-      </div>
-
-      <div class="calendar-day-label">4/10（金）</div>
-      <div class="calendar-item">
-        <span class="calendar-time">08:30</span>
-        <span class="calendar-flag">🇺🇸</span>
-        <span class="calendar-importance high">HIGH</span>
-        <span class="calendar-event">★ 消費者物価指数CPI（3月）</span>
-        <span class="calendar-detail">前回: +2.4% YoY ／ 最重要</span>
-      </div>
-      <div class="calendar-item">
-        <span class="calendar-time">10:00</span>
-        <span class="calendar-flag">🇺🇸</span>
-        <span class="calendar-importance medium">MEDIUM</span>
-        <span class="calendar-event">ミシガン大消費者信頼感（4月速報）</span>
-        <span class="calendar-detail"></span>
+      <div class="calendar-day-block">
+        <div class="calendar-day-label"><div><span class="day-num">4/9</span><span class="day-week">木</span></div></div>
+        <div class="calendar-events">
+          <div class="calendar-item">
+            <span class="calendar-time">08:30 ET</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance high">HIGH</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event">GDP改定値（Q4）</div>
+              <span class="calendar-detail">前期成長率の最終確報</span>
+            </div>
+          </div>
+          <div class="calendar-item">
+            <span class="calendar-time">08:30 ET</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance medium">MID</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event">新規失業保険申請件数</div>
+              <span class="calendar-detail">週次の労働市場指標</span>
+            </div>
+          </div>
+          <div class="calendar-item">
+            <span class="calendar-time">10:00 ET</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance low">LOW</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event">卸売在庫</div>
+              <span class="calendar-detail">2月分</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="calendar-day-label">4/16（水）</div>
-      <div class="calendar-item">
-        <span class="calendar-time">—</span>
-        <span class="calendar-flag">🇺🇸</span>
-        <span class="calendar-importance high">HIGH</span>
-        <span class="calendar-event">TSMC / Netflix Q1決算</span>
-        <span class="calendar-detail">来週注目</span>
+      <div class="calendar-day-block">
+        <div class="calendar-day-label"><div><span class="day-num">4/10</span><span class="day-week">金</span></div></div>
+        <div class="calendar-events">
+          <div class="calendar-item is-star">
+            <span class="calendar-time">08:30 ET</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance high">HIGH</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event"><span class="star-icon">★</span>消費者物価指数 CPI（3月）</div>
+              <span class="calendar-detail">前回: +2.4% YoY ／ 今週最重要 ・ 原油高の反映度に注目</span>
+            </div>
+          </div>
+          <div class="calendar-item">
+            <span class="calendar-time">10:00 ET</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance medium">MID</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event">ミシガン大消費者信頼感（4月速報）</div>
+              <span class="calendar-detail">期待インフレ率の動向に注目</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar-day-block">
+        <div class="calendar-day-label"><div><span class="day-num">4/16</span><span class="day-week">水</span></div></div>
+        <div class="calendar-events">
+          <div class="calendar-item">
+            <span class="calendar-time no-time">—</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance high">HIGH</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event">TSMC ／ Netflix Q1決算</div>
+              <span class="calendar-detail">来週の最大注目イベント（AI需要・ストリーミング動向）</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -2475,120 +2536,6 @@ document.querySelectorAll('.ed-take').forEach(function(el){
   window.addEventListener('scroll', function() {
     if (!isMobile() && activeTerm) closeTip();
   }, { passive: true });
-})();
-
-// ==========================================
-// Chart.js — WTI原油価格推移（編集部の目線）
-// ==========================================
-(function(){
-  var ctx = document.getElementById('wtiChart');
-  if(!ctx) return;
-  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  var gridColor = isDark ? 'rgba(184,145,42,0.1)' : 'rgba(0,0,0,0.06)';
-  var textColor = isDark ? '#8b949e' : '#4A5568';
-
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['3/25', '3/26', '3/27', '3/28', '3/31', '4/1', '4/2', '4/6'],
-      datasets: [
-        {
-          label: 'WTI原油 ($/バレル)',
-          data: [78, 89, 95, 100, 97, 100, 112, 113],
-          borderColor: '#E05555',
-          backgroundColor: 'rgba(224,85,85,0.08)',
-          fill: true,
-          tension: 0.3,
-          borderWidth: 2.5,
-          pointRadius: [3, 4, 4, 4, 3, 3, 5, 6],
-          pointBackgroundColor: '#E05555'
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: true,
-          labels: {
-            color: textColor,
-            font: { family: "'Inter','Noto Sans JP',sans-serif", size: 12, weight: 600 },
-            usePointStyle: true,
-            pointStyle: 'circle',
-            padding: 16
-          }
-        },
-        tooltip: {
-          backgroundColor: isDark ? '#1A2540' : '#FDFCFA',
-          titleColor: isDark ? '#F5F2EC' : '#0F0E0C',
-          bodyColor: isDark ? '#8b949e' : '#4A5568',
-          borderColor: isDark ? 'rgba(184,145,42,0.15)' : '#ECE8DF',
-          borderWidth: 1,
-          callbacks: {
-            label: function(ctx){ return 'WTI: $' + ctx.parsed.y + '/バレル'; }
-          }
-        },
-        annotation: {
-          annotations: {
-            warStart: {
-              type: 'line',
-              xMin: 0,
-              xMax: 0,
-              borderColor: '#D4A843',
-              borderWidth: 2,
-              borderDash: [6, 3],
-              label: {
-                display: true,
-                content: 'イラン戦争開始',
-                position: 'start',
-                backgroundColor: 'rgba(212,168,67,0.9)',
-                color: '#0F1829',
-                font: { size: 11, weight: 700, family: "'Noto Sans JP',sans-serif" },
-                padding: { top: 4, bottom: 4, left: 8, right: 8 },
-                borderRadius: 4
-              }
-            },
-            currentPrice: {
-              type: 'label',
-              xValue: 7,
-              yValue: 113,
-              content: '$112.97',
-              backgroundColor: 'rgba(224,85,85,0.9)',
-              color: '#fff',
-              font: { size: 12, weight: 800, family: "'Inter',sans-serif" },
-              padding: { top: 4, bottom: 4, left: 8, right: 8 },
-              borderRadius: 4,
-              xAdjust: 0,
-              yAdjust: -20
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          ticks: { color: textColor, font: { family: "'Inter',sans-serif", size: 11 } },
-          grid: { color: gridColor },
-          border: { display: false }
-        },
-        y: {
-          title: {
-            display: true,
-            text: '$/バレル',
-            color: textColor,
-            font: { family: "'Inter','Noto Sans JP',sans-serif", size: 11 }
-          },
-          ticks: {
-            color: textColor,
-            font: { family: "'Inter',sans-serif", size: 11 },
-            callback: function(v){ return '$' + v; }
-          },
-          grid: { color: gridColor },
-          border: { display: false }
-        }
-      }
-    }
-  });
 })();
 
 // ==========================================
