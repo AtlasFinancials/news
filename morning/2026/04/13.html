@@ -80,6 +80,12 @@
 [data-font-scale] .section-label-text  { font-size: calc(24px * var(--font-scale)); line-height: var(--lh-title); }
 [data-font-scale] .keyword-title       { font-size: calc(22px * var(--font-scale)); line-height: var(--lh-title); }
 
+/* Breaking news pulse animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
 /* Language switcher */
 .lang-switch {
   display: inline-flex; align-items: center; gap: 2px;
@@ -1757,7 +1763,7 @@ body {
       <div class="summary-text">
         <p><span class="summary-num-label">1</span>7連騰の勢いが止まった金曜日。S&amp;P 500は<span class="summary-num down">-0.11%</span>の<span class="summary-num">6,816.89</span>と小幅安、ダウは<span class="summary-num down">-0.56%</span>と3指数中もっとも弱い動き。NASDAQ（<span class="summary-num up">+0.35%</span>）はTSMCの好決算がハイテクを支えた。週間ではS&amp;P <span class="summary-num up">+3.56%</span>と2025年5月以来最大の上昇週を記録。ミシガン大<span class="term">消費者信頼感指数<span class="tip"><span class="tip-title">消費者信頼感指数（Consumer Sentiment Index）</span>ミシガン大学が毎月発表する消費者の景気見通しを数値化した指標。100超が楽観、50未満は深刻な悲観。</span></span>が47.6と70年超の調査史上最低を記録し、3月<span class="term">CPI<span class="tip"><span class="tip-title">CPI（Consumer Price Index・消費者物価指数）</span>米労働省が毎月発表する物価指数。インフレ率の主要指標。FRBの金融政策判断の中核データ。</span></span>は前月比+0.9%の急騰と悪材料が重なったが、コアCPIが+0.2%と予想を下回ったことで株式市場は比較的冷静に推移した。</p>
         <p><span class="summary-num-label">2</span>セクター別では半導体（SMH <span class="summary-num up">+1.5%</span>）がTSMCの35%増収の追い風で首位。エネルギー（XLE <span class="summary-num up">+1.1%</span>）はイラン停戦の不透明感で原油が高止まりする中上昇。一方、金融（XLF <span class="summary-num down">-0.9%</span>）はFICO<span class="summary-num down">-13.5%</span>の急落が足を引っ張り、ヘルスケア（XLV <span class="summary-num down">-1.3%</span>）はディフェンシブからの資金流出で最下位。AIセクターではCoreWeaveがAnthropicとの契約で<span class="summary-num up">+11%</span>急騰する一方、ServiceNow（<span class="summary-num down">-6%</span>）・Snowflake（<span class="summary-num down">-10%</span>）がAIエージェント破壊懸念で急落し、明暗が鮮明に分かれた。</p>
-        <p><span class="summary-num-label">3</span>⚠️ <strong>週末速報:</strong> 4月12日（土）、パキスタン・イスラマバードでの米イラン和平交渉が決裂。バンス副大統領はイランがウラン濃縮停止などの「レッドライン」を受け入れなかったとして交渉を打ち切った。トランプ大統領は<span class="term">ホルムズ海峡<span class="tip"><span class="tip-title">ホルムズ海峡（Strait of Hormuz）</span>世界の海上石油輸送の約20%が通過するイランとオマーンの間の狭い水路。封鎖されれば世界のエネルギー供給に深刻な影響。</span></span>の「封鎖」を示唆。2週間の停戦期限が迫る中、原油・地政学リスクの再燃で週明けの市場は波乱含みの展開が予想される。</p>
+        <p><span class="summary-num-label">3</span>⚠️ <strong>🔴 緊急速報:</strong> 4月12日（土）、イスラマバードでの米イラン和平交渉が決裂。バンス副大統領はイランがウラン濃縮停止を拒否したとして交渉を打ち切った。直後にトランプ大統領は<span class="term">ホルムズ海峡<span class="tip"><span class="tip-title">ホルムズ海峡（Strait of Hormuz）</span>世界の海上石油輸送の約20%が通過するイランとオマーンの間の狭い水路。封鎖されれば世界のエネルギー供給に深刻な影響。</span></span>の<strong>海上封鎖</strong>を発令。米海軍がイラン港湾への出入船舶を阻止し、イランに通行料（最大$2M/隻、人民元で支払いの事例あり）を支払った船舶を国際水域で拿捕すると宣言した。米中央軍（CENTCOM）は<strong>本日4月13日10:00 ET</strong>から封鎖を実施開始すると発表。イランが敷設した機雷の除去作業も並行して行う。イラン港湾へ向かわない船舶の自由航行は妨げないとしているが、世界石油輸送の20%が通過する要衝の封鎖は原油市場・グローバル経済に甚大な影響を及ぼす可能性がある。週明けの市場は極めて波乱含みの展開が予想される。</p>
       </div>
 
       <!-- Sector Heatmap -->
@@ -1964,7 +1970,7 @@ body {
       </details>
 
       <div class="risk-comment">
-        停戦ラリーを経てVIXは19.49と20を割り込み表面上は平穏だが、<strong>SKEW</strong>指数は150前後と高水準を維持しており、「<strong>沈黙の危機</strong>」シグナルが新たに点灯しました。VIXが低い（市場は安心）のにSKEWが高い（テールリスクヘッジ需要が旺盛）という乖離は、機関投資家が「見えないリスク」に備えていることを示唆します。週末のイスラマバード和平交渉決裂を受け、来週は原油・地政学リスクの再燃に注意が必要です。<strong>SPXA50R</strong>は58%まで回復し市場の広がりは改善していますが、消費者信頼感の歴史的低水準が中期的な消費減退リスクとして意識されます。
+        金曜終値時点のVIXは19.49と20を割り込み表面上は平穏だが、<strong>SKEW</strong>指数は150前後と高水準を維持しており、「<strong>沈黙の危機</strong>」シグナルが新たに点灯しました。VIXが低い（市場は安心）のにSKEWが高い（テールリスクヘッジ需要が旺盛）という乖離は、機関投資家が「見えないリスク」に備えていたことを意味します。<strong>⚠️ 週末にその「見えないリスク」が現実化しました。</strong>イスラマバード和平交渉の決裂に続き、トランプ大統領がホルムズ海峡の海上封鎖を発令。本日10:00 ETから実施開始となり、週明けのVIXは大幅上昇が見込まれます。原油$100超え・地政学リスクの再燃で、次号のリスクスコアは警戒圏（51〜68）への上昇が予想されます。<strong>SPXA50R</strong>は58%まで回復していた市場の広がりも、封鎖の影響で再び縮小するリスクがあります。
       </div>
     </div>
   </section>
@@ -1977,7 +1983,32 @@ body {
       <span class="section-label-line"></span>
     </div>
 
-    <!-- Top Story -->
+    <!-- BREAKING: Hormuz Blockade -->
+    <div class="top-story" style="border:2px solid var(--alert);box-shadow:0 0 20px rgba(139,32,32,0.15)">
+      <span class="top-story-badge" style="background:var(--alert);animation:pulse 2s infinite">🔴 BREAKING</span>
+      <div class="section-hero">
+        <img src="https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="海上を航行する軍艦" loading="lazy">
+      </div>
+      <div class="section-hero-caption">Photo: Pexels</div>
+      <span class="news-card-tag geopolitics" style="margin-bottom:10px;display:inline-block">GEOPOLITICS</span>
+      <h2 class="top-story-title">米国がホルムズ海峡の海上封鎖を発令 — イランへの通行料支払い船を拿捕、本日10:00 ET実施開始</h2>
+      <p class="top-story-body">
+        イスラマバードでの和平交渉決裂を受け、トランプ大統領は4月12日、米海軍による<span class="term">ホルムズ海峡<span class="tip"><span class="tip-title">ホルムズ海峡（Strait of Hormuz）</span>世界の海上石油輸送の約20%が通過するイランとオマーンの間の狭い水路。封鎖されれば世界のエネルギー供給に深刻な影響。</span></span>の海上封鎖を発令した。2月末の開戦以降、イランは海峡を事実上閉鎖しつつも一部の船舶に対し最大<span class="summary-num">$2M</span>/隻の通行料（一部は人民元で徴収）を課して通航を許可してきたが、トランプ大統領は「イランに不法な通行料を支払った全ての船舶を国際水域で捜索・拿捕する」と宣言。「通行料を支払った者は安全な航海を保証されない」と警告した。米中央軍（CENTCOM）は<strong>本日4月13日10:00 ET</strong>からイラン港湾への出入船舶に対する封鎖を「公平に」実施すると発表。同時にイランが敷設した機雷の除去作業も開始する。イラン港湾へ向かわない船舶の自由航行は妨げないとしているが、中国・インドなどイランに通行料を支払って石油輸入を続けてきた国々との緊張激化は不可避。世界石油輸送の20%が通過する要衝の封鎖は、原油価格の急騰・世界経済への波及・米中関係の悪化など複合的リスクをもたらす。
+      </p>
+      <div class="why-box negative">
+        <span class="why-icon">💡</span>
+        <div><span class="why-label">なぜ重要か:</span> ホルムズ海峡の米軍封鎖は戦後最大規模の海上封鎖作戦。停戦→交渉決裂→封鎖のエスカレーションにより、原油$100超え・CPI再加速・FRB利下げ見送りのシナリオが現実味を帯びる。今週の市場は極度の警戒モードで始まる</div>
+      </div>
+      <div class="top-story-footer">
+        <span class="top-story-source">CNBC / Bloomberg / Time / Al Jazeera / CBS / Axios</span>
+        <span>·</span>
+        <span>2026年4月12-13日</span>
+        <span>·</span>
+        <span>Geopolitics</span>
+      </div>
+    </div>
+
+    <!-- Top Story 2 -->
     <div class="top-story">
       <span class="top-story-badge">TOP STORY</span>
       <div class="section-hero">
