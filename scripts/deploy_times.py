@@ -29,10 +29,8 @@ try:
 except ImportError:
     pass
 
-GITHUB_USERNAME = "yskzz121"
-REPO_NAME       = "ui-kabu-times"
 REPO_DIR        = os.path.expanduser("~/ui-kabu-times")
-PAGES_BASE_URL  = f"https://{GITHUB_USERNAME}.github.io/{REPO_NAME}"
+PAGES_BASE_URL  = "https://atlas-financials.jp/news"
 LINE_CONFIG     = os.path.expanduser("~/.line_config")
 
 WEEKDAYS = ["月", "火", "水", "木", "金", "土", "日"]
@@ -312,11 +310,7 @@ def main():
         print(f"   → cd {REPO_DIR} && git checkout gh-pages")
         sys.exit(1)
 
-    # 1. git pull
-    print("1️⃣  リポジトリを最新化...")
-    run("git pull --rebase", cwd=REPO_DIR)
-
-    # 2. HTMLをコピー
+    # 1. HTMLをコピー
     if article_type == "morning":
         dest_dir = os.path.join(REPO_DIR, "morning", y, m)
         fname = f"{d}.html"
@@ -327,34 +321,40 @@ def main():
     os.makedirs(dest_dir, exist_ok=True)
     dest_file = os.path.join(dest_dir, fname)
     shutil.copy2(html_path, dest_file)
-    print(f"2️⃣  HTMLをコピー → {article_type}/{y}/{m}/{fname}")
+    print(f"1️⃣  HTMLをコピー → {article_type}/{y}/{m}/{fname}")
 
     # 3. latest.html 更新
     if article_type == "morning":
         update_morning_latest(date_obj)
     else:
         update_extra_latest(date_obj, slug)
-    print(f"3️⃣  {article_type}/latest.html を更新")
+    print(f"2️⃣  {article_type}/latest.html を更新")
 
     # 4. ポータルindex.html 再構築
     rebuild_portal_index()
-    print("4️⃣  ポータル index.html を再構築")
+    print("3️⃣  ポータル index.html を再構築")
 
-    # 5. git add → commit → push
-    print("5️⃣  Git コミット & プッシュ...")
-    run("git add -A", cwd=REPO_DIR)
+    # 5. Cloudflare Pages にデプロイ
+    print("4️⃣  Cloudflare Pages にデプロイ...")
+    run(f"npx wrangler pages deploy {REPO_DIR} --project-name atlas-news --commit-dirty=true", cwd=REPO_DIR)
+    print("   ✅ Cloudflare Pages にデプロイ完了")
+
+    # 6. Gitにもコミット（バックアップ・履歴管理用）
     commit_msg = f"{type_icon} {type_label} {y}/{int(m)}/{d}（{weekday}）"
     if slug:
         commit_msg += f" {slug}"
-    run(f'git commit -m "{commit_msg}"', cwd=REPO_DIR)
-    run("git push", cwd=REPO_DIR)
-    print("   ✅ GitHub Pages にプッシュ完了")
+    try:
+        run("git add -A", cwd=REPO_DIR)
+        run(f'git commit -m "{commit_msg}"', cwd=REPO_DIR)
+        run("git push", cwd=REPO_DIR)
+    except Exception as e:
+        print(f"   ⚠️ Git push スキップ（Cloudflareデプロイは成功済み）: {e}")
 
-    # 6. LINE通知
+    # 7. LINE通知
     if not send_line_flag:
-        print("6️⃣  LINE通知... スキップ（--line フラグなし）")
+        print("5️⃣  LINE通知... スキップ（--line フラグなし）")
     else:
-        print("6️⃣  LINE通知...")
+        print("5️⃣  LINE通知...")
     line_cfg = load_line_config() if send_line_flag else {}
     token = line_cfg.get("LINE_TOKEN")
     group_id = line_cfg.get("LINE_GROUP_ID")
