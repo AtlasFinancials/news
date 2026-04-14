@@ -2150,8 +2150,13 @@ body {
     .neo-rally-title { font-family: var(--font-heading); font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
     .neo-rally-sub { font-family: var(--font-ui); font-size: 12px; color: var(--slate-lt); margin-bottom: 14px; letter-spacing: .03em; }
     .neo-rally-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
-    .neo-rally-tile { background: var(--surface); border: 1px solid var(--paper-dk); border-radius: 10px; padding: 12px 10px; text-align: center; transition: transform .15s; }
-    .neo-rally-tile:hover { transform: translateY(-2px); }
+    .neo-rally-tile { background: var(--surface); border: 1px solid var(--paper-dk); border-radius: 10px; padding: 0; text-align: center; transition: transform .15s, box-shadow .15s; overflow: hidden; }
+    .neo-rally-tile:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(26,37,64,0.08); }
+    .neo-rally-banner { height: 44px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(107,122,149,0.14) 0%, rgba(184,145,42,0.08) 100%); border-bottom: 1px solid rgba(107,122,149,0.2); position: relative; }
+    .neo-rally-banner::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(184,145,42,0.5) 50%, transparent 100%); }
+    .neo-rally-banner-mark { font-family: var(--font-display); font-size: 11px; font-style: italic; font-weight: 700; color: rgba(26,37,64,0.55); letter-spacing: .25em; text-transform: uppercase; }
+    .neo-rally-banner-logo { height: 24px; width: auto; max-width: 80px; object-fit: contain; opacity: .85; }
+    .neo-rally-body-wrap { padding: 12px 10px 14px; }
     .neo-rally-name { font-family: var(--font-heading); font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 3px; line-height: 1.2; letter-spacing: .01em; }
     .neo-rally-ticker { font-family: var(--font-data); font-size: 9px; font-weight: 700; color: var(--slate-lt); letter-spacing: .06em; margin-bottom: 8px; }
     .neo-rally-price { font-family: var(--font-data); font-size: 17px; font-weight: 800; color: var(--ink); line-height: 1.1; }
@@ -2164,6 +2169,8 @@ body {
     [data-theme="dark"] .neo-rally-card { background: linear-gradient(135deg, rgba(184,145,42,0.12) 0%, rgba(184,145,42,0.04) 100%); border-color: rgba(184,145,42,0.25); }
     [data-theme="dark"] .neo-rally-title { color: #F5F2EC; }
     [data-theme="dark"] .neo-rally-tile { background: #1A2540; border-color: rgba(184,145,42,0.12); }
+    [data-theme="dark"] .neo-rally-banner { background: linear-gradient(135deg, rgba(107,122,149,0.2) 0%, rgba(184,145,42,0.14) 100%); border-bottom-color: rgba(184,145,42,0.3); }
+    [data-theme="dark"] .neo-rally-banner-mark { color: rgba(245,242,236,0.65); }
     [data-theme="dark"] .neo-rally-name { color: #F5F2EC; }
     [data-theme="dark"] .neo-rally-price { color: #F5F2EC; }
     [data-theme="dark"] .neo-rally-body, [data-theme="dark"] .neo-rally-body strong { color: #F5F2EC; }
@@ -2180,32 +2187,44 @@ body {
 
       <div class="neo-rally-grid">
         <div class="neo-rally-tile">
-          <div class="neo-rally-name">Oracle</div>
-          <div class="neo-rally-ticker">NYSE: ORCL</div>
-          <div class="neo-rally-price">$218.00</div>
-          <div class="neo-rally-chg">+12.74%</div>
-          <div class="neo-rally-note">Opower×Stargate</div>
+          <div class="neo-rally-banner"><span class="neo-rally-banner-mark">Neocloud</span></div>
+          <div class="neo-rally-body-wrap">
+            <div class="neo-rally-name">Oracle</div>
+            <div class="neo-rally-ticker">NYSE: ORCL</div>
+            <div class="neo-rally-price">$218.00</div>
+            <div class="neo-rally-chg">+12.74%</div>
+            <div class="neo-rally-note">Opower×Stargate</div>
+          </div>
         </div>
         <div class="neo-rally-tile">
-          <div class="neo-rally-name">Nebius</div>
-          <div class="neo-rally-ticker">NASDAQ: NBIS</div>
-          <div class="neo-rally-price">$145.19</div>
-          <div class="neo-rally-chg">+8.0%</div>
-          <div class="neo-rally-note">フィンランドAI Factory</div>
+          <div class="neo-rally-banner"><span class="neo-rally-banner-mark">Neocloud</span></div>
+          <div class="neo-rally-body-wrap">
+            <div class="neo-rally-name">Nebius</div>
+            <div class="neo-rally-ticker">NASDAQ: NBIS</div>
+            <div class="neo-rally-price">$145.19</div>
+            <div class="neo-rally-chg">+8.0%</div>
+            <div class="neo-rally-note">フィンランドAI Factory</div>
+          </div>
         </div>
         <div class="neo-rally-tile">
-          <div class="neo-rally-name">CoreWeave</div>
-          <div class="neo-rally-ticker">NASDAQ: CRWV</div>
-          <div class="neo-rally-price">$111.25</div>
-          <div class="neo-rally-chg">+2.6%</div>
-          <div class="neo-rally-note">Meta×Anthropic</div>
+          <div class="neo-rally-banner"><span class="neo-rally-banner-mark">Neocloud</span></div>
+          <div class="neo-rally-body-wrap">
+            <div class="neo-rally-name">CoreWeave</div>
+            <div class="neo-rally-ticker">NASDAQ: CRWV</div>
+            <div class="neo-rally-price">$111.25</div>
+            <div class="neo-rally-chg">+2.6%</div>
+            <div class="neo-rally-note">Meta×Anthropic</div>
+          </div>
         </div>
         <div class="neo-rally-tile">
-          <div class="neo-rally-name">IREN</div>
-          <div class="neo-rally-ticker">NASDAQ: IREN</div>
-          <div class="neo-rally-price">$52.99</div>
-          <div class="neo-rally-chg">+6.5%</div>
-          <div class="neo-rally-note">AI HPC需給逼迫</div>
+          <div class="neo-rally-banner"><span class="neo-rally-banner-mark">Neocloud</span></div>
+          <div class="neo-rally-body-wrap">
+            <div class="neo-rally-name">IREN</div>
+            <div class="neo-rally-ticker">NASDAQ: IREN</div>
+            <div class="neo-rally-price">$52.99</div>
+            <div class="neo-rally-chg">+6.5%</div>
+            <div class="neo-rally-note">AI HPC需給逼迫</div>
+          </div>
         </div>
       </div>
 
