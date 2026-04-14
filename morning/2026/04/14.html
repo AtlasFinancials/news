@@ -2144,6 +2144,80 @@ body {
       Oracleを筆頭に、AI学習・推論専用のGPUクラウド（ネオクラウド）が急成長している。上場4銘柄 <strong>NBIS</strong>・<strong>CRWV</strong>・<strong>ORCL</strong>・<strong>IREN</strong> を主要指標でフラットに比較。成長率は高いが、キャッシュフローは軒並み設備投資で圧迫されており、資金調達力と顧客基盤の質が勝敗を分ける局面。
     </div>
 
+    <!-- Yesterday's rally highlight -->
+    <style>
+    .neo-rally-card { margin-bottom: 20px; padding: 20px 22px; background: linear-gradient(135deg, rgba(184,145,42,0.08) 0%, rgba(184,145,42,0.02) 100%); border: 1px solid rgba(184,145,42,0.25); border-radius: 12px; }
+    .neo-rally-title { font-family: var(--font-heading); font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .neo-rally-sub { font-family: var(--font-ui); font-size: 12px; color: var(--slate-lt); margin-bottom: 14px; letter-spacing: .03em; }
+    .neo-rally-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+    .neo-rally-tile { background: var(--surface); border: 1px solid var(--paper-dk); border-radius: 10px; padding: 12px 10px; text-align: center; transition: transform .15s; }
+    .neo-rally-tile:hover { transform: translateY(-2px); }
+    .neo-rally-ticker { font-family: var(--font-data); font-size: 11px; font-weight: 700; color: var(--slate-lt); letter-spacing: .06em; margin-bottom: 2px; }
+    .neo-rally-name { font-family: var(--font-heading); font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; line-height: 1.2; }
+    .neo-rally-price { font-family: var(--font-data); font-size: 17px; font-weight: 800; color: var(--ink); line-height: 1.1; }
+    .neo-rally-chg { font-family: var(--font-data); font-size: 15px; font-weight: 800; color: #16a34a; margin-top: 4px; }
+    .neo-rally-note { font-size: 10px; color: var(--slate-lt); margin-top: 4px; font-family: var(--font-ui); }
+    .neo-rally-body { font-family: var(--font-body); font-size: 13.5px; line-height: 1.85; color: var(--ink); }
+    .neo-rally-body strong { color: var(--navy); }
+    .neo-rally-body p { margin-bottom: 8px; }
+    .neo-rally-body p:last-child { margin-bottom: 0; }
+    [data-theme="dark"] .neo-rally-card { background: linear-gradient(135deg, rgba(184,145,42,0.12) 0%, rgba(184,145,42,0.04) 100%); border-color: rgba(184,145,42,0.25); }
+    [data-theme="dark"] .neo-rally-title { color: #F5F2EC; }
+    [data-theme="dark"] .neo-rally-tile { background: #1A2540; border-color: rgba(184,145,42,0.12); }
+    [data-theme="dark"] .neo-rally-name { color: #F5F2EC; }
+    [data-theme="dark"] .neo-rally-price { color: #F5F2EC; }
+    [data-theme="dark"] .neo-rally-body, [data-theme="dark"] .neo-rally-body strong { color: #F5F2EC; }
+    @media (max-width: 767px) {
+      .neo-rally-grid { grid-template-columns: repeat(2, 1fr); }
+      .neo-rally-price { font-size: 15px; }
+      .neo-rally-chg { font-size: 13px; }
+    }
+    </style>
+
+    <div class="neo-rally-card">
+      <div class="neo-rally-title">🚀 昨日、ネオクラウド4社が揃って急騰</div>
+      <div class="neo-rally-sub">2026年4月13日（月）米国市場クローズ</div>
+
+      <div class="neo-rally-grid">
+        <div class="neo-rally-tile">
+          <div class="neo-rally-ticker">NYSE: ORCL</div>
+          <div class="neo-rally-name">Oracle</div>
+          <div class="neo-rally-price">$218.00</div>
+          <div class="neo-rally-chg">+12.74%</div>
+          <div class="neo-rally-note">Opower×Stargate</div>
+        </div>
+        <div class="neo-rally-tile">
+          <div class="neo-rally-ticker">NASDAQ: NBIS</div>
+          <div class="neo-rally-name">Nebius</div>
+          <div class="neo-rally-price">$145.19</div>
+          <div class="neo-rally-chg">+8.0%</div>
+          <div class="neo-rally-note">フィンランドAI Factory</div>
+        </div>
+        <div class="neo-rally-tile">
+          <div class="neo-rally-ticker">NASDAQ: CRWV</div>
+          <div class="neo-rally-name">CoreWeave</div>
+          <div class="neo-rally-price">$111.25</div>
+          <div class="neo-rally-chg">+2.6%</div>
+          <div class="neo-rally-note">Meta×Anthropic</div>
+        </div>
+        <div class="neo-rally-tile">
+          <div class="neo-rally-ticker">NASDAQ: IREN</div>
+          <div class="neo-rally-name">IREN</div>
+          <div class="neo-rally-price">$52.99</div>
+          <div class="neo-rally-chg">+6.5%</div>
+          <div class="neo-rally-note">AI HPC需給逼迫</div>
+        </div>
+      </div>
+
+      <div class="neo-rally-body">
+        <p>月曜の米国市場では<strong>ネオクラウド4社が揃って上昇</strong>し、AIインフラセクター全体への資金流入が顕著になった。</p>
+        <p><strong>最大の触媒はCoreWeave（CRWV）の大型契約ラッシュだった。</strong>同社は<strong>Anthropic社との複数年契約</strong>（Claudeモデルの学習・展開支援、経営陣いわく「数十億ドル規模」）を発表し、この報道で株価は一時+11%まで跳ねた。さらに同日、<strong>Meta Platformsとの$21B（約3兆円）規模・2032年までのAIクラウド容量拡大契約</strong>も判明し、既存MSFT偏重の顧客基盤から大手3社（MSFT/Meta/Anthropic）への分散が進んだ格好。終値は+2.6%と寄り付き後の利益確定で伸び悩んだが、日中+9%のレンジで取引された。</p>
+        <p><strong>OracleはOpower AI（公益向けAIプラットフォーム）顧客サミットでのデモが好感され+12.74%、</strong>ソフトウェア株全体の反騰（ADBE +6.54%、NOW +7.30%）を牽引した。背景には<strong>OpenAIとの$300B/5年Stargate契約</strong>と、Goldman Sachsの「AI懐疑論は過剰織り込み」トーン転換がある。</p>
+        <p><strong>Nebius（+8.0%）は</strong>フィンランド・ラッペーンランタでの<strong>新AIファクトリー（最大310MW）</strong>建設発表と、Nvidiaとの$2B戦略投資スキーム拡大を受けた買い。<strong>IREN（+6.5%前後）は</strong>BTCマイニング収益からAI GPUホスティングへの転換ランレートが$200-250M/年に達する見通しで、連れ高の構図。</p>
+        <p>共通しているのは、<strong>「AI学習需要は単一ハイパースケーラーで完結しない」</strong>という認識の強まりだ。Anthropic・Meta・OpenAIのような大手LLMプレイヤーが、AWS/Azure/GCP以外の選択肢としてネオクラウドを戦略的パートナーに据え始めた。これが昨日の4社同時上昇の構造的背景である。</p>
+      </div>
+    </div>
+
     <div class="neo-matrix-wrap">
       <table class="neo-matrix">
         <thead>
