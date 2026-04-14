@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Daily 特集 | ネオクラウド徹底比較</title>
+<meta name="description" content="CoreWeave・Nebius・Oracle・IREN等13社をフラット比較。薄利多売リスクと編集部のOracle選定">
+<meta name="extra-headline" content="ネオクラウド13社徹底比較 — Oracle推奨の根拠">
+<meta property="og:title" content="Atlas Daily 特集 | ネオクラウド徹底比較">
+<meta property="og:description" content="CoreWeave・Nebius・Oracle・IREN等13社をフラット比較。薄利多売リスクと編集部のOracle選定">
+<meta property="og:url" content="https://atlas-financials.jp/news/special/neocloud-2026.html">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/png" href="https://atlas-financials.jp/news/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700;900&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho+B1:wght@500;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50:'#faf8f3',100:'#f0ebe0',200:'#e0d5c0',300:'#d4c49f',
+          400:'#c9a84f',500:'#B8912A',600:'#a07d22',700:'#7d611a',
+          800:'#5a4612',900:'#3d2f0c',950:'#1A2540'
+        }
+      },
+      fontFamily: {
+        sans: ['Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','sans-serif'],
+        serif: ['Shippori Mincho B1','Noto Serif JP','serif']
+      }
+    }
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  .text-body { color: #3d4b5f; }
+  .hero-bg {
+    background-image: linear-gradient(135deg, rgba(26,37,64,0.92), rgba(15,24,41,0.96)), url('https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .hero-bg > * { position: relative; z-index: 1; }
+  @media(max-width:768px) {
+    .metrics-grid { grid-template-columns: 1fr 1fr !important; }
+    .cards-grid { grid-template-columns: 1fr !important; }
+  }
+  @media(max-width:480px) {
+    .metrics-grid { grid-template-columns: 1fr !important; }
+  }
+  h2 { color: #1A2540 !important; font-family: 'Shippori Mincho B1', 'Noto Serif JP', serif; }
+  h3 { color: #1A2540 !important; }
+  .bg-white { background: #FDFCFA !important; }
+  .bg-gray-50, .bg-slate-50 { background: #F5F2EC !important; }
+  /* Accordion */
+  .acc-header{cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .acc-header::after{content:'▼';font-size:.75em;color:#B8912A;transition:transform .25s;flex-shrink:0}
+  .acc.collapsed .acc-header::after{transform:rotate(-90deg)}
+  .acc-body{overflow:hidden;transition:max-height .35s ease,opacity .25s ease;max-height:3000px;opacity:1}
+  .acc.collapsed .acc-body{max-height:0;opacity:0;margin:0;padding:0;border:0}
+  /* badge */
+  .badge-listed{background:#e6f4ea;color:#1b7043;border:1px solid #a7d4b8}
+  .badge-private{background:#fdecc8;color:#7a5210;border:1px solid #e6c57a}
+  .co-card{display:flex;flex-direction:column;gap:6px}
+  /* tooltip */
+  .tt{position:fixed;pointer-events:none;background:#1e293b;color:#f8fafc;padding:8px 12px;border-radius:8px;font-size:12px;z-index:200;box-shadow:0 4px 12px rgba(0,0,0,.2);max-width:240px;line-height:1.4}
+  .tt.hidden{display:none}
+</style>
+</head>
+<body class="min-h-screen font-sans" style="background:#F5F2EC;">
+
+<header style="background:rgba(26,37,64,0.97);padding:0 5vw;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(184,145,42,0.12)">
+<div style="display:flex;justify-content:space-between;align-items:center;height:52px;max-width:1100px;margin:0 auto">
+<a href="https://atlas-financials.jp/" style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;text-decoration:none">Atlas<span style="color:#D4A843">.</span></a>
+<nav style="display:flex;gap:20px">
+<a href="https://atlas-financials.jp/news/" style="font-size:12px;color:#D4A843;text-decoration:none">朝刊</a>
+<a href="https://atlas-financials.jp/reports/" style="font-size:12px;color:#D4A843;text-decoration:none">分析</a>
+<a href="https://atlas-financials.jp/news/glossary/" style="font-size:12px;color:#D4A843;text-decoration:none">用語辞典</a>
+</nav>
+</div></header>
+
+<!-- ===== HERO ===== -->
+<header class="hero-bg">
+  <div class="max-w-5xl mx-auto px-6 py-16 text-center">
+    <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium mb-6" style="background:rgba(184,145,42,0.15);border:1px solid rgba(184,145,42,0.3);color:#D4A843;">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
+      Atlas Daily ｜ 号外特集
+    </div>
+    <h1 class="font-serif text-4xl md:text-5xl font-black leading-tight mb-3" style="color:#fff;">
+      Neocloud Deep Dive<br><span style="color:#D4A843;">AI時代の新しい雲</span>
+    </h1>
+    <p class="text-lg mb-2" style="color:#ccc;">13社比較と編集部のOracle推奨根拠</p>
+    <p class="text-sm mb-4" style="color:#999;">2026年4月14日 発行</p>
+    <a href="/news/morning/2026/04/14.html" class="inline-flex items-center gap-2 text-xs px-4 py-2 rounded-full" style="background:rgba(255,255,255,0.08);border:1px solid rgba(184,145,42,0.3);color:#D4A843;text-decoration:none;">
+      <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+      2026年4月14日 朝刊に戻る
+    </a>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-6 py-12">
+
+  <!-- ===== Section 1: WHY NOW ===== -->
+  <section>
+    <h2 class="text-2xl font-bold mb-1">なぜ今「ネオクラウド」なのか</h2>
+    <p class="text-slate-500 text-sm mb-5">3つの需要拡大要因</p>
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-5">
+      <p class="text-body leading-relaxed text-sm">
+        ハイパースケーラー（AWS・Azure・GCP）の巨大データセンターでは賄いきれないAIワークロードが急増している。GPU専業の「ネオクラウド（Neocloud）」と呼ばれる新興プレイヤー群が、従来の汎用クラウドとは異なる経済性・調達力・展開速度で台頭。本特集では上場9社・非上場4社の計13社を横並びで比較し、編集部として最も推奨する1社を明示する。
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 cards-grid">
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-3xl mb-2">🧠</div>
+        <h3 class="font-bold text-base mb-2">AIトレーニング需要の爆発</h3>
+        <p class="text-body text-sm leading-relaxed">GPT-5/Gemini 3世代では10,000+ GPUクラスターが必要。ハイパースケーラー単独では供給が追いつかず、ネオクラウドへの外部委託が常態化。</p>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-3xl mb-2">⚡</div>
+        <h3 class="font-bold text-base mb-2">推論需要の長期化</h3>
+        <p class="text-body text-sm leading-relaxed">学習後の推論コストが学習コストを上回るケースが多発。分散推論インフラが必須となり、低レイテンシ・地域分散のネオクラウドが受け皿に。</p>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-3xl mb-2">🌍</div>
+        <h3 class="font-bold text-base mb-2">Sovereign AI の台頭</h3>
+        <p class="text-body text-sm leading-relaxed">欧州・中東・アジアが自国データ処理を要請。米ハイパースケーラー依存を避ける動きが、地域プレイヤー（Nebius・Nscale等）に追い風。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Section 2: LANDSCAPE 13 ===== -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold mb-1">ランドスケープ13社概観</h2>
+    <p class="text-slate-500 text-sm mb-5">上場9社 + 非上場4社</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 cards-grid">
+
+      <!-- 1 Oracle -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm co-card">
+        <div class="flex items-center justify-between"><span class="font-bold">Oracle</span><span class="text-xs px-2 py-0.5 rounded-full badge-listed">上場</span></div>
+        <div class="text-xs text-slate-500">NYSE:ORCL ｜ Safra Catz</div>
+        <div class="text-sm"><span class="text-slate-500">時価総額:</span> <span class="font-semibold">$600B+</span></div>
+        <div class="text-sm"><span class="text-slate-500">OCI 2026E売上:</span> <span class="font-semibold">$18B</span></div>
+        <div class="text-sm"><span class="text-emerald-600 font-semibold">YoY +77%</span></div>
+      </div>
+
+      <!-- 2 CoreWeave -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm co-card">
+        <div class="flex items-center justify-between"><span class="font-bold">CoreWeave</span><span class="text-xs px-2 py-0.5 rounded-full badge-listed">上場</span></div>
+        <div class="text-xs text-slate-500">NASDAQ:CRWV ｜ Michael Intrator</div>
+        <div class="text-sm"><span class="text-slate-500">時価総額:</span> <span class="font-semibold">$58.0B</span></div>
+        <div class="text-sm"><span class="text-slate-500">2025売上:</span> <span class="font-semibold">$5.13B</span></div>
+        <div class="text-sm"><span class="text-emerald-600 font-semibold">YoY +168%</span></div>
+      </div>
+
+      <!-- 3 Nebius -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm co-card">
+        <div class="flex items-center justify-between"><span class="font-bold">Nebius</span><span class="text-xs px-2 py-0.5 rounded-full badge-listed">上場</span></div>
+        <div class="text-xs text-slate-500">NASDAQ:NBIS ｜ Arkady Volozh</div>
+        <div class="text-sm"><span class="text-slate-500">時価総額:</span> <span class="font-semibold">$36.5B</span></div>
+        <div class="text-sm"><span class="text-slate-500">2025売上:</span> <span class="font-semibold">$529.8M</span></div>
+        <div class="text-sm"><span class="text-emerald-600 font-semibold">YoY +479%</span></div>
+      </div>
+
+      <!-- 4 IREN -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm co-card">
+        <div class="flex items-center justify-between"><span class="font-bold">IREN</span><span class="text-xs px-2 py-0.5 rounded-full badge-listed">上場</span></div>
+        <div class="text-xs text-slate-500">NASDAQ:IREN ｜ Daniel/Will Roberts</div>
+        <div class="text-sm"><span class="text-slate-500">時価総額:</span> <span class="font-semibold">$11B</span></div>
+        <div class="text-sm"><span class="text-slate-500">FY25売上:</span> <span class="font-semibold">$501M</span></div>
+        <div class="text-sm"><span class="text-emerald-600 font-semibold">YoY +168%</span></div>
+      </div>
+
+      <!-- 5 APLD -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm co-card">
+        <div class="flex items-center justify-between"><span class="font-bold">Applied Digital</span><span class="text-xs px-2 py-0.5 rounded-full badge-listed">上場</span></div>
+        <div class="text-xs text-slate-500">NASDAQ:APLD ｜ Wes Cummins</div>
+        <div class="text-sm"><span class="text-slate-500">時価総額:</span> <span class="font-semibold">$4.5B</span></div>
+        <div class="text-sm"><span class="text-slate-500">Q3 FY26売上:</span> <span class="font-semibold">$126.6M</span></div>
+        <div class="text-sm"><span class="text-emerald-600 font-semibold">YoY +139%</span></div>
+      </div>
+
+      <!-- 6 CORZ -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm co-card">
+        <div class="flex items-center justify-between"><span class="font-bold">Core Scientific</span><span class="text-xs px-2 py-0.5 rounded-full badge-listed">上場</span></div>
+        <div class="text-xs text-slate-500">NASDAQ:CORZ ｜ Adam Sullivan</div>
+        <div class="text-sm"><span class="text-slate-500">時価総額:</span> <span class="font-semibold">$4.5B</span></div>
+        <div class="text-sm"><span class="text-slate-500">AI hosting売上:</span> <span class="font-semibold">$65M</span></div>
+        <div class="text-sm"><span class="text-emerald-600 font-semibold">YoY +168%</span></div>
+      </div>
+
+      <!-- 7 WULF -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm co-card">
+        <div class="flex items-center justify-between"><span class="font-bold">TeraWulf</span><span class="text-xs px-2 py-0.5 rounded-full badge-listed">上場</span></div>
+        <div class="text-xs text-slate-500">NASDAQ:WULF ｜ Paul Prager</div>
+        <div class="text-sm"><span class="text-slate-500">時価総額:</span> <span class="font-semibold">$3B</span></div>
+        <div class="text-sm"><span class="text-slate-500">2025売上:</span> <span class="font-semibold">$168.5M</span></div>
+        <div class="text-sm"><span class="text-emerald-600 font-semibold">YoY +20%</span></div>
+      </div>
+
+      <!-- 8 CIFR -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm co-card">
+        <div class="flex items-center justify-between"><span class="font-bold">Cipher Mining</span><span class="text-xs px-2 py-0.5 rounded-full badge-listed">上場</span></div>
+        <div class="text-xs text-slate-500">NASDAQ:CIFR ｜ Tyler Page</div>
+        <div class="text-sm"><span class="text-slate-500">時価総額:</span> <span class="font-semibold">$2B</span></div>
+        <div class="text-sm text-slate-500">AI転換中</div>
+      </div>
+
+      <!-- 9 BTDR -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm co-card">
+        <div class="flex items-center justify-between"><span class="font-bold">Bitdeer</span><span class="text-xs px-2 py-0.5 rounded-full badge-listed">上場</span></div>
+        <div class="text-xs text-slate-500">NASDAQ:BTDR ｜ Jihan Wu</div>
+        <div class="text-sm"><span class="text-slate-500">時価総額:</span> <span class="font-semibold">$2B</span></div>
+        <div class="text-sm text-slate-500">HPC拡大中</div>
+      </div>
+
+      <!-- 10 Nscale -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm co-card">
+        <div class="flex items-center justify-between"><span class="font-bold">Nscale</span><span class="text-xs px-2 py-0.5 rounded-full badge-private">非上場</span></div>
+        <div class="text-xs text-slate-500">UK ｜ Josh Payne</div>
+        <div class="text-sm"><span class="text-slate-500">評価額:</span> <span class="font-semibold">$3.1B</span></div>
+        <div class="text-sm text-slate-500">2026 IPO予定・MSFT $23B契約</div>
+      </div>
+
+      <!-- 11 Crusoe -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm co-card">
+        <div class="flex items-center justify-between"><span class="font-bold">Crusoe</span><span class="text-xs px-2 py-0.5 rounded-full badge-private">非上場</span></div>
+        <div class="text-xs text-slate-500">US ｜ Chase Lochmiller</div>
+        <div class="text-sm"><span class="text-slate-500">評価額:</span> <span class="font-semibold">~$10B</span></div>
+        <div class="text-sm text-slate-500">フレアガスAI DC</div>
+      </div>
+
+      <!-- 12 Lambda -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm co-card">
+        <div class="flex items-center justify-between"><span class="font-bold">Lambda Labs</span><span class="text-xs px-2 py-0.5 rounded-full badge-private">非上場</span></div>
+        <div class="text-xs text-slate-500">US ｜ Stephen Balaban</div>
+        <div class="text-sm"><span class="text-slate-500">評価額:</span> <span class="font-semibold">~$2.5B</span></div>
+        <div class="text-sm text-slate-500">ML開発者向け</div>
+      </div>
+
+      <!-- 13 Vultr -->
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm co-card">
+        <div class="flex items-center justify-between"><span class="font-bold">Vultr</span><span class="text-xs px-2 py-0.5 rounded-full badge-private">非上場</span></div>
+        <div class="text-xs text-slate-500">US ｜ J.J. Kardwell</div>
+        <div class="text-sm"><span class="text-slate-500">評価額:</span> <span class="font-semibold">~$3.5B</span></div>
+        <div class="text-sm text-slate-500">32リージョン展開</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Section 3: COMPANY DEEP DIVE ===== -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold mb-1">企業別深掘り（13社）</h2>
+    <p class="text-slate-500 text-sm mb-5">各社7項目 — タップで開閉</p>
+
+    <div class="space-y-3" id="accList">
+
+      <!-- Oracle -->
+      <div class="acc bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="acc-header p-5">
+          <div><span class="font-bold text-base">Oracle</span> <span class="text-xs text-slate-500 ml-2">NYSE:ORCL</span></div>
+          <span class="text-xs text-primary-600 font-medium">編集部推奨</span>
+        </div>
+        <div class="acc-body px-5 pb-5 text-sm text-body leading-relaxed space-y-2">
+          <p><strong>(a) 事業内容:</strong> 1977年創業、テキサス・オースティン本社、CEO Safra Catz。OCI（Oracle Cloud Infrastructure）＋OpenAI Stargate共同出資。</p>
+          <p><strong>(b) 規模:</strong> 時価総額$600B超、OCI 2026E売上$18B（+77%）。</p>
+          <p><strong>(c) EPS:</strong> TTM $5.69 / Forward FY27 $8.16。</p>
+          <p><strong>(d) 主要株主:</strong> Larry Ellison ~40%、Vanguard、BlackRock。</p>
+          <p><strong>(e) 展開:</strong> グローバル、OpenAI Stargate（テキサス5GW+）。</p>
+          <p><strong>(f) 需要拡大:</strong> エンタープライズDB顧客基盤 × OpenAI $300B/5年契約でスケール。</p>
+          <p><strong>(g) 薄利リスク:</strong> <span class="text-emerald-600 font-semibold">低</span>。DB×クラウドで差別化。ただし社債$45-50B/2026予定は財務懸念。</p>
+        </div>
+      </div>
+
+      <!-- CoreWeave -->
+      <div class="acc collapsed bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="acc-header p-5">
+          <div><span class="font-bold text-base">CoreWeave</span> <span class="text-xs text-slate-500 ml-2">NASDAQ:CRWV</span></div>
+          <span class="text-xs text-slate-400">詳細</span>
+        </div>
+        <div class="acc-body px-5 pb-5 text-sm text-body leading-relaxed space-y-2">
+          <p><strong>(a) 事業内容:</strong> 2017年創業、ルーベンスビル、CEO Michael Intrator。純粋GPUaaS。</p>
+          <p><strong>(b) 規模:</strong> 時価$58.0B、2025売上$5.13B（+168%）、2026ガイダンス$12-13B。</p>
+          <p><strong>(c) EPS:</strong> TTM -$2.81（赤字）。</p>
+          <p><strong>(d) 主要株主:</strong> Magnetar Capital ~30%、Nvidia、Fidelity、Coatue、Blackstone（debt $7.5B）。</p>
+          <p><strong>(e) 展開:</strong> 米国中心＋英国拡大、顧客はMSFT 60%/Anthropic/OpenAI。</p>
+          <p><strong>(f) 需要拡大:</strong> Nvidia優先GPU × スピード重視AIスタートアップ。</p>
+          <p><strong>(g) 薄利リスク:</strong> <span class="text-amber-600 font-semibold">中-高</span>。顧客集中＋レバレッジ重。対応策は契約長期化・顧客分散・orchestration内製化。</p>
+        </div>
+      </div>
+
+      <!-- Nebius -->
+      <div class="acc collapsed bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="acc-header p-5">
+          <div><span class="font-bold text-base">Nebius</span> <span class="text-xs text-slate-500 ml-2">NASDAQ:NBIS</span></div>
+          <span class="text-xs text-slate-400">詳細</span>
+        </div>
+        <div class="acc-body px-5 pb-5 text-sm text-body leading-relaxed space-y-2">
+          <p><strong>(a) 事業内容:</strong> 2024年上場（Yandex再編）、アムステルダム、CEO Arkady Volozh。</p>
+          <p><strong>(b) 規模:</strong> 時価$36.5B、2025売上$529.8M（+479%）、2026 ARR $7-9B見込み。</p>
+          <p><strong>(c) EPS:</strong> 2025 $29M黒字転換。</p>
+          <p><strong>(d) 主要株主:</strong> Volozh、Nvidia（$2B/8.3%）、Accel、Orbis。</p>
+          <p><strong>(e) 展開:</strong> 欧州+米国、MSFT $17-19B/5年 + Meta $3B。</p>
+          <p><strong>(f) 需要拡大:</strong> 欧州Sovereign AI受け皿、Nvidia公認パートナー。</p>
+          <p><strong>(g) 薄利リスク:</strong> <span class="text-amber-600 font-semibold">中</span>。創業者ロシア歴は払拭済み。MSFT依存分散が課題。</p>
+        </div>
+      </div>
+
+      <!-- IREN -->
+      <div class="acc collapsed bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="acc-header p-5">
+          <div><span class="font-bold text-base">IREN</span> <span class="text-xs text-slate-500 ml-2">NASDAQ:IREN</span></div>
+          <span class="text-xs text-slate-400">詳細</span>
+        </div>
+        <div class="acc-body px-5 pb-5 text-sm text-body leading-relaxed space-y-2">
+          <p><strong>(a) 事業内容:</strong> 2018年創業、オーストラリア本社、Co-CEO Roberts兄弟。</p>
+          <p><strong>(b) 規模:</strong> 時価$11B、FY25売上$501M（+168%）、純利益$86.9M。</p>
+          <p><strong>(c) EPS:</strong> Q2 FY26 -$0.52。</p>
+          <p><strong>(d) 主要株主:</strong> Roberts兄弟、BlackRock、Vanguard。</p>
+          <p><strong>(e) 展開:</strong> 豪州・カナダBC・テキサス。</p>
+          <p><strong>(f) 需要拡大:</strong> BTCマイニングノウハウ × クリーン電力基盤。</p>
+          <p><strong>(g) 薄利リスク:</strong> <span class="text-amber-600 font-semibold">中</span>。BTC価格変動。AIランレート$200-250M達成が転換点。</p>
+        </div>
+      </div>
+
+      <!-- APLD -->
+      <div class="acc collapsed bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="acc-header p-5">
+          <div><span class="font-bold text-base">Applied Digital</span> <span class="text-xs text-slate-500 ml-2">NASDAQ:APLD</span></div>
+          <span class="text-xs text-slate-400">詳細</span>
+        </div>
+        <div class="acc-body px-5 pb-5 text-sm text-body leading-relaxed space-y-2">
+          <p><strong>(a) 事業内容:</strong> 2001年創業、ダラス、CEO Wes Cummins。</p>
+          <p><strong>(b) 規模:</strong> 時価$4.5B、Q3 FY26売上$126.6M（+139%）。</p>
+          <p><strong>(c) EPS:</strong> Adj EPS Q3 $0.09。</p>
+          <p><strong>(d) 主要株主:</strong> Cummins、B.Riley、Vanguard。</p>
+          <p><strong>(e) 展開:</strong> ノースダコタ・テキサス、100MW液冷DC。</p>
+          <p><strong>(f) 需要拡大:</strong> 液冷100MW × 大手テックリース。</p>
+          <p><strong>(g) 薄利リスク:</strong> <span class="text-amber-600 font-semibold">中</span>。規模小・顧客集中。対応策は追加リース×長期信用契約。</p>
+        </div>
+      </div>
+
+      <!-- CORZ -->
+      <div class="acc collapsed bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="acc-header p-5">
+          <div><span class="font-bold text-base">Core Scientific</span> <span class="text-xs text-slate-500 ml-2">NASDAQ:CORZ</span></div>
+          <span class="text-xs text-slate-400">詳細</span>
+        </div>
+        <div class="acc-body px-5 pb-5 text-sm text-body leading-relaxed space-y-2">
+          <p><strong>(a) 事業内容:</strong> 2017年創業、2022年Chapter 11→2024年再上場、CEO Adam Sullivan。</p>
+          <p><strong>(b) 規模:</strong> 時価$4.5B、AI hosting売上$65.4M。</p>
+          <p><strong>(c) EPS:</strong> TTM赤字。</p>
+          <p><strong>(d) 主要株主:</strong> 再上場後債権者、BlackRock、Citadel。</p>
+          <p><strong>(e) 展開:</strong> 米国7州。</p>
+          <p><strong>(f) 需要拡大:</strong> CoreWeaveと$10B/590MW契約。</p>
+          <p><strong>(g) 薄利リスク:</strong> <span class="text-amber-600 font-semibold">高</span>。顧客集中（CoreWeave偏重）。対応策は2028までにCRWV比率50%以下。</p>
+        </div>
+      </div>
+
+      <!-- WULF -->
+      <div class="acc collapsed bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="acc-header p-5">
+          <div><span class="font-bold text-base">TeraWulf</span> <span class="text-xs text-slate-500 ml-2">NASDAQ:WULF</span></div>
+          <span class="text-xs text-slate-400">詳細</span>
+        </div>
+        <div class="acc-body px-5 pb-5 text-sm text-body leading-relaxed space-y-2">
+          <p><strong>(a) 事業内容:</strong> 2021年創業、メリーランド、CEO Paul Prager。</p>
+          <p><strong>(b) 規模:</strong> 時価$3B、2025売上$168.5M、522MW HPC契約。</p>
+          <p><strong>(c) EPS:</strong> TTM赤字。</p>
+          <p><strong>(d) 主要株主:</strong> Prager、BlackRock、Google（Abernathy JV保証）。</p>
+          <p><strong>(e) 展開:</strong> NY州・テキサス。</p>
+          <p><strong>(f) 需要拡大:</strong> クリーン電力 × Google裏付け25年長期契約。</p>
+          <p><strong>(g) 薄利リスク:</strong> <span class="text-amber-600 font-semibold">中</span>。CEO不動産ガバナンス指摘あり。対応策は透明性×信用格付契約。</p>
+        </div>
+      </div>
+
+      <!-- CIFR -->
+      <div class="acc collapsed bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="acc-header p-5">
+          <div><span class="font-bold text-base">Cipher Mining</span> <span class="text-xs text-slate-500 ml-2">NASDAQ:CIFR</span></div>
+          <span class="text-xs text-slate-400">詳細</span>
+        </div>
+        <div class="acc-body px-5 pb-5 text-sm text-body leading-relaxed space-y-2">
+          <p><strong>(a) 事業内容:</strong> 2020年創業、NY、CEO Tyler Page。</p>
+          <p><strong>(b) 規模:</strong> 時価$2B、AI転換中。</p>
+          <p><strong>(c) EPS:</strong> 赤字。</p>
+          <p><strong>(d) 主要株主:</strong> Bitfury Group、機関投資家。</p>
+          <p><strong>(e) 展開:</strong> テキサス。</p>
+          <p><strong>(f) 需要拡大:</strong> Morgan Stanley Overweight評価。</p>
+          <p><strong>(g) 薄利リスク:</strong> <span class="text-amber-600 font-semibold">高</span>。BTC依存。対応策はAI hosting加速。</p>
+        </div>
+      </div>
+
+      <!-- BTDR -->
+      <div class="acc collapsed bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="acc-header p-5">
+          <div><span class="font-bold text-base">Bitdeer</span> <span class="text-xs text-slate-500 ml-2">NASDAQ:BTDR</span></div>
+          <span class="text-xs text-slate-400">詳細</span>
+        </div>
+        <div class="acc-body px-5 pb-5 text-sm text-body leading-relaxed space-y-2">
+          <p><strong>(a) 事業内容:</strong> 2023年SPAC上場、シンガポール、CEO Jihan Wu（Bitmain創業）。</p>
+          <p><strong>(b) 規模:</strong> 時価$2B。</p>
+          <p><strong>(c) EPS:</strong> 赤字。</p>
+          <p><strong>(d) 主要株主:</strong> Wu、Bitmain関連。</p>
+          <p><strong>(e) 展開:</strong> グローバル（シンガポール・米国・北欧）。</p>
+          <p><strong>(f) 需要拡大:</strong> アナリスト目標+169% upside。</p>
+          <p><strong>(g) 薄利リスク:</strong> <span class="text-amber-600 font-semibold">高</span>。BTC最重。対応策は自社ASIC × AI HPCの両輪。</p>
+        </div>
+      </div>
+
+      <!-- Nscale -->
+      <div class="acc collapsed bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="acc-header p-5">
+          <div><span class="font-bold text-base">Nscale</span> <span class="text-xs text-slate-500 ml-2">非上場 (UK)</span></div>
+          <span class="text-xs text-slate-400">詳細</span>
+        </div>
+        <div class="acc-body px-5 pb-5 text-sm text-body leading-relaxed space-y-2">
+          <p><strong>(a) 事業内容:</strong> 2024年創業、ロンドン、CEO Josh Payne。</p>
+          <p><strong>(b) 規模:</strong> 評価額$3.1B、$1.1BシリーズB調達。</p>
+          <p><strong>(c) EPS:</strong> 非上場。</p>
+          <p><strong>(d) 主要株主:</strong> Nvidia、Sandton。</p>
+          <p><strong>(e) 展開:</strong> 英国・ポルトガル・テキサス・ノルウェー。</p>
+          <p><strong>(f) 需要拡大:</strong> Microsoft $23B/200K GB300契約。</p>
+          <p><strong>(g) 薄利リスク:</strong> <span class="text-amber-600 font-semibold">中</span>。非上場情報非対称。対応策は2026 IPO。</p>
+        </div>
+      </div>
+
+      <!-- Crusoe -->
+      <div class="acc collapsed bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="acc-header p-5">
+          <div><span class="font-bold text-base">Crusoe</span> <span class="text-xs text-slate-500 ml-2">非上場 (US)</span></div>
+          <span class="text-xs text-slate-400">詳細</span>
+        </div>
+        <div class="acc-body px-5 pb-5 text-sm text-body leading-relaxed space-y-2">
+          <p><strong>(a) 事業内容:</strong> 2018年創業、デンバー、CEO Chase Lochmiller。</p>
+          <p><strong>(b) 規模:</strong> ~$10B評価額。</p>
+          <p><strong>(c) EPS:</strong> 非上場。</p>
+          <p><strong>(d) 主要株主:</strong> Founders Fund、G2、Nvidia。</p>
+          <p><strong>(e) 展開:</strong> 米国。</p>
+          <p><strong>(f) 需要拡大:</strong> Oracle Stargateパートナー × 持続可能電力。</p>
+          <p><strong>(g) 薄利リスク:</strong> <span class="text-amber-600 font-semibold">中</span>。電力限定 × スケール制約。対応策は再エネ開発 × 長期契約。</p>
+        </div>
+      </div>
+
+      <!-- Lambda -->
+      <div class="acc collapsed bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="acc-header p-5">
+          <div><span class="font-bold text-base">Lambda Labs</span> <span class="text-xs text-slate-500 ml-2">非上場 (US)</span></div>
+          <span class="text-xs text-slate-400">詳細</span>
+        </div>
+        <div class="acc-body px-5 pb-5 text-sm text-body leading-relaxed space-y-2">
+          <p><strong>(a) 事業内容:</strong> 2012年創業、サンフランシスコ、CEO Stephen Balaban。</p>
+          <p><strong>(b) 規模:</strong> ~$2.5B評価額。</p>
+          <p><strong>(c) EPS:</strong> 非上場。</p>
+          <p><strong>(d) 主要株主:</strong> 1517 Fund、Razer。</p>
+          <p><strong>(e) 展開:</strong> 米国。</p>
+          <p><strong>(f) 需要拡大:</strong> 1-Click Clusters × ML開発者特化。</p>
+          <p><strong>(g) 薄利リスク:</strong> <span class="text-amber-600 font-semibold">中</span>。規模小。対応策はMLエコシステム深耕（PyTorch統合）。</p>
+        </div>
+      </div>
+
+      <!-- Vultr -->
+      <div class="acc collapsed bg-white rounded-xl border border-slate-200 shadow-sm">
+        <div class="acc-header p-5">
+          <div><span class="font-bold text-base">Vultr</span> <span class="text-xs text-slate-500 ml-2">非上場 (US)</span></div>
+          <span class="text-xs text-slate-400">詳細</span>
+        </div>
+        <div class="acc-body px-5 pb-5 text-sm text-body leading-relaxed space-y-2">
+          <p><strong>(a) 事業内容:</strong> 2014年創業、フロリダ、CEO J.J. Kardwell。</p>
+          <p><strong>(b) 規模:</strong> ~$3.5B評価額。</p>
+          <p><strong>(c) EPS:</strong> 非上場。</p>
+          <p><strong>(d) 主要株主:</strong> AMD、Founders Fund。</p>
+          <p><strong>(e) 展開:</strong> 32リージョン。</p>
+          <p><strong>(f) 需要拡大:</strong> 低コスト × グローバル分散。</p>
+          <p><strong>(g) 薄利リスク:</strong> <span class="text-amber-600 font-semibold">中</span>。AI専業化遅。対応策はAMD Instinct差別化。</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Section 4: QUANT TABLE ===== -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold mb-1">定量比較テーブル</h2>
+    <p class="text-slate-500 text-sm mb-5">全13社フラット比較</p>
+    <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm whitespace-nowrap">
+          <thead>
+            <tr class="bg-gray-50">
+              <th class="text-left px-4 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">企業</th>
+              <th class="text-right px-4 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">時価総額</th>
+              <th class="text-right px-4 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">2025売上</th>
+              <th class="text-right px-4 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">YoY</th>
+              <th class="text-right px-4 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">EPS TTM</th>
+              <th class="text-right px-4 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">Fwd EPS 27</th>
+              <th class="text-left px-4 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">筆頭株主</th>
+              <th class="text-left px-4 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">主要エリア</th>
+              <th class="text-center px-4 py-3 text-xs font-medium text-slate-500 uppercase tracking-wider">損益</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr class="hover:bg-gray-50"><td class="px-4 py-3 font-semibold">Oracle</td><td class="px-4 py-3 text-right">$600B+</td><td class="px-4 py-3 text-right">$18B (OCI)</td><td class="px-4 py-3 text-right text-emerald-600">+77%</td><td class="px-4 py-3 text-right">$5.69</td><td class="px-4 py-3 text-right">$8.16</td><td class="px-4 py-3">Larry Ellison</td><td class="px-4 py-3">Global</td><td class="px-4 py-3 text-center text-emerald-600">黒字</td></tr>
+            <tr class="hover:bg-gray-50"><td class="px-4 py-3 font-semibold">CoreWeave</td><td class="px-4 py-3 text-right">$58.0B</td><td class="px-4 py-3 text-right">$5.13B</td><td class="px-4 py-3 text-right text-emerald-600">+168%</td><td class="px-4 py-3 text-right text-red-600">-$2.81</td><td class="px-4 py-3 text-right">NM</td><td class="px-4 py-3">Magnetar</td><td class="px-4 py-3">US/UK</td><td class="px-4 py-3 text-center text-red-600">赤字</td></tr>
+            <tr class="hover:bg-gray-50"><td class="px-4 py-3 font-semibold">Nebius</td><td class="px-4 py-3 text-right">$36.5B</td><td class="px-4 py-3 text-right">$529.8M</td><td class="px-4 py-3 text-right text-emerald-600">+479%</td><td class="px-4 py-3 text-right">$0.13</td><td class="px-4 py-3 text-right">$2.80</td><td class="px-4 py-3">A. Volozh</td><td class="px-4 py-3">EU/US</td><td class="px-4 py-3 text-center text-emerald-600">黒字化</td></tr>
+            <tr class="hover:bg-gray-50"><td class="px-4 py-3 font-semibold">IREN</td><td class="px-4 py-3 text-right">$11B</td><td class="px-4 py-3 text-right">$501M</td><td class="px-4 py-3 text-right text-emerald-600">+168%</td><td class="px-4 py-3 text-right text-red-600">-$0.52</td><td class="px-4 py-3 text-right">$1.50</td><td class="px-4 py-3">Roberts兄弟</td><td class="px-4 py-3">AU/CA/TX</td><td class="px-4 py-3 text-center text-amber-600">転換中</td></tr>
+            <tr class="hover:bg-gray-50"><td class="px-4 py-3 font-semibold">Applied Digital</td><td class="px-4 py-3 text-right">$4.5B</td><td class="px-4 py-3 text-right">$126.6M</td><td class="px-4 py-3 text-right text-emerald-600">+139%</td><td class="px-4 py-3 text-right text-red-600">赤字</td><td class="px-4 py-3 text-right">NM</td><td class="px-4 py-3">W. Cummins</td><td class="px-4 py-3">ND/TX</td><td class="px-4 py-3 text-center text-red-600">赤字</td></tr>
+            <tr class="hover:bg-gray-50"><td class="px-4 py-3 font-semibold">Core Scientific</td><td class="px-4 py-3 text-right">$4.5B</td><td class="px-4 py-3 text-right">$65.4M (AI)</td><td class="px-4 py-3 text-right text-emerald-600">+168%</td><td class="px-4 py-3 text-right text-red-600">赤字</td><td class="px-4 py-3 text-right">NM</td><td class="px-4 py-3">債権者連合</td><td class="px-4 py-3">US 7州</td><td class="px-4 py-3 text-center text-red-600">赤字</td></tr>
+            <tr class="hover:bg-gray-50"><td class="px-4 py-3 font-semibold">TeraWulf</td><td class="px-4 py-3 text-right">$3B</td><td class="px-4 py-3 text-right">$168.5M</td><td class="px-4 py-3 text-right text-emerald-600">+20%</td><td class="px-4 py-3 text-right text-red-600">赤字</td><td class="px-4 py-3 text-right">NM</td><td class="px-4 py-3">P. Prager</td><td class="px-4 py-3">NY/TX</td><td class="px-4 py-3 text-center text-red-600">赤字</td></tr>
+            <tr class="hover:bg-gray-50"><td class="px-4 py-3 font-semibold">Cipher Mining</td><td class="px-4 py-3 text-right">$2B</td><td class="px-4 py-3 text-right">—</td><td class="px-4 py-3 text-right text-slate-400">—</td><td class="px-4 py-3 text-right text-red-600">赤字</td><td class="px-4 py-3 text-right">NM</td><td class="px-4 py-3">Bitfury</td><td class="px-4 py-3">TX</td><td class="px-4 py-3 text-center text-red-600">赤字</td></tr>
+            <tr class="hover:bg-gray-50"><td class="px-4 py-3 font-semibold">Bitdeer</td><td class="px-4 py-3 text-right">$2B</td><td class="px-4 py-3 text-right">—</td><td class="px-4 py-3 text-right text-slate-400">—</td><td class="px-4 py-3 text-right text-red-600">赤字</td><td class="px-4 py-3 text-right">NM</td><td class="px-4 py-3">Jihan Wu</td><td class="px-4 py-3">SG/US</td><td class="px-4 py-3 text-center text-red-600">赤字</td></tr>
+            <tr class="hover:bg-gray-50 bg-amber-50"><td class="px-4 py-3 font-semibold">Nscale</td><td class="px-4 py-3 text-right">$3.1B</td><td class="px-4 py-3 text-right">n/a</td><td class="px-4 py-3 text-right text-slate-400">—</td><td class="px-4 py-3 text-right text-slate-400">非上場</td><td class="px-4 py-3 text-right text-slate-400">非上場</td><td class="px-4 py-3">Nvidia</td><td class="px-4 py-3">UK/EU</td><td class="px-4 py-3 text-center text-slate-500">n/a</td></tr>
+            <tr class="hover:bg-gray-50 bg-amber-50"><td class="px-4 py-3 font-semibold">Crusoe</td><td class="px-4 py-3 text-right">~$10B</td><td class="px-4 py-3 text-right">n/a</td><td class="px-4 py-3 text-right text-slate-400">—</td><td class="px-4 py-3 text-right text-slate-400">非上場</td><td class="px-4 py-3 text-right text-slate-400">非上場</td><td class="px-4 py-3">Founders Fund</td><td class="px-4 py-3">US</td><td class="px-4 py-3 text-center text-slate-500">n/a</td></tr>
+            <tr class="hover:bg-gray-50 bg-amber-50"><td class="px-4 py-3 font-semibold">Lambda Labs</td><td class="px-4 py-3 text-right">~$2.5B</td><td class="px-4 py-3 text-right">n/a</td><td class="px-4 py-3 text-right text-slate-400">—</td><td class="px-4 py-3 text-right text-slate-400">非上場</td><td class="px-4 py-3 text-right text-slate-400">非上場</td><td class="px-4 py-3">1517 Fund</td><td class="px-4 py-3">US</td><td class="px-4 py-3 text-center text-slate-500">n/a</td></tr>
+            <tr class="hover:bg-gray-50 bg-amber-50"><td class="px-4 py-3 font-semibold">Vultr</td><td class="px-4 py-3 text-right">~$3.5B</td><td class="px-4 py-3 text-right">n/a</td><td class="px-4 py-3 text-right text-slate-400">—</td><td class="px-4 py-3 text-right text-slate-400">非上場</td><td class="px-4 py-3 text-right text-slate-400">非上場</td><td class="px-4 py-3">AMD</td><td class="px-4 py-3">Global 32</td><td class="px-4 py-3 text-center text-slate-500">n/a</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Section 5: YTD PRICE CHART ===== -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold mb-1">YTD 2026 株価比較</h2>
+    <p class="text-slate-500 text-sm mb-5">2026年初=100 ｜ Jan〜Apr 13</p>
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <div style="position:relative;height:420px">
+        <canvas id="chartYTD"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Section 6: TARGET PRICE CARDS ===== -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold mb-1">想定標準株価（主要6社）</h2>
+    <p class="text-slate-500 text-sm mb-5">黒字＝Fwd EPS × 3年平均PER ／ 赤字＝アナリスト合意・PSR参考値</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 cards-grid">
+
+      <div class="bg-white rounded-xl border-2 border-emerald-200 p-5 shadow-sm">
+        <div class="flex items-center justify-between mb-2"><span class="font-bold text-lg">Oracle</span><span class="text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">🟢 割安</span></div>
+        <div class="text-xs text-slate-500 mb-3">Fwd EPS $8.16 × 3y avg PER 35.6</div>
+        <div class="text-sm"><span class="text-slate-500">現在:</span> $218</div>
+        <div class="text-2xl font-bold text-emerald-600 mt-1">想定 $290</div>
+        <div class="text-sm text-emerald-600 font-semibold">乖離 +33%</div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="flex items-center justify-between mb-2"><span class="font-bold text-lg">Nebius</span><span class="text-xs px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">🟡 適正</span></div>
+        <div class="text-xs text-slate-500 mb-3">Fwd EPS $2.80 × 55x（高成長プレ）</div>
+        <div class="text-sm"><span class="text-slate-500">現在:</span> $145</div>
+        <div class="text-2xl font-bold mt-1">想定 $154</div>
+        <div class="text-sm text-amber-600 font-semibold">乖離 +6%</div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="flex items-center justify-between mb-2"><span class="font-bold text-lg">IREN</span><span class="text-xs px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">🟡 適正</span></div>
+        <div class="text-xs text-slate-500 mb-3">Fwd EPS $1.50 × 35x</div>
+        <div class="text-sm"><span class="text-slate-500">現在:</span> $53</div>
+        <div class="text-2xl font-bold mt-1">想定 $52.5</div>
+        <div class="text-sm text-slate-500 font-semibold">乖離 -1%</div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="flex items-center justify-between mb-2"><span class="font-bold text-lg">CoreWeave</span><span class="text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">🟢 やや割安</span></div>
+        <div class="text-xs text-slate-500 mb-3">赤字 → Fwd PSR 6x × Rev $12.5B</div>
+        <div class="text-sm"><span class="text-slate-500">現在:</span> $111</div>
+        <div class="text-2xl font-bold mt-1">参考 $143</div>
+        <div class="text-sm text-emerald-600 font-semibold">乖離 +29%</div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="flex items-center justify-between mb-2"><span class="font-bold text-lg">APLD</span><span class="text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">🟢 割安</span></div>
+        <div class="text-xs text-slate-500 mb-3">赤字 → アナリスト合意 $44</div>
+        <div class="text-sm"><span class="text-slate-500">現在:</span> $25</div>
+        <div class="text-2xl font-bold mt-1">参考 $44</div>
+        <div class="text-sm text-emerald-600 font-semibold">乖離 +75%</div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="flex items-center justify-between mb-2"><span class="font-bold text-lg">CORZ</span><span class="text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">🟢 割安</span></div>
+        <div class="text-xs text-slate-500 mb-3">赤字 → アナリスト合意 $22.4</div>
+        <div class="text-sm"><span class="text-slate-500">現在:</span> $16</div>
+        <div class="text-2xl font-bold mt-1">参考 $22</div>
+        <div class="text-sm text-emerald-600 font-semibold">乖離 +44%</div>
+      </div>
+    </div>
+    <p class="text-xs text-slate-500 mt-4 px-2">※ 赤字企業は参考値。前提条件の変動で大きく変わるため、あくまで目安として参照ください。</p>
+  </section>
+
+  <!-- ===== Section 7: PRICE RISK ===== -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold mb-1">薄利多売リスクと各社の突破口</h2>
+    <p class="text-slate-500 text-sm mb-5">編集部視点での分類</p>
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-5">
+      <p class="text-body leading-relaxed text-sm">
+        H100レンタル単価は2023年の<span class="font-semibold">$8/hr</span>から、2025年10月には<span class="font-semibold">$1.70/hr</span>、2026年3月時点で<span class="font-semibold">$2.35/hr</span>へと下落と小反発を繰り返している。ハイパースケーラーのH100価格は2025年に<span class="text-red-600 font-semibold">-45%</span>下落、新興ネオクラウドは130社以上が乱立しており、淘汰リスクは年々高まっている。
+        単純なGPU時間貸し（コモディティGPUaaS）は、顧客の価格交渉力が強く、電力・GPU調達の単価競争に収斂する。これを回避して持続的な高マージンを維持するには、以下4パターンのいずれかで差別化する必要がある。
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 cards-grid">
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-2xl mb-2">🏛️</div>
+        <h3 class="font-bold mb-2">① 垂直統合型</h3>
+        <p class="text-body text-sm mb-2">DB・Sovereign AIで参入障壁を作り、GPU単価競争から脱却。</p>
+        <p class="text-xs text-primary-600 font-semibold">Oracle ・ Nscale</p>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-2xl mb-2">🤝</div>
+        <h3 class="font-bold mb-2">② 顧客特化型</h3>
+        <p class="text-body text-sm mb-2">OpenAI/Anthropic/Metaなどとの長期大型契約でキャッシュフロー確保。</p>
+        <p class="text-xs text-primary-600 font-semibold">CoreWeave ・ Nebius</p>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-2xl mb-2">⚡</div>
+        <h3 class="font-bold mb-2">③ 電力優位型</h3>
+        <p class="text-body text-sm mb-2">低コスト電源・再エネ開発で、ランニングコスト差を原資に価格競争力を維持。</p>
+        <p class="text-xs text-primary-600 font-semibold">IREN ・ Crusoe ・ TeraWulf</p>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-2xl mb-2">🎯</div>
+        <h3 class="font-bold mb-2">④ ニッチ垂直型</h3>
+        <p class="text-body text-sm mb-2">ML開発者・中小企業・特定地域に特化し、大手の参入しにくい領域を抑える。</p>
+        <p class="text-xs text-primary-600 font-semibold">Lambda ・ Vultr</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Section 8: VERDICT ORACLE ===== -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold mb-1">編集部の総括</h2>
+    <p class="text-slate-500 text-sm mb-5">Oracle推奨の根拠</p>
+
+    <div class="rounded-xl p-8 shadow-lg mb-6" style="background:linear-gradient(135deg,#1A2540 0%,#0F1829 100%);border:2px solid #B8912A">
+      <div class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium mb-4" style="background:rgba(184,145,42,0.2);border:1px solid rgba(184,145,42,0.4);color:#D4A843">
+        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+        編集部選定
+      </div>
+      <p class="text-xl md:text-2xl font-bold leading-relaxed mb-4" style="color:#fff;font-family:'Shippori Mincho B1',serif">
+        編集部としては、ネオクラウドの中では<br><span style="color:#D4A843">Oracleを最も推奨する。</span>
+      </p>
+      <p class="text-sm md:text-base leading-relaxed" style="color:#ccc">
+        理由は、<strong style="color:#fff">企業の安定性やサイズ、そしてボリュームビジネスに対応できる資金調達力</strong>だ。直近では社債の発行が続き、財務の不安定化というリスクや懸念点はあるものの、他社と比較した際の足腰の強さや自走力、キャッシュ創出力を考慮すると、<strong style="color:#D4A843">最も安全牌</strong>であると判断している。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 cards-grid">
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-xs text-primary-600 font-bold mb-2">補強論点 ①</div>
+        <h3 class="font-bold mb-2">規模の優位</h3>
+        <p class="text-body text-sm">時価総額$600B+、OpenAI $300B/5年契約でスケールが加速。他のネオクラウドとは桁違いの市場ポジション。</p>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-xs text-primary-600 font-bold mb-2">補強論点 ②</div>
+        <h3 class="font-bold mb-2">キャッシュ創出力</h3>
+        <p class="text-body text-sm">DB・SaaSから数兆円規模のFCFを創出。OCI拡大の巨額設備投資を自走で賄える稀有な存在。</p>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-xs text-primary-600 font-bold mb-2">補強論点 ③</div>
+        <h3 class="font-bold mb-2">財務リスクの相対性</h3>
+        <p class="text-body text-sm">$45-50B社債は懸念事項だが、CRWV/WULF等の「単一事業×レバレッジ」型とは質的に別物。キャッシュ創出と両立する調達。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="mt-16" style="background:#1A2540;border-top:1px solid rgba(184,145,42,0.15);">
+  <div class="max-w-5xl mx-auto px-6 py-10 text-center">
+    <p class="text-sm font-medium mb-2" style="color:#ccc;">&copy; 2026 Atlas Financials &mdash; Atlas Daily 特集レポート</p>
+    <p class="text-xs leading-relaxed max-w-2xl mx-auto" style="color:#888;">
+      本レポートは情報提供を目的としたものであり、特定の有価証券の売買を推奨するものではありません。
+      投資判断はご自身の責任で行ってください。掲載データは公表情報・各社IR資料に基づいていますが、
+      正確性・完全性を保証するものではありません。時価総額・株価等は2026年4月時点の概算値です。
+    </p>
+  </div>
+</footer>
+
+<div id="tt" class="tt hidden"></div>
+
+<script>
+// ===== Accordion =====
+document.querySelectorAll('.acc-header').forEach(function(h){
+  h.addEventListener('click', function(){
+    this.parentElement.classList.toggle('collapsed');
+  });
+});
+
+// ===== Chart.js =====
+const logoBase = 'https://raw.githubusercontent.com/AtlasFinancials/reports/main/logos/';
+const COLORS = {
+  orcl:'#C74634', crwv:'#FF6B35', nbis:'#5E72E4',
+  iren:'#00B8A9', apld:'#F5A623', corz:'#8B5CF6',
+  wulf:'#EC4899', cifr:'#14B8A6', btdr:'#F97316',
+  spx:'#64748B'
+};
+Chart.defaults.font.family = "'Inter','Noto Sans JP','sans-serif'";
+Chart.defaults.color = '#64748b';
+
+new Chart(document.getElementById('chartYTD'), {
+  type: 'line',
+  data: {
+    labels: ['Jan','Feb','Mar','Apr 13'],
+    datasets: [
+      {label:'ORCL', data:[100,115,135,165], borderColor:COLORS.orcl, backgroundColor:'transparent', tension:0.3, borderWidth:3, pointRadius:4},
+      {label:'CRWV', data:[100,85,75,95], borderColor:COLORS.crwv, backgroundColor:'transparent', tension:0.3, borderWidth:2, pointRadius:3},
+      {label:'NBIS', data:[100,130,145,175], borderColor:COLORS.nbis, backgroundColor:'transparent', tension:0.3, borderWidth:3, pointRadius:4},
+      {label:'IREN', data:[100,70,80,110], borderColor:COLORS.iren, backgroundColor:'transparent', tension:0.3, borderWidth:2, pointRadius:3},
+      {label:'APLD', data:[100,60,70,85], borderColor:COLORS.apld, backgroundColor:'transparent', tension:0.3, borderWidth:2, pointRadius:3},
+      {label:'CORZ', data:[100,90,95,110], borderColor:COLORS.corz, backgroundColor:'transparent', tension:0.3, borderWidth:2, pointRadius:3},
+      {label:'WULF', data:[100,80,75,70], borderColor:COLORS.wulf, backgroundColor:'transparent', tension:0.3, borderWidth:2, pointRadius:3},
+      {label:'CIFR', data:[100,85,80,75], borderColor:COLORS.cifr, backgroundColor:'transparent', tension:0.3, borderWidth:2, pointRadius:3},
+      {label:'BTDR', data:[100,95,90,105], borderColor:COLORS.btdr, backgroundColor:'transparent', tension:0.3, borderWidth:2, pointRadius:3},
+      {label:'S&P 500', data:[100,102,98,95], borderColor:COLORS.spx, backgroundColor:'transparent', tension:0.3, borderWidth:2, borderDash:[6,4], pointRadius:3}
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: {mode:'index', intersect:false},
+    plugins: {
+      legend: {position:'bottom', labels:{usePointStyle:true, padding:14, font:{size:11}}},
+      tooltip: {
+        backgroundColor:'#1e293b', titleColor:'#f8fafc', bodyColor:'#e2e8f0',
+        cornerRadius:8, padding:12,
+        callbacks:{label:function(ctx){return ctx.dataset.label+': '+ctx.parsed.y.toFixed(0);}}
+      }
+    },
+    scales: {
+      y: {
+        grid:{color:'rgba(148,163,184,0.15)'},
+        ticks:{callback:function(v){return v;}},
+        title:{display:true, text:'2026年初=100'}
+      },
+      x: {grid:{display:false}}
+    }
+  }
+});
+
+// ===== Fixed tooltip (for price cards hover) =====
+(function(){
+  var tt = document.getElementById('tt');
+  document.querySelectorAll('[data-tip]').forEach(function(el){
+    el.addEventListener('mouseenter', function(e){
+      tt.innerHTML = el.dataset.tip;
+      tt.classList.remove('hidden');
+    });
+    el.addEventListener('mousemove', function(e){
+      tt.style.left = Math.min(window.innerWidth - tt.offsetWidth - 12, e.clientX + 14) + 'px';
+      tt.style.top  = Math.min(window.innerHeight - tt.offsetHeight - 12, e.clientY + 14) + 'px';
+    });
+    el.addEventListener('mouseleave', function(){ tt.classList.add('hidden'); });
+  });
+})();
+</script>
+</body>
+</html>
