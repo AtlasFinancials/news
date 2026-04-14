@@ -107,21 +107,14 @@ body{font-family:var(--font-ui);background:var(--paper);color:var(--ink);font-si
 .special-card-title{font-family:var(--font-body);font-size:16px;font-weight:700;line-height:1.5;margin-bottom:6px;color:var(--navy)}
 .special-card-desc{font-size:13px;color:var(--slate);line-height:1.7}
 
-/* === Month Group === */
-.month-group{margin-top:16px}
-.month-group-header{display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer;user-select:none;border-bottom:1px solid var(--paper-dk);margin-bottom:10px}
-.month-group-header:hover .month-group-label{color:var(--gold)}
-.month-group-label{font-size:14px;font-weight:700;color:var(--slate);transition:color 0.15s}
-.month-group-count{font-size:11px;font-weight:600;color:var(--slate-lt);background:var(--paper-dk);padding:2px 8px;border-radius:4px}
-.month-group-arrow{font-size:10px;color:var(--slate-lt);margin-left:auto;transition:transform 0.2s}
-.month-group.collapsed .month-group-arrow{transform:rotate(-90deg)}
-.month-group-body{display:flex;flex-direction:column;gap:10px}
-.month-group.collapsed .month-group-body{display:none}
-
-/* === Show More === */
-.show-more-btn{display:none;width:100%;padding:12px;margin-top:16px;background:#FDFCFA;border:1px solid var(--paper-dk);border-radius:var(--radius);color:var(--gold);font-family:var(--font-ui);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;text-align:center}
-.show-more-btn:hover{border-color:var(--gold);background:rgba(184,145,42,0.04)}
-.show-more-btn.visible{display:block}
+/* === Month Filter === */
+.month-filter{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--paper-dk)}
+.month-pill{font-family:var(--font-ui);font-size:12px;font-weight:600;padding:6px 14px;border-radius:100px;background:transparent;border:1px solid var(--paper-dk);color:var(--slate);cursor:pointer;transition:all 0.15s;white-space:nowrap;letter-spacing:0.02em}
+.month-pill:hover{border-color:var(--gold);color:var(--gold)}
+.month-pill.active{background:var(--gold);border-color:var(--gold);color:#fff}
+.month-pill .pill-count{font-size:10px;opacity:0.7;margin-left:4px;font-family:var(--font-data);font-weight:700}
+.month-pill.active .pill-count{opacity:0.85}
+.article-item.filtered-out{display:none}
 
 /* === Empty State === */
 .empty-state{padding:32px;text-align:center;color:var(--slate-lt);font-size:14px;background:#FDFCFA;border:1px dashed var(--paper-dk);border-radius:var(--radius)}
@@ -191,10 +184,10 @@ footer{background:var(--navy);padding:28px 20px;text-align:center}
 [data-theme="dark"] .special-card:hover{border-color:rgba(212,168,67,0.4);box-shadow:0 4px 12px rgba(0,0,0,0.3)}
 [data-theme="dark"] .special-card-title{color:#F5F2EC}
 [data-theme="dark"] .special-card-desc{color:#8b949e}
-[data-theme="dark"] .month-group-header{border-color:rgba(184,145,42,0.1)}
-[data-theme="dark"] .month-group-label{color:#8b949e}
-[data-theme="dark"] .month-group-count{background:rgba(184,145,42,0.1);color:#8b949e}
-[data-theme="dark"] .show-more-btn{background:#1A2540;border-color:rgba(184,145,42,0.12);color:#D4A843}
+[data-theme="dark"] .month-filter{border-color:rgba(184,145,42,0.1)}
+[data-theme="dark"] .month-pill{border-color:rgba(184,145,42,0.15);color:#8b949e}
+[data-theme="dark"] .month-pill:hover{border-color:var(--gold);color:var(--gold)}
+[data-theme="dark"] .month-pill.active{background:var(--gold);border-color:var(--gold);color:var(--navy-deep)}
 [data-theme="dark"] .disclaimer-section{border-color:rgba(184,145,42,0.1)}
 [data-theme="dark"] .disclaimer-text{color:#6e7681}
 </style>
@@ -298,8 +291,9 @@ footer{background:var(--navy);padding:28px 20px;text-align:center}
   <div class="section">
     <h2 class="section-title">
       <span class="section-title-icon">📰</span>
-      朝刊
+      Atlas Daily一覧
     </h2>
+    <div class="month-filter" id="monthFilter"></div>
                                                                                                                     <div class="article-list" id="morningList">
       <a class="article-item" href="morning/2026/04/14.html">
         <span class="article-date">2026/04/14</span>
@@ -407,8 +401,6 @@ footer{background:var(--navy);padding:28px 20px;text-align:center}
         <span class="article-tag morning">朝刊</span>
       </a>
     </div>
-    <button class="show-more-btn" id="showMoreBtn" onclick="toggleOlderArticles()">過去の朝刊をもっと見る</button>
-    <div id="olderArticles"></div>
   </div>
 
 </main>
@@ -436,52 +428,61 @@ footer{background:var(--navy);padding:28px 20px;text-align:center}
   if(list&&list.children.length>0) banner.classList.add('has-items');
 })();
 
-// 朝刊の整理: 7件超の場合、8件目以降を月別グループに分割
+// 月別フィルター: 月ピルで記事を絞り込み
 (function(){
-  var MAX_RECENT=7;
   var list=document.getElementById('morningList');
-  var btn=document.getElementById('showMoreBtn');
-  var older=document.getElementById('olderArticles');
-  if(!list||!older) return;
+  var filterBar=document.getElementById('monthFilter');
+  if(!list||!filterBar) return;
   var items=Array.from(list.querySelectorAll('.article-item'));
-  if(items.length<=MAX_RECENT) return;
-  var overflow=items.slice(MAX_RECENT);
-  var groups={};
-  overflow.forEach(function(item){
+  if(items.length===0) return;
+
+  // 各記事に data-month を付与し、月ごとの件数を集計
+  var monthCount={};
+  items.forEach(function(item){
     var dateText=item.querySelector('.article-date').textContent.trim();
     var parts=dateText.split('/');
+    if(parts.length<2) return;
     var key=parts[0]+'/'+parts[1];
-    if(!groups[key]) groups[key]=[];
-    groups[key].push(item);
+    item.setAttribute('data-month',key);
+    monthCount[key]=(monthCount[key]||0)+1;
   });
-  var sortedKeys=Object.keys(groups).sort().reverse();
-  sortedKeys.forEach(function(key){
-    var parts=key.split('/');
-    var label=parts[0]+'年'+parseInt(parts[1])+'月';
-    var count=groups[key].length;
-    var groupDiv=document.createElement('div');
-    groupDiv.className='month-group collapsed';
-    var header=document.createElement('div');
-    header.className='month-group-header';
-    header.innerHTML='<span class="month-group-label">'+label+'</span><span class="month-group-count">'+count+'件</span><span class="month-group-arrow">▼</span>';
-    header.addEventListener('click',function(){groupDiv.classList.toggle('collapsed')});
-    var body=document.createElement('div');
-    body.className='month-group-body';
-    groups[key].forEach(function(item){list.removeChild(item);body.appendChild(item)});
-    groupDiv.appendChild(header);
-    groupDiv.appendChild(body);
-    older.appendChild(groupDiv);
-  });
-  btn.classList.add('visible');
-  older.style.display='none';
-})();
 
-function toggleOlderArticles(){
-  var older=document.getElementById('olderArticles');
-  var btn=document.getElementById('showMoreBtn');
-  if(older.style.display==='none'){older.style.display='block';btn.textContent='折りたたむ'}
-  else{older.style.display='none';btn.textContent='過去の朝刊をもっと見る'}
-}
+  var months=Object.keys(monthCount).sort().reverse();
+
+  // 「すべて」ピル
+  var allPill=document.createElement('button');
+  allPill.className='month-pill active';
+  allPill.setAttribute('data-month','all');
+  allPill.innerHTML='すべて<span class="pill-count">'+items.length+'</span>';
+  filterBar.appendChild(allPill);
+
+  // 月別ピル
+  months.forEach(function(key){
+    var parts=key.split('/');
+    var label=parts[0]+'年'+parseInt(parts[1],10)+'月';
+    var pill=document.createElement('button');
+    pill.className='month-pill';
+    pill.setAttribute('data-month',key);
+    pill.innerHTML=label+'<span class="pill-count">'+monthCount[key]+'</span>';
+    filterBar.appendChild(pill);
+  });
+
+  // クリックでフィルター
+  filterBar.addEventListener('click',function(e){
+    var pill=e.target.closest('.month-pill');
+    if(!pill) return;
+    var target=pill.getAttribute('data-month');
+    filterBar.querySelectorAll('.month-pill').forEach(function(p){p.classList.remove('active')});
+    pill.classList.add('active');
+    items.forEach(function(item){
+      if(target==='all'||item.getAttribute('data-month')===target){
+        item.classList.remove('filtered-out');
+      }else{
+        item.classList.add('filtered-out');
+      }
+    });
+  });
+})();
 
 // Theme toggle
 function toggleTheme(){
