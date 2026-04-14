@@ -176,82 +176,97 @@ def update_extra_latest(date_obj, slug):
 # Portal index.html updater
 # ─────────────────────────────────────────
 def scan_articles(section_dir, article_type):
-    """指定ディレクトリ内の全記事をスキャンして (date, rel_path, headline) のリストを返す"""
+    """指定ディレクトリ内の全記事をスキャンして (date, rel_path, headline, type) のリストを返す"""
     articles = []
     base = os.path.join(REPO_DIR, section_dir)
-    for root, dirs, files in os.walk(base):
-        for fname in files:
+
+    if article_type == "special":
+        # special/*.html — 階層なし、mtimeから日付取得
+        for fname in os.listdir(base):
             if not fname.endswith(".html") or fname in ("index.html", "latest.html"):
                 continue
-            fpath = os.path.join(root, fname)
+            fpath = os.path.join(base, fname)
             rel = os.path.relpath(fpath, REPO_DIR)
-            # parse date from path
-            parts = os.path.relpath(fpath, base).replace("\\", "/").split("/")
-            if len(parts) == 3:  # YYYY/MM/{file}.html
-                try:
-                    y, m = int(parts[0]), int(parts[1])
-                    if article_type == "morning":
-                        d = int(parts[2].replace(".html", ""))
-                    else:
-                        d = int(parts[2].split("-")[0])
-                    dt = datetime(y, m, d)
-                    headline = extract_headline(fpath)
-                    articles.append((dt, rel, headline))
-                except (ValueError, IndexError):
-                    pass
+            try:
+                mtime = os.path.getmtime(fpath)
+                dt = datetime.fromtimestamp(mtime).replace(hour=0, minute=0, second=0, microsecond=0)
+                headline = extract_headline(fpath)
+                if not headline:
+                    # ファイル名からスラッグを整形（ハイフン→スペース、.html除去）
+                    headline = fname.replace(".html", "").replace("-", " ").replace("_", " ")
+                articles.append((dt, rel, headline, article_type))
+            except Exception:
+                pass
+    else:
+        for root, dirs, files in os.walk(base):
+            for fname in files:
+                if not fname.endswith(".html") or fname in ("index.html", "latest.html"):
+                    continue
+                fpath = os.path.join(root, fname)
+                rel = os.path.relpath(fpath, REPO_DIR)
+                # 多言語版（-en/-ko/-zh）はスキップ
+                stem = fname.replace(".html", "")
+                if stem.endswith(("-en", "-ko", "-zh")):
+                    continue
+                # parse date from path: YYYY/MM/{file}.html
+                parts = os.path.relpath(fpath, base).replace("\\", "/").split("/")
+                if len(parts) == 3:
+                    try:
+                        y, m = int(parts[0]), int(parts[1])
+                        if article_type == "morning":
+                            d = int(parts[2].replace(".html", ""))
+                        else:
+                            d = int(parts[2].split("-")[0])
+                        dt = datetime(y, m, d)
+                        headline = extract_headline(fpath)
+                        articles.append((dt, rel, headline, article_type))
+                    except (ValueError, IndexError):
+                        pass
+
     articles.sort(key=lambda x: x[0], reverse=True)
     return articles
 
 
 def rebuild_portal_index():
-    """ポータルindex.htmlの朝刊・号外リストを更新"""
+    """ポータルindex.htmlの統合アーカイブリストを更新"""
     index_path = os.path.join(REPO_DIR, "index.html")
     with open(index_path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    # 号外リスト再構築（バナー形式）
-    extras = scan_articles("extra", "extra")
-    if extras:
-        extra_items = ""
-        for dt, rel, headline in extras:
-            date_str = dt.strftime("%Y/%m/%d")
-            title = headline if headline else os.path.basename(rel).replace(".html", "")
-            extra_items += f'      <a class="extra-banner-item" href="{rel}">\n'
-            extra_items += f'        <span class="extra-banner-badge">号外</span>\n'
-            extra_items += f'        <span class="extra-banner-date">{date_str}</span>\n'
-            extra_items += f'        <span class="extra-banner-title">{title}</span>\n'
-            extra_items += f'      </a>\n'
-        extra_block = f'    <div class="extra-banner-list" id="extraList">\n{extra_items}    </div>'
-    else:
-        extra_block = '    <div class="extra-banner-list" id="extraList">\n    </div>'
+    # 3種類を統合して日付降順ソート
+    all_articles = []
+    all_articles += scan_articles("morning", "morning")
+    all_articles += scan_articles("extra", "extra")
+    all_articles += scan_articles("special", "special")
+    all_articles.sort(key=lambda x: x[0], reverse=True)
 
-    # 朝刊リスト再構築
-    mornings = scan_articles("morning", "morning")
-    if mornings:
-        morning_items = ""
-        for dt, rel, headline in mornings:
-            date_str = dt.strftime("%Y/%m/%d")
-            title = headline if headline else f"{dt.month}月{dt.day}日の朝刊"
-            morning_items += f'      <a class="article-item" href="{rel}">\n'
-            morning_items += f'        <span class="article-date">{date_str}</span>\n'
-            morning_items += f'        <span class="article-title">{title}</span>\n'
-            morning_items += f'        <span class="article-tag morning">朝刊</span>\n'
-            morning_items += f'      </a>\n'
-        morning_block = f'    <div class="article-list" id="morningList">\n{morning_items}    </div>'
-    else:
-        morning_block = '    <div class="article-list" id="morningList">\n      <div class="empty-state">朝刊の記事はまだありません。近日公開予定です。</div>\n    </div>'
+    # archive-list の各 article-item を生成
+    items_html = ""
+    for dt, rel, headline, atype in all_articles:
+        date_iso = dt.strftime("%Y-%m-%d")
+        month_key = dt.strftime("%Y/%m")
+        title = headline if headline else f"{dt.month}月{dt.day}日の{atype}"
+        # エスケープ
+        title_escaped = (title.replace("&", "&amp;").replace('"', "&quot;")
+                             .replace("<", "&lt;").replace(">", "&gt;"))
+        items_html += (
+            f'      <a class="article-item" href="{rel}"'
+            f' data-type="{atype}"'
+            f' data-date="{date_iso}"'
+            f' data-month="{month_key}"'
+            f' data-title="{title_escaped}"></a>\n'
+        )
 
-    # 号外バナーの内部リストを置換
-    content = re.sub(
-        r'(<!-- 号外 -->.*?)<div class="extra-banner-list" id="extraList">.*?</div>',
-        lambda m: m.group(1) + extra_block,
-        content, count=1, flags=re.DOTALL
+    archive_block = (
+        '    <div class="archive-list" id="archiveList">\n'
+        + items_html
+        + '    </div>'
     )
 
-    # 朝刊セクションの article-list を置換
+    # <!-- Archive --> アンカーで囲まれた archive-list を置換
     content = re.sub(
-        r'(<!-- 朝刊 -->.*?)<div class="article-list" id="morningList">.*?</div>',
-        lambda m: m.group(1) + morning_block,
+        r'<!-- Archive -->\s*<div class="archive-list" id="archiveList">.*?</div>',
+        '<!-- Archive -->\n    ' + archive_block,
         content, count=1, flags=re.DOTALL
     )
 
@@ -267,6 +282,7 @@ def main():
         print("使い方:")
         print('  python3 deploy_times.py morning <HTMLパス> <YYYY-MM-DD> "<見出し>"')
         print('  python3 deploy_times.py extra <HTMLパス> <YYYY-MM-DD> <スラッグ> "<見出し>"')
+        print('  python3 deploy_times.py special <HTMLパス> <スラッグ> "<見出し>"')
         sys.exit(1)
 
     # --line フラグの検出（どの位置にあっても対応）
@@ -275,30 +291,46 @@ def main():
 
     article_type = args[0] if len(args) > 0 else ""
     html_path = os.path.abspath(args[1]) if len(args) > 1 else ""
-    date_str = args[2] if len(args) > 2 else ""
 
-    if article_type == "extra":
+    if article_type == "special":
+        # special: python3 deploy_times.py special <HTML> <slug> "<headline>"
+        slug = args[2] if len(args) > 2 else os.path.basename(html_path).replace(".html", "")
+        headline = args[3] if len(args) > 3 else ""
+        date_str = None
+        date_obj = datetime.now()
+    elif article_type == "extra":
+        date_str = args[2] if len(args) > 2 else ""
         slug = args[3] if len(args) > 3 else "special"
         headline = args[4] if len(args) > 4 else ""
+        date_obj = datetime.strptime(date_str, "%Y-%m-%d")
     else:
+        date_str = args[2] if len(args) > 2 else ""
         slug = None
         headline = args[3] if len(args) > 3 else ""
+        date_obj = datetime.strptime(date_str, "%Y-%m-%d")
 
     if not os.path.exists(html_path):
         print(f"❌ ファイルが見つかりません: {html_path}")
         sys.exit(1)
 
-    date_obj = datetime.strptime(date_str, "%Y-%m-%d")
     y = date_obj.strftime("%Y")
     m = date_obj.strftime("%m")
     d = str(date_obj.day)
     weekday = WEEKDAYS[date_obj.weekday()]
 
-    type_label = "朝刊" if article_type == "morning" else "号外"
-    type_icon = "📰" if article_type == "morning" else "🔴"
+    if article_type == "morning":
+        type_label = "朝刊"
+        type_icon = "📰"
+    elif article_type == "extra":
+        type_label = "号外"
+        type_icon = "🔴"
+    else:
+        type_label = "特集"
+        type_icon = "📑"
 
     print(f"{type_icon} U&I株倶楽部新聞 {type_label}デプロイ")
-    print(f"   日付: {y}年{int(m)}月{d}日（{weekday}）")
+    if article_type != "special":
+        print(f"   日付: {y}年{int(m)}月{d}日（{weekday}）")
     if slug:
         print(f"   スラッグ: {slug}")
     print()
@@ -314,6 +346,9 @@ def main():
     if article_type == "morning":
         dest_dir = os.path.join(REPO_DIR, "morning", y, m)
         fname = f"{d}.html"
+    elif article_type == "special":
+        dest_dir = os.path.join(REPO_DIR, "special")
+        fname = f"{slug}.html"
     else:
         dest_dir = os.path.join(REPO_DIR, "extra", y, m)
         fname = f"{d}-{slug}.html"
@@ -321,14 +356,20 @@ def main():
     os.makedirs(dest_dir, exist_ok=True)
     dest_file = os.path.join(dest_dir, fname)
     shutil.copy2(html_path, dest_file)
-    print(f"1️⃣  HTMLをコピー → {article_type}/{y}/{m}/{fname}")
+    if article_type == "special":
+        print(f"1️⃣  HTMLをコピー → special/{fname}")
+    else:
+        print(f"1️⃣  HTMLをコピー → {article_type}/{y}/{m}/{fname}")
 
     # 3. latest.html 更新
     if article_type == "morning":
         update_morning_latest(date_obj)
-    else:
+        print(f"2️⃣  {article_type}/latest.html を更新")
+    elif article_type == "extra":
         update_extra_latest(date_obj, slug)
-    print(f"2️⃣  {article_type}/latest.html を更新")
+        print(f"2️⃣  {article_type}/latest.html を更新")
+    else:
+        print("2️⃣  special は latest.html なし（スキップ）")
 
     # 4. ポータルindex.html 再構築
     rebuild_portal_index()
@@ -360,7 +401,10 @@ def main():
     group_id = line_cfg.get("LINE_GROUP_ID")
 
     if send_line_flag and token and group_id:
-        url = f"{PAGES_BASE_URL}/{article_type}/{y}/{m}/{fname}"
+        if article_type == "special":
+            url = f"{PAGES_BASE_URL}/special/{fname}"
+        else:
+            url = f"{PAGES_BASE_URL}/{article_type}/{y}/{m}/{fname}"
         now_str = datetime.now().strftime("%Y/%m/%d %H:%M")
         msg = f"{type_icon} 【U&I株倶楽部 {type_label}】{y}年{int(m)}月{d}日（{weekday}）\n"
         if headline:
@@ -384,7 +428,10 @@ def main():
         print("   ⚠️  LINE設定が見つかりません（スキップ）")
 
     print()
-    url = f"{PAGES_BASE_URL}/{article_type}/{y}/{m}/{fname}"
+    if article_type == "special":
+        url = f"{PAGES_BASE_URL}/special/{fname}"
+    else:
+        url = f"{PAGES_BASE_URL}/{article_type}/{y}/{m}/{fname}"
     print(f"🎉 デプロイ完了!")
     print(f"   📎 {url}")
 
