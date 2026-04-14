@@ -2171,6 +2171,29 @@ body {
     }
 
     .neo-note { font-size: 11.5px; color: var(--slate-lt); margin-top: 14px; font-family: var(--font-ui); line-height: 1.75; }
+
+    /* ---- 想定株価ブロック ---- */
+    .neo-target { margin-top: auto; padding: 14px 18px 16px; background: linear-gradient(180deg, rgba(184,145,42,0.07) 0%, rgba(184,145,42,0.02) 100%); border-top: 1px dashed rgba(184,145,42,0.4); }
+    .neo-target-label { font-family: var(--font-ui); font-size: 10.5px; font-weight: 700; color: var(--gold); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 6px; }
+    .neo-target-formula { font-family: var(--font-ui); font-size: 11px; color: var(--slate-lt); margin-bottom: 10px; line-height: 1.6; letter-spacing: .01em; }
+    .neo-target-formula strong { color: var(--ink); font-family: var(--font-data); font-weight: 700; }
+    .neo-target-main { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+    .neo-target-price-wrap { display: flex; flex-direction: column; }
+    .neo-target-price-cap { font-family: var(--font-ui); font-size: 10px; color: var(--slate-lt); letter-spacing: .05em; margin-bottom: 2px; }
+    .neo-target-price { font-family: var(--font-data); font-size: 24px; font-weight: 800; color: var(--navy); line-height: 1; }
+    .neo-target-delta { font-family: var(--font-data); font-size: 13px; font-weight: 700; line-height: 1.1; }
+    .neo-target-badge { display: inline-block; font-family: var(--font-ui); font-size: 10.5px; font-weight: 700; padding: 3px 10px; border-radius: 100px; letter-spacing: .02em; }
+    .neo-target-badge.cheap { background: rgba(34,197,94,0.14); color: #16a34a; }
+    .neo-target-badge.fair { background: rgba(107,122,149,0.14); color: var(--slate); }
+    .neo-target-badge.rich { background: rgba(239,68,68,0.14); color: var(--alert); }
+    .neo-target-badge.note { background: rgba(184,145,42,0.14); color: var(--gold); }
+    [data-theme="dark"] .neo-target { background: linear-gradient(180deg, rgba(184,145,42,0.1) 0%, rgba(184,145,42,0.03) 100%); border-top-color: rgba(184,145,42,0.35); }
+    [data-theme="dark"] .neo-target-price { color: #F5F2EC; }
+    [data-theme="dark"] .neo-target-badge.fair { color: #c9d1d9; background: rgba(139,148,158,0.18); }
+    @media (max-width: 639px) {
+      .neo-target { padding: 16px 20px 18px; }
+      .neo-target-price { font-size: 28px; }
+    }
     </style>
 
     <!-- ネオクラウドとは — 導入説明 -->
@@ -2306,6 +2329,18 @@ body {
             <div class="neo-shareholder-sub">Vanguard 5.8% ／ BlackRock 3.1% ／ State Street 2.6% ／ Fidelity 0.9%</div>
           </div>
         </div>
+        <div class="neo-target">
+          <div class="neo-target-label">想定株価（NTM EPS × 3Y PER）</div>
+          <div class="neo-target-formula">NTM EPS <strong>$7.90</strong>（'26-'27平均） × 3年平均PER <strong>35.6x</strong></div>
+          <div class="neo-target-main">
+            <div class="neo-target-price-wrap">
+              <span class="neo-target-price-cap">想定株価</span>
+              <span class="neo-target-price">$281</span>
+            </div>
+            <div class="neo-target-delta neo-pos">+29%<br><span style="font-size:10px;color:var(--slate-lt);font-weight:500;">vs 現在 $218</span></div>
+          </div>
+          <span class="neo-target-badge cheap">🟢 割安</span>
+        </div>
       </div>
 
       <!-- Nebius -->
@@ -2336,6 +2371,18 @@ body {
             <div class="neo-shareholder-main">Arkady Volozh（創業者）</div>
             <div class="neo-shareholder-sub">NVIDIA <span style="color:var(--gold);font-weight:700;">8.3%</span>（$2B / 2026.3） ／ Accel ／ Orbis ／ Fidelity</div>
           </div>
+        </div>
+        <div class="neo-target">
+          <div class="neo-target-label">想定株価（NTM EPS × 成長プレPER）</div>
+          <div class="neo-target-formula">NTM EPS <strong>$2.80</strong>（推定） × 成長プレPER <strong>55x</strong><br><span style="font-size:10px;">※上場2024年10月で3年履歴なし、高成長ネオクラウド平均を適用</span></div>
+          <div class="neo-target-main">
+            <div class="neo-target-price-wrap">
+              <span class="neo-target-price-cap">想定株価</span>
+              <span class="neo-target-price">$154</span>
+            </div>
+            <div class="neo-target-delta neo-pos">+6%<br><span style="font-size:10px;color:var(--slate-lt);font-weight:500;">vs 現在 $145</span></div>
+          </div>
+          <span class="neo-target-badge fair">🟡 適正</span>
         </div>
       </div>
 
@@ -2368,6 +2415,18 @@ body {
             <div class="neo-shareholder-sub">NVIDIA（戦略株主）／ Coatue ／ Altimeter ／ Fidelity ／ Blackstone（debt $7.5B）</div>
           </div>
         </div>
+        <div class="neo-target">
+          <div class="neo-target-label">想定株価（PSR代替・参考値）</div>
+          <div class="neo-target-formula">TTM赤字のためEPS算出不可<br>Fwd売上 <strong>$12.5B</strong> × 業界Fwd PSR <strong>6x</strong> ÷ 発行済株式</div>
+          <div class="neo-target-main">
+            <div class="neo-target-price-wrap">
+              <span class="neo-target-price-cap">参考想定株価</span>
+              <span class="neo-target-price">$143</span>
+            </div>
+            <div class="neo-target-delta neo-pos">+29%<br><span style="font-size:10px;color:var(--slate-lt);font-weight:500;">vs 現在 $111</span></div>
+          </div>
+          <span class="neo-target-badge note">🟠 PSRベース参考値</span>
+        </div>
       </div>
 
       <!-- IREN -->
@@ -2398,6 +2457,18 @@ body {
             <div class="neo-shareholder-main">Daniel &amp; Will Roberts（共同創業者）</div>
             <div class="neo-shareholder-sub">BlackRock ／ Vanguard ／ Morgan Stanley</div>
           </div>
+        </div>
+        <div class="neo-target">
+          <div class="neo-target-label">想定株価（NTM EPS × セクター平均PER）</div>
+          <div class="neo-target-formula">NTM EPS <strong>$1.50</strong>（推定） × セクター平均PER <strong>35x</strong><br><span style="font-size:10px;">※2021年上場で3年超履歴あるが赤字期含むため、AI インフラセクター平均を適用</span></div>
+          <div class="neo-target-main">
+            <div class="neo-target-price-wrap">
+              <span class="neo-target-price-cap">想定株価</span>
+              <span class="neo-target-price">$52.5</span>
+            </div>
+            <div class="neo-target-delta neo-neg">-1%<br><span style="font-size:10px;color:var(--slate-lt);font-weight:500;">vs 現在 $52.99</span></div>
+          </div>
+          <span class="neo-target-badge fair">🟡 適正</span>
         </div>
       </div>
 
