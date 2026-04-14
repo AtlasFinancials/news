@@ -2095,6 +2095,178 @@ body {
     </div>
   </section>
 
+  <!-- ===== 4.5 Neocloud Matrix ===== -->
+  <section class="section-gap">
+    <div class="section-label">
+      <span class="section-label-icon">☁️</span>
+      <span class="section-label-text">ネオクラウド4社マトリックス比較</span>
+      <span class="section-label-line"></span>
+    </div>
+
+    <style>
+    .neo-matrix-intro { font-family: var(--font-body); font-size: 14px; color: var(--slate); line-height: 1.85; margin-bottom: 18px; padding: 14px 16px; background: var(--gold-light); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; }
+    .neo-matrix-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--paper-dk); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow-card); }
+    .neo-matrix { width: 100%; min-width: 900px; border-collapse: collapse; font-family: var(--font-data); font-size: 13px; }
+    .neo-matrix thead th { background: var(--navy); color: #fff; font-weight: 700; padding: 14px 10px; text-align: left; font-size: 12px; letter-spacing: .04em; position: sticky; top: 0; }
+    .neo-matrix thead th:first-child { border-top-left-radius: 12px; }
+    .neo-matrix thead th:last-child { border-top-right-radius: 12px; }
+    .neo-matrix td { padding: 14px 10px; border-top: 1px solid var(--paper-dk); vertical-align: top; }
+    .neo-matrix tr:hover td { background: var(--paper); }
+    .neo-row-label { font-family: var(--font-ui); font-weight: 700; color: var(--navy); background: var(--badge-bg); border-right: 2px solid var(--gold); min-width: 140px; position: sticky; left: 0; z-index: 1; }
+    .neo-co-cell { min-width: 160px; }
+    .neo-co-header { display: flex; align-items: center; gap: 10px; }
+    .neo-co-logo { width: 32px; height: 32px; border-radius: 6px; background: #fff; padding: 3px; border: 1px solid var(--paper-dk); object-fit: contain; flex-shrink: 0; }
+    .neo-co-logo.placeholder { display: inline-flex; align-items: center; justify-content: center; background: var(--navy); color: var(--gold); font-weight: 800; font-size: 11px; font-family: var(--font-ui); }
+    .neo-co-name { font-family: var(--font-heading); font-weight: 800; font-size: 15px; color: var(--navy); line-height: 1.2; }
+    .neo-co-ticker { font-size: 11px; color: var(--slate-lt); letter-spacing: .05em; }
+    .neo-flag { font-size: 16px; margin-left: 4px; }
+    .neo-value-up { color: #16a34a; font-weight: 700; }
+    .neo-value-down { color: var(--alert); font-weight: 700; }
+    .neo-value-neutral { color: var(--slate); font-weight: 600; }
+    .neo-sub { font-size: 11px; color: var(--slate-lt); display: block; margin-top: 2px; font-family: var(--font-ui); }
+    .neo-note { font-size: 12px; color: var(--slate-lt); margin-top: 10px; font-family: var(--font-ui); }
+    [data-theme="dark"] .neo-matrix-wrap { background: #1A2540; border-color: rgba(184,145,42,0.12); }
+    [data-theme="dark"] .neo-matrix thead th { background: var(--gold); color: var(--navy-deep); }
+    [data-theme="dark"] .neo-matrix td { border-top-color: rgba(184,145,42,0.12); }
+    [data-theme="dark"] .neo-matrix tr:hover td { background: rgba(184,145,42,0.04); }
+    [data-theme="dark"] .neo-row-label { color: var(--gold); background: rgba(184,145,42,0.08); }
+    [data-theme="dark"] .neo-co-name { color: #F5F2EC; }
+    [data-theme="dark"] .neo-co-logo { background: #fff; }
+    @media (max-width: 767px) {
+      .neo-matrix { font-size: 11px; min-width: 720px; }
+      .neo-matrix td { padding: 10px 8px; }
+      .neo-co-logo { width: 26px; height: 26px; }
+      .neo-co-name { font-size: 13px; }
+    }
+    </style>
+
+    <div class="neo-matrix-intro">
+      Oracleを筆頭に、AI学習・推論専用のGPUクラウド（ネオクラウド）が急成長している。上場4銘柄 <strong>NBIS</strong>・<strong>CRWV</strong>・<strong>ORCL</strong>・<strong>IREN</strong> を主要指標でフラットに比較。成長率は高いが、キャッシュフローは軒並み設備投資で圧迫されており、資金調達力と顧客基盤の質が勝敗を分ける局面。
+    </div>
+
+    <div class="neo-matrix-wrap">
+      <table class="neo-matrix">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th class="neo-co-cell">
+              <div class="neo-co-header">
+                <img class="neo-co-logo" src="https://raw.githubusercontent.com/AtlasFinancials/reports/main/logos/ORCL.svg" alt="ORCL" onerror="this.outerHTML='&lt;span class=\'neo-co-logo placeholder\'&gt;ORCL&lt;/span&gt;'">
+                <div><div class="neo-co-name">Oracle<span class="neo-flag">🇺🇸</span></div><div class="neo-co-ticker">NYSE:ORCL</div></div>
+              </div>
+            </th>
+            <th class="neo-co-cell">
+              <div class="neo-co-header">
+                <img class="neo-co-logo" src="https://raw.githubusercontent.com/AtlasFinancials/reports/main/logos/CRWV.svg" alt="CRWV" onerror="this.outerHTML='&lt;span class=\'neo-co-logo placeholder\'&gt;CRWV&lt;/span&gt;'">
+                <div><div class="neo-co-name">CoreWeave<span class="neo-flag">🇺🇸</span></div><div class="neo-co-ticker">NASDAQ:CRWV</div></div>
+              </div>
+            </th>
+            <th class="neo-co-cell">
+              <div class="neo-co-header">
+                <img class="neo-co-logo" src="https://raw.githubusercontent.com/AtlasFinancials/reports/main/logos/NBIS.svg" alt="NBIS" onerror="this.outerHTML='&lt;span class=\'neo-co-logo placeholder\'&gt;NBIS&lt;/span&gt;'">
+                <div><div class="neo-co-name">Nebius<span class="neo-flag">🇳🇱</span></div><div class="neo-co-ticker">NASDAQ:NBIS</div></div>
+              </div>
+            </th>
+            <th class="neo-co-cell">
+              <div class="neo-co-header">
+                <img class="neo-co-logo" src="https://raw.githubusercontent.com/AtlasFinancials/reports/main/logos/IREN.svg" alt="IREN" onerror="this.outerHTML='&lt;span class=\'neo-co-logo placeholder\'&gt;IREN&lt;/span&gt;'">
+                <div><div class="neo-co-name">IREN<span class="neo-flag">🇦🇺</span></div><div class="neo-co-ticker">NASDAQ:IREN</div></div>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="neo-row-label">国籍（本社）</td>
+            <td>🇺🇸 米国<span class="neo-sub">オースティン</span></td>
+            <td>🇺🇸 米国<span class="neo-sub">ルーベンスビル</span></td>
+            <td>🇳🇱 オランダ<span class="neo-sub">アムステルダム</span></td>
+            <td>🇦🇺 オーストラリア<span class="neo-sub">シドニー</span></td>
+          </tr>
+          <tr>
+            <td class="neo-row-label">時価総額</td>
+            <td class="neo-value-neutral">約 $600B+</td>
+            <td class="neo-value-neutral">$58.0B</td>
+            <td class="neo-value-neutral">$36.5B</td>
+            <td class="neo-value-neutral">$11B</td>
+          </tr>
+          <tr>
+            <td class="neo-row-label">現在株価（4/13終値）</td>
+            <td>$218<span class="neo-sub">+12.74% / 日</span></td>
+            <td>$111.25<span class="neo-sub">YTD 変動大</span></td>
+            <td>$145.19<span class="neo-sub">52W高値圏</span></td>
+            <td>$52.99<span class="neo-sub">Target $71-80</span></td>
+          </tr>
+          <tr>
+            <td class="neo-row-label">直近期売上高</td>
+            <td>FY26予想 $58B+<span class="neo-sub">うちOCI $18B</span></td>
+            <td>$5.13B<span class="neo-sub">FY2025通年</span></td>
+            <td>$529.8M<span class="neo-sub">FY2025通年</span></td>
+            <td>$501M<span class="neo-sub">FY2025通年</span></td>
+          </tr>
+          <tr>
+            <td class="neo-row-label">売上高成長率（YoY）</td>
+            <td class="neo-value-up">+9%（全社）<span class="neo-sub neo-value-up">OCI単独 +77%</span></td>
+            <td class="neo-value-up">+168%</td>
+            <td class="neo-value-up">+479%</td>
+            <td class="neo-value-up">+168%</td>
+          </tr>
+          <tr>
+            <td class="neo-row-label">EPS（TTM）</td>
+            <td class="neo-value-up">+$5.69<span class="neo-sub">Fwd 2027 $8.16</span></td>
+            <td class="neo-value-down">-$2.81<span class="neo-sub">赤字継続</span></td>
+            <td class="neo-value-up">+$0.11<span class="neo-sub">2025黒字転換</span></td>
+            <td class="neo-value-up">+$0.38<span class="neo-sub">FY25通年黒字</span></td>
+          </tr>
+          <tr>
+            <td class="neo-row-label">営業CF（TTM）</td>
+            <td class="neo-value-up">+$22.3B<span class="neo-sub">堅調</span></td>
+            <td class="neo-value-up">+$3.8B（推定）<span class="neo-sub">capex先行</span></td>
+            <td class="neo-value-up">+$401.9M<span class="neo-sub">Q4単体$834M</span></td>
+            <td class="neo-value-up">+$270M（推定）<span class="neo-sub">EBITDA$269.7M</span></td>
+          </tr>
+          <tr>
+            <td class="neo-row-label">投資CF（TTM）</td>
+            <td class="neo-value-down">-$31.6B<span class="neo-sub">capex急増227%</span></td>
+            <td class="neo-value-down">-$12B（推定）<span class="neo-sub">capex $12-14B計画</span></td>
+            <td class="neo-value-down">-$4.5B（推定）<span class="neo-sub">capex $5B計画</span></td>
+            <td class="neo-value-down">-$3.6B<span class="neo-sub">GPU財務含む</span></td>
+          </tr>
+          <tr>
+            <td class="neo-row-label">財務CF（TTM）</td>
+            <td class="neo-value-up">+$17.4B<span class="neo-sub">社債発行 $45-50B/26予定</span></td>
+            <td class="neo-value-up">+$9.5B（推定）<span class="neo-sub">Blackstone debt $7.5B</span></td>
+            <td class="neo-value-up">+$4.5B（推定）<span class="neo-sub">ATMプログラム+資産担保債</span></td>
+            <td class="neo-value-up">+$3.6B<span class="neo-sub">MSFT前払$1.9B+GPU金融</span></td>
+          </tr>
+          <tr>
+            <td class="neo-row-label">FCF（TTM）</td>
+            <td class="neo-value-down">-$13.2B<span class="neo-sub">成長投資優先</span></td>
+            <td class="neo-value-down">-$8.06B<span class="neo-sub">設備投資先行</span></td>
+            <td class="neo-value-down">-$5B超（推定）<span class="neo-sub">capex主導</span></td>
+            <td class="neo-value-down">-$300M（推定）<span class="neo-sub">95%はGPU金融で補填</span></td>
+          </tr>
+          <tr>
+            <td class="neo-row-label">主要株主</td>
+            <td>Larry Ellison <strong>41.2%</strong><span class="neo-sub">Vanguard 5.8% / BlackRock 3.1% / State Street 2.6% / Fidelity 0.9%</span></td>
+            <td>Magnetar Capital <strong>~30%</strong><span class="neo-sub">Nvidia（戦略株主）/ Coatue / Altimeter / Fidelity / Blackstone（debt$7.5B）</span></td>
+            <td>Arkady Volozh（創業者）<span class="neo-sub">Nvidia <strong>8.3%</strong>（$2B/2026.3） / Accel / Orbis / Fidelity</span></td>
+            <td>Daniel & Will Roberts（創業者）<span class="neo-sub">BlackRock / Vanguard / Morgan Stanley</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="neo-note">
+      ※ ORCLは2026年5月末決算（FY26）、CRWV・NBIS・IRENは2025年12月末決算。IRENの会計年度はFY25＝2024年7月〜2025年6月。投資CF・財務CF・FCFの一部は直近報告値と会社ガイダンスから推定。Fwd EPS・株主比率は2026年4月時点のデータソース（Yahoo Finance / MacroTrends / SEC 10-K）に基づく。
+    </div>
+
+    <div class="why-box positive" style="margin-top: 16px;">
+      <span class="why-box-label">📌 編集部の読み方</span>
+      4社いずれもFCFは赤字（投資優先フェーズ）。違いは「赤字の中身」と「その赤字を埋める資金調達力」。Oracleは本業のキャッシュ創出力（営業CF +$22.3B）で大部分を自走調達、他3社は外部資金（debt/equity/GPU金融/顧客前払）への依存度が高い。足腰の強さで選ぶならOracle、純粋ネオクラウドのアップサイドで選ぶならNebius、という構図。
+    </div>
+  </section>
+
   <!-- ===== 5. Economic Calendar ===== -->
   <section class="section-gap">
     <div class="section-label">
