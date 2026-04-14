@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas 用語辞典</title>
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<meta name="description" content="Atlas 金融用語辞典。FOMC、CPI、EPS、VIXなど投資に必要な用語をわかりやすく解説。">
+<meta property="og:title" content="Atlas 用語辞典">
+<meta property="og:description" content="投資に必要な金融用語をわかりやすく解説">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@700;900&family=Shippori+Mincho+B1:wght@500;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-sans: 'Noto Sans JP', 'Inter', -apple-system, sans-serif;
+  --font-serif: 'Shippori Mincho B1', 'Noto Serif JP', serif;
+  --bg-primary: #F5F2EC;
+  --bg-card: #FDFCFA;
+  --bg-card-hover: #f0ebe3;
+  --text-primary: #1A2540;
+  --text-secondary: #4a5568;
+  --text-muted: #8c8c8c;
+  --border: #ddd4c6;
+  --accent: #B8912A;
+  --accent-green: #B8912A;
+  --accent-red: #8B2020;
+  --accent-amber: #B8912A;
+  --accent-purple: #6b4c9a;
+  --shadow-card: 0 1px 4px rgba(26,37,64,.06), 0 2px 8px rgba(26,37,64,.04);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #1A2540 0%, #0f1a30 50%, #1A2540 100%);
+  border-bottom: 1px solid rgba(184,145,42,0.15);
+  padding: 56px 20px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(184,145,42,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 50%, rgba(212,168,67,0.04) 0%, transparent 60%);
+}
+.header-content { position: relative; z-index: 1; }
+.header-icon { font-size: 2.8em; margin-bottom: 8px; }
+.header h1 {
+  font-family: var(--font-serif);
+  font-size: 2.2em;
+  font-weight: 800;
+  letter-spacing: .06em;
+  margin-bottom: 4px;
+  color: #fff;
+}
+.header .subtitle {
+  color: #bbb;
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: .08em;
+}
+.header .paper-badge {
+  display: inline-block;
+  background: rgba(184,145,42,0.15);
+  border: 1px solid rgba(184,145,42,0.3);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 12px;
+  color: #D4A843;
+  margin-top: 14px;
+  letter-spacing: .05em;
+}
+
+/* Search */
+.search-section {
+  padding: 28px 0 0;
+}
+.search-box {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.search-box input {
+  width: 100%;
+  padding: 14px 18px 14px 48px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-family: var(--font-sans);
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.search-box input::placeholder { color: var(--text-muted); }
+.search-box input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(184,145,42,0.15);
+}
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 18px;
+  pointer-events: none;
+}
+.search-count {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  min-height: 20px;
+}
+
+/* Category Filters */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 0 28px;
+}
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: rgba(184,145,42,0.06);
+}
+.filter-btn.active {
+  background: rgba(184,145,42,0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.filter-btn .count-badge {
+  display: inline-block;
+  background: rgba(26,37,64,0.06);
+  border-radius: 10px;
+  padding: 1px 7px;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: 2px;
+}
+.filter-btn.active .count-badge {
+  background: rgba(184,145,42,0.2);
+  color: var(--accent);
+}
+
+/* Sort controls */
+.sort-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 16px;
+}
+.sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+}
+.sort-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+.sort-btn.active {
+  background: rgba(184,145,42,0.12);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Terms list */
+.terms-section {
+  padding-bottom: 80px;
+}
+.category-group {
+  margin-bottom: 32px;
+}
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+.category-header .cat-icon { font-size: 1.3em; }
+.category-header h2 {
+  font-size: 1.05em;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.category-header .cat-en {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Term card */
+.term-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+.term-card:hover {
+  border-color: #c8bfad;
+}
+.term-card.expanded {
+  border-color: rgba(184,145,42,0.3);
+  box-shadow: 0 2px 12px rgba(26,37,64,.08);
+}
+.term-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+.term-header:hover {
+  background: var(--bg-card-hover);
+}
+.term-names {
+  flex: 1;
+  min-width: 0;
+}
+.term-ja {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+.term-en {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 500;
+  margin-top: 1px;
+  font-family: 'Inter', var(--font-sans);
+}
+.term-short {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.term-badges {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.badge-morning {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: rgba(184,145,42,0.1);
+  border: 1px solid rgba(184,145,42,0.2);
+  color: var(--accent-green);
+  white-space: nowrap;
+}
+.badge-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: rgba(26,37,64,0.05);
+  border: 1px solid rgba(26,37,64,0.1);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.expand-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  transition: transform .25s;
+  margin-top: 2px;
+}
+.term-card.expanded .expand-icon {
+  transform: rotate(180deg);
+}
+
+/* Term body */
+.term-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .45s ease, opacity .3s ease;
+  opacity: 0;
+}
+.term-card.expanded .term-body {
+  max-height: 3000px;
+  opacity: 1;
+}
+.term-body-inner {
+  padding: 0 18px 18px;
+  border-top: 1px solid var(--border);
+  margin-top: 0;
+  padding-top: 16px;
+}
+.term-full {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.85;
+}
+
+/* Visual content inside term body */
+.term-visual {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.term-visual img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.term-visual .img-caption {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: -12px;
+}
+
+/* Diagram box */
+.vis-diagram {
+  background: rgba(26,37,64,.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+}
+.vis-diagram-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1A2540;
+  margin-bottom: 12px;
+}
+
+/* Flow diagram with arrows */
+.vis-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+}
+.vis-flow-step {
+  background: rgba(26,37,64,.06);
+  border: 1px solid rgba(26,37,64,.15);
+  border-radius: 8px;
+  padding: 8px 14px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.vis-flow-step.negative {
+  background: rgba(139,32,32,.08);
+  border-color: rgba(139,32,32,.2);
+}
+.vis-flow-step.positive {
+  background: rgba(184,145,42,.08);
+  border-color: rgba(184,145,42,.2);
+}
+.vis-flow-arrow {
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+/* Gauge/meter */
+.vis-gauge {
+  margin: 8px 0;
+}
+.vis-gauge-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.vis-gauge-bar {
+  height: 24px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #3fb950 0%, #3fb950 40%, #d29922 40%, #d29922 60%, #f85149 60%, #f85149 100%);
+  position: relative;
+  overflow: hidden;
+}
+.vis-gauge-marker {
+  position: absolute;
+  top: -4px;
+  width: 4px;
+  height: 32px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 6px rgba(0,0,0,.5);
+}
+
+/* CSS horizontal bar chart */
+.vis-bars { display: flex; flex-direction: column; gap: 8px; }
+.vis-bar-item { display: flex; align-items: center; gap: 10px; }
+.vis-bar-label { min-width: 80px; font-size: 12px; color: var(--text-secondary); text-align: right; }
+.vis-bar-track { flex: 1; height: 22px; background: rgba(26,37,64,.06); border-radius: 6px; overflow: hidden; position: relative; }
+.vis-bar-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 11px; font-weight: 700; color: #fff; transition: width .6s ease; }
+.vis-bar-fill.blue { background: var(--accent); }
+.vis-bar-fill.green { background: var(--accent-green); }
+.vis-bar-fill.red { background: var(--accent-red); }
+.vis-bar-fill.amber { background: var(--accent-amber); }
+
+/* Comparison table */
+.vis-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.vis-table th { text-align: left; padding: 8px 10px; background: rgba(26,37,64,.04); border-bottom: 1px solid var(--border); color: #1A2540; font-weight: 700; }
+.vis-table td { padding: 8px 10px; border-bottom: 1px solid rgba(26,37,64,.06); color: var(--text-secondary); }
+
+/* Callout/tip box */
+.vis-callout {
+  background: rgba(184,145,42,.06);
+  border: 1px solid rgba(184,145,42,.15);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.vis-callout strong { color: #1A2540; }
+.vis-callout.warning {
+  background: rgba(139,32,32,.06);
+  border-color: rgba(139,32,32,.15);
+}
+.vis-callout.warning strong { color: var(--accent-red); }
+.vis-callout.tip {
+  background: rgba(184,145,42,.06);
+  border-color: rgba(184,145,42,.15);
+}
+.vis-callout.tip strong { color: var(--accent-green); }
+
+/* Dot plot CSS dots */
+.vis-dotplot-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 0;
+}
+.vis-dotplot-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.vis-dotplot-rate {
+  min-width: 52px;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+}
+.vis-dotplot-dots {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.vis-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.vis-dot.y2027 { background: var(--accent-green); }
+.vis-dot.y2028 { background: var(--accent-amber); }
+
+/* Timeline */
+.vis-timeline {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 600;
+}
+.vis-timeline-block {
+  padding: 10px 8px;
+  text-align: center;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+.vis-timeline-block .tl-label {
+  font-size: 10px;
+  opacity: .7;
+}
+
+/* HBM stack */
+.vis-hbm-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 0;
+}
+.vis-hbm-layer {
+  width: 160px;
+  height: 18px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+}
+.vis-hbm-layer.die { background: var(--accent); }
+.vis-hbm-layer.tsv { background: rgba(26,37,64,.08); height: 6px; width: 140px; }
+.vis-hbm-layer.base { background: var(--accent-green); }
+.vis-hbm-arrow {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin: 2px 0;
+}
+
+/* No results */
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+.no-results .nr-icon { font-size: 2.5em; margin-bottom: 12px; }
+.no-results p { font-size: 14px; }
+
+/* Footer */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 20px;
+  text-align: center;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+.footer-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: opacity .15s;
+}
+.footer-links a:hover { opacity: .7; }
+.footer-copy {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Responsive for visuals */
+@media (max-width: 767px) {
+  .vis-flow { flex-direction: column; }
+  .vis-flow-arrow { transform: rotate(90deg); }
+  .vis-bar-label { min-width: 60px; font-size: 11px; }
+  .term-visual img { height: 140px; }
+  .vis-timeline { flex-wrap: wrap; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .header { padding: 48px 16px 32px; }
+  .header h1 { font-size: 1.6em; }
+  .header-icon { font-size: 2.2em; }
+  .search-box input { font-size: 14px; padding: 12px 16px 12px 44px; }
+  .filters { gap: 6px; padding: 16px 0 20px; }
+  .filter-btn { padding: 6px 12px; font-size: 12px; }
+  .term-header { padding: 14px 14px; gap: 10px; }
+  .term-ja { font-size: 14px; }
+  .term-short { font-size: 12px; }
+  .term-body-inner { padding: 0 14px 14px; padding-top: 14px; }
+  .term-full { font-size: 13px; }
+  .category-header h2 { font-size: .95em; }
+}
+@media (max-width: 480px) {
+  .header h1 { font-size: 1.3em; }
+  .filter-btn { padding: 5px 10px; font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<header style="background:rgba(26,37,64,0.97);padding:0 5vw;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(184,145,42,0.12)">
+<div style="display:flex;justify-content:space-between;align-items:center;height:52px;max-width:1100px;margin:0 auto">
+<a href="https://atlas-financials.jp/" style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;text-decoration:none">Atlas<span style="color:#D4A843">.</span></a>
+<nav style="display:flex;gap:20px"><a href="https://atlas-financials.jp/news/" style="font-size:12px;color:#D4A843;text-decoration:none">朝刊</a><a href="https://atlas-financials.jp/reports/" style="font-size:12px;color:#D4A843;text-decoration:none">分析</a><a href="https://atlas-financials.jp/news/glossary/" style="font-size:12px;color:#D4A843;text-decoration:none">用語辞典</a></nav>
+</div></header>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-content">
+    <div class="header-icon">📖</div>
+    <h1>Atlas 用語辞典</h1>
+    <div class="subtitle">Financial Glossary</div>
+    <div class="paper-badge">Atlas Financials</div>
+  </div>
+</div>
+
+<!-- Search -->
+<div class="container">
+  <div class="search-section">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="用語を検索（日本語・英語）">
+    </div>
+    <div class="search-count" id="searchCount"></div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-cat="all">すべて <span class="count-badge">24</span></button>
+    <button class="filter-btn" data-cat="monetary">🏦 金融政策 <span class="count-badge">7</span></button>
+    <button class="filter-btn" data-cat="indicators">📊 経済指標 <span class="count-badge">4</span></button>
+    <button class="filter-btn" data-cat="markets">📈 マーケット <span class="count-badge">3</span></button>
+    <button class="filter-btn" data-cat="earnings">💰 決算・企業分析 <span class="count-badge">5</span></button>
+    <button class="filter-btn" data-cat="tech">🔧 テクノロジー <span class="count-badge">2</span></button>
+    <button class="filter-btn" data-cat="geo">🌍 地政学・通商 <span class="count-badge">3</span></button>
+  </div>
+
+  <!-- Sort -->
+  <div class="sort-bar">
+    <button class="sort-btn" id="sortBtn" onclick="toggleSort()">あ→わ あいうえお順</button>
+  </div>
+
+  <!-- Terms -->
+  <div class="terms-section" id="termsSection"></div>
+
+  <!-- No Results -->
+  <div class="no-results" id="noResults" style="display:none">
+    <div class="nr-icon">🔎</div>
+    <p>該当する用語が見つかりませんでした</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer" style="background:#1A2540;border-top:1px solid rgba(184,145,42,0.15);">
+  <div class="footer-links">
+    <a href="https://atlas-financials.jp/news/" style="color:#D4A843;">朝刊ポータル</a>
+    <a href="https://atlas-financials.jp/news/" style="color:#D4A843;">最新の朝刊</a>
+    <a href="https://atlas-financials.jp/reports/" style="color:#D4A843;">決算レポート</a>
+  </div>
+  <div class="footer-copy" style="color:#888;">&copy; 2026 Atlas Financials</div>
+</div>
+
+<script>
+// === Term Data ===
+var TERMS = [
+  {
+    id: "fomc",
+    ja: "FOMC",
+    en: "Federal Open Market Committee",
+    cat: "monetary",
+    catLabel: "金融政策",
+    catIcon: "🏦",
+    morning: true,
+    short: "連邦公開市場委員会。年8回の金融政策決定会合",
+    full: "FRB（米連邦準備制度理事会）が開催する金融政策を決定する最重要会合。年8回、約6週間ごとに開催される。FRB理事7名と地区連銀総裁5名の計12名が投票権を持ち、政策金利（FF金利）の変更、量的緩和/引き締めの方針を決定する。会合後に声明文が公表され、3週間後に議事要旨（Minutes）が公開される。四半期に1回はSEP（経済見通し要約）とドットプロットも同時に発表される。",
+    visual: '<img src="https://images.pexels.com/photos/31965503/pexels-photo-31965503.jpeg?auto=compress&cs=tinysrgb&w=800" alt="連邦準備制度理事会ビル" loading="lazy"><div class="img-caption">Photo: Federal Reserve Building, Washington D.C.</div><div class="vis-diagram"><div class="vis-diagram-title">FOMC 意思決定プロセス</div><div class="vis-flow"><div class="vis-flow-step">FOMC会合<br><small>年8回開催</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">声明文発表<br><small>会合当日</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">市場反応<br><small>株・債券・為替</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">議事要旨公開<br><small>3週間後</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">2026年 FOMC開催スケジュール</div><table class="vis-table"><tr><th>回</th><th>開催日</th><th>SEP・ドットプロット</th></tr><tr><td>第1回</td><td>1月28-29日</td><td>-</td></tr><tr><td>第2回</td><td>3月18-19日</td><td>あり</td></tr><tr><td>第3回</td><td>5月6-7日</td><td>-</td></tr><tr><td>第4回</td><td>6月16-17日</td><td>あり</td></tr><tr><td>第5回</td><td>7月28-29日</td><td>-</td></tr><tr><td>第6回</td><td>9月15-16日</td><td>あり</td></tr><tr><td>第7回</td><td>10月28-29日</td><td>-</td></tr><tr><td>第8回</td><td>12月15-16日</td><td>あり</td></tr></table></div>'
+  },
+  {
+    id: "ffrate",
+    ja: "FF金利",
+    en: "Federal Funds Rate",
+    cat: "monetary",
+    catLabel: "金融政策",
+    catIcon: "🏦",
+    morning: true,
+    short: "フェデラルファンド金利。FRBの金融政策の主要ツール",
+    full: "米国の銀行間で翌日物（オーバーナイト）の資金を貸し借りする際の金利。FOMCが誘導目標レンジ（例: 3.50-3.75%）を設定し、公開市場操作で実効金利をこのレンジ内に誘導する。FF金利は住宅ローン、自動車ローン、クレジットカード金利など、あらゆる金利のベースとなるため「金利の金利」とも呼ばれる。利下げは景気刺激、利上げは景気抑制の効果がある。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">FF金利の現在位置（過去の推移レンジ: 0% ～ 5.50%）</div><div class="vis-gauge"><div class="vis-gauge-label"><span>0%</span><span>1%</span><span>2%</span><span>3%</span><span>4%</span><span>5.5%</span></div><div class="vis-gauge-bar"><div class="vis-gauge-marker" style="left:64%"></div></div></div><div style="text-align:center;font-size:13px;color:var(--accent);font-weight:700;margin-top:8px">現在: 3.50-3.75%（2026年3月時点）</div></div><div class="vis-diagram"><div class="vis-diagram-title">FF金利が日常生活に与える影響</div><div class="vis-flow"><div class="vis-flow-step negative">FF金利↑</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">住宅ローン金利↑</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">消費減</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">景気減速</div></div></div><div class="vis-callout tip"><strong>💡 ポイント:</strong> FF金利は「全ての金利の基準」。FRBがFF金利を動かすと、住宅ローン・自動車ローン・預金金利・企業の借入コストまで連鎖的に変動する。投資判断でも最重要の指標の一つ。</div>'
+  },
+  {
+    id: "dotplot",
+    ja: "ドットプロット",
+    en: "Dot Plot",
+    cat: "monetary",
+    catLabel: "金融政策",
+    catIcon: "🏦",
+    morning: true,
+    short: "FOMCメンバーの政策金利予想を点で示したチャート",
+    full: "FOMC参加者19名（理事7名＋地区連銀総裁12名）が、各年末時点の適切な政策金利水準を予想し、それを匿名の「点（ドット）」としてチャート上に表示したもの。四半期に1回、SEPと同時に公表される。市場は中央値（メディアン）から利下げ/利上げの回数を読み取り、ドットの分布の変化から「タカ派（利上げ寄り）」「ハト派（利下げ寄り）」の傾向を判断する。ただし、各ドットが誰の予想かは公表されない。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">ドットプロット イメージ図（2026年3月会合）</div><div class="vis-dotplot-grid"><div class="vis-dotplot-row"><div class="vis-dotplot-rate">4.50%</div><div class="vis-dotplot-dots"><div class="vis-dot y2028"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">4.25%</div><div class="vis-dotplot-dots"><div class="vis-dot y2028"></div><div class="vis-dot y2028"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">4.00%</div><div class="vis-dotplot-dots"><div class="vis-dot y2027"></div><div class="vis-dot y2028"></div><div class="vis-dot y2028"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">3.75%</div><div class="vis-dotplot-dots"><div class="vis-dot"></div><div class="vis-dot"></div><div class="vis-dot y2027"></div><div class="vis-dot y2027"></div><div class="vis-dot y2028"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">3.50%</div><div class="vis-dotplot-dots"><div class="vis-dot"></div><div class="vis-dot"></div><div class="vis-dot"></div><div class="vis-dot y2027"></div><div class="vis-dot y2027"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">3.25%</div><div class="vis-dotplot-dots"><div class="vis-dot"></div><div class="vis-dot"></div><div class="vis-dot"></div><div class="vis-dot"></div><div class="vis-dot y2027"></div><div class="vis-dot y2027"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">3.00%</div><div class="vis-dotplot-dots"><div class="vis-dot"></div><div class="vis-dot y2027"></div><div class="vis-dot y2027"></div></div></div><div class="vis-dotplot-row"><div class="vis-dotplot-rate">2.75%</div><div class="vis-dotplot-dots"><div class="vis-dot y2027"></div></div></div></div><div style="display:flex;gap:16px;justify-content:center;margin-top:10px;font-size:11px"><div style="display:flex;align-items:center;gap:4px"><div class="vis-dot" style="width:8px;height:8px"></div> 2026年末</div><div style="display:flex;align-items:center;gap:4px"><div class="vis-dot y2027" style="width:8px;height:8px"></div> 2027年末</div><div style="display:flex;align-items:center;gap:4px"><div class="vis-dot y2028" style="width:8px;height:8px"></div> 2028年末</div></div></div><div class="vis-callout"><strong>📌 読み方のコツ:</strong> ドットが下に集まるほど「ハト派（利下げ方向）」、上に集まるほど「タカ派（利上げ方向）」。中央値の変化に注目し、前回との比較で市場のサプライズを読み取る。</div>'
+  },
+  {
+    id: "sep",
+    ja: "SEP",
+    en: "Summary of Economic Projections",
+    cat: "monetary",
+    catLabel: "金融政策",
+    catIcon: "🏦",
+    morning: true,
+    short: "FOMC経済見通し要約。四半期ごとに公表",
+    full: "FOMCメンバーによる主要経済指標の見通しをまとめた文書。GDP成長率、失業率、PCEインフレ率、コアPCEインフレ率、FF金利の予測が含まれる。3月・6月・9月・12月のFOMCで公表され、ドットプロットもSEPの一部。前回との変化（例: GDP見通しの上方/下方修正）が市場に大きなインパクトを与えることが多い。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">SEP 主要予測値（2026年3月会合・イメージ）</div><table class="vis-table"><tr><th>指標</th><th>2026年</th><th>2027年</th><th>2028年</th><th>長期</th></tr><tr><td>GDP成長率</td><td>1.7%</td><td>1.8%</td><td>2.0%</td><td>1.8%</td></tr><tr><td>失業率</td><td>4.4%</td><td>4.3%</td><td>4.2%</td><td>4.2%</td></tr><tr><td>PCEインフレ率</td><td>2.7%</td><td>2.2%</td><td>2.0%</td><td>2.0%</td></tr><tr><td>コアPCE</td><td>2.8%</td><td>2.3%</td><td>2.0%</td><td>-</td></tr><tr><td>FF金利（中央値）</td><td>3.50%</td><td>3.00%</td><td>2.75%</td><td>2.75%</td></tr></table></div><div class="vis-callout"><strong>📌 なぜSEPが重要なのか:</strong> SEPの数値が前回から変わった方向（上方修正 or 下方修正）が、今後の金融政策の方向性を示す最も強いシグナル。特にGDP見通しの下方修正とインフレ見通しの上方修正が同時に起きると「スタグフレーション懸念」として市場に大きなインパクトを与える。</div>'
+  },
+  {
+    id: "bp",
+    ja: "bp（ベーシスポイント）",
+    en: "Basis Point",
+    cat: "monetary",
+    catLabel: "金融政策",
+    catIcon: "🏦",
+    morning: false,
+    short: "金利の変動幅の単位。1bp = 0.01%",
+    full: "金利や利回りの変動を表す最小単位。1ベーシスポイント = 0.01%。例えば「25bp利下げ」は金利を0.25%引き下げることを意味する。パーセントの「パーセント」を表す単位と考えるとわかりやすい。「金利が0.5%上がった」よりも「50bp上昇」のほうが金融の世界では正確で誤解が生じにくい。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">ベーシスポイント 換算スケール</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">25bp</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:25%">0.25%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">50bp</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:50%">0.50%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">75bp</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:75%">0.75%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">100bp</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:100%">1.00%</div></div></div></div></div><div class="vis-callout tip"><strong>💡 金融ニュースで最頻出の単位:</strong> 「FRBが25bp利下げ」「10年債利回りが15bp上昇」など、毎日のように登場する。通常の利下げ/利上げ幅は25bpで、50bp以上の変更は「ビッグステップ」と呼ばれ、緊急対応を示す。</div>'
+  },
+  {
+    id: "qt",
+    ja: "QT（量的引き締め）",
+    en: "Quantitative Tightening",
+    cat: "monetary",
+    catLabel: "金融政策",
+    catIcon: "🏦",
+    morning: false,
+    short: "FRBが保有資産を減らし市場から資金を回収すること",
+    full: "QE（量的緩和）の逆のプロセス。FRBが保有する国債やMBS（住宅ローン担保証券）の満期償還分を再投資せずにバランスシートを縮小し、市場から流動性（資金）を回収する。金利引き上げと合わせて実施されることが多く、「ステルス利上げ」とも呼ばれる。QTのペース変更（加速/減速）も市場に大きな影響を与える。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">QT（量的引き締め）のメカニズム</div><div class="vis-flow"><div class="vis-flow-step">FRB保有資産<br><small>国債・MBS</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">国債が満期</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">再投資しない</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">市場の資金量↓</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">金利上昇圧力</div></div></div><div class="vis-diagram"><div class="vis-diagram-title">QE（緩和）vs QT（引き締め）比較</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">QE期間</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:90%">資産買入で市場に資金供給</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">QT期間</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:65%">満期償還で市場から資金回収</div></div></div></div></div><div class="vis-callout warning"><strong>⚠️ 注意:</strong> QTは「ステルス利上げ」とも呼ばれ、FF金利の引き上げと同時に行われると、金融引き締め効果が二重になる。QTのペース減速（テーパリング）は市場にとってポジティブなシグナル。</div>'
+  },
+  {
+    id: "forwardguidance",
+    ja: "フォワードガイダンス",
+    en: "Forward Guidance",
+    cat: "monetary",
+    catLabel: "金融政策",
+    catIcon: "🏦",
+    morning: false,
+    short: "中央銀行が将来の金融政策の方向性を事前に示すこと",
+    full: "中央銀行が「今後の金融政策の方向性」を市場に事前に伝えるコミュニケーション手法。「次回会合で利上げの可能性がある」「当面は緩和的な政策を維持する」といった発言が該当する。市場の期待を安定させ、急激な金利変動を防ぐ目的がある。パウエル議長の記者会見での発言は、最も注目されるフォワードガイダンスの一つ。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">フォワードガイダンスの伝達メカニズム</div><div class="vis-flow"><div class="vis-flow-step">中央銀行が発言<br><small>記者会見・声明文</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">市場の期待形成<br><small>利下げ/利上げ織り込み</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">金利・株価に反映<br><small>先回りの価格調整</small></div></div></div><div class="vis-callout"><strong>📌 代表的なフォワードガイダンスの表現:</strong><br>🔹 タカ派:「更なる引き締めが適切かもしれない」→ 利上げ示唆<br>🔹 ハト派:「緩和的な姿勢を当面維持する」→ 利下げ or 据え置き<br>🔹 中立:「データ次第で判断する」→ 明確な方向性なし<br><br>パウエル議長の一言で市場が数%動くこともあり、「Fed語」の解読は投資家の必須スキル。</div>'
+  },
+  {
+    id: "ppi",
+    ja: "PPI",
+    en: "Producer Price Index",
+    cat: "indicators",
+    catLabel: "経済指標",
+    catIcon: "📊",
+    morning: false,
+    short: "生産者物価指数。企業間取引の価格変動を測定",
+    full: "企業が製品を出荷する段階での価格変動を測定する指標。「川上のインフレ指標」とも呼ばれ、CPIに先行する傾向がある。原材料→中間財→最終財の3段階で測定され、原材料の上昇は数ヶ月後にCPI（消費者物価）に波及しやすい。毎月中旬に米労働統計局（BLS）が発表。前月比と前年比の両方が注目される。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">インフレの伝搬パイプライン（川上→川下）</div><div class="vis-flow"><div class="vis-flow-step">原材料PPI<br><small>鉄鋼・原油・穀物</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">中間財PPI<br><small>部品・素材</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">最終財PPI<br><small>完成品・出荷価格</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">CPI<br><small>消費者が支払う価格</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">PPI 前年比推移（イメージ）</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">2024 Q2</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:50%">2.5%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">2024 Q4</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:44%">2.2%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">2025 Q2</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:36%">1.8%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">2025 Q4</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:46%">2.3%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">2026 Q1</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:40%">2.0%</div></div></div></div></div><div class="vis-callout tip"><strong>💡 投資家のチェックポイント:</strong> PPIが上昇傾向にある場合、数ヶ月後にCPIも上昇する可能性が高い。PPIの「先行性」を利用して、インフレ動向を先読みする。</div>'
+  },
+  {
+    id: "cpi",
+    ja: "CPI",
+    en: "Consumer Price Index",
+    cat: "indicators",
+    catLabel: "経済指標",
+    catIcon: "📊",
+    morning: true,
+    short: "消費者物価指数。一般消費者が購入する財・サービスの価格変動",
+    full: "都市部の消費者が購入する財・サービスのバスケット（約80,000品目）の価格変動を測定する指標。「ヘッドラインCPI」は食品・エネルギーを含む総合指数、「コアCPI」は変動の激しい食品・エネルギーを除いた指数。毎月中旬にBLSが発表し、FRBの金融政策判断に大きな影響を与える。市場予想との乖離が大きいと株式・債券市場が大きく動く。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">CPI 構成ウェイト（概算）</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">住居費</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:40%">約40%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">食品</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:14%">約14%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">交通</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:10%">約10%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">医療</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:8%">約8%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">教育・通信</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:7%">約7%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">その他</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:21%">約21%</div></div></div></div></div><img src="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=800" alt="スーパーマーケットの商品棚" loading="lazy"><div class="img-caption">Photo: Consumer prices are measured across ~80,000 items</div><div class="vis-callout"><strong>📌 ヘッドライン vs コア:</strong> 食品・エネルギーは天候や地政学で激しく変動するため、FRBは「コアCPI」をより重視する。ただし消費者の実感に近いのは「ヘッドラインCPI」。両方の乖離が大きい時は要注意。</div>'
+  },
+  {
+    id: "pce",
+    ja: "PCE",
+    en: "Personal Consumption Expenditures Price Index",
+    cat: "indicators",
+    catLabel: "経済指標",
+    catIcon: "📊",
+    morning: true,
+    short: "個人消費支出物価指数。FRBが最も重視するインフレ指標",
+    full: "米商務省が発表する物価指標で、FRBが金融政策の目標として最も重視するインフレ指標。CPIとの違いは、(1)対象範囲が広い（保険や金融サービスも含む）、(2)消費者の代替行動を考慮する（牛肉が高くなれば鶏肉に切り替えるなど）、(3)支出ウェイトが毎月更新される。FRBのインフレ目標は「PCE前年比2%」。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">CPI vs PCE 比較表</div><table class="vis-table"><tr><th>比較項目</th><th>CPI</th><th>PCE</th></tr><tr><td>発表元</td><td>労働統計局（BLS）</td><td>商務省経済分析局（BEA）</td></tr><tr><td>対象範囲</td><td>都市部消費者の直接支出</td><td>全消費者＋雇用主負担分含む</td></tr><tr><td>ウェイト更新</td><td>2年に1回</td><td>毎月更新</td></tr><tr><td>代替効果</td><td>考慮しない</td><td>考慮する（連鎖加重）</td></tr><tr><td>住居費ウェイト</td><td>約40%（大きい）</td><td>約15%（小さい）</td></tr><tr><td>FRBの重視度</td><td>参考指標</td><td>★ 公式目標指標</td></tr></table></div><div class="vis-callout"><strong>📌 FRBの物価目標は「PCE 2%」:</strong> CPIの方が先に発表されるため市場の注目を集めやすいが、FRBが金融政策の判断基準にしているのはPCE。両指標の乖離が大きい時は、PCEの方向性を優先して解釈する。</div>'
+  },
+  {
+    id: "stagflation",
+    ja: "スタグフレーション",
+    en: "Stagflation",
+    cat: "indicators",
+    catLabel: "経済指標",
+    catIcon: "📊",
+    morning: false,
+    short: "景気停滞とインフレが同時に起きる状態",
+    full: "景気停滞（Stagnation）とインフレーション（Inflation）を合わせた造語。通常、景気が悪化すれば需要が減り物価は下がる（デフレ）が、原油価格の急騰や供給制約などの外部ショックにより、不景気なのに物価が上がり続ける異常事態。中央銀行にとって最も対応が難しい状況で、利下げすればインフレ加速、利上げすれば景気悪化というジレンマに陥る。1970年代のオイルショック時が典型例。投資では株式・債券ともに不利で、金・コモディティ・エネルギー株が相対的に有利とされる。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">スタグフレーションの悪循環</div><div class="vis-flow"><div class="vis-flow-step negative">原油高・供給制約</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">コスト上昇</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">物価↑ + 企業利益↓</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">雇用↓ → 消費↓</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">景気停滞</div></div></div><img src="https://images.pexels.com/photos/3656855/pexels-photo-3656855.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ガソリンスタンド" loading="lazy"><div class="img-caption">Photo: 原油価格の急騰はスタグフレーションの主因の一つ</div><div class="vis-diagram"><div class="vis-diagram-title">1970年代 vs 2026年の経済環境比較</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">1974年CPI</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:88%">11.0%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">1974年失業率</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:56%">7.0%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">2026年CPI</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:24%">3.0%</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">2026年失業率</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:35%">4.4%</div></div></div></div></div><div class="vis-callout warning"><strong>⚠️ 中央銀行のジレンマ:</strong> スタグフレーション下では「利下げ→インフレ加速」「利上げ→景気悪化」のどちらを選んでも副作用がある。FRBにとって最も対応が難しいシナリオ。</div>'
+  },
+  {
+    id: "vix",
+    ja: "VIX",
+    en: "CBOE Volatility Index",
+    cat: "markets",
+    catLabel: "マーケット",
+    catIcon: "📈",
+    morning: true,
+    short: "S&P 500オプションの予想変動率。恐怖指数とも呼ばれる",
+    full: "シカゴ・オプション取引所（CBOE）が算出する、S&P 500の今後30日間の予想変動率を示す指数。「恐怖指数」の別名を持つ。20以下は市場が安定、20-30はやや警戒、30超は高ストレス（パニック）状態を示す。2020年3月のコロナショック時には82.69まで急騰した。VIX自体を売買するETFや先物もあり、ヘッジ手段としても利用される。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">VIX レベルゲージ</div><div class="vis-gauge"><div class="vis-gauge-label"><span>0</span><span>15 安定</span><span>20 通常</span><span>30 警戒</span><span>50+</span></div><div class="vis-gauge-bar" style="background:linear-gradient(90deg, #3fb950 0%, #3fb950 30%, #58a6ff 30%, #58a6ff 40%, #d29922 40%, #d29922 60%, #f85149 60%, #f85149 100%)"><div class="vis-gauge-marker" style="left:28%"></div></div></div><div style="text-align:center;font-size:12px;margin-top:8px"><span style="color:var(--accent-green)">■ 0-15 安定</span> ｜ <span style="color:var(--accent)">■ 15-20 通常</span> ｜ <span style="color:var(--accent-amber)">■ 20-30 警戒</span> ｜ <span style="color:var(--accent-red)">■ 30+ パニック</span></div></div><div class="vis-diagram"><div class="vis-diagram-title">過去のVIXスパイク</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">コロナ2020</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:100%">82.69</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">VIXショック2018</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:43%">36.07</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">関税ショック2025</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:60%">50.04</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">平常時</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:18%">12-15</div></div></div></div></div><div class="vis-callout"><strong>📌 VIXの使い方:</strong> VIXが急上昇（30超）した時は「恐怖のピーク＝買い場」となることが多い（逆張り指標）。ただし上昇途中で買うのは危険。VIXがピークをつけて下降に転じてからのエントリーが定石。</div>'
+  },
+  {
+    id: "topix",
+    ja: "TOPIX",
+    en: "Tokyo Stock Price Index",
+    cat: "markets",
+    catLabel: "マーケット",
+    catIcon: "📈",
+    morning: false,
+    short: "東証プライム全銘柄の時価総額加重型株価指数",
+    full: "東京証券取引所プライム市場に上場する全銘柄を対象とした時価総額加重型の株価指数。日経平均株価が225銘柄の株価単純平均であるのに対し、TOPIXは時価総額の大きい企業ほどウェイトが高い。そのため、TOPIXは市場全体の実態をより正確に反映するとされる。基準日は1968年1月4日（=100）。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">TOPIX vs 日経平均 比較</div><table class="vis-table"><tr><th>比較項目</th><th>TOPIX</th><th>日経平均株価</th></tr><tr><td>算出方式</td><td>時価総額加重平均</td><td>株価単純平均（除数修正）</td></tr><tr><td>対象銘柄数</td><td>プライム全銘柄（約1,800）</td><td>225銘柄（選定）</td></tr><tr><td>値がさ株の影響</td><td>小さい（時価総額ベース）</td><td>大きい（株価が高い銘柄の影響大）</td></tr><tr><td>代表的ETF</td><td>1306（TOPIX連動型）</td><td>1321（日経225連動型）</td></tr><tr><td>特徴</td><td>市場全体の動きを反映</td><td>ファストリ・ソフバンクGの影響大</td></tr></table></div><div class="vis-callout tip"><strong>💡 使い分け:</strong> 日本株全体のトレンドを見るならTOPIX、個別の値がさ株の影響を含むセンチメントを見るなら日経平均。機関投資家のベンチマークはTOPIXが多い。</div>'
+  },
+  {
+    id: "brent",
+    ja: "Brent原油",
+    en: "Brent Crude Oil",
+    cat: "markets",
+    catLabel: "マーケット",
+    catIcon: "📈",
+    morning: false,
+    short: "北海ブレント原油。国際的な原油価格ベンチマーク",
+    full: "北海（イギリス・ノルウェー沖）で産出される原油の価格指標。世界の原油取引の約2/3がBrent原油を基準に値付けされるため、国際的な原油価格のベンチマークとなっている。米国の指標であるWTI（West Texas Intermediate）よりも国際的な影響力が大きい。ロンドンのICE取引所で取引され、地政学リスク（中東情勢等）に敏感に反応する。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">原油価格が経済に波及するメカニズム</div><div class="vis-flow"><div class="vis-flow-step negative">Brent原油↑</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">ガソリン価格↑</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">輸送コスト↑</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">CPI上昇</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">FRB利上げ圧力</div></div></div><img src="https://images.pexels.com/photos/10020724/pexels-photo-10020724.jpeg?auto=compress&cs=tinysrgb&w=800" alt="石油タンカー" loading="lazy"><div class="img-caption">Photo: 世界の原油取引の約2/3がBrentを基準に値付け</div><div class="vis-callout"><strong>📌 Brent vs WTI:</strong> Brentは国際指標（欧州・アジア・中東）、WTIは北米指標。通常BrentはWTIより$2-5高く取引される。地政学リスクではBrentの方が敏感に反応する。</div>'
+  },
+  {
+    id: "eps",
+    ja: "EPS",
+    en: "Earnings Per Share",
+    cat: "earnings",
+    catLabel: "決算・企業分析",
+    catIcon: "💰",
+    morning: false,
+    short: "1株当たり利益。純利益÷発行済株式数",
+    full: "企業の純利益を発行済株式数で割った値で、株主1人あたりがどれだけの利益を得ているかを示す最も基本的な収益性指標。GAAP EPS（会計基準に従った数値）とNon-GAAP EPS（一時的な費用を除いた調整後の数値）がある。決算発表ではアナリストのコンセンサス予想と実績の比較が最も注目され、予想を上回れば「ビート」、下回れば「ミス」と呼ばれる。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">EPS 計算式</div><div class="vis-flow"><div class="vis-flow-step">純利益<br><small>（Net Income）</small></div><div class="vis-flow-arrow">÷</div><div class="vis-flow-step">発行済株式数<br><small>（Shares Outstanding）</small></div><div class="vis-flow-arrow">=</div><div class="vis-flow-step positive">EPS<br><small>1株当たり利益</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">コンセンサスEPS vs 実績EPS（例: A社）</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">Q1 予想</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:60%">$1.20</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Q1 実績</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:70%">$1.40 ✓ビート</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Q2 予想</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:65%">$1.30</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Q2 実績</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:55%">$1.10 ✗ミス</div></div></div></div></div><div class="vis-callout"><strong>📌 GAAP vs Non-GAAP:</strong> GAAP EPSは会計基準通りの数値（株式報酬費用や一時費用を含む）。Non-GAAP EPSはこれらを除外した「実力ベース」の数値。テック企業ではNon-GAAPが重視されるが、GAAPとの乖離が大きすぎる場合は要注意。</div>'
+  },
+  {
+    id: "guidance",
+    ja: "ガイダンス",
+    en: "Guidance",
+    cat: "earnings",
+    catLabel: "決算・企業分析",
+    catIcon: "💰",
+    morning: false,
+    short: "企業が発表する次期の業績見通し",
+    full: "企業が決算発表時に提示する、次の四半期や通期の業績予想。売上高とEPSのレンジ（例: 売上$10.0B-$10.5B）で示されることが多い。実績がどれだけ良くても、ガイダンスが市場予想を下回ると株価は下落する傾向がある。「ガイダンス上方修正」は最も強い買いシグナルの一つ。逆に「ガイダンス撤回」は経営陣が先行きを読めない不確実性の表れで、株価には大きなマイナス。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">ガイダンスの市場インパクト</div><div class="vis-flow"><div class="vis-flow-step">ガイダンス発表<br><small>売上・EPSの見通し</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">コンセンサスと比較</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">上方修正 → 買い↑</div></div><div style="height:8px"></div><div class="vis-flow"><div class="vis-flow-step" style="visibility:hidden">spacer</div><div class="vis-flow-arrow" style="visibility:hidden">→</div><div class="vis-flow-step" style="visibility:hidden">spacer</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">下方修正 → 売り↓</div></div></div><div class="vis-callout"><strong>📌 実例で理解するガイダンスの重要性:</strong><br>🔹 <strong>最強パターン:</strong> 実績ビート + ガイダンス上方修正 → 株価急騰<br>🔹 <strong>要注意パターン:</strong> 実績ビート + ガイダンス下方修正 → 実績は良くても株価下落<br>🔹 <strong>最悪パターン:</strong> 実績ミス + ガイダンス撤回 → 経営不透明で売り殺到<br><br>「過去の成績より未来の見通し」が株価を動かす。</div>'
+  },
+  {
+    id: "afterhours",
+    ja: "アフターアワーズ",
+    en: "After Hours Trading",
+    cat: "earnings",
+    catLabel: "決算・企業分析",
+    catIcon: "💰",
+    morning: false,
+    short: "通常取引時間後の時間外取引",
+    full: "米国市場の通常取引時間（9:30-16:00 ET）の後に行われる延長取引（16:00-20:00 ET）。決算発表は通常取引終了後に行われることが多いため、決算への最初の市場反応はアフターアワーズで出る。ただし流動性が低く、スプレッドが広いため、翌日の通常取引で反転することも珍しくない。「AH: +5%」のように略記される。寄り前の取引はプレマーケット（PM）と呼ばれる。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">米国株式市場の取引時間帯（東部時間）</div><div class="vis-timeline"><div class="vis-timeline-block" style="flex:2.5;background:rgba(88,166,255,.12);border:1px solid rgba(88,166,255,.3)"><div>PM（プレマーケット）</div><div class="tl-label">4:00 - 9:30</div></div><div class="vis-timeline-block" style="flex:3;background:rgba(63,185,80,.15);border:1px solid rgba(63,185,80,.3)"><div>通常取引</div><div class="tl-label">9:30 - 16:00</div></div><div class="vis-timeline-block" style="flex:2;background:rgba(210,153,34,.12);border:1px solid rgba(210,153,34,.3)"><div>AH（アフターアワーズ）</div><div class="tl-label">16:00 - 20:00</div></div></div><div style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:6px">日本時間: PM=翌5:00-22:30 ／ 通常=22:30-翌5:00 ／ AH=翌5:00-9:00（冬時間+1h）</div></div><div class="vis-callout tip"><strong>💡 決算シーズンのTips:</strong> 決算はAMC（引け後）発表が多く、最初の反応はアフターアワーズで出る。ただしAHは出来高が少なく値が飛びやすい。翌日の寄り付きで方向が変わることも多いので、AHの動きだけで判断するのは危険。</div>'
+  },
+  {
+    id: "buyback",
+    ja: "自社株買い",
+    en: "Share Buyback",
+    cat: "earnings",
+    catLabel: "決算・企業分析",
+    catIcon: "💰",
+    morning: false,
+    short: "企業が市場で自社株を買い戻すこと",
+    full: "企業が市場で自社の発行済株式を買い戻すこと。発行済株式数が減少するためEPSが向上し、1株あたりの価値が高まる。配当と並ぶ株主還元策で、米国企業では年間$1兆以上が自社株買いに使われている。経営陣が「自社の株価が割安」と判断していることの表れとも解釈される。税制面では配当より有利な場合が多い。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">自社株買いのメカニズム</div><div class="vis-flow"><div class="vis-flow-step">自社株買い実施</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">発行済株式数↓</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">EPS↑</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">株価↑</div></div></div><div class="vis-diagram"><div class="vis-diagram-title">米国企業 自社株買い規模ランキング（年間・概算）</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">Apple</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:100%">$1,000億+</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Alphabet</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:65%">$650億</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Meta</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:50%">$500億</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">NVIDIA</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:40%">$400億</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Microsoft</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:35%">$350億</div></div></div></div></div><div class="vis-callout tip"><strong>💡 自社株買いの見方:</strong> 大型の自社株買い発表は株価の下支え要因。ただし「借金して自社株買い」は財務リスク。フリーキャッシュフローで賄える自社株買いが健全。</div>'
+  },
+  {
+    id: "marketcap",
+    ja: "時価総額",
+    en: "Market Capitalization",
+    cat: "earnings",
+    catLabel: "決算・企業分析",
+    catIcon: "💰",
+    morning: false,
+    short: "株価×発行済株式数。企業の市場での評価額",
+    full: "株価 × 発行済株式数で算出される、企業の市場における評価額。例えばAppleの時価総額が$3兆なら、全株式を今の株価で買い占めるのに$3兆必要という意味。大型株（Large Cap: $10B以上）、中型株（Mid Cap: $2-10B）、小型株（Small Cap: $2B以下）の分類に使われる。S&P 500は時価総額加重型のため、Apple、Microsoft、NVIDIAなどの超大型株の動きが指数全体に大きく影響する。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">世界の時価総額トップ企業（2026年3月概算）</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">Apple</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:100%">$3.5T</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">NVIDIA</div><div class="vis-bar-track"><div class="vis-bar-fill green" style="width:83%">$2.9T</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Microsoft</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:80%">$2.8T</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Alphabet</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:57%">$2.0T</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">Amazon</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:54%">$1.9T</div></div></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">時価総額の分類</div><table class="vis-table"><tr><th>分類</th><th>時価総額</th><th>特徴</th></tr><tr><td>メガキャップ</td><td>$200B以上</td><td>GAFAM等。S&P 500を大きく左右</td></tr><tr><td>ラージキャップ</td><td>$10B-$200B</td><td>安定した大企業。機関投資家の主力</td></tr><tr><td>ミッドキャップ</td><td>$2B-$10B</td><td>成長余地と安定のバランス</td></tr><tr><td>スモールキャップ</td><td>$2B以下</td><td>高成長期待。ボラティリティ大</td></tr></table></div>'
+  },
+  {
+    id: "hbm",
+    ja: "HBM",
+    en: "High Bandwidth Memory",
+    cat: "tech",
+    catLabel: "テクノロジー",
+    catIcon: "🔧",
+    morning: false,
+    short: "高帯域幅メモリ。AI処理用の積層型メモリ技術",
+    full: "AI/ML処理に必要な大量のデータを超高速でやり取りするための積層型メモリ技術。従来のDDR5メモリと比べて帯域幅が数倍〜10倍以上。メモリチップを縦に積層し、TSV（Through-Silicon Via）で接続することで高速化を実現。NVIDIAのH100/H200/B200 GPUに搭載されており、SK Hynix、Samsung、Micronの3社が供給。AI需要の急拡大に伴い供給不足が続いている。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">HBM 積層構造イメージ</div><div class="vis-hbm-stack"><div class="vis-hbm-layer die">DRAM Die #8</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #7</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #6</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #5</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #4</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #3</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #2</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer die">DRAM Die #1</div><div class="vis-hbm-layer tsv"></div><div class="vis-hbm-layer base">ベースダイ（ロジック）</div></div><div style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:4px">↕ TSV（Through-Silicon Via）で縦方向接続</div></div><img src="https://images.pexels.com/photos/3520679/pexels-photo-3520679.jpeg?auto=compress&cs=tinysrgb&w=800" alt="半導体基板" loading="lazy"><div class="img-caption">Photo: 高密度半導体メモリ技術</div><div class="vis-diagram"><div class="vis-diagram-title">HBM vs DDR5 スペック比較</div><table class="vis-table"><tr><th>比較項目</th><th>HBM3E</th><th>DDR5</th></tr><tr><td>帯域幅</td><td>1.2 TB/s</td><td>約50 GB/s</td></tr><tr><td>容量（1スタック）</td><td>24-36 GB</td><td>16-64 GB（1DIMM）</td></tr><tr><td>構造</td><td>8-12層積層 + TSV</td><td>平面実装</td></tr><tr><td>消費電力効率</td><td>高い（pJ/bit低い）</td><td>標準</td></tr><tr><td>コスト</td><td>非常に高い</td><td>標準</td></tr><tr><td>主な用途</td><td>AI GPU（H100/B200等）</td><td>PC・サーバー汎用</td></tr></table></div>'
+  },
+  {
+    id: "gtc",
+    ja: "GTC",
+    en: "GPU Technology Conference",
+    cat: "tech",
+    catLabel: "テクノロジー",
+    catIcon: "🔧",
+    morning: false,
+    short: "NVIDIAの年次技術カンファレンス",
+    full: "NVIDIAが毎年開催する技術カンファレンス（GPU Technology Conference）。新世代GPU、AIプラットフォーム、ソフトウェア開発キットの発表の場として、半導体・AI銘柄の株価を大きく動かすイベント。ジェンスン・ファンCEOの基調講演は「AIのワールドカップ」とも呼ばれ、発表内容は数日にわたり市場に影響を与える。",
+    visual: '<img src="https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=800" alt="テクノロジーカンファレンス" loading="lazy"><div class="img-caption">Photo: GTC — NVIDIAの年次技術カンファレンス</div><div class="vis-diagram"><div class="vis-diagram-title">直近GTCの主要発表タイムライン</div><table class="vis-table"><tr><th>年</th><th>主要発表</th><th>市場インパクト</th></tr><tr><td>GTC 2024</td><td>Blackwell B200 GPU発表</td><td>NVDA +2%, AI関連株全面高</td></tr><tr><td>GTC 2025</td><td>Vera Rubin アーキテクチャ</td><td>半導体セクター大幅上昇</td></tr><tr><td>GTC 2026</td><td>次世代プラットフォーム</td><td>AI投資テーマ再加速</td></tr></table></div><div class="vis-callout"><strong>📌 GTCの市場インパクト:</strong> GTCでの発表内容はNVIDIA株だけでなく、TSMC・SK Hynix・AVGO・ARMなどサプライチェーン全体に波及する。基調講演の「ワンモアシング」的な新製品発表が最大の注目ポイント。</div>'
+  },
+  {
+    id: "hormuz",
+    ja: "ホルムズ海峡",
+    en: "Strait of Hormuz",
+    cat: "geo",
+    catLabel: "地政学・通商",
+    catIcon: "🌍",
+    morning: false,
+    short: "ペルシャ湾の出口。世界原油輸送の約20%が通過",
+    full: "イランとオマーンに挟まれた、ペルシャ湾からアラビア海への唯一の出口。最も狭い部分は約33km。サウジアラビア、イラク、クウェート、UAE、カタールなどの産油国からの原油輸出の大部分がここを通過し、世界の原油輸送量の約20%（日量約2,100万バレル）を占める。イランが封鎖を示唆するだけで原油価格が急騰するため、地政学リスクの最重要ポイントの一つ。",
+    visual: '<img src="https://images.pexels.com/photos/10020724/pexels-photo-10020724.jpeg?auto=compress&cs=tinysrgb&w=800" alt="石油タンカー" loading="lazy"><div class="img-caption">Photo: ペルシャ湾の原油輸送</div><div class="vis-diagram"><div class="vis-diagram-title">世界の原油チョークポイント通過量シェア</div><div class="vis-bars"><div class="vis-bar-item"><div class="vis-bar-label">ホルムズ海峡</div><div class="vis-bar-track"><div class="vis-bar-fill red" style="width:100%">日量2,100万bbl（20%）</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">マラッカ海峡</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:76%">日量1,600万bbl</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">スエズ運河</div><div class="vis-bar-track"><div class="vis-bar-fill amber" style="width:48%">日量1,000万bbl</div></div></div><div class="vis-bar-item"><div class="vis-bar-label">バブ・エル・マンデブ</div><div class="vis-bar-track"><div class="vis-bar-fill blue" style="width:33%">日量700万bbl</div></div></div></div></div><div class="vis-callout warning"><strong>⚠️ 地政学リスク:</strong> イランが「ホルムズ海峡封鎖」を示唆するだけで原油先物が急騰する。湾岸諸国の原油輸出の約90%がここを通過するため、封鎖されれば世界的なエネルギー危機に直結。投資家にとって中東情勢は原油価格を通じて全市場に影響する最重要リスク。</div>'
+  },
+  {
+    id: "jonesact",
+    ja: "ジョーンズ法",
+    en: "Jones Act",
+    cat: "geo",
+    catLabel: "地政学・通商",
+    catIcon: "🌍",
+    morning: false,
+    short: "米国の海運保護法。国内輸送を米国籍船に限定",
+    full: "1920年制定の米国商船法（Merchant Marine Act）のセクション27。米国の港間の貨物輸送を、米国籍・米国建造・米国人乗組員の船舶に限定する法律。海運業界と造船業界を保護する目的だが、輸送コストの高止まりの原因としても批判される。緊急時（ハリケーン、エネルギー危機等）に大統領令で一時停止されることがあり、外国船が参入することで輸送コストの低下が期待される。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">ジョーンズ法の適用 vs 停止時の比較</div><div class="vis-flow"><div class="vis-flow-step negative">現行: 米国船のみ<br><small>高コスト・限られた船腹</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">大統領令で停止</div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">外国船も参入<br><small>競争激化</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">輸送コスト↓<br><small>エネルギー価格↓</small></div></div></div><div class="vis-callout"><strong>📌 なぜ投資家に関係するのか:</strong> ジョーンズ法の一時停止が発表されると、LNG（液化天然ガス）や石油製品の国内輸送コストが低下し、エネルギー価格の下押し要因になる。ハリケーン被害時の停止は緊急エネルギー対策として頻繁にニュースになる。海運株（MATX, KEX等）にとっては収益圧迫要因。</div>'
+  },
+  {
+    id: "section301",
+    ja: "通商法301条",
+    en: "Section 301",
+    cat: "geo",
+    catLabel: "地政学・通商",
+    catIcon: "🌍",
+    morning: false,
+    short: "不公正な貿易慣行に対する大統領の報復権限",
+    full: "1974年米国通商法の第301条。外国政府の不合理・不公正な貿易慣行に対し、大統領に関税引き上げ等の報復措置をとる権限を与える条項。2018年にトランプ政権が中国の知的財産権侵害を理由に301条を発動し、対中関税の法的根拠とした。WTOの紛争解決手続きを経ずに一方的に制裁を課せるため、「アメリカファースト」の通商政策の象徴的ツール。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">通商法301条の発動プロセス</div><div class="vis-flow"><div class="vis-flow-step">USTR調査開始<br><small>不公正貿易の調査</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">不公正認定<br><small>知財侵害・補助金等</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">報復関税発動<br><small>大統領権限</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">貿易相手国への影響<br><small>輸出減・報復関税</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">対中301条関税率の推移</div><table class="vis-table"><tr><th>対象</th><th>2018年発動時</th><th>2024年改定後</th><th>影響</th></tr><tr><td>半導体</td><td>25%</td><td>50%</td><td>サプライチェーン再編加速</td></tr><tr><td>EV（電気自動車）</td><td>27.5%</td><td>100%</td><td>中国EVの米国進出を事実上遮断</td></tr><tr><td>太陽光パネル</td><td>25%</td><td>50%</td><td>国内製造回帰を促進</td></tr><tr><td>鉄鋼・アルミ</td><td>25%</td><td>25%</td><td>維持（232条と併用）</td></tr><tr><td>リチウム電池</td><td>7.5%</td><td>25%</td><td>バッテリーサプライチェーン再編</td></tr></table></div><div class="vis-callout warning"><strong>⚠️ 市場への影響:</strong> 301条関税の発動・拡大はサプライチェーンのコスト増→企業収益圧迫→株価下落の経路で市場に波及する。特に中国売上比率の高い企業（半導体・アパレル・自動車）は要注意。</div>'
+  },
+  {
+    id: "flashcrash",
+    ja: "フラッシュクラッシュ",
+    en: "Flash Crash",
+    cat: "market",
+    catLabel: "マーケット",
+    catIcon: "📈",
+    morning: true,
+    short: "数分〜数十分で資産価格が急落し急速に戻る現象。アルゴリズム取引の連鎖売りが主因。",
+    full: "数分〜数十分という超短時間で資産価格が急落し、その後急速に戻る現象。アルゴリズム取引やHFT（高頻度取引）が大量の売り注文を検知し、自動的に売りを追随することで流動性が枯渇し、価格が瞬間的に暴落する。2010年5月6日のダウ平均1,000pt急落（約9%、36分間で回復）が最も有名。2026年3月19日には金（Gold）が一時7%急落するフラッシュクラッシュが発生した。",
+    visual: '<img src="https://images.pexels.com/photos/386318/pexels-photo-386318.jpeg?auto=compress&cs=tinysrgb&w=800" alt="金の延べ棒" loading="lazy"><div class="img-caption">Photo: Gold bullion — フラッシュクラッシュの標的になることも</div><div class="vis-diagram"><div class="vis-diagram-title">フラッシュクラッシュの連鎖メカニズム</div><div class="vis-flow"><div class="vis-flow-step negative">大量売り注文<br><small>パニック or 誤発注</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">アルゴ追随売り<br><small>自動損切り連鎖</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">流動性枯渇<br><small>買い手不在</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">価格急反発<br><small>割安感で買い殺到</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">主要フラッシュクラッシュ事例</div><table class="vis-table"><tr><th>日付</th><th>対象</th><th>下落幅</th><th>回復時間</th><th>原因</th></tr><tr><td>2010年5月</td><td>ダウ平均</td><td>-9%（1,000pt）</td><td>約36分</td><td>スプーフィング</td></tr><tr><td>2015年8月</td><td>S&P 500 ETF</td><td>-5%超</td><td>数時間</td><td>中国株暴落連鎖</td></tr><tr><td>2019年1月</td><td>ドル円</td><td>-4%（109→104円）</td><td>数分</td><td>薄商い+アルゴ</td></tr><tr><td>2026年3月</td><td>金（Gold）</td><td>-7%（$4,918→$4,551）</td><td>—</td><td>FOMC+中東パニック</td></tr></table></div><div class="vis-callout warning"><strong>⚠️ 個人投資家への注意:</strong> フラッシュクラッシュ時のストップロス（逆指値）注文は想定外の安値で約定するリスクあり。指値注文の活用やパニック時に売らない心構えが重要。</div>'
+  },
+  {
+    id: "lng",
+    ja: "LNG",
+    en: "Liquefied Natural Gas",
+    cat: "geo",
+    catLabel: "地政学・通商",
+    catIcon: "🌍",
+    morning: true,
+    short: "天然ガスを-162℃に冷却して液化したもの。タンカーで海上輸送が可能になり、日本のエネルギー供給の重要な柱。",
+    full: "Liquefied Natural Gas（液化天然ガス）。天然ガスをマイナス162℃に冷却して液化することで、体積を気体時の約1/600に圧縮し、専用タンカーで海上輸送可能にしたもの。日本は世界最大級のLNG輸入国で、電力・都市ガスの主要燃料。カタール・オーストラリア・米国が主要供給国。ホルムズ海峡はカタール産LNGの輸送ルートであり、同海峡の封鎖はLNG供給に甚大な影響を与える。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">LNGのサプライチェーン</div><div class="vis-flow"><div class="vis-flow-step">天然ガス採掘<br><small>ガス田</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">液化プラント<br><small>-162℃に冷却</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">LNGタンカー<br><small>海上輸送</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">受入基地<br><small>再気化→発電・都市ガス</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">世界のLNG供給国シェア（2025年）</div><div class="vis-bars"><div class="vis-bar-row"><span class="vis-bar-label">カタール</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:22%">22%</div></div></div><div class="vis-bar-row"><span class="vis-bar-label">オーストラリア</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:21%">21%</div></div></div><div class="vis-bar-row"><span class="vis-bar-label">米国</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:20%">20%</div></div></div><div class="vis-bar-row"><span class="vis-bar-label">ロシア</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:8%">8%</div></div></div><div class="vis-bar-row"><span class="vis-bar-label">マレーシア</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:7%">7%</div></div></div></div></div><div class="vis-callout warning"><strong>⚠️ 日本への影響:</strong> 日本の電力の約35%がLNG火力発電。カタール産LNGがホルムズ海峡封鎖で途絶えた場合、電力供給と都市ガス料金に直接影響する。</div>'
+  },
+  {
+    id: "200day-ma",
+    ja: "200日移動平均線",
+    en: "200-Day Moving Average",
+    cat: "market",
+    catLabel: "マーケット",
+    catIcon: "📊",
+    morning: true,
+    short: "過去200営業日の終値の平均値を結んだライン。株価がこの線を下回ると弱気転換のシグナルとされ、機関投資家のリスク削減が加速しやすい。",
+    full: "過去200営業日（約10ヶ月分）の終値の平均値を結んだテクニカル指標。株式市場で最も広く使われている中長期トレンド判定の指標で、株価がこの線の上にあれば「強気相場」、下にあれば「弱気相場」と判断される。年金基金やCTAファンドの多くは200日線をリスク管理のトリガーとして使用し、株価がこの線を割ると自動的に株式配分を削減する。2022年の利上げサイクルではS&P 500が200日線を割った後に約20%の弱気相場入りとなったが、2023年10月にはV字回復した例もあり、割れ＝暴落確定ではない。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">200日移動平均線の使い方</div><div class="vis-flow"><div class="vis-flow-step">株価が200日線の上<br><small>強気相場（ブル）</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">200日線を下回る<br><small>⚠️ 弱気転換シグナル</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">機関の売り加速<br><small>CTAファンド等</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">反発 or 弱気定着<br><small>ファンダ次第</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">S&P 500 — 200日線割れの過去事例</div><table class="vis-table"><tr><th>時期</th><th>トリガー</th><th>結果</th></tr><tr><td>2020年2月</td><td>コロナショック</td><td>-34%後にV字回復</td></tr><tr><td>2022年1月</td><td>利上げサイクル</td><td>-20%の弱気相場</td></tr><tr><td>2023年10月</td><td>金利上昇</td><td>一時的、V字回復</td></tr><tr><td>2026年3月</td><td>FOMC+中東+SMCI</td><td>進行中</td></tr></table></div><div class="vis-callout tip"><strong>💡 投資家へのヒント:</strong> 200日線割れ直後は「ダマシ」の可能性もある。週足の終値で確認し、来週以降のファンダメンタルズ（PCE等）と合わせて判断を。</div>'
+  },
+  {
+    id: "triple-witching",
+    ja: "トリプルウィッチング",
+    en: "Triple Witching",
+    cat: "market",
+    catLabel: "マーケット",
+    catIcon: "📊",
+    morning: true,
+    short: "株価指数先物・株価指数オプション・個別株オプションの3つが同時に満期を迎える日。年4回発生し、大量のポジション調整で出来高とボラティリティが急増する。",
+    full: "株価指数先物・株価指数オプション・個別株オプションの3種類のデリバティブが同時に満期（SQ: Special Quotation）を迎える日。3月・6月・9月・12月の第3金曜日に年4回発生する。満期に伴いマーケットメーカーのデルタヘッジが解消され、機械的な売り・買いが大量に発生するため、通常日の3〜5倍の出来高を記録する。S&P 500のリバランスも同日に重なることが多く、個別銘柄の異常な出来高の原因になる。2020年3月のトリプルウィッチングではコロナショック初期と重なり、S&P 500が15分で3%変動した。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">トリプルウィッチングの仕組み</div><div class="vis-flow"><div class="vis-flow-step">3種のデリバティブ<br><small>先物・指数OP・個別OP</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">同時満期<br><small>第3金曜日</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">ヘッジ解消<br><small>大量の反対売買</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">出来高急増<br><small>ボラティリティ↑</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">年間スケジュール（2026年）</div><table class="vis-table"><tr><th>回</th><th>日付</th><th>備考</th></tr><tr><td>第1回</td><td>3月20日（金）</td><td>過去最大規模</td></tr><tr><td>第2回</td><td>6月19日（金）</td><td>-</td></tr><tr><td>第3回</td><td>9月18日（金）</td><td>-</td></tr><tr><td>第4回</td><td>12月18日（金）</td><td>クアドルプルウィッチング</td></tr></table></div><div class="vis-callout tip"><strong>💡 投資家へのヒント:</strong> トリプルウィッチング前後は「ノイズ」が多く、株価の動きがファンダメンタルズを反映していない可能性が高い。長期投資家は短期的な価格変動に惑わされず、翌週以降のトレンドで判断することが重要。</div>'
+  },
+  {
+    id: "koji-chika",
+    ja: "公示地価",
+    en: "Official Land Price",
+    cat: "realestate",
+    catLabel: "不動産",
+    catIcon: "🏠",
+    morning: false,
+    short: "国土交通省が毎年1月1日時点で調査し3月に公表する土地の価格。土地取引の指標として使われる。",
+    full: "国土交通省の土地鑑定委員会が、全国約2万6千地点の「標準地」について毎年1月1日時点の正常な価格を判定し、3月下旬に公表する。不動産鑑定士が現地調査を行い、近隣の取引事例や収益性を分析して価格を算出する。土地取引の指標、公共用地の取得価格の算定基準、相続税・固定資産税評価の目安として広く利用される。「基準地価」（都道府県が7月1日時点で調査）と合わせて年2回の地価指標となる。",
+    visual: '<div class="vis-flow"><div class="vis-flow-step">不動産鑑定士<br><small>現地調査</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">土地鑑定委員会<br><small>価格判定</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">3月公表<br><small>国土交通省</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">土地取引の指標<br><small>税評価の基準</small></div></div><div class="vis-callout tip"><strong>💡 ポイント:</strong> 公示地価は「あるべき正常な価格」を示すもの。実際の取引価格（実勢価格）は公示地価の1.1〜1.3倍程度になることが多い。</div>'
+  },
+  {
+    id: "kijun-chika",
+    ja: "基準地価",
+    en: "Standard Land Price",
+    cat: "realestate",
+    catLabel: "不動産",
+    catIcon: "🏠",
+    morning: false,
+    short: "都道府県が毎年7月1日時点で調査し9月に公表する土地の価格。公示地価を補完する役割を持つ。",
+    full: "各都道府県知事が、国土利用計画法に基づき毎年7月1日時点の基準地の価格を調査し、9月下旬に公表する。公示地価（1月1日時点）と合わせて半年ごとの地価動向を把握できる。都市計画区域外の土地も調査対象に含まれるため、公示地価では把握できない地方部の地価動向も分かる。",
+    visual: '<table class="vis-table"><tr><th></th><th>公示地価</th><th>基準地価</th></tr><tr><td>調査主体</td><td>国土交通省</td><td>都道府県</td></tr><tr><td>基準日</td><td>1月1日</td><td>7月1日</td></tr><tr><td>公表時期</td><td>3月</td><td>9月</td></tr><tr><td>調査対象</td><td>都市計画区域内中心</td><td>都市計画区域外も含む</td></tr></table>'
+  },
+  {
+    id: "gunyochi",
+    ja: "軍用地",
+    en: "Military Land",
+    cat: "realestate",
+    catLabel: "不動産",
+    catIcon: "🏠",
+    morning: false,
+    short: "米軍や自衛隊が使用するために日本政府が地主から借りている土地。沖縄独自の不動産投資商品。",
+    full: "米軍基地や自衛隊施設として使用されている土地で、日本政府（防衛省）が民間の地主から借り上げている。沖縄県には約5万人の軍用地主がおり、政府が毎年借地料を支払う。この借地権付き土地が売買市場で「年間借地料×倍率」の価格で取引される。借主が日本政府のため滞納リスクがゼロで、毎年約1%ずつ借地料が上昇する「超安定資産」として人気。相続税評価額が時価の約30%に圧縮されるため、相続対策としても活用される。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">軍用地の価格計算</div><div class="vis-flow"><div class="vis-flow-step">年間借地料<br><small>例: 100万円</small></div><div class="vis-flow-arrow">×</div><div class="vis-flow-step">倍率<br><small>例: 55倍</small></div><div class="vis-flow-arrow">=</div><div class="vis-flow-step">売買価格<br><small>5,500万円</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">主要施設の倍率（2026年）</div><table class="vis-table"><tr><th>施設</th><th>倍率</th><th>特徴</th></tr><tr><td>キャンプ・キンザー</td><td>56〜63倍</td><td>返還予定・開発期待</td></tr><tr><td>嘉手納飛行場</td><td>51〜57倍</td><td>返還リスク低・安定</td></tr><tr><td>普天間飛行場</td><td>42〜49倍</td><td>返還予定で倍率低め</td></tr></table></div><div class="vis-callout tip"><strong>💡 投資家へのヒント:</strong> 利回りは1〜2%と低いが、借主が日本政府（滞納リスクゼロ）・借地料は毎年+1%上昇・相続税評価約30%圧縮という3つのメリットがある。返還リスクが低い施設ほど倍率が高い。</div>'
+  },
+  {
+    id: "bairitsu",
+    ja: "倍率（軍用地）",
+    en: "Multiplier (Military Land)",
+    cat: "realestate",
+    catLabel: "不動産",
+    catIcon: "🏠",
+    morning: false,
+    short: "軍用地の売買価格を決める指標。「年間借地料×倍率＝売買価格」で計算される。",
+    full: "軍用地の売買価格を算出する際に使われる指標。「年間借地料×倍率＝売買価格」の式で価格が決まる。倍率が高い＝人気が高い＝価格が高いことを意味する。返還リスクが低い施設（嘉手納飛行場等）は倍率が高く、返還予定の施設（普天間飛行場等）は相対的に倍率が低い。2020年代は低金利環境と相続税対策需要を背景に倍率が上昇傾向にある。",
+    visual: '<div class="vis-bars"><div class="vis-bar-item"><span>キンザー</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:90%">56〜63倍</div></div></div><div class="vis-bar-item"><span>嘉手納</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:81%">51〜57倍</div></div></div><div class="vis-bar-item"><span>普天間</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:70%">42〜49倍</div></div></div></div>'
+  },
+  {
+    id: "capital-gain",
+    ja: "キャピタルゲイン",
+    en: "Capital Gain",
+    cat: "realestate",
+    catLabel: "不動産",
+    catIcon: "🏠",
+    morning: false,
+    short: "資産の値上がり益。不動産を購入時より高い価格で売却した際に得られる利益。",
+    full: "資産（不動産・株式等）を購入した価格よりも高い価格で売却した際に得られる差額利益のこと。対義語は「キャピタルロス」（値下がり損）。不動産投資では、地価上昇が見込まれるエリアの物件を安く買い、値上がり後に売却してキャピタルゲインを狙う戦略がある。インカムゲイン（賃料収入）と合わせて不動産投資の2大リターン源泉。",
+    visual: '<div class="vis-flow"><div class="vis-flow-step">物件購入<br><small>3,000万円</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">地価上昇<br><small>+20%</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">売却<br><small>3,600万円</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">キャピタルゲイン<br><small>+600万円</small></div></div>'
+  },
+  {
+    id: "income-gain",
+    ja: "インカムゲイン",
+    en: "Income Gain",
+    cat: "realestate",
+    catLabel: "不動産",
+    catIcon: "🏠",
+    morning: false,
+    short: "資産を保有している間に得られる定期的な収入。不動産では賃料収入が該当する。",
+    full: "資産を保有することで定期的に得られる収益のこと。不動産投資では毎月の家賃収入、株式投資では配当金が該当する。キャピタルゲイン（値上がり益）と対比して使われ、安定した収入を重視する投資スタイルではインカムゲインを最大化することが目標となる。不動産の場合、「表面利回り＝年間賃料÷物件価格」で収益性を評価する。",
+    visual: '<table class="vis-table"><tr><th></th><th>キャピタルゲイン</th><th>インカムゲイン</th></tr><tr><td>内容</td><td>売却益（値上がり益）</td><td>保有中の定期収入</td></tr><tr><td>不動産</td><td>物件売却益</td><td>家賃収入</td></tr><tr><td>株式</td><td>株価上昇益</td><td>配当金</td></tr><tr><td>特徴</td><td>不確実だが大きい</td><td>安定的だが限定的</td></tr></table>'
+  },
+  {
+    id: "rimawari",
+    ja: "利回り（不動産）",
+    en: "Yield (Real Estate)",
+    cat: "realestate",
+    catLabel: "不動産",
+    catIcon: "🏠",
+    morning: false,
+    short: "投資額に対する年間収益の割合。「表面利回り」は年間賃料÷物件価格で計算される。",
+    full: "不動産投資における収益性を示す指標。「表面利回り（グロス利回り）」は年間賃料収入÷物件購入価格×100で計算される最もシンプルな指標。「実質利回り（ネット利回り）」は管理費・修繕積立金・固定資産税等の経費を差し引いた手取り収入で計算し、より実態に近い。一般に表面利回りより1〜2%低くなる。沖縄県の不動産利回りは、区分マンション（那覇）4〜6%、一棟アパート5〜8%、軍用地1〜2%。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">利回りの計算例</div><div class="vis-flow"><div class="vis-flow-step">物件価格<br><small>2,000万円</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">年間賃料<br><small>120万円</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">表面利回り<br><small>6.0%</small></div></div></div><div class="vis-callout tip"><strong>💡 注意:</strong> 表面利回りだけで判断しないこと。管理費・修繕費・空室リスクを含めた「実質利回り」で比較することが重要。</div>'
+  },
+  {
+    id: "kubun-mansion",
+    ja: "区分マンション",
+    en: "Condominium Unit",
+    cat: "realestate",
+    catLabel: "不動産",
+    catIcon: "🏠",
+    morning: false,
+    short: "マンションの1室単位で所有・売買される不動産。個人投資家に人気の不動産投資手法。",
+    full: "マンションの1室（1戸）を区分所有権に基づいて個別に所有・売買できる不動産。建物全体を所有する「一棟マンション」と区別される。投資額が数百万円〜数千万円と比較的少額で始められ、管理会社に委託すれば手間も少ないため、サラリーマン投資家に人気。ただし、管理費・修繕積立金が毎月発生し、空室リスクや管理組合の意思決定に左右される面もある。",
+    visual: '<table class="vis-table"><tr><th></th><th>区分マンション</th><th>一棟マンション</th></tr><tr><td>投資額</td><td>数百万〜数千万円</td><td>数千万〜数億円</td></tr><tr><td>管理の手間</td><td>少ない</td><td>多い</td></tr><tr><td>利回り</td><td>4〜6%</td><td>5〜8%</td></tr><tr><td>空室リスク</td><td>1室空室=収入ゼロ</td><td>分散される</td></tr></table>'
+  },
+  {
+    id: "takuchi-mikomichi",
+    ja: "宅地見込地",
+    en: "Prospective Residential Land",
+    cat: "realestate",
+    catLabel: "不動産",
+    catIcon: "🏠",
+    morning: false,
+    short: "現在は農地や林地だが、将来的に宅地として利用される見込みのある土地。",
+    full: "公示地価や基準地価の調査における土地の用途分類の一つ。現在は農地・林地・原野等として利用されているが、周辺の都市化の進展や開発計画により、将来的に宅地（住宅地・商業地等）として利用される見込みのある土地を指す。開発許可の有無、周辺のインフラ整備状況、用途地域の変更予定などにより地価が変動する。開発が実現すれば地価は大幅に上昇するが、計画が頓挫するリスクもある。",
+    visual: '<div class="vis-flow"><div class="vis-flow-step">農地・林地<br><small>現在の用途</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">開発計画策定<br><small>用途地域変更</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">造成工事<br><small>インフラ整備</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">宅地化完了<br><small>地価大幅上昇</small></div></div>'
+  },
+  {
+    id: "souzokuzei-hyouka",
+    ja: "相続税評価額",
+    en: "Inheritance Tax Assessed Value",
+    cat: "realestate",
+    catLabel: "不動産",
+    catIcon: "🏠",
+    morning: false,
+    short: "相続発生時に税務上その財産がいくらと評価されるかの金額。軍用地は時価の約30%と大幅に低い。",
+    full: "相続が発生した際に、相続税を計算するための基準となる財産の評価額。土地は「路線価方式」または「倍率方式」で評価され、一般に時価（実勢価格）の約80%程度になる。軍用地は「倍率方式」で評価されるため、実際の取引価格に対して約30%と大幅に低く評価される。この差額分だけ相続税の課税対象額が小さくなるため、資産家が軍用地を購入して相続税を節税する手法が沖縄では一般的。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">相続税評価額の比較</div><div class="vis-bars"><div class="vis-bar-item"><span>現金</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:100%">100%</div></div></div><div class="vis-bar-item"><span>一般不動産</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:80%">約80%</div></div></div><div class="vis-bar-item"><span>軍用地</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:30%;background:var(--accent-green)">約30%</div></div></div></div></div><div class="vis-callout tip"><strong>💡 節税メカニズム:</strong> 1億円の現金は相続税評価も1億円だが、同額の軍用地は約3,000万円と評価される。差額7,000万円分の相続税が軽減される。</div>'
+  },
+  {
+    id: "kichi-henkan",
+    ja: "基地返還跡地",
+    en: "Former Military Base Land",
+    cat: "realestate",
+    catLabel: "不動産",
+    catIcon: "🏠",
+    morning: false,
+    short: "米軍基地が返還された後の土地。沖縄では大規模な再開発用地となり地価に大きな影響を与える。",
+    full: "米軍基地として使用された後、日米合意に基づいて日本に返還された土地。沖縄県では県土の8.1%（約186km²）を米軍基地が占めており、返還跡地は大規模な再開発の機会となる。那覇新都心（旧牧港住宅地区、214ha、1987年返還）は商業・住宅地として再開発され地価が数十倍に上昇した成功例。現在はキャンプ・キンザー（274ha）や普天間飛行場（481ha）の返還が注目されている。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">基地返還の経済効果（普天間飛行場の例）</div><table class="vis-table"><tr><th></th><th>返還前</th><th>返還後（計画）</th></tr><tr><td>直接経済効果</td><td>120億円/年</td><td>3,866億円/年</td></tr><tr><td>雇用</td><td>1,074人</td><td>34,093人</td></tr><tr><td>倍率</td><td>-</td><td>約32倍</td></tr></table></div><div class="vis-callout tip"><strong>💡 注目:</strong> 西普天間住宅地区（51ha、2015年返還）では琉大病院の移転開院（2025年）により、周辺の野嵩3丁目が+18.6%と県内最高の地価上昇率を記録。返還跡地開発の波及効果を実証した。</div>'
+  },
+  {
+    id: "catalyst",
+    ja: "カタリスト",
+    en: "Catalyst",
+    cat: "markets",
+    catLabel: "マーケット",
+    catIcon: "📊",
+    morning: false,
+    short: "相場や価格を大きく動かすきっかけとなる出来事や材料のこと。「触媒」の意味。",
+    full: "投資の世界で、株価や地価など資産価格を大きく変動させるきっかけとなる出来事・材料・イベントのこと。化学における「触媒（catalyst）」から転じた用語。ポジティブなカタリスト（好材料）としては大型開発計画の発表・規制緩和・人口増加などがあり、ネガティブなカタリスト（悪材料）としては金利上昇・自然災害・政治リスクなどがある。沖縄の不動産では基地返還・鉄軌道計画・大型テーマパーク開業などがカタリストとなる。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">沖縄不動産のカタリスト一覧</div><table class="vis-table"><tr><th>カタリスト</th><th>影響度</th><th>時間軸</th></tr><tr><td>キンザー返還</td><td>極大</td><td>中長期</td></tr><tr><td>鉄軌道着工</td><td>大</td><td>長期</td></tr><tr><td>JUNGLIA開業</td><td>中〜大</td><td>短期</td></tr><tr><td>インバウンド1000万人</td><td>中</td><td>短期</td></tr><tr><td>普天間返還</td><td>極大</td><td>長期</td></tr></table></div>'
+  },
+  {
+    id: "inbound",
+    ja: "インバウンド",
+    en: "Inbound Tourism",
+    cat: "indicators",
+    catLabel: "経済指標",
+    catIcon: "📊",
+    morning: false,
+    short: "海外から日本を訪れる外国人旅行者のこと。沖縄では地価上昇の大きな要因。",
+    full: "海外から日本を訪れる外国人旅行者、またはその旅行需要全体を指す言葉。円安を背景に2024〜2025年は急回復し、沖縄県には2025年に283万人の外国人観光客が来訪。ホテル開発・商業施設需要・リゾート投資を通じて商業地・住宅地双方の地価上昇に寄与している。台湾・韓国・中国からの旅行者が中心で、クルーズ船による来訪も増加傾向。",
+    visual: '<div class="vis-bars"><div class="vis-bar-item"><span>2019年</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:100%">300万人</div></div></div><div class="vis-bar-item"><span>2020年</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:5%">15万</div></div></div><div class="vis-bar-item"><span>2023年</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:21%">62万</div></div></div><div class="vis-bar-item"><span>2024年</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:71%">213万</div></div></div><div class="vis-bar-item"><span>2025年</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:95%">284万</div></div></div></div>'
+  },
+  {
+    id: "risk-return",
+    ja: "リスク・リターン",
+    en: "Risk-Return",
+    cat: "markets",
+    catLabel: "マーケット",
+    catIcon: "📊",
+    morning: false,
+    short: "投資におけるリスク（損失の可能性）とリターン（利益）の関係。一般にリスクが高いほどリターンも大きい。",
+    full: "投資における損失の可能性（リスク）と期待される利益（リターン）のトレードオフ関係。「ハイリスク・ハイリターン」（大きなリスクを取ればリターンも大きい）、「ローリスク・ローリターン」（安全だがリターンも小さい）が基本原則。不動産投資では、宮古島のような急騰エリアはハイリスク・ハイリターン（過熱→調整リスク）、軍用地はローリスク・ローリターン（安定だが利回り1-2%）、浦添市のキンザー周辺はミドルリスク・ハイリターン（返還が実現すれば大きな値上がり期待）と位置付けられる。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">沖縄不動産のリスク・リターン分布</div><table class="vis-table"><tr><th>投資先</th><th>リスク</th><th>期待リターン</th></tr><tr><td>軍用地（嘉手納）</td><td>低</td><td>低（1-2%/年）</td></tr><tr><td>那覇市 区分マンション</td><td>中低</td><td>中（4-6%/年）</td></tr><tr><td>浦添市（キンザー周辺）</td><td>中</td><td>高（返還時）</td></tr><tr><td>宮古島 リゾート物件</td><td>高</td><td>高（ただし下落リスクも）</td></tr></table></div>'
+  },
+  {
+    id: "relief-rally",
+    ja: "リリーフラリー",
+    en: "Relief Rally",
+    cat: "markets",
+    catLabel: "マーケット",
+    catIcon: "📈",
+    morning: true,
+    short: "地政学リスクや経済危機の懸念が和らいだとき、売られ過ぎた市場が急速に反発する現象。ショートカバーが上昇を増幅するのが特徴で、持続性はファンダメンタルズの改善に依存する。",
+    full: "地政学リスクや経済不安の後退をきっかけに、売られ過ぎた市場が急反発する現象。「安心感（Relief）」が引き金となるため、ファンダメンタルズの改善を伴わないケースが多い。空売りポジションの買い戻し（ショートカバー）やガンマスクイーズがアルゴリズム取引を巻き込んで上昇を増幅する。歴史的には2022年10月CPI下振れ時のS&P+5.5%、2020年3月FRB無制限緩和後の3日で+17%などが典型例。持続性を見極めるには出来高の持続・VIXの低下トレンド・ファンダメンタルズ改善の3点を確認することが重要。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">リリーフラリーの発生メカニズム</div><div class="vis-flow"><div class="vis-flow-step negative">地政学リスク発生<br><small>恐怖・ショート蓄積</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">リスク後退の報道<br><small>安心感の広がり</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">ショートカバー<br><small>＋アルゴ追随</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">急騰（リリーフラリー）<br><small>持続性は根本解決次第</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">過去のリリーフラリー事例</div><table class="vis-table"><tr><th>時期</th><th>トリガー</th><th>反発幅</th></tr><tr><td>2020年3月</td><td>FRB無制限緩和</td><td>S&P500 3日で+17%</td></tr><tr><td>2022年10月</td><td>CPI下振れ</td><td>S&P500 1日で+5.5%</td></tr><tr><td>2023年11月</td><td>利上げ停止観測</td><td>S&P500 2週で+10%</td></tr></table></div><div class="vis-callout tip"><strong>⚠️ 注意:</strong> リリーフラリーに飛び乗るのはリスク大。出来高の持続・VIXの低下トレンド・ファンダメンタルズ改善の3点を確認してから判断すること。</div>'
+  },
+  {
+    id: "project-maven",
+    ja: "Mavenプログラム",
+    en: "Project Maven",
+    cat: "tech",
+    catLabel: "テクノロジー",
+    catIcon: "🔧",
+    morning: true,
+    short: "米国防総省のAI戦略プログラム。AIを活用した情報分析・意思決定支援を行う。「Program of Record」認定は長期安定契約を意味し、受注企業の収益安定性を大きく高める。",
+    full: "米国防総省が2017年に立ち上げたAI戦略プログラム。当初はドローン映像のAI分析から始まり、現在は戦場の情報分析・意思決定支援・予測分析など広範な軍事AI応用をカバー。Google社員の抗議で同社が撤退した経緯もある。「Program of Record」は正式な予算認定であり、実験段階から脱却して長期安定予算が付くことを意味する。Palantirが2026年3月に同認定を獲得し株価が上昇。防衛AI市場は2030年までに180億ドル規模に成長見込み。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">Project Mavenの変遷</div><div class="vis-flow"><div class="vis-flow-step">実験段階<br><small>2017年〜</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step negative">Google撤退<br><small>社員抗議 2018年</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">Palantir等が受注<br><small>実運用拡大</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">Program of Record認定<br><small>2026年・長期安定予算</small></div></div></div><div class="vis-diagram"><div class="vis-diagram-title">防衛AI市場規模の推移</div><div class="vis-bars"><div class="vis-bar-item"><span>2024年</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:44%">$8B</div></div></div><div class="vis-bar-item"><span>2026年</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:67%">$12B</div></div></div><div class="vis-bar-item"><span>2030年（予測）</span><div class="vis-bar-track"><div class="vis-bar-fill" style="width:100%">$18B</div></div></div></div></div><div class="vis-callout tip"><strong>💡 投資ポイント:</strong> 「Program of Record」認定は防衛企業にとって最重要マイルストーン。実験予算から正式予算への移行を意味し、複数年の安定収益が見込める。</div>'
+  },
+  {
+    id: "ai-inference",
+    ja: "AI推論",
+    en: "AI Inference",
+    cat: "tech",
+    catLabel: "テクノロジー",
+    catIcon: "🔧",
+    morning: true,
+    short: "学習済みのAIモデルを実際に動かして予測・判断を行うプロセス。トレーニングより頻度が桁違いに高く、今後のAIコスト構造の中心になると見込まれる。",
+    full: "AI推論（Inference）は、学習済みモデルを本番環境で稼働させ、入力データに対して予測・分類・生成などの出力を返すプロセス。トレーニング（学習）が1回の大規模計算なのに対し、推論はユーザーのリクエストごとに繰り返されるため、総計算量ではトレーニングを上回る。NVIDIAのGTC 2026では「トレーニングから推論へのピボット」が宣言され、専用チップ「Vera」が発表された。クラウド事業者のAI設備投資の焦点もトレーニング用GPUから推論最適化への移行が進んでいる。",
+    visual: '<div class="vis-diagram"><div class="vis-diagram-title">トレーニング vs 推論 比較</div><table class="vis-table"><tr><th>項目</th><th>トレーニング（学習）</th><th>推論（Inference）</th></tr><tr><td>頻度</td><td>1回（定期再学習）</td><td>毎リクエスト（常時稼働）</td></tr><tr><td>コスト特性</td><td>高い初期投資</td><td>継続的な運用コスト</td></tr><tr><td>ハードウェア</td><td>大規模GPU クラスタ</td><td>推論最適化チップ（Vera等）</td></tr><tr><td>市場規模</td><td>2024年 $30B</td><td>2026年 $80B（予測）</td></tr></table></div><div class="vis-diagram"><div class="vis-diagram-title">AI計算需要のシフト</div><div class="vis-flow"><div class="vis-flow-step">モデル開発期<br><small>トレーニング中心</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step">本番運用期<br><small>推論が急増</small></div><div class="vis-flow-arrow">→</div><div class="vis-flow-step positive">推論最適化時代<br><small>専用チップ・効率化</small></div></div></div><div class="vis-callout tip"><strong>💡 投資ポイント:</strong> AIの普及が進むほど推論の計算量が爆発的に増加する。NVIDIA Vera、AWS Inferentia、Google TPUなど推論特化ハードへの注目が高まっている。</div>'
+  }
+];
+
+// Category definitions
+var CATEGORIES = [
+  { key: "monetary", label: "金融政策", labelEn: "Monetary Policy", icon: "🏦" },
+  { key: "indicators", label: "経済指標", labelEn: "Economic Indicators", icon: "📊" },
+  { key: "markets", label: "マーケット", labelEn: "Markets", icon: "📈" },
+  { key: "earnings", label: "決算・企業分析", labelEn: "Earnings & Analysis", icon: "💰" },
+  { key: "tech", label: "テクノロジー", labelEn: "Technology", icon: "🔧" },
+  { key: "geo", label: "地政学・通商", labelEn: "Geopolitics & Trade", icon: "🌍" },
+  { key: "realestate", label: "不動産", labelEn: "Real Estate", icon: "🏠" }
+];
+
+var activeCat = "all";
+var searchQuery = "";
+var sortAiueo = false;
+
+// あいうえお順ソート用：日本語名の読み仮名マップ
+var YOMI = {
+  "FOMC":"えふおーえむしー","FF金利":"えふえふきんり","ドットプロット":"どっとぷろっと",
+  "SEP":"えすいーぴー","bp（ベーシスポイント）":"べーしすぽいんと","QT（量的引き締め）":"きゅーてぃー",
+  "フォワードガイダンス":"ふぉわーどがいだんす","PPI":"ぴーぴーあい","CPI":"しーぴーあい",
+  "PCE":"ぴーしーいー","スタグフレーション":"すたぐふれーしょん","VIX":"びっくす",
+  "TOPIX":"とぴっくす","Brent原油":"ぶれんとげんゆ","EPS":"いーぴーえす",
+  "ガイダンス":"がいだんす","アフターアワーズ":"あふたーあわーず","自社株買い":"じしゃかぶかい",
+  "時価総額":"じかそうがく","HBM":"えいちびーえむ","GTC":"じーてぃーしー",
+  "ホルムズ海峡":"ほるむずかいきょう","ジョーンズ法":"じょーんずほう","通商法301条":"つうしょうほう",
+  "公示地価":"こうじちか","基準地価":"きじゅんちか","軍用地":"ぐんようち","倍率（軍用地）":"ばいりつ",
+  "キャピタルゲイン":"きゃぴたるげいん","インカムゲイン":"いんかむげいん","利回り（不動産）":"りまわり",
+  "区分マンション":"くぶんまんしょん","宅地見込地":"たくちみこみち","相続税評価額":"そうぞくぜいひょうかがく",
+  "基地返還跡地":"きちへんかんあとち","カタリスト":"かたりすと","インバウンド":"いんばうんど",
+  "リスク・リターン":"りすくりたーん"
+};
+
+function getYomi(ja) {
+  return YOMI[ja] || ja.toLowerCase();
+}
+
+function toggleSort() {
+  sortAiueo = !sortAiueo;
+  var btn = document.getElementById("sortBtn");
+  btn.classList.toggle("active", sortAiueo);
+  btn.textContent = sortAiueo ? "✓ あいうえお順" : "あ→わ あいうえお順";
+  renderTerms();
+}
+
+function renderTerms() {
+  var section = document.getElementById("termsSection");
+  var noResults = document.getElementById("noResults");
+  var countEl = document.getElementById("searchCount");
+  var q = searchQuery.toLowerCase().trim();
+
+  // Filter terms
+  var filtered = TERMS.filter(function(t) {
+    var catMatch = (activeCat === "all") || (t.cat === activeCat);
+    if (!catMatch) return false;
+    if (!q) return true;
+    return t.ja.toLowerCase().indexOf(q) !== -1 ||
+           t.en.toLowerCase().indexOf(q) !== -1 ||
+           t.short.toLowerCase().indexOf(q) !== -1 ||
+           t.full.toLowerCase().indexOf(q) !== -1;
+  });
+
+  // Show count when searching
+  if (q) {
+    countEl.textContent = filtered.length + "件の用語が見つかりました";
+  } else {
+    countEl.textContent = "";
+  }
+
+  if (filtered.length === 0) {
+    section.innerHTML = "";
+    noResults.style.display = "block";
+    return;
+  }
+  noResults.style.display = "none";
+
+  function renderCard(t) {
+    var h = '';
+    h += '<div class="term-card" data-id="' + t.id + '">';
+    h += '<div class="term-header" onclick="toggleTerm(\'' + t.id + '\')">';
+    h += '<div class="term-names">';
+    h += '<div class="term-ja">' + highlightMatch(t.ja, q) + '</div>';
+    h += '<div class="term-en">' + highlightMatch(t.en, q) + '</div>';
+    h += '<div class="term-short">' + highlightMatch(t.short, q) + '</div>';
+    h += '<div class="term-badges">';
+    if (t.morning) {
+      h += '<span class="badge-morning">📰 朝刊で学ぶ</span>';
+    }
+    h += '<span class="badge-cat">' + t.catIcon + ' ' + t.catLabel + '</span>';
+    h += '</div>';
+    h += '</div>';
+    h += '<div class="expand-icon">▼</div>';
+    h += '</div>';
+    h += '<div class="term-body"><div class="term-body-inner">';
+    h += '<div class="term-full">' + highlightMatch(t.full, q) + '</div>';
+    if (t.visual) {
+      h += '<div class="term-visual">' + t.visual + '</div>';
+    }
+    h += '</div></div>';
+    h += '</div>';
+    return h;
+  }
+
+  var html = "";
+
+  if (sortAiueo) {
+    // あいうえお順: フラット表示
+    var sorted = filtered.slice().sort(function(a, b) {
+      return getYomi(a.ja).localeCompare(getYomi(b.ja), 'ja');
+    });
+    html += '<div class="category-group">';
+    html += '<div class="category-header">';
+    html += '<span class="cat-icon">あ</span>';
+    html += '<h2>あいうえお順 <span class="cat-en">Alphabetical (Japanese)</span></h2>';
+    html += '</div>';
+    sorted.forEach(function(t) { html += renderCard(t); });
+    html += '</div>';
+  } else {
+    // カテゴリ別表示
+    var groups = {};
+    CATEGORIES.forEach(function(c) { groups[c.key] = []; });
+    filtered.forEach(function(t) {
+      if (groups[t.cat]) groups[t.cat].push(t);
+    });
+
+    CATEGORIES.forEach(function(cat) {
+      var terms = groups[cat.key];
+      if (terms.length === 0) return;
+      html += '<div class="category-group">';
+      html += '<div class="category-header">';
+      html += '<span class="cat-icon">' + cat.icon + '</span>';
+      html += '<h2>' + cat.label + ' <span class="cat-en">' + cat.labelEn + '</span></h2>';
+      html += '</div>';
+      terms.forEach(function(t) { html += renderCard(t); });
+      html += '</div>';
+    });
+  }
+
+  section.innerHTML = html;
+}
+
+function highlightMatch(text, q) {
+  if (!q) return text;
+  var idx = text.toLowerCase().indexOf(q);
+  if (idx === -1) return text;
+  return text.substring(0, idx) +
+    '<mark style="background:rgba(184,145,42,0.15);color:var(--accent);border-radius:2px;padding:0 2px">' +
+    text.substring(idx, idx + q.length) + '</mark>' +
+    text.substring(idx + q.length);
+}
+
+function toggleTerm(id) {
+  var card = document.querySelector('.term-card[data-id="' + id + '"]');
+  if (card) card.classList.toggle("expanded");
+}
+
+// Filter buttons
+document.getElementById("filters").addEventListener("click", function(e) {
+  var btn = e.target.closest(".filter-btn");
+  if (!btn) return;
+  activeCat = btn.dataset.cat;
+  document.querySelectorAll(".filter-btn").forEach(function(b) {
+    b.classList.remove("active");
+  });
+  btn.classList.add("active");
+  renderTerms();
+});
+
+// Search
+document.getElementById("searchInput").addEventListener("input", function(e) {
+  searchQuery = e.target.value;
+  renderTerms();
+});
+
+// Initial render
+renderTerms();
+</script>
+
+</body>
+</html>

@@ -1,287 +1,590 @@
 <!DOCTYPE html>
-<html lang="ja" data-theme="dark">
+<html lang="ja" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>U&I株倶楽部新聞 — ポータル</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas Daily — Archive</title>
+<meta name="description" content="Atlas Daily — 米国株マーケットの朝刊・号外・特集アーカイブ。">
+<meta property="og:image" content="https://atlas-financials.jp/news/assets/og-image.png">
 <link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --font-sans: 'Noto Sans JP', 'Inter', -apple-system, sans-serif;
-  --font-serif: 'Noto Serif JP', serif;
-  --bg-primary: #0d1117;
-  --bg-card: #161b22;
-  --bg-card-hover: #21262d;
-  --text-primary: #e6edf3;
-  --text-secondary: #8b949e;
-  --text-muted: #6e7681;
-  --border: #30363d;
-  --accent: #58a6ff;
-  --accent-green: #3fb950;
-  --accent-red: #f85149;
-  --accent-amber: #d29922;
-  --shadow-card: 0 2px 8px rgba(0,0,0,.3);
+/* === Variables === */
+:root{
+  --navy:#1A2540;--navy-mid:#243158;--navy-deep:#0F1829;
+  --gold:#B8912A;--gold-lt:#D4A843;--gold-pale:#F0E6C8;
+  --paper:#F5F2EC;--paper-dk:#ECE8DF;--paper-card:#FDFCFA;
+  --ink:#0F0E0C;--slate:#4A5568;--slate-lt:#718096;
+  --alert:#8B2020;
+  --font-heading:'Shippori Mincho B1',serif;
+  --font-body:'Noto Serif JP',serif;
+  --font-ui:'Noto Sans JP',sans-serif;
+  --font-display:'Playfair Display',serif;
+  --font-data:'Inter','Noto Sans JP',sans-serif;
+  --radius:6px;
+  --transition:.22s cubic-bezier(.4,0,.2,1);
+  --max-w:860px;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+/* === Reset === */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-ui);background:var(--paper);color:var(--ink);font-size:14px;line-height:1.9;min-height:100vh}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
 
-body {
-  font-family: var(--font-sans);
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.7;
-  min-height: 100vh;
-}
+/* === Nav === */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(26,37,64,0.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(184,145,42,0.12);padding:0 5vw}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;height:52px;max-width:1100px;margin:0 auto}
+.nav-brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.nav-logo{font-family:var(--font-display);font-size:20px;font-weight:700;color:#fff;letter-spacing:0.04em}
+.nav-logo span{color:var(--gold-lt)}
+.nav-sub{font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.1em}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{font-size:12px;letter-spacing:0.04em;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold-lt)}
+.nav-links a.active{color:#fff}
+.nav-cta{background:var(--gold)!important;color:var(--navy)!important;padding:6px 16px;border-radius:4px;font-weight:700!important}
+.nav-cta:hover{background:var(--gold-lt)!important}
+.nav-hamburger{display:none;background:none;border:none;color:rgba(255,255,255,0.7);font-size:20px;cursor:pointer}
+.mobile-menu{display:none;position:fixed;top:52px;left:0;right:0;background:rgba(26,37,64,0.98);backdrop-filter:blur(8px);border-bottom:1px solid rgba(184,145,42,0.12);padding:16px 24px;z-index:99}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:12px 0;font-size:14px;color:rgba(255,255,255,0.7);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.06)}
+.mobile-menu a:last-child{border-bottom:none}
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+/* === Portal Header — FT Style === */
+.portal-header{position:relative;text-align:center;padding:52px 20px 40px;overflow:hidden;background:var(--navy-deep);border-bottom:3px solid rgba(184,145,42,0.25)}
+.portal-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,145,42,0.07) 0%,transparent 65%);pointer-events:none}
+.portal-header>*{position:relative;z-index:2}
+.header-rule{display:flex;align-items:center;gap:16px;margin-bottom:14px;justify-content:center}
+.header-rule-line{flex:1;max-width:100px;height:1px;background:var(--gold);opacity:0.2}
+.header-rule-text{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;opacity:0.55}
+.portal-title{font-family:var(--font-heading);font-size:46px;font-weight:800;letter-spacing:0.08em;line-height:1.15;color:#fff}
+.portal-subtitle{display:block;font-family:var(--font-display);font-size:13px;font-weight:400;letter-spacing:0.25em;color:rgba(212,168,67,0.65);margin-top:10px;text-transform:uppercase;font-style:italic}
+.header-bottom-rule{display:flex;align-items:center;gap:12px;margin-top:18px;justify-content:center;font-size:11.5px;color:rgba(255,255,255,0.35);letter-spacing:0.04em;font-family:var(--font-body)}
+.header-bottom-rule .hbr-line{flex:1;max-width:70px;height:1px;background:var(--gold);opacity:0.15}
+.header-bottom-rule .hbr-dot{width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:0.3}
 
-/* Header */
-.portal-header {
-  border-bottom: 1px solid var(--border);
-  padding: 48px 20px 36px;
-  text-align: center;
-  position: relative;
-}
-.portal-header::after {
-  content: '';
-  position: absolute;
-  bottom: -3px; left: 0; right: 0;
-  height: 3px;
-  background: var(--border);
-}
-.portal-title {
-  font-family: var(--font-serif);
-  font-size: 48px;
-  font-weight: 900;
-  letter-spacing: .12em;
-  line-height: 1.2;
-}
-.portal-subtitle {
-  display: block;
-  font-size: 13px;
-  font-family: var(--font-sans);
-  font-weight: 600;
-  letter-spacing: .25em;
-  color: var(--text-secondary);
-  margin-top: 6px;
-}
-.portal-desc {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin-top: 16px;
-}
+/* === Hero — FT One-Face === */
+.hero-issue{margin:0 0 0;padding:0}
+.hero-card{border-top:1px solid var(--gold);border-bottom:1px solid rgba(184,145,42,0.25);padding:28px 0 24px;margin-bottom:0;background:transparent}
+.hero-label{font-family:var(--font-data);font-size:10.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--slate-lt);margin-bottom:10px}
+.hero-date{font-family:var(--font-body);font-size:13px;color:var(--slate);margin-bottom:8px}
+.hero-title{display:block;font-family:var(--font-heading);font-size:22px;font-weight:700;line-height:1.45;color:var(--navy);text-decoration:none;transition:color var(--transition);margin-bottom:14px}
+.hero-title:hover{color:var(--gold)}
+.hero-meta{display:flex;align-items:center;gap:16px}
+.hero-cta{font-family:var(--font-data);font-size:12px;font-weight:600;color:var(--gold);text-decoration:none;letter-spacing:0.04em;border-bottom:1px solid rgba(184,145,42,0.35);padding-bottom:1px;transition:all var(--transition)}
+.hero-cta:hover{color:var(--navy);border-color:var(--navy)}
 
-/* Section */
-.section {
-  padding: 36px 0;
-}
-.section + .section {
-  border-top: 1px solid var(--border);
-}
-.section-title {
-  font-family: var(--font-serif);
-  font-size: 22px;
-  font-weight: 900;
-  margin-bottom: 18px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.section-title-icon { font-size: 22px; }
-.section-badge {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 10px;
-  border-radius: 4px;
-  margin-left: 8px;
-}
-.section-badge.weekly {
-  background: rgba(63,185,80,.12);
-  color: var(--accent-green);
-}
-.section-badge.irregular {
-  background: rgba(248,81,73,.12);
-  color: var(--accent-red);
-}
+/* === Archive Section === */
+.section{padding:32px 0 20px}
+.section-title{font-family:var(--font-heading);font-size:19px;font-weight:700;color:var(--navy);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.section-title-icon{font-size:18px;flex-shrink:0}
+.section-title-sub{font-family:var(--font-display);font-size:13px;font-weight:400;font-style:italic;color:var(--slate-lt);letter-spacing:0.08em;margin-left:4px}
+.section-title::after{content:'';flex-grow:1;height:1px;background:var(--paper-dk)}
 
-/* Article List */
-.article-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.article-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  text-decoration: none;
-  color: inherit;
-  transition: all .2s;
-}
-.article-item:hover {
-  background: var(--bg-card-hover);
-  border-color: #484f58;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0,0,0,.4);
-}
-.article-date {
-  font-family: 'Inter', var(--font-sans);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent);
-  min-width: 90px;
-  white-space: nowrap;
-}
-.article-title {
-  font-size: 15px;
-  font-weight: 700;
-  flex: 1;
-}
-.article-tag {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 100px;
-  white-space: nowrap;
-}
-.article-tag.extra {
-  background: rgba(248,81,73,.12);
-  color: var(--accent-red);
-}
-.article-tag.morning {
-  background: rgba(88,166,255,.12);
-  color: var(--accent);
-}
+/* === Filter Bar === */
+.filter-bar{position:sticky;top:52px;z-index:90;background:rgba(245,242,236,0.96);backdrop-filter:blur(10px);padding:14px 0 12px;margin-bottom:20px;border-bottom:1px solid var(--paper-dk);display:flex;flex-direction:column;gap:10px}
+.filter-search input{width:100%;padding:8px 14px;border:1px solid var(--paper-dk);border-radius:var(--radius);font-family:var(--font-ui);font-size:13px;background:var(--paper-card);color:var(--ink);outline:none;transition:border-color var(--transition)}
+.filter-search input:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(184,145,42,0.1)}
+.filter-type{display:flex;gap:0;align-items:center;border-bottom:2px solid var(--paper-dk)}
+.type-btn{background:none;border:none;font-family:var(--font-ui);font-size:12.5px;font-weight:500;color:var(--slate);cursor:pointer;padding:7px 16px 9px;position:relative;transition:color var(--transition);white-space:nowrap;letter-spacing:0.02em}
+.type-btn::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:transparent;transition:background var(--transition)}
+.type-btn:hover{color:var(--navy)}
+.type-btn.active{color:var(--navy);font-weight:700}
+.type-btn.active::after{background:var(--gold)}
+.filter-month{display:flex;gap:6px;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;padding-bottom:2px;scrollbar-width:none}
+.filter-month::-webkit-scrollbar{display:none}
+.month-pill{font-family:var(--font-data);font-size:11.5px;font-weight:500;padding:4px 12px;border-radius:100px;background:transparent;border:1px solid var(--paper-dk);color:var(--slate);cursor:pointer;transition:all 0.15s;white-space:nowrap;letter-spacing:0.01em;flex-shrink:0}
+.month-pill:hover{border-color:var(--gold);color:var(--gold)}
+.month-pill.active{background:var(--gold);border-color:var(--gold);color:#fff;font-weight:700}
+.month-vol{font-size:9.5px;opacity:0.75;margin-left:3px;font-family:var(--font-display);font-style:italic}
 
-/* Empty state */
-.empty-state {
-  padding: 32px;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 14px;
-  background: var(--bg-card);
-  border: 1px dashed var(--border);
-  border-radius: 12px;
-}
+/* === Hidden Archive Data === */
+.archive-list{display:none}
 
-/* Footer */
-.portal-footer {
-  text-align: center;
-  padding: 30px 20px;
-  border-top: 1px solid var(--border);
-  margin-top: 20px;
-}
-.portal-footer p {
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.8;
-}
-.portal-footer a {
-  color: var(--accent);
-  text-decoration: none;
-}
-.portal-footer a:hover { text-decoration: underline; }
+/* === Timeline === */
+.timeline{display:flex;flex-direction:column;gap:0}
+.day-group{border-bottom:1px solid var(--paper-dk);padding:0 0 16px;margin-bottom:16px}
+.day-group:last-child{border-bottom:none;margin-bottom:0}
+.day-header{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;padding-left:22px;position:relative}
+.day-header::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:14px;height:1px;background:var(--gold);opacity:0.7}
+.day-date{font-family:var(--font-body);font-size:14px;font-weight:700;color:var(--navy);letter-spacing:0.02em}
+.day-weekday{font-family:var(--font-body);font-size:12px;color:var(--slate-lt)}
+.day-articles{display:flex;flex-direction:column;gap:0}
+.day-article{display:flex;align-items:flex-start;gap:12px;padding:9px 12px;border-radius:var(--radius);text-decoration:none;color:inherit;transition:background var(--transition)}
+.day-article:hover{background:var(--paper-dk)}
+.day-article:hover .article-headline{color:var(--gold)}
+.article-headline{font-family:var(--font-body);font-size:13.5px;font-weight:400;line-height:1.6;color:var(--ink);flex:1;transition:color var(--transition)}
 
-/* Structure info */
-.structure-info {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-  margin-top: 12px;
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.8;
-}
-.structure-info code {
-  font-family: 'Inter', monospace;
-  font-size: 12px;
-  background: rgba(255,255,255,.06);
-  padding: 1px 6px;
-  border-radius: 4px;
-  color: var(--accent-green);
-}
+/* === Type Badge === */
+.type-badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-data);font-size:10px;font-weight:700;letter-spacing:0.06em;padding:2px 8px;border-radius:3px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.type-badge.morning{background:rgba(184,145,42,0.08);color:var(--gold)}
+.type-badge.extra{background:rgba(139,32,32,0.07);color:var(--alert)}
+.type-badge.special{background:rgba(26,37,64,0.06);color:var(--navy-mid)}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.type-badge.morning .dot{background:var(--gold)}
+.type-badge.extra .dot{background:var(--alert)}
+.type-badge.special .dot{width:5px;height:5px;border-radius:1px;background:var(--navy-mid)}
 
-/* Responsive */
-@media (max-width: 767px) {
-  .portal-title { font-size: 32px; }
-  .article-item { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .article-date { min-width: auto; }
+/* === Empty State === */
+.empty-state{padding:40px;text-align:center;color:var(--slate-lt);font-size:14px;font-family:var(--font-body)}
+.link-btn{background:none;border:none;color:var(--gold);cursor:pointer;font-family:var(--font-ui);font-size:13px;text-decoration:underline;padding:0;margin-left:6px}
+
+/* === Disclaimer === */
+.disclaimer-section{padding:20px;border-top:1px solid var(--paper-dk);margin-top:16px}
+.disclaimer-text{max-width:var(--max-w);margin:0 auto;font-size:11px;color:var(--slate-lt);line-height:1.9}
+
+/* === Footer === */
+footer{background:var(--navy);padding:28px 20px;text-align:center}
+.footer-links{margin-bottom:12px}
+.footer-links a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:11px;margin:0 12px;transition:color 0.15s}
+.footer-links a:hover{color:var(--gold-lt)}
+.footer-copy{font-size:10px;color:rgba(255,255,255,0.2)}
+
+/* === Theme Toggle === */
+.theme-toggle{background:none;border:1px solid rgba(255,255,255,0.15);width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;color:rgba(255,255,255,0.6);transition:all 0.15s;flex-shrink:0}
+.theme-toggle:hover{border-color:var(--gold);color:var(--gold)}
+
+/* === Dark Theme === */
+[data-theme="dark"]{
+  --navy:#1A2540;--navy-mid:#4A6FA5;--navy-deep:#0F1829;
+  --gold:#D4A843;--gold-lt:#E8C96A;--gold-pale:rgba(184,145,42,0.15);
+  --paper:#0F1829;--paper-dk:#1A2540;--paper-card:#162035;
+  --ink:#F5F2EC;--slate:#8b949e;--slate-lt:#6e7681;
+  --alert:#E05555;
+}
+[data-theme="dark"] body{background:#0F1829;color:#F5F2EC}
+[data-theme="dark"] .portal-header{background:#080c14}
+[data-theme="dark"] .filter-bar{background:rgba(15,24,41,0.96)}
+[data-theme="dark"] .filter-search input{background:#162035;border-color:#1A2540;color:#F5F2EC}
+[data-theme="dark"] .type-btn{color:#8b949e}
+[data-theme="dark"] .type-btn.active{color:#F5F2EC}
+[data-theme="dark"] .filter-type{border-color:#1A2540}
+[data-theme="dark"] .month-pill{border-color:#243158;color:#8b949e}
+[data-theme="dark"] .month-pill:hover{border-color:var(--gold);color:var(--gold)}
+[data-theme="dark"] .month-pill.active{background:var(--gold);border-color:var(--gold);color:#0F1829}
+[data-theme="dark"] .hero-card{border-top-color:rgba(212,168,67,0.5);border-bottom-color:rgba(212,168,67,0.15)}
+[data-theme="dark"] .hero-title{color:#F5F2EC}
+[data-theme="dark"] .hero-title:hover{color:var(--gold)}
+[data-theme="dark"] .section-title{color:#F5F2EC}
+[data-theme="dark"] .section-title::after{background:#1A2540}
+[data-theme="dark"] .day-group{border-color:#1A2540}
+[data-theme="dark"] .day-date{color:#F5F2EC}
+[data-theme="dark"] .day-article:hover{background:#1A2540}
+[data-theme="dark"] .article-headline{color:#e6edf3}
+[data-theme="dark"] .type-badge.morning{background:rgba(212,168,67,0.1);color:#D4A843}
+[data-theme="dark"] .type-badge.extra{background:rgba(224,85,85,0.08);color:#E05555}
+[data-theme="dark"] .type-badge.special{background:rgba(74,106,165,0.1);color:#8b949e}
+[data-theme="dark"] .empty-state{color:#6e7681}
+[data-theme="dark"] .disclaimer-section{border-color:#1A2540}
+[data-theme="dark"] .disclaimer-text{color:#6e7681}
+
+/* === Responsive === */
+@media(max-width:768px){
+  .site-header{padding:0 16px}
+  .nav-links{display:none}
+  .nav-hamburger{display:block}
+  .portal-header{padding:36px 16px 28px}
+  .portal-title{font-size:32px;letter-spacing:0.06em}
+  .hero-title{font-size:18px}
+  .filter-bar{padding:12px 0 10px;gap:10px}
+  .type-btn{padding:6px 12px 8px;font-size:12px}
+}
+@media(max-width:480px){
+  .portal-title{font-size:28px}
+  .section-title{font-size:17px}
+  .type-btn{padding:5px 10px 7px;font-size:11.5px}
+}
+@media print{
+  .site-header,.nav-hamburger,.mobile-menu,.filter-bar{display:none!important}
+  body{background:#fff;color:#000}
 }
 </style>
 </head>
 <body>
 
+<!-- Nav -->
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="https://atlasfinancials.github.io/ui-kabu-club/" class="nav-brand">
+      <span class="nav-logo">Atlas<span>.</span></span>
+      <span class="nav-sub">Powered by U&amp;I CO., LTD.</span>
+    </a>
+    <nav class="nav-links">
+      <a href="https://atlasfinancials.github.io/ui-kabu-club/">ポータル</a>
+      <a href="https://atlas-financials.jp/news/" class="active">アーカイブ</a>
+      <a href="https://atlas-financials.jp/reports/">分析</a>
+      <a href="https://atlas-financials.jp/news/glossary/">用語辞典</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="テーマ切替" onclick="toggleTheme()">☀️</button>
+    </nav>
+    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="メニュー">☰</button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://atlasfinancials.github.io/ui-kabu-club/">会員ポータル</a>
+  <a href="https://atlas-financials.jp/news/">アーカイブ</a>
+  <a href="https://atlas-financials.jp/reports/">決算分析</a>
+  <a href="https://atlas-financials.jp/news/glossary/">用語辞典</a>
+</div>
+
+<!-- Portal Header -->
 <header class="portal-header">
-  <h1 class="portal-title">
-    U&I株倶楽部新聞
-    <span class="portal-subtitle">U & I KABU CLUB TIMES</span>
-  </h1>
-  <p class="portal-desc">U&I株倶楽部が発行する米国株マーケットニュースレター</p>
+  <div class="header-rule">
+    <span class="header-rule-line"></span>
+    <span class="header-rule-text">Est. 2026 — U.S. Stock Market Intelligence</span>
+    <span class="header-rule-line"></span>
+  </div>
+  <h1 class="portal-title">Atlas Daily</h1>
+  <span class="portal-subtitle">The Morning Briefing</span>
+  <div class="header-bottom-rule">
+    <span class="hbr-line"></span>
+    <span class="hbr-dot"></span>
+    <span>米国株マーケットニュースレター</span>
+    <span class="hbr-dot"></span>
+    <span class="hbr-line"></span>
+  </div>
 </header>
 
 <main class="container">
 
-  <!-- 号外 -->
-  <div class="section">
-    <h2 class="section-title">
-      <span class="section-title-icon">🔴</span>
-      号外
-      <span class="section-badge irregular">不定期</span>
-    </h2>
-                    <div class="article-list">
-      <a class="article-item" href="extra/2026/03/17-gtc-2026.html">
-        <span class="article-date">2026/03/17</span>
-        <span class="article-title">受注額が1兆ドル（約150兆円）に到達 — AI半導体の需要は衰えず</span>
-        <span class="article-tag extra">号外</span>
-      </a>
-    </div>
-  </div>
+  <!-- Hero: 本日の一面 -->
+  <section class="hero-issue" id="heroIssue">
+    <!-- JSが最新記事を動的に挿入 -->
+  </section>
 
-  <!-- 朝刊 -->
-  <div class="section">
+  <!-- Archive -->
+  <section class="section archive">
     <h2 class="section-title">
-      <span class="section-title-icon">📰</span>
-      朝刊
-      <span class="section-badge weekly">週3〜5回</span>
+      <span class="section-title-icon">📚</span>
+      アーカイブ
+      <span class="section-title-sub">The Archive</span>
     </h2>
-                    <div class="article-list">
-      <a class="article-item" href="morning/2026/03/19.html">
-        <span class="article-date">2026/03/19</span>
-        <span class="article-title">FOMC「タカ派的据え置き」で3指数急落 — ダウ-768pt、2026年最安値更新</span>
-        <span class="article-tag morning">朝刊</span>
-      </a>
-      <a class="article-item" href="morning/2026/03/18.html">
-        <span class="article-date">2026/03/18</span>
-        <span class="article-title">NVIDIA GTC効果でテック主導の反発 — NASDAQ +0.47%、VIX急落</span>
-        <span class="article-tag morning">朝刊</span>
-      </a>
-      <a class="article-item" href="morning/2026/03/13.html">
-        <span class="article-date">2026/03/13</span>
-        <span class="article-title">イラン情勢激化で全面安 — ダウ739ドル急落、VIX急騰</span>
-        <span class="article-tag morning">朝刊</span>
-      </a>
-    </div>
-  </div>
 
+    <div class="filter-bar" id="filterBar">
+      <div class="filter-search">
+        <input type="search" id="searchInput" placeholder="🔍 見出しを検索" aria-label="タイトル検索" autocomplete="off">
+      </div>
+      <div class="filter-type" id="filterType" role="tablist">
+        <button class="type-btn active" data-type="all" role="tab">すべて</button>
+        <button class="type-btn" data-type="morning" role="tab">朝刊</button>
+        <button class="type-btn" data-type="extra" role="tab">号外</button>
+        <button class="type-btn" data-type="special" role="tab">特集</button>
+      </div>
+      <div class="filter-month" id="filterMonth">
+        <!-- JSがピル生成 -->
+      </div>
+    </div>
+
+    <!-- Archive raw data: deploy_times.py が生成する -->
+    <!-- Archive -->
+    <div class="archive-list" id="archiveList">
+      <a class="article-item" href="morning/2026/04/14.html" data-type="morning" data-date="2026-04-14" data-month="2026/04" data-title="Oracle +12.74%でソフトウェア反騰 — 原油100ドル超、逆イールド解消で4.32%"></a>
+      <a class="article-item" href="morning/2026/04/13.html" data-type="morning" data-date="2026-04-13" data-month="2026/04" data-title="消費者信頼感が史上最低47.6、CPI+0.9%のエネルギーショック — イスラマバード和平交渉は決裂"></a>
+      <a class="article-item" href="morning/2026/04/10.html" data-type="morning" data-date="2026-04-10" data-month="2026/04" data-title="Claude Mythosでセキュリティ株暴落、ベッセント＆パウエル緊急会合 — SK Hynix 40兆ウォンと明日CPI"></a>
+      <a class="article-item" href="morning/2026/04/9.html" data-type="morning" data-date="2026-04-09" data-month="2026/04" data-title="米イラン停戦でダウ+1,312pt — Meta Muse Spark発表、夏場ラリーシナリオ"></a>
+      <a class="article-item" href="morning/2026/04/8.html" data-type="morning" data-date="2026-04-08" data-month="2026/04" data-title="米軍カーグ島攻撃、Anthropic-Google-Broadcom 3.5GW契約 — 火曜夜の最終期限と火種"></a>
+      <a class="article-item" href="morning/2026/04/7.html" data-type="morning" data-date="2026-04-07" data-month="2026/04" data-title="ホルムズ最後通牒、ISMスタグフレ警告 — 火曜夜の分岐点と金曜CPI"></a>
+      <a class="article-item" href="morning/2026/04/4.html" data-type="morning" data-date="2026-04-04" data-month="2026/04" data-title="雇用統計サプライズ、原油$111超 — Good Fridayの衝撃データと週明けの焦点"></a>
+      <a class="article-item" href="morning/2026/04/3.html" data-type="morning" data-date="2026-04-03" data-month="2026/04" data-title="トランプのイラン戦争演説で市場激震 — 朝の急落から劇的回復"></a>
+      <a class="article-item" href="morning/2026/04/1.html" data-type="morning" data-date="2026-04-01" data-month="2026/04" data-title="イラン戦争終結の光明 — ペゼシュキアン大統領「必要な意志あり」、トランプ「2〜3週間で撤退」。S&P 500 +2.91%、NASDAQ +3.83%"></a>
+      <a class="article-item" href="morning/2026/03/31.html" data-type="morning" data-date="2026-03-31" data-month="2026/03" data-title="パウエルFRB議長「金利は良い位置」— イラン戦争の原油高でも利上げ不要と表明。エネルギーセクター+22% YTD、テック続落の二極化相場。"></a>
+      <a class="article-item" href="morning/2026/03/28.html" data-type="morning" data-date="2026-03-28" data-month="2026/03" data-title="ダウ793pt暴落で調整局面入り、S&P 500は5週連続下落 — Brent原油$112超え、VIX 31と恐怖拡大"></a>
+      <a class="article-item" href="morning/2026/03/27.html" data-type="morning" data-date="2026-03-27" data-month="2026/03" data-title="イラン情勢悪化で原油$94急騰、NASDAQ調整局面入り — OECDがインフレ見通し4.2%に引き上げ、スタグフレーション懸念が市場を直撃。"></a>
+      <a class="article-item" href="morning/2026/03/25.html" data-type="morning" data-date="2026-03-25" data-month="2026/03" data-title="NYSEがブロックチェーン取引PFを発表 — Amazon AI報道でSaaS株急落、プライベートクレジット危機がAres・Apolloに波及。"></a>
+      <a class="article-item" href="morning/2026/03/24.html" data-type="morning" data-date="2026-03-24" data-month="2026/03" data-title="トランプ、イラン攻撃5日間停止 — ダウ+631pt、原油$91急落の大型リリーフラリー。マスク「Terafab」250億ドル半導体工場発表。"></a>
+      <a class="article-item" href="morning/2026/03/23.html" data-type="morning" data-date="2026-03-23" data-month="2026/03" data-title="イラン紛争4週目突入・原油$98超 — 3指数4週連続安、Russell 2000は調整局面入り"></a>
+      <a class="article-item" href="morning/2026/03/22.html" data-type="morning" data-date="2026-03-22" data-month="2026/03" data-title="SMCI暴落・トリプルウィッチング・原油高 — 4重苦で3指数大幅安、S&P 500が200日線割れ"></a>
+      <a class="article-item" href="morning/2026/03/21.html" data-type="morning" data-date="2026-03-21" data-month="2026/03" data-title="S&P 500が200日移動平均線を割り込む — 4週連続安、1年ぶりのテクニカルブレイクダウン"></a>
+      <a class="article-item" href="morning/2026/03/20.html" data-type="morning" data-date="2026-03-20" data-month="2026/03" data-title="ホルムズ海峡危機激化 — イランがカタールLNG施設攻撃、原油一時$119突破"></a>
+      <a class="article-item" href="morning/2026/03/19.html" data-type="morning" data-date="2026-03-19" data-month="2026/03" data-title="FOMC「タカ派的据え置き」で3指数急落 — ダウ-768pt、2026年最安値更新"></a>
+      <a class="article-item" href="morning/2026/03/18.html" data-type="morning" data-date="2026-03-18" data-month="2026/03" data-title="NVIDIA GTC効果でテック主導の反発 — NASDAQ +0.47%、VIX急落"></a>
+      <a class="article-item" href="morning/2026/03/13.html" data-type="morning" data-date="2026-03-13" data-month="2026/03" data-title="イラン情勢激化で全面安 — ダウ739ドル急落、VIX急騰"></a>
+      <a class="article-item" href="extra/2026/04/14-neocloud-2026.html" data-type="extra" data-date="2026-04-14" data-month="2026/04" data-title="ネオクラウド13社徹底比較 — Oracle推奨の根拠"></a>
+      <a class="article-item" href="extra/2026/04/6-japan-interest-rates.html" data-type="extra" data-date="2026-04-06" data-month="2026/04" data-title="日本の金利が動く — 政策金利0.75%時代の勝者と敗者"></a>
+      <a class="article-item" href="extra/2026/03/20-us-japan-summit.html" data-type="extra" data-date="2026-03-20" data-month="2026/03" data-title="日米首脳会談 — 対米投資730億ドル・関税15%据置・ホルムズ海峡問題"></a>
+      <a class="article-item" href="extra/2026/03/17-gtc-2026.html" data-type="extra" data-date="2026-03-17" data-month="2026/03" data-title="NVIDIA GTC 2026 — 受注1兆ドル・Vera Rubin量産・Feynman発表"></a>
+      <a class="article-item" href="special/okinawa-chika-2026.html" data-type="special" data-date="2026-03-22" data-month="2026/03" data-title="沖縄不動産地価分析レポート 2026年版 — 公示地価+6.6%で13年連続上昇"></a>
+    </div>
+
+    <!-- Timeline: JSが描画 -->
+    <div class="timeline" id="timeline"></div>
+
+    <!-- Empty state -->
+    <div class="empty-state" id="emptyState" style="display:none">
+      該当する記事はありません。<button class="link-btn" id="clearFiltersBtn">フィルターをリセット</button>
+    </div>
+  </section>
 
 </main>
 
-<footer class="portal-footer">
-  <p>U&I株倶楽部新聞 ｜ <a href="https://yskzz121.github.io/ui-kabu-club/">会員ポータル</a> ｜ <a href="https://yskzz121.github.io/ui-kabu-reports/">決算分析</a></p>
-  <p>© 2026 U&I株倶楽部</p>
+<!-- Disclaimer -->
+<div class="disclaimer-section">
+  <p class="disclaimer-text">本コンテンツはU&amp;I株式会社が提供する教育目的の情報提供であり、特定の有価証券の売買を推奨・助言するものではありません。掲載情報の正確性・完全性・最新性を保証するものではなく、投資に関する最終的な判断はご自身の責任においてお願いいたします。当社は金融商品取引業（投資助言・代理業）の登録を受けておりません。</p>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-links">
+    <a href="https://atlas-financials.jp/news/">アーカイブ</a>
+    <a href="https://atlas-financials.jp/reports/">決算分析</a>
+    <a href="https://atlas-financials.jp/news/glossary/">用語辞典</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 U&amp;I CO., LTD. All rights reserved.</div>
 </footer>
 
+<script>
+/* =============================================
+   Utilities
+   ============================================= */
+var WEEKDAYS = ['日','月','火','水','木','金','土'];
+
+function toRoman(n){
+  var vals=[40,10,9,5,4,1];
+  var syms=['XL','X','IX','V','IV','I'];
+  var out='';
+  for(var i=0;i<vals.length;i++){
+    while(n>=vals[i]){out+=syms[i];n-=vals[i];}
+  }
+  return out;
+}
+
+// Vol番号: 2026-04 = I, 2026-05 = II, ...（2026-03以前はnull）
+function getVol(ym){
+  var p=ym.split('/');
+  var y=parseInt(p[0]),m=parseInt(p[1]);
+  if(y<2026||(y===2026&&m<4)) return null;
+  var offset=(y-2026)*12+(m-4)+1;
+  return toRoman(offset);
+}
+
+function fmtJaDate(dateStr){
+  var p=dateStr.split('-');
+  var d=new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2]));
+  var w=WEEKDAYS[d.getDay()];
+  return p[0]+' / '+parseInt(p[1])+' / '+parseInt(p[2])+'（'+w+'）';
+}
+
+function fmtJaDateHero(dateStr){
+  var p=dateStr.split('-');
+  var d=new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2]));
+  var w=WEEKDAYS[d.getDay()];
+  return p[0]+'年'+parseInt(p[1])+'月'+parseInt(p[2])+'日（'+w+'）';
+}
+
+function typeLabel(t){
+  return t==='morning'?'朝刊':t==='extra'?'号外':'特集';
+}
+
+/* =============================================
+   Data loading from archive-list
+   ============================================= */
+var allArticles=[];
+
+(function(){
+  var items=document.querySelectorAll('#archiveList .article-item');
+  items.forEach(function(el){
+    allArticles.push({
+      href:el.getAttribute('href'),
+      type:el.getAttribute('data-type'),
+      date:el.getAttribute('data-date'),
+      month:el.getAttribute('data-month'),
+      title:el.getAttribute('data-title')||''
+    });
+  });
+  // sort by date desc
+  allArticles.sort(function(a,b){return b.date.localeCompare(a.date)});
+})();
+
+/* =============================================
+   Hero
+   ============================================= */
+(function(){
+  if(allArticles.length===0) return;
+  var a=allArticles[0];
+  var hero=document.getElementById('heroIssue');
+  hero.innerHTML='<div class="hero-card">'
+    +'<div class="hero-label">本日の一面 — Today\'s Front Page</div>'
+    +'<div class="hero-date">'+fmtJaDateHero(a.date)+'</div>'
+    +'<a class="hero-title" href="'+a.href+'">'+escHtml(a.title)+'</a>'
+    +'<div class="hero-meta">'
+    +'<span class="type-badge '+a.type+'"><span class="dot"></span>'+typeLabel(a.type)+'</span>'
+    +'<a href="'+a.href+'" class="hero-cta">最新号を読む →</a>'
+    +'</div>'
+    +'</div>';
+})();
+
+/* =============================================
+   Filter state
+   ============================================= */
+var currentType='all';
+var currentMonth='all';
+var currentSearch='';
+
+/* =============================================
+   Month pills
+   ============================================= */
+(function(){
+  var monthCount={};
+  allArticles.forEach(function(a){
+    monthCount[a.month]=(monthCount[a.month]||0)+1;
+  });
+  var months=Object.keys(monthCount).sort().reverse();
+  var bar=document.getElementById('filterMonth');
+
+  var total=allArticles.length;
+  var allPill=makePill('all','すべて',null,total,true);
+  bar.appendChild(allPill);
+
+  months.forEach(function(ym){
+    var p=ym.split('/');
+    var mInt=parseInt(p[1]);
+    var vol=getVol(ym);
+    var label=mInt+'月';
+    if(vol) label+='·Vol.'+vol;
+    var pill=makePill(ym,label,vol,monthCount[ym],false);
+    bar.appendChild(pill);
+  });
+
+  bar.addEventListener('click',function(e){
+    var pill=e.target.closest('.month-pill');
+    if(!pill) return;
+    bar.querySelectorAll('.month-pill').forEach(function(p){p.classList.remove('active')});
+    pill.classList.add('active');
+    currentMonth=pill.getAttribute('data-month');
+    renderTimeline();
+  });
+})();
+
+function makePill(key,label,vol,count,active){
+  var btn=document.createElement('button');
+  btn.className='month-pill'+(active?' active':'');
+  btn.setAttribute('data-month',key);
+  var volHtml=vol?'<span class="month-vol">'+vol+'</span>':'';
+  btn.innerHTML=label+volHtml+' <span style="opacity:.6;font-size:10px">('+count+')</span>';
+  return btn;
+}
+
+/* =============================================
+   Type filter
+   ============================================= */
+document.getElementById('filterType').addEventListener('click',function(e){
+  var btn=e.target.closest('.type-btn');
+  if(!btn) return;
+  document.querySelectorAll('.type-btn').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  currentType=btn.getAttribute('data-type');
+  renderTimeline();
+});
+
+/* =============================================
+   Search
+   ============================================= */
+var searchTimer;
+document.getElementById('searchInput').addEventListener('input',function(){
+  clearTimeout(searchTimer);
+  var v=this.value;
+  searchTimer=setTimeout(function(){
+    currentSearch=v.trim().toLowerCase();
+    renderTimeline();
+  },120);
+});
+
+/* =============================================
+   Clear filters
+   ============================================= */
+document.getElementById('clearFiltersBtn').addEventListener('click',function(){
+  currentType='all';
+  currentMonth='all';
+  currentSearch='';
+  document.getElementById('searchInput').value='';
+  document.querySelectorAll('.type-btn').forEach(function(b){b.classList.remove('active')});
+  document.querySelector('.type-btn[data-type="all"]').classList.add('active');
+  document.querySelectorAll('.month-pill').forEach(function(p){p.classList.remove('active')});
+  document.querySelector('.month-pill[data-month="all"]').classList.add('active');
+  renderTimeline();
+});
+
+/* =============================================
+   Render timeline
+   ============================================= */
+function escHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderTimeline(){
+  var filtered=allArticles.filter(function(a){
+    if(currentType!=='all'&&a.type!==currentType) return false;
+    if(currentMonth!=='all'&&a.month!==currentMonth) return false;
+    if(currentSearch&&a.title.toLowerCase().indexOf(currentSearch)<0) return false;
+    return true;
+  });
+
+  var timeline=document.getElementById('timeline');
+  var empty=document.getElementById('emptyState');
+
+  if(filtered.length===0){
+    timeline.innerHTML='';
+    empty.style.display='';
+    return;
+  }
+  empty.style.display='none';
+
+  // Group by date
+  var groups={};
+  var order=[];
+  filtered.forEach(function(a){
+    if(!groups[a.date]){groups[a.date]=[];order.push(a.date);}
+    groups[a.date].push(a);
+  });
+
+  var html='';
+  order.forEach(function(date){
+    var arts=groups[date];
+    html+='<div class="day-group">';
+    html+='<div class="day-header">';
+    html+='<span class="day-date">'+fmtJaDate(date).replace('（','</span><span class="day-weekday">（').replace('）','）</span>');
+    html+='</div>';
+    html+='<div class="day-articles">';
+    arts.forEach(function(a){
+      html+='<a class="day-article" href="'+a.href+'" data-type="'+a.type+'">';
+      html+='<span class="type-badge '+a.type+'"><span class="dot"></span>'+typeLabel(a.type)+'</span>';
+      html+='<span class="article-headline">'+escHtml(a.title)+'</span>';
+      html+='</a>';
+    });
+    html+='</div></div>';
+  });
+  timeline.innerHTML=html;
+}
+
+// Initial render
+renderTimeline();
+
+/* =============================================
+   Theme toggle
+   ============================================= */
+function toggleTheme(){
+  var html=document.documentElement;
+  var next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+  html.setAttribute('data-theme',next);
+  localStorage.setItem('atlas-theme',next);
+  document.getElementById('themeToggle').textContent=next==='dark'?'☀️':'🌙';
+}
+(function(){
+  var saved=localStorage.getItem('atlas-theme');
+  if(saved){document.documentElement.setAttribute('data-theme',saved)}
+  var btn=document.getElementById('themeToggle');
+  if(btn) btn.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';
+})();
+
+/* =============================================
+   Mobile menu
+   ============================================= */
+function toggleMobileMenu(){
+  var menu=document.getElementById('mobileMenu');
+  var btn=document.querySelector('.nav-hamburger');
+  menu.classList.toggle('open');
+  btn.textContent=menu.classList.contains('open')?'✕':'☰';
+}
+</script>
 </body>
 </html>

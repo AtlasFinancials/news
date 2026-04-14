@@ -12,8 +12,12 @@ LINE U&I株倶楽部グループに自動通知するスクリプト。
   # 号外
   python3 deploy_times.py extra <HTMLパス> <YYYY-MM-DD> <スラッグ> "<見出し>"
 
+オプション:
+  --line    LINE通知を送信する（デフォルトはOFF）
+
 例:
   python3 deploy_times.py morning ~/Desktop/UI_KabuClub_HP/morning_20260318.html 2026-03-18 "NVIDIA GTC効果で反発、本日FOMC"
+  python3 deploy_times.py morning ~/Desktop/UI_KabuClub_HP/morning_20260318.html 2026-03-18 "見出し" --line
   python3 deploy_times.py extra ~/Desktop/UI_KabuClub_HP/gogai_gtc2026.html 2026-03-17 gtc-2026 "NVIDIA GTC 2026 完全レポート"
 """
 
@@ -25,10 +29,8 @@ try:
 except ImportError:
     pass
 
-GITHUB_USERNAME = "yskzz121"
-REPO_NAME       = "ui-kabu-times"
 REPO_DIR        = os.path.expanduser("~/ui-kabu-times")
-PAGES_BASE_URL  = f"https://{GITHUB_USERNAME}.github.io/{REPO_NAME}"
+PAGES_BASE_URL  = "https://atlas-financials.jp/news"
 LINE_CONFIG     = os.path.expanduser("~/.line_config")
 
 WEEKDAYS = ["月", "火", "水", "木", "金", "土", "日"]
@@ -96,6 +98,10 @@ def extract_headline(html_path):
     try:
         with open(html_path, encoding="utf-8") as f:
             content = f.read(30000)
+        # 0. extra-headline メタタグ（号外用の短い見出し、最優先）
+        m = re.search(r'name="extra-headline"\s+content="([^"]+)"', content)
+        if m:
+            return m.group(1).strip()[:80]
         # 1. summary-topic（朝刊マーケットサマリーの見出し）
         m = re.search(r'class="summary-topic[^"]*">(.*?)</span>', content)
         if m:
@@ -170,82 +176,97 @@ def update_extra_latest(date_obj, slug):
 # Portal index.html updater
 # ─────────────────────────────────────────
 def scan_articles(section_dir, article_type):
-    """指定ディレクトリ内の全記事をスキャンして (date, rel_path, headline) のリストを返す"""
+    """指定ディレクトリ内の全記事をスキャンして (date, rel_path, headline, type) のリストを返す"""
     articles = []
     base = os.path.join(REPO_DIR, section_dir)
-    for root, dirs, files in os.walk(base):
-        for fname in files:
+
+    if article_type == "special":
+        # special/*.html — 階層なし、mtimeから日付取得
+        for fname in os.listdir(base):
             if not fname.endswith(".html") or fname in ("index.html", "latest.html"):
                 continue
-            fpath = os.path.join(root, fname)
+            fpath = os.path.join(base, fname)
             rel = os.path.relpath(fpath, REPO_DIR)
-            # parse date from path
-            parts = os.path.relpath(fpath, base).replace("\\", "/").split("/")
-            if len(parts) == 3:  # YYYY/MM/{file}.html
-                try:
-                    y, m = int(parts[0]), int(parts[1])
-                    if article_type == "morning":
-                        d = int(parts[2].replace(".html", ""))
-                    else:
-                        d = int(parts[2].split("-")[0])
-                    dt = datetime(y, m, d)
-                    headline = extract_headline(fpath)
-                    articles.append((dt, rel, headline))
-                except (ValueError, IndexError):
-                    pass
+            try:
+                mtime = os.path.getmtime(fpath)
+                dt = datetime.fromtimestamp(mtime).replace(hour=0, minute=0, second=0, microsecond=0)
+                headline = extract_headline(fpath)
+                if not headline:
+                    # ファイル名からスラッグを整形（ハイフン→スペース、.html除去）
+                    headline = fname.replace(".html", "").replace("-", " ").replace("_", " ")
+                articles.append((dt, rel, headline, article_type))
+            except Exception:
+                pass
+    else:
+        for root, dirs, files in os.walk(base):
+            for fname in files:
+                if not fname.endswith(".html") or fname in ("index.html", "latest.html"):
+                    continue
+                fpath = os.path.join(root, fname)
+                rel = os.path.relpath(fpath, REPO_DIR)
+                # 多言語版（-en/-ko/-zh）はスキップ
+                stem = fname.replace(".html", "")
+                if stem.endswith(("-en", "-ko", "-zh")):
+                    continue
+                # parse date from path: YYYY/MM/{file}.html
+                parts = os.path.relpath(fpath, base).replace("\\", "/").split("/")
+                if len(parts) == 3:
+                    try:
+                        y, m = int(parts[0]), int(parts[1])
+                        if article_type == "morning":
+                            d = int(parts[2].replace(".html", ""))
+                        else:
+                            d = int(parts[2].split("-")[0])
+                        dt = datetime(y, m, d)
+                        headline = extract_headline(fpath)
+                        articles.append((dt, rel, headline, article_type))
+                    except (ValueError, IndexError):
+                        pass
+
     articles.sort(key=lambda x: x[0], reverse=True)
     return articles
 
 
 def rebuild_portal_index():
-    """ポータルindex.htmlの朝刊・号外リストを更新"""
+    """ポータルindex.htmlの統合アーカイブリストを更新"""
     index_path = os.path.join(REPO_DIR, "index.html")
     with open(index_path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    # 号外リスト再構築
-    extras = scan_articles("extra", "extra")
-    if extras:
-        extra_items = ""
-        for dt, rel, headline in extras:
-            date_str = dt.strftime("%Y/%m/%d")
-            title = headline if headline else os.path.basename(rel).replace(".html", "")
-            extra_items += f'      <a class="article-item" href="{rel}">\n'
-            extra_items += f'        <span class="article-date">{date_str}</span>\n'
-            extra_items += f'        <span class="article-title">{title}</span>\n'
-            extra_items += f'        <span class="article-tag extra">号外</span>\n'
-            extra_items += f'      </a>\n'
-        extra_block = f'    <div class="article-list">\n{extra_items}    </div>'
-    else:
-        extra_block = '    <div class="article-list">\n      <div class="empty-state">号外はまだありません。</div>\n    </div>'
+    # 3種類を統合して日付降順ソート
+    all_articles = []
+    all_articles += scan_articles("morning", "morning")
+    all_articles += scan_articles("extra", "extra")
+    all_articles += scan_articles("special", "special")
+    all_articles.sort(key=lambda x: x[0], reverse=True)
 
-    # 朝刊リスト再構築
-    mornings = scan_articles("morning", "morning")
-    if mornings:
-        morning_items = ""
-        for dt, rel, headline in mornings:
-            date_str = dt.strftime("%Y/%m/%d")
-            title = headline if headline else f"{dt.month}月{dt.day}日の朝刊"
-            morning_items += f'      <a class="article-item" href="{rel}">\n'
-            morning_items += f'        <span class="article-date">{date_str}</span>\n'
-            morning_items += f'        <span class="article-title">{title}</span>\n'
-            morning_items += f'        <span class="article-tag morning">朝刊</span>\n'
-            morning_items += f'      </a>\n'
-        morning_block = f'    <div class="article-list">\n{morning_items}    </div>'
-    else:
-        morning_block = '    <div class="article-list">\n      <div class="empty-state">朝刊の記事はまだありません。近日公開予定です。</div>\n    </div>'
+    # archive-list の各 article-item を生成
+    items_html = ""
+    for dt, rel, headline, atype in all_articles:
+        date_iso = dt.strftime("%Y-%m-%d")
+        month_key = dt.strftime("%Y/%m")
+        title = headline if headline else f"{dt.month}月{dt.day}日の{atype}"
+        # エスケープ
+        title_escaped = (title.replace("&", "&amp;").replace('"', "&quot;")
+                             .replace("<", "&lt;").replace(">", "&gt;"))
+        items_html += (
+            f'      <a class="article-item" href="{rel}"'
+            f' data-type="{atype}"'
+            f' data-date="{date_iso}"'
+            f' data-month="{month_key}"'
+            f' data-title="{title_escaped}"></a>\n'
+        )
 
-    # 号外セクションの article-list を置換
-    content = re.sub(
-        r'(<!-- 号外 -->.*?<div class="article-list">)(.*?)(</div>\s*</div>)',
-        lambda m: m.group(1).split('<div class="article-list">')[0] + extra_block + '\n  </div>',
-        content, count=1, flags=re.DOTALL
+    archive_block = (
+        '    <div class="archive-list" id="archiveList">\n'
+        + items_html
+        + '    </div>'
     )
 
-    # 朝刊セクションの article-list を置換
+    # <!-- Archive --> アンカーで囲まれた archive-list を置換
     content = re.sub(
-        r'(<!-- 朝刊 -->.*?<div class="article-list">)(.*?)(</div>\s*</div>)',
-        lambda m: m.group(1).split('<div class="article-list">')[0] + morning_block + '\n  </div>',
+        r'<!-- Archive -->\s*<div class="archive-list" id="archiveList">.*?</div>',
+        '<!-- Archive -->\n    ' + archive_block,
         content, count=1, flags=re.DOTALL
     )
 
@@ -261,46 +282,73 @@ def main():
         print("使い方:")
         print('  python3 deploy_times.py morning <HTMLパス> <YYYY-MM-DD> "<見出し>"')
         print('  python3 deploy_times.py extra <HTMLパス> <YYYY-MM-DD> <スラッグ> "<見出し>"')
+        print('  python3 deploy_times.py special <HTMLパス> <スラッグ> "<見出し>"')
         sys.exit(1)
 
-    article_type = sys.argv[1]  # "morning" or "extra"
-    html_path = os.path.abspath(sys.argv[2])
-    date_str = sys.argv[3]
+    # --line フラグの検出（どの位置にあっても対応）
+    send_line_flag = "--line" in sys.argv
+    args = [a for a in sys.argv[1:] if a != "--line"]
 
-    if article_type == "extra":
-        slug = sys.argv[4] if len(sys.argv) > 4 else "special"
-        headline = sys.argv[5] if len(sys.argv) > 5 else ""
+    article_type = args[0] if len(args) > 0 else ""
+    html_path = os.path.abspath(args[1]) if len(args) > 1 else ""
+
+    if article_type == "special":
+        # special: python3 deploy_times.py special <HTML> <slug> "<headline>"
+        slug = args[2] if len(args) > 2 else os.path.basename(html_path).replace(".html", "")
+        headline = args[3] if len(args) > 3 else ""
+        date_str = None
+        date_obj = datetime.now()
+    elif article_type == "extra":
+        date_str = args[2] if len(args) > 2 else ""
+        slug = args[3] if len(args) > 3 else "special"
+        headline = args[4] if len(args) > 4 else ""
+        date_obj = datetime.strptime(date_str, "%Y-%m-%d")
     else:
+        date_str = args[2] if len(args) > 2 else ""
         slug = None
-        headline = sys.argv[4] if len(sys.argv) > 4 else ""
+        headline = args[3] if len(args) > 3 else ""
+        date_obj = datetime.strptime(date_str, "%Y-%m-%d")
 
     if not os.path.exists(html_path):
         print(f"❌ ファイルが見つかりません: {html_path}")
         sys.exit(1)
 
-    date_obj = datetime.strptime(date_str, "%Y-%m-%d")
     y = date_obj.strftime("%Y")
     m = date_obj.strftime("%m")
     d = str(date_obj.day)
     weekday = WEEKDAYS[date_obj.weekday()]
 
-    type_label = "朝刊" if article_type == "morning" else "号外"
-    type_icon = "📰" if article_type == "morning" else "🔴"
+    if article_type == "morning":
+        type_label = "朝刊"
+        type_icon = "📰"
+    elif article_type == "extra":
+        type_label = "号外"
+        type_icon = "🔴"
+    else:
+        type_label = "特集"
+        type_icon = "📑"
 
     print(f"{type_icon} U&I株倶楽部新聞 {type_label}デプロイ")
-    print(f"   日付: {y}年{int(m)}月{d}日（{weekday}）")
+    if article_type != "special":
+        print(f"   日付: {y}年{int(m)}月{d}日（{weekday}）")
     if slug:
         print(f"   スラッグ: {slug}")
     print()
 
-    # 1. git pull
-    print("1️⃣  リポジトリを最新化...")
-    run("git pull --rebase", cwd=REPO_DIR)
+    # 0. ブランチチェック（gh-pages以外なら中断）
+    current_branch = run("git rev-parse --abbrev-ref HEAD", cwd=REPO_DIR)
+    if current_branch != "gh-pages":
+        print(f"❌ エラー: 現在のブランチが '{current_branch}' です。'gh-pages' に切り替えてください。")
+        print(f"   → cd {REPO_DIR} && git checkout gh-pages")
+        sys.exit(1)
 
-    # 2. HTMLをコピー
+    # 1. HTMLをコピー
     if article_type == "morning":
         dest_dir = os.path.join(REPO_DIR, "morning", y, m)
         fname = f"{d}.html"
+    elif article_type == "special":
+        dest_dir = os.path.join(REPO_DIR, "special")
+        fname = f"{slug}.html"
     else:
         dest_dir = os.path.join(REPO_DIR, "extra", y, m)
         fname = f"{d}-{slug}.html"
@@ -308,37 +356,55 @@ def main():
     os.makedirs(dest_dir, exist_ok=True)
     dest_file = os.path.join(dest_dir, fname)
     shutil.copy2(html_path, dest_file)
-    print(f"2️⃣  HTMLをコピー → {article_type}/{y}/{m}/{fname}")
+    if article_type == "special":
+        print(f"1️⃣  HTMLをコピー → special/{fname}")
+    else:
+        print(f"1️⃣  HTMLをコピー → {article_type}/{y}/{m}/{fname}")
 
     # 3. latest.html 更新
     if article_type == "morning":
         update_morning_latest(date_obj)
-    else:
+        print(f"2️⃣  {article_type}/latest.html を更新")
+    elif article_type == "extra":
         update_extra_latest(date_obj, slug)
-    print(f"3️⃣  {article_type}/latest.html を更新")
+        print(f"2️⃣  {article_type}/latest.html を更新")
+    else:
+        print("2️⃣  special は latest.html なし（スキップ）")
 
     # 4. ポータルindex.html 再構築
     rebuild_portal_index()
-    print("4️⃣  ポータル index.html を再構築")
+    print("3️⃣  ポータル index.html を再構築")
 
-    # 5. git add → commit → push
-    print("5️⃣  Git コミット & プッシュ...")
-    run("git add -A", cwd=REPO_DIR)
+    # 5. Cloudflare Pages にデプロイ
+    print("4️⃣  Cloudflare Pages にデプロイ...")
+    run(f"npx wrangler pages deploy {REPO_DIR} --project-name atlas-news --commit-dirty=true", cwd=REPO_DIR)
+    print("   ✅ Cloudflare Pages にデプロイ完了")
+
+    # 6. Gitにもコミット（バックアップ・履歴管理用）
     commit_msg = f"{type_icon} {type_label} {y}/{int(m)}/{d}（{weekday}）"
     if slug:
         commit_msg += f" {slug}"
-    run(f'git commit -m "{commit_msg}"', cwd=REPO_DIR)
-    run("git push", cwd=REPO_DIR)
-    print("   ✅ GitHub Pages にプッシュ完了")
+    try:
+        run("git add -A", cwd=REPO_DIR)
+        run(f'git commit -m "{commit_msg}"', cwd=REPO_DIR)
+        run("git push", cwd=REPO_DIR)
+    except Exception as e:
+        print(f"   ⚠️ Git push スキップ（Cloudflareデプロイは成功済み）: {e}")
 
-    # 6. LINE通知
-    print("6️⃣  LINE通知...")
-    line_cfg = load_line_config()
+    # 7. LINE通知
+    if not send_line_flag:
+        print("5️⃣  LINE通知... スキップ（--line フラグなし）")
+    else:
+        print("5️⃣  LINE通知...")
+    line_cfg = load_line_config() if send_line_flag else {}
     token = line_cfg.get("LINE_TOKEN")
     group_id = line_cfg.get("LINE_GROUP_ID")
 
-    if token and group_id:
-        url = f"{PAGES_BASE_URL}/{article_type}/{y}/{m}/{fname}"
+    if send_line_flag and token and group_id:
+        if article_type == "special":
+            url = f"{PAGES_BASE_URL}/special/{fname}"
+        else:
+            url = f"{PAGES_BASE_URL}/{article_type}/{y}/{m}/{fname}"
         now_str = datetime.now().strftime("%Y/%m/%d %H:%M")
         msg = f"{type_icon} 【U&I株倶楽部 {type_label}】{y}年{int(m)}月{d}日（{weekday}）\n"
         if headline:
@@ -358,11 +424,14 @@ def main():
             print("   ✅ LINE通知 送信完了")
         else:
             print("   ⚠️  LINE通知 送信失敗（記事は公開済み）")
-    else:
+    elif send_line_flag:
         print("   ⚠️  LINE設定が見つかりません（スキップ）")
 
     print()
-    url = f"{PAGES_BASE_URL}/{article_type}/{y}/{m}/{fname}"
+    if article_type == "special":
+        url = f"{PAGES_BASE_URL}/special/{fname}"
+    else:
+        url = f"{PAGES_BASE_URL}/{article_type}/{y}/{m}/{fname}"
     print(f"🎉 デプロイ完了!")
     print(f"   📎 {url}")
 

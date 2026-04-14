@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Daily — 2026年3月31日 朝刊</title>
+<meta property="og:title" content="Atlas Daily — 2026年3月31日 朝刊">
+<meta property="og:description" content="パウエルFRB議長「金利は良い位置」— イラン戦争の原油高でも利上げ不要と表明。エネルギーセクター+22% YTD、テック続落の二極化相場。">
+<meta property="og:image" content="https://yskzz121.github.io/ui-kabu-times-preview/assets/og-image.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yskzz121.github.io/ui-kabu-times-preview/morning/2026/03/31.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://yskzz121.github.io/ui-kabu-times-preview/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ==========================================
+   CSS Variables — Atlas Brand
+   ========================================== */
+:root {
+  --navy: #1A2540;
+  --navy-mid: #243158;
+  --navy-deep: #0F1829;
+  --gold: #B8912A;
+  --gold-lt: #D4A843;
+  --gold-pale: #F0E6C8;
+  --paper: #F5F2EC;
+  --paper-dk: #ECE8DF;
+  --ink: #0F0E0C;
+  --slate: #4A5568;
+  --slate-lt: #718096;
+  --alert: #8B2020;
+  --font-heading: 'Shippori Mincho B1', serif;
+  --font-body: 'Noto Serif JP', serif;
+  --font-ui: 'Noto Sans JP', sans-serif;
+  --font-display: 'Playfair Display', serif;
+  --font-data: 'Inter', 'Noto Sans JP', sans-serif;
+  --surface: #FDFCFA;
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.04);
+  --tip-bg: #FDFCFA;
+  --tip-border: var(--paper-dk);
+  --tip-shadow: 0 8px 24px rgba(0,0,0,.08);
+  --badge-bg: rgba(184,145,42,0.06);
+  --gold-light: rgba(184,145,42,0.08);
+  --alert-light: rgba(139,32,32,0.08);
+  --gold-lt-light: rgba(212,168,67,0.08);
+  --navy-light: rgba(26,37,64,0.06);
+  --slate-light: rgba(74,85,104,0.06);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --transition: .25s cubic-bezier(.4,0,.2,1);
+  --max-w: 1100px;
+  --font-scale: 1;
+}
+
+/* Font Scale Levels — font grows, line-height tightens */
+[data-font-scale="1"] { --font-scale: 1;    --lh-body: 2;   --lh-text: 1.9; --lh-card: 1.7; --lh-title: 1.5; }
+[data-font-scale="2"] { --font-scale: 1.15; --lh-body: 1.85; --lh-text: 1.8; --lh-card: 1.65; --lh-title: 1.45; }
+[data-font-scale="3"] { --font-scale: 1.3;  --lh-body: 1.75; --lh-text: 1.7; --lh-card: 1.6; --lh-title: 1.4; }
+[data-font-scale="4"] { --font-scale: 1.45; --lh-body: 1.65; --lh-text: 1.65; --lh-card: 1.55; --lh-title: 1.35; }
+
+/* Scaled text elements — use [data-font-scale] for higher specificity */
+/* Scaled text — font size + adaptive line-height */
+[data-font-scale] .summary-text        { font-size: calc(15px * var(--font-scale)); line-height: var(--lh-body); }
+[data-font-scale] .top-story-body      { font-size: calc(15px * var(--font-scale)); line-height: var(--lh-text); }
+[data-font-scale] .news-card-excerpt   { font-size: calc(13px * var(--font-scale)); line-height: var(--lh-card); }
+[data-font-scale] .keyword-overview    { font-size: calc(15px * var(--font-scale)); line-height: var(--lh-text); }
+[data-font-scale] .keyword-perspective-text { font-size: calc(13px * var(--font-scale)); line-height: var(--lh-card); }
+[data-font-scale] .keyword-relation    { font-size: calc(14px * var(--font-scale)); line-height: var(--lh-card); }
+[data-font-scale] .editorial-body      { font-size: calc(15px * var(--font-scale)); line-height: var(--lh-text); }
+[data-font-scale] .editorial-note      { font-size: calc(13px * var(--font-scale)); line-height: var(--lh-card); }
+[data-font-scale] .why-box             { font-size: calc(13px * var(--font-scale)); line-height: var(--lh-card); }
+[data-font-scale] .calendar-event      { font-size: calc(14px * var(--font-scale)); }
+[data-font-scale] .calendar-detail     { font-size: calc(12px * var(--font-scale)); }
+[data-font-scale] .disclaimer-text     { font-size: calc(11px * var(--font-scale)); }
+[data-font-scale] .top-story-title     { font-size: calc(26px * var(--font-scale)); line-height: var(--lh-title); }
+[data-font-scale] .news-card-title     { font-size: calc(16px * var(--font-scale)); line-height: var(--lh-title); }
+[data-font-scale] .section-label-text  { font-size: calc(24px * var(--font-scale)); line-height: var(--lh-title); }
+[data-font-scale] .keyword-title       { font-size: calc(22px * var(--font-scale)); line-height: var(--lh-title); }
+
+/* Language switcher */
+.lang-switch {
+  display: inline-flex; align-items: center; gap: 2px;
+  margin-right: 4px;
+}
+.lang-switch a, .lang-switch span {
+  font-size: 13px; text-decoration: none; padding: 2px 4px;
+  border-radius: 3px; line-height: 1; transition: opacity .15s;
+}
+.lang-switch a { opacity: .5; cursor: pointer; }
+.lang-switch a:hover { opacity: .9; }
+.lang-switch .lang-active { opacity: 1; background: rgba(184,145,42,0.2); border-radius: 4px; }
+
+/* Font scale toggle button */
+.font-scale-btn {
+  background: none; border: 1px solid rgba(255,255,255,0.25); cursor: pointer;
+  font-family: var(--font-data); font-size: 11px; font-weight: 700;
+  padding: 3px 6px; line-height: 1; color: rgba(255,255,255,0.7);
+  border-radius: 4px; transition: all .15s; white-space: nowrap;
+  display: inline-flex; align-items: baseline; gap: 1px;
+}
+.font-scale-btn:hover { border-color: var(--gold); color: var(--gold); }
+.font-scale-btn .fs-sm { font-size: 10px; }
+.font-scale-btn .fs-lg { font-size: 15px; }
+.font-scale-btn .fs-level {
+  font-size: 9px; margin-left: 3px; opacity: 0.6;
+}
+
+/* ==========================================
+   Base
+   ========================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: var(--font-ui);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+.heading { color: var(--navy); }
+.sub { color: var(--slate); }
+.muted { color: var(--slate-lt); }
+.accent { color: var(--gold); }
+.up { color: var(--gold); }
+.down { color: var(--alert); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--paper-dk);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow .25s ease;
+}
+.card:hover { border-color: rgba(184,145,42,0.4); }
+.card-pad { padding: 28px; }
+
+/* ==========================================
+   Site Header — Atlas Nav
+   ========================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--navy-deep);
+  border-bottom: 1px solid rgba(184,145,42,0.2);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 56px;
+}
+.nav-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+.nav-logo span { color: var(--gold); }
+.nav-sub {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  color: var(--slate-lt);
+  letter-spacing: 0.06em;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.nav-links a {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color .15s;
+  letter-spacing: 0.02em;
+}
+.nav-links a:hover { color: var(--gold-lt); }
+.nav-links a.active { color: #fff; font-weight: 700; }
+.nav-cta {
+  background: var(--gold) !important;
+  color: var(--navy-deep) !important;
+  font-weight: 700 !important;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 12px !important;
+  letter-spacing: 0.04em;
+  transition: background .15s !important;
+}
+.nav-cta:hover { background: var(--gold-lt) !important; color: var(--navy-deep) !important; }
+
+/* Hamburger */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 20px;
+  cursor: pointer;
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  background: rgba(26,37,64,0.98);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(184,145,42,0.12);
+  padding: 16px 24px;
+  z-index: 99;
+}
+.mobile-menu.open { display: block; }
+.mobile-menu a {
+  display: block;
+  padding: 12px 0;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.mobile-menu a:last-child { border-bottom: none; }
+
+/* Theme toggle button */
+.theme-toggle {
+  background: none; border: none; cursor: pointer; font-size: 18px;
+  padding: 4px 8px; line-height: 1; color: rgba(255,255,255,0.7);
+  transition: opacity .15s;
+}
+.theme-toggle:hover { opacity: .8; }
+
+/* Mobile: theme toggle + hamburger side by side */
+.nav-mobile-actions {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ==========================================
+   Header
+   ========================================== */
+.paper-header {
+  border-bottom: 1px solid rgba(184,145,42,0.15);
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  background: var(--navy-deep);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.paper-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(184,145,42,0.08) 0%, transparent 60%);
+  z-index: 0;
+}
+.paper-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-lt), var(--gold));
+  z-index: 1;
+}
+.paper-header > * { position: relative; z-index: 1; }
+
+/* Symmetric spacing: date(top) — 16px — title row — 12px — accent(bottom) */
+.paper-date {
+  font-family: var(--font-data);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: .1em;
+  margin-bottom: 16px;
+}
+
+/* Title row: ── Atlas Daily ── */
+.paper-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+.paper-logo::before,
+.paper-logo::after {
+  content: '';
+  width: 60px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+  opacity: .5;
+  flex-shrink: 0;
+}
+.paper-logo::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.paper-title {
+  font-family: var(--font-heading);
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  line-height: 1;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* Accent subtitle — separated from h1, own block */
+.paper-accent {
+  display: block;
+  font-size: 13px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: .2em;
+  color: var(--gold);
+  opacity: .7;
+}
+
+/* ==========================================
+   Section Label
+   ========================================== */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--paper-dk);
+}
+.section-label-icon { font-size: 20px; }
+.section-label-text {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  color: var(--navy);
+}
+.section-label-line { flex: 1; height: 1px; background: var(--paper-dk); }
+.section-gap { margin-bottom: 40px; }
+
+/* ==========================================
+   Market Summary
+   ========================================== */
+.summary-text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 2;
+  color: var(--ink);
+}
+.summary-text p { margin-bottom: 0; padding: 18px 0; border-bottom: 1px solid var(--paper-dk); }
+.summary-text p:last-child { border-bottom: none; }
+.summary-text p:first-child { padding-top: 0; }
+.summary-num-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #fff;
+  font-family: var(--font-data);
+  font-size: 12px;
+  font-weight: 800;
+  margin-right: 8px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+[data-theme="dark"] .summary-text p { border-bottom-color: rgba(184,145,42,0.12); }
+
+.summary-topic {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 4px;
+  letter-spacing: -.01em;
+}
+.summary-topic.positive { color: var(--gold); }
+.summary-topic.negative { color: var(--alert); }
+.summary-topic.neutral { color: var(--navy); }
+
+.summary-num { font-family: var(--font-data); font-weight: 700; }
+.summary-num.up { color: var(--gold); }
+.summary-num.down { color: var(--alert); }
+.summary-label { font-weight: 700; }
+
+/* Ticker Row */
+.summary-tickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--paper-dk);
+}
+.summary-ticker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--paper-dk);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.summary-ticker-name { color: var(--slate); }
+.summary-ticker-val { font-family: var(--font-data); font-weight: 800; color: var(--navy); }
+.summary-ticker-chg { font-family: var(--font-data); font-weight: 700; font-size: 12px; }
+.summary-ticker-chg.up { color: var(--gold); }
+.summary-ticker-chg.down { color: var(--alert); }
+
+/* ==========================================
+   Top Story
+   ========================================== */
+.top-story {
+  background: var(--surface);
+  border: 1px solid var(--paper-dk);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 16px;
+  transition: all .25s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+  box-shadow: var(--shadow-card);
+}
+.top-story:hover { border-color: rgba(184,145,42,0.4); box-shadow: 0 4px 20px rgba(0,0,0,.06); }
+
+.top-story-badge {
+  display: inline-block;
+  font-family: var(--font-data);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: rgba(184,145,42,0.08);
+  color: var(--gold);
+  letter-spacing: .04em;
+  margin-bottom: 14px;
+  border: 1px solid transparent;
+}
+
+/* Section Hero Image */
+.section-hero {
+  width: calc(100% + 64px);
+  margin: 0 -32px 16px;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  overflow: hidden;
+}
+.section-hero img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+.section-hero-caption {
+  font-size: 11px;
+  color: var(--slate-lt);
+  margin-top: -8px;
+  margin-bottom: 12px;
+  text-align: right;
+}
+
+.top-story-title {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: -.01em;
+  margin-bottom: 14px;
+  color: var(--navy);
+}
+.top-story-body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--slate);
+  line-height: 1.9;
+}
+.top-story-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--paper-dk);
+  font-size: 12px;
+  color: var(--slate-lt);
+}
+.top-story-source { font-weight: 700; color: var(--slate); }
+
+/* ==========================================
+   "Why Important?" Box
+   ========================================== */
+.why-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.why-box.positive { background: var(--gold-light); border: 1px solid var(--gold); color: var(--ink); }
+.why-box.negative { background: var(--alert-light); border: 1px solid var(--alert); color: var(--ink); }
+.why-box.warning { background: var(--gold-lt-light); border: 1px solid var(--gold-lt); color: var(--ink); }
+.why-box.default { background: var(--navy-light); border: 1px solid var(--navy); color: var(--ink); }
+.why-icon { font-size: 18px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+.why-label { font-weight: 700; color: var(--navy); margin-right: 4px; }
+
+/* ==========================================
+   Sub News Grid
+   ========================================== */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.news-card {
+  background: var(--surface);
+  border: 1px solid var(--paper-dk);
+  border-radius: 12px;
+  padding: 22px;
+  transition: all .25s ease;
+  cursor: default;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: visible;
+  box-shadow: var(--shadow-card);
+}
+.news-card:hover { border-color: rgba(184,145,42,0.4); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.06); }
+
+/* News Card Image */
+.news-card-img-wrap {
+  margin: -22px -22px 12px -22px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px 12px 0 0;
+}
+.news-card-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  transition: transform .3s ease;
+}
+.news-card:hover .news-card-img { transform: scale(1.03); }
+.news-card-img-caption {
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+  font-size: 10px;
+  color: #fff;
+  background: rgba(0,0,0,.5);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.news-card-meta { display: flex; align-items: center; gap: 10px; }
+.news-card-tag {
+  font-family: var(--font-data);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  letter-spacing: .02em;
+}
+.news-card-tag.economy { background: var(--gold-light); color: var(--gold); }
+.news-card-tag.tech { background: var(--gold-lt-light); color: var(--gold-lt); }
+.news-card-tag.earnings { background: var(--gold-light); color: var(--gold); }
+.news-card-tag.geopolitics { background: var(--alert-light); color: var(--alert); }
+.news-card-tag.policy { background: var(--slate-light); color: var(--slate); }
+
+.news-card-source { font-size: 11px; color: var(--slate-lt); font-weight: 500; }
+.news-card-title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: -.01em;
+  color: var(--navy);
+}
+.news-card-excerpt {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--slate);
+  line-height: 1.7;
+}
+.news-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--paper-dk);
+  font-size: 12px;
+  color: var(--slate-lt);
+}
+
+/* Editorial Take (hover/tap expand) */
+.ed-take {
+  position: relative;
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(184,145,42,0.05);
+  border: 1px solid rgba(184,145,42,0.15);
+  cursor: pointer;
+  transition: all .25s ease;
+}
+.ed-take-icon { font-size: 14px; margin-right: 4px; }
+.ed-take-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .02em;
+}
+.ed-take-label::after {
+  content: ' \25B8 \30DB\30D0\30FC\3067\8868\793A';
+  font-weight: 400;
+  font-size: 10px;
+  color: var(--slate-lt);
+}
+.ed-take-body {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin-top: 0;
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: var(--slate);
+  transition: max-height .4s ease, opacity .3s ease, margin-top .3s ease;
+}
+.ed-take:hover .ed-take-body,
+.ed-take.open .ed-take-body {
+  max-height: 600px;
+  opacity: 1;
+  margin-top: 10px;
+}
+.ed-take:hover { border-color: var(--gold); background: rgba(184,145,42,0.08); }
+.ed-take:hover .ed-take-label::after { content: ''; }
+[data-theme="dark"] .ed-take { background: rgba(184,145,42,0.06); border-color: rgba(184,145,42,0.12); }
+[data-theme="dark"] .ed-take:hover { background: rgba(184,145,42,0.1); border-color: var(--gold); }
+[data-theme="dark"] .ed-take-body { color: #8b949e; }
+[data-theme="dark"] .ed-take-body strong { color: #F5F2EC; }
+
+/* ==========================================
+   "Today's Keyword" Section
+   ========================================== */
+.keyword-card {
+  background: var(--surface);
+  border: 1px solid var(--paper-dk);
+  border-radius: 12px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.keyword-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+  border-radius: 12px 12px 0 0;
+}
+.keyword-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.keyword-sub {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--slate);
+  margin-bottom: 16px;
+}
+.keyword-overview {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.keyword-perspectives {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.keyword-perspective {
+  background: var(--badge-bg);
+  border: 1px solid var(--paper-dk);
+  border-radius: 8px;
+  padding: 16px;
+}
+.keyword-perspective-icon { font-size: 20px; margin-bottom: 4px; }
+.keyword-perspective-label {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.keyword-perspective-text { font-size: 13px; line-height: 1.7; color: var(--slate); }
+
+.keyword-relation {
+  background: var(--gold-light);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.keyword-relation-label { font-weight: 700; color: var(--gold); margin-bottom: 4px; display: block; }
+.keyword-glossary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+}
+.keyword-glossary-link:hover { text-decoration: underline; }
+
+/* ==========================================
+   Editorial
+   ========================================== */
+.editorial-card {
+  background: var(--surface);
+  border: 1px solid var(--paper-dk);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.ed-hero {
+  padding: 28px 32px 24px;
+  background: linear-gradient(135deg, rgba(184,145,42,0.06) 0%, rgba(139,32,32,0.03) 50%, transparent 100%);
+  border-bottom: 1px solid var(--paper-dk);
+}
+.ed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: 100px;
+  background: rgba(184,145,42,0.1);
+  color: var(--gold);
+  letter-spacing: .04em;
+  margin-bottom: 12px;
+}
+.editorial-headline {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  color: var(--navy);
+}
+.editorial-body {
+  padding: 28px 32px;
+  font-size: 14px;
+  line-height: 2;
+  color: var(--slate);
+}
+.editorial-body p { margin-bottom: 16px; }
+.editorial-body p:last-child { margin-bottom: 0; }
+.editorial-body strong { color: var(--ink); }
+.editorial-note {
+  font-size: 11px;
+  color: var(--slate-lt);
+  margin: 0;
+  padding: 16px 32px;
+  line-height: 1.6;
+  border-top: 1px solid var(--paper-dk);
+  background: rgba(74,85,104,0.02);
+}
+
+/* ==========================================
+   Economic Calendar
+   ========================================== */
+.calendar-list {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--paper-dk);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.calendar-day-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--gold);
+  padding: 12px 16px 4px;
+  letter-spacing: .02em;
+}
+.calendar-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--paper-dk);
+  transition: background .25s ease;
+}
+.calendar-item:last-child { border-bottom: none; }
+.calendar-item:hover { background: var(--paper); }
+.calendar-time {
+  font-family: var(--font-data);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  min-width: 52px;
+  text-align: center;
+}
+.calendar-importance {
+  font-family: var(--font-data);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.calendar-importance.high { background: var(--alert-light); color: var(--alert); }
+.calendar-importance.medium { background: var(--gold-lt-light); color: var(--gold-lt); }
+.calendar-importance.low { background: var(--badge-bg); color: var(--slate-lt); border: 1px solid var(--paper-dk); }
+.calendar-event {
+  flex: 1;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+}
+.calendar-flag { font-size: 16px; }
+.calendar-detail { font-size: 12px; color: var(--slate-lt); white-space: nowrap; }
+
+/* ==========================================
+   Earnings Preview
+   ========================================== */
+.earnings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+.earnings-item {
+  background: var(--surface);
+  border: 1px solid var(--paper-dk);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all .25s ease;
+  box-shadow: var(--shadow-card);
+}
+.earnings-item:hover { border-color: rgba(184,145,42,0.4); transform: translateY(-2px); }
+.earnings-item-header { display: flex; align-items: center; gap: 6px; }
+.earnings-item-logo { height: 20px; width: auto; max-width: 60px; object-fit: contain; flex-shrink: 0; }
+.earnings-item-ticker { font-family: var(--font-data); font-size: 18px; font-weight: 800; color: var(--navy); }
+.earnings-item-timing {
+  font-family: var(--font-data);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--badge-bg);
+  color: var(--slate-lt);
+  border: 1px solid var(--paper-dk);
+  margin-left: auto;
+}
+.earnings-item-timing.bmo { background: var(--gold-lt-light); color: var(--gold-lt); border-color: transparent; }
+.earnings-item-timing.amc { background: var(--navy-light); color: var(--navy-mid); border-color: transparent; }
+.earnings-item-name { font-size: 13px; color: var(--slate); font-weight: 500; }
+.earnings-item-sector {
+  font-family: var(--font-data);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--slate-lt);
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--badge-bg);
+  border: 1px solid var(--paper-dk);
+  display: inline-block;
+  align-self: flex-start;
+  line-height: 1.4;
+}
+.earnings-item-consensus { font-size: 12px; color: var(--slate-lt); display: flex; gap: 12px; }
+.earnings-item-consensus span { font-family: var(--font-data); }
+.earnings-item-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  transition: opacity .25s ease;
+}
+.earnings-item-link:hover { opacity: .7; }
+.earnings-item-note {
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* ==========================================
+   Tooltip — fixed positioning (PC & Mobile)
+   ========================================== */
+.term {
+  color: var(--gold);
+  font-weight: 600;
+  cursor: help;
+  position: relative;
+  border-bottom: 1px dotted var(--gold);
+}
+.term .tip {
+  display: none;
+  position: fixed;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  background: var(--tip-bg);
+  border: 1px solid var(--tip-border);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--ink);
+  box-shadow: var(--tip-shadow);
+  z-index: 1001;
+  pointer-events: none;
+}
+.term .tip.tip-visible { display: block; }
+.tip-title { display: block; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+
+/* tip-right / tip-left classes are now ignored — JS handles positioning */
+
+/* Mobile overlay */
+.tip-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,.4);
+  z-index: 1000;
+}
+.tip-overlay.show { display: block; }
+
+/* Disable card hover transform when tooltip is active */
+.news-card.tip-active:hover { transform: none !important; }
+.top-story.tip-active:hover { transform: none !important; }
+
+/* ==========================================
+   Disclaimer
+   ========================================== */
+.disclaimer-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px 0;
+}
+.disclaimer-text {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--slate-lt);
+  padding: 16px 20px;
+  background: var(--paper-dk);
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+/* ==========================================
+   Footer
+   ========================================== */
+.paper-footer {
+  background: var(--navy-deep);
+  border-top: 3px solid var(--gold);
+  padding: 32px 20px;
+  text-align: center;
+}
+.footer-day-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-day-nav a {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+}
+.footer-day-nav a:hover { text-decoration: underline; color: var(--gold-lt); }
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.footer-nav a {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+}
+.footer-nav a:hover { text-decoration: underline; color: var(--gold-lt); }
+.footer-copy { font-family: var(--font-ui); font-size: 12px; color: var(--slate-lt); }
+
+/* ==========================================
+   Responsive
+   ========================================== */
+@media (min-width: 768px) {
+  .main { padding: 36px 40px 60px; }
+  .paper-header { padding: 48px 40px; }
+  .paper-title { font-size: 52px; }
+  .paper-logo::before, .paper-logo::after { width: 80px; }
+  .paper-logo { gap: 24px; }
+  .paper-date { margin-bottom: 20px; }
+}
+
+@media (max-width: 767px) {
+  .paper-header { padding: 28px 16px; }
+  .paper-title { font-size: 28px; letter-spacing: .08em; }
+  .paper-accent { font-size: 11px; letter-spacing: .15em; }
+  .paper-date { font-size: 11px; margin-bottom: 12px; }
+  .paper-logo { gap: 12px; margin-bottom: 8px; }
+  .paper-logo::before, .paper-logo::after { width: 24px; }
+  .news-grid { grid-template-columns: 1fr; }
+  .top-story { padding: 22px; }
+  .top-story-title { font-size: 20px; }
+  .summary-tickers { gap: 8px; }
+  .summary-ticker { padding: 6px 10px; font-size: 12px; }
+  .earnings-grid { grid-template-columns: repeat(2, 1fr); }
+  .keyword-perspectives { grid-template-columns: 1fr; }
+  .keyword-hero-grid { grid-template-columns: 1fr !important; }
+  .keyword-hero-grid img { height: 180px !important; }
+  .keyword-hero-grid svg { height: 220px !important; }
+  .section-hero { height: 160px; width: calc(100% + 44px); margin: 0 -22px 12px; }
+  .section-hero img { height: 160px; }
+  .news-card-img { height: 120px; }
+  .summary-topic { font-size: 18px; }
+  .section-label-text { font-size: 20px; }
+  .editorial-headline { font-size: 18px; }
+  .editorial-body { padding: 20px; }
+  .editorial-note { padding: 12px 20px; }
+
+  /* Nav responsive */
+  .nav-inner { padding: 0 16px; height: 48px; }
+  .nav-logo { font-size: 18px; }
+  .nav-sub { display: none; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: block; }
+  .nav-mobile-actions { display: flex; }
+
+  /* Mobile Tooltip — pointer-events for tap dismiss */
+  .term .tip { pointer-events: auto; }
+
+  /* Calendar 2-line layout */
+  .calendar-item { flex-wrap: wrap; gap: 8px; }
+  .calendar-time { order: 1; min-width: auto; }
+  .calendar-flag { order: 2; }
+  .calendar-importance { order: 3; }
+  .calendar-event { order: 4; flex-basis: 100%; font-size: 13px; }
+  .calendar-detail { order: 5; flex-basis: 100%; }
+
+  .ed-take-label::after { content: ' \25B8 \30BF\30C3\30D7\3067\8868\793A'; }
+}
+
+@media (max-width: 480px) {
+  .nav-links a:not(.nav-cta) { font-size: 10px; }
+  .earnings-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================
+   Print
+   ========================================== */
+@media print {
+  html { color-scheme: light; }
+  body { background: #fff !important; color: #333 !important; }
+  .site-header, .tip-overlay, .mobile-menu { display: none !important; }
+  .paper-header { background: none !important; color: #333 !important; }
+  .paper-header::before, .paper-header::after { display: none !important; }
+  .paper-title { color: #333 !important; }
+  .paper-date { color: #666 !important; }
+  .paper-accent { color: #666 !important; }
+  .card, .top-story, .news-card, .keyword-card, .calendar-list, .earnings-item, .editorial-card {
+    box-shadow: none !important;
+    border-color: #ddd !important;
+    background: #fff !important;
+  }
+  .term .tip { display: none !important; }
+  .news-card:hover, .top-story:hover { transform: none !important; }
+  .section-hero img, .news-card-img { height: auto; max-height: 160px; }
+}
+
+/* ==========================================
+   Dark Theme Overrides — Atlas Navy
+   ========================================== */
+[data-theme="dark"]{
+  --paper:#0F1829;--paper-dk:#1A2540;
+  --ink:#F5F2EC;--slate:#8b949e;--slate-lt:#6e7681;
+  --gold:#D4A843;--gold-lt:#E8C96A;
+  --alert:#E05555;
+  --surface:#1A2540;
+  --shadow-card:0 2px 8px rgba(0,0,0,0.2);
+  --tip-bg:#1A2540;--tip-border:rgba(184,145,42,0.15);--tip-shadow:0 8px 24px rgba(0,0,0,.3);
+  --badge-bg:rgba(212,168,67,0.1);
+  --gold-light:rgba(212,168,67,0.1);
+  --alert-light:rgba(224,85,85,0.1);
+  --gold-lt-light:rgba(232,201,106,0.1);
+  --navy-light:rgba(26,37,64,0.3);
+  --slate-light:rgba(139,148,158,0.1);
+}
+
+[data-theme="dark"] body{background:var(--paper);color:var(--ink)}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .top-story,
+[data-theme="dark"] .news-card,
+[data-theme="dark"] .keyword-card,
+[data-theme="dark"] .calendar-list,
+[data-theme="dark"] .earnings-item,
+[data-theme="dark"] .editorial-card{
+  background:#1A2540;border-color:rgba(184,145,42,0.12);
+}
+
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] .top-story:hover,
+[data-theme="dark"] .news-card:hover,
+[data-theme="dark"] .earnings-item:hover{
+  border-color:rgba(212,168,67,0.35);
+  box-shadow:0 4px 20px rgba(0,0,0,.25);
+}
+
+[data-theme="dark"] h1,[data-theme="dark"] h2,[data-theme="dark"] h3,
+[data-theme="dark"] .top-story-title,
+[data-theme="dark"] .news-card-title,
+[data-theme="dark"] .keyword-title,
+[data-theme="dark"] .calendar-event,
+[data-theme="dark"] .earnings-item-ticker,
+[data-theme="dark"] .editorial-headline{color:#F5F2EC}
+
+[data-theme="dark"] .section-label-text{color:#F5F2EC}
+[data-theme="dark"] .section-label{border-bottom-color:rgba(184,145,42,0.15)}
+
+[data-theme="dark"] .summary-text{color:var(--ink)}
+[data-theme="dark"] .summary-topic.neutral{color:#F5F2EC}
+[data-theme="dark"] .top-story-body{color:var(--slate)}
+[data-theme="dark"] .news-card-excerpt{color:var(--slate)}
+[data-theme="dark"] .keyword-overview{color:var(--ink)}
+[data-theme="dark"] .keyword-perspective-text{color:var(--slate)}
+
+[data-theme="dark"] .why-box.positive{background:rgba(212,168,67,0.08);border-color:var(--gold);color:var(--ink)}
+[data-theme="dark"] .why-box.negative{background:rgba(224,85,85,0.08);border-color:var(--alert);color:var(--ink)}
+[data-theme="dark"] .why-box.warning{background:rgba(232,201,106,0.08);border-color:var(--gold-lt);color:var(--ink)}
+[data-theme="dark"] .why-box.default{background:rgba(26,37,64,0.4);border-color:rgba(184,145,42,0.2);color:var(--ink)}
+[data-theme="dark"] .why-label{color:var(--gold)}
+
+[data-theme="dark"] .up{color:#D4A843}
+[data-theme="dark"] .down{color:#E05555}
+[data-theme="dark"] .summary-num.up{color:#D4A843}
+[data-theme="dark"] .summary-num.down{color:#E05555}
+
+[data-theme="dark"] .summary-ticker{background:#1A2540;border-color:rgba(184,145,42,0.12)}
+[data-theme="dark"] .summary-ticker-val{color:#F5F2EC}
+[data-theme="dark"] .summary-tickers{border-top-color:rgba(184,145,42,0.12)}
+
+[data-theme="dark"] .news-card-tag.economy{background:rgba(212,168,67,0.12);color:var(--gold)}
+[data-theme="dark"] .news-card-tag.tech{background:rgba(232,201,106,0.12);color:var(--gold-lt)}
+[data-theme="dark"] .news-card-tag.earnings{background:rgba(212,168,67,0.12);color:var(--gold)}
+[data-theme="dark"] .news-card-tag.geopolitics{background:rgba(224,85,85,0.12);color:var(--alert)}
+[data-theme="dark"] .news-card-tag.policy{background:rgba(139,148,158,0.12);color:var(--slate)}
+
+[data-theme="dark"] .keyword-perspective{background:rgba(212,168,67,0.06);border-color:rgba(184,145,42,0.12)}
+[data-theme="dark"] .keyword-relation{background:rgba(212,168,67,0.08);border-color:var(--gold)}
+
+[data-theme="dark"] .calendar-item:hover{background:rgba(26,37,64,0.5)}
+[data-theme="dark"] .calendar-item{border-bottom-color:rgba(184,145,42,0.08)}
+
+[data-theme="dark"] .disclaimer-text{background:#1A2540;color:var(--slate-lt);border-color:rgba(184,145,42,0.08)}
+
+[data-theme="dark"] .top-story-footer,
+[data-theme="dark"] .news-card-footer{border-top-color:rgba(184,145,42,0.1)}
+
+[data-theme="dark"] .editorial-body{color:#8b949e}
+[data-theme="dark"] .editorial-body strong{color:#F5F2EC}
+[data-theme="dark"] .editorial-note{background:rgba(74,85,104,0.1);border-top-color:rgba(184,145,42,0.12)}
+[data-theme="dark"] .ed-hero{background:linear-gradient(135deg,rgba(212,168,67,0.06) 0%,rgba(224,85,85,0.03) 50%,rgba(15,24,41,0) 100%)}
+[data-theme="dark"] .section-hero-caption{background:transparent}
+[data-theme="dark"] .mobile-menu{background:rgba(15,24,41,0.98)}
+</style>
+</head>
+<body>
+
+<!-- ===== Atlas Nav Header ===== -->
+<header class="site-header">
+  <nav class="nav-inner">
+    <a href="https://atlas-financials.jp/reports/" class="nav-brand">
+      <span class="nav-logo">Atlas<span>.</span></span>
+      <span class="nav-sub">Powered by U&amp;I CO., LTD.</span>
+    </a>
+    <div class="nav-links">
+      <a href="https://yskzz121.github.io/ui-kabu-times-preview/morning/">朝刊アーカイブ</a>
+      <a href="https://yskzz121.github.io/ui-kabu-times-preview/" class="active">朝刊</a>
+      <a href="https://atlas-financials.jp/reports/">分析</a>
+      <a href="https://yskzz121.github.io/ui-kabu-times-preview/glossary/">用語辞典</a>
+      <a href="https://atlas-financials.jp/reports/join.html" class="nav-cta">入会する</a>
+      <div class="lang-switch"><span class="lang-active">🇯🇵</span><a href="31-en.html">🇺🇸</a><a href="31-zh.html">🇭🇰</a><a href="31-ko.html">🇰🇷</a></div>
+      <button class="font-scale-btn" aria-label="文字サイズ切替" onclick="cycleFontScale()"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
+      <button class="theme-toggle" id="themeToggle" aria-label="テーマ切替" onclick="toggleTheme()">🌙</button>
+    </div>
+    <div class="nav-mobile-actions">
+      <div class="lang-switch"><span class="lang-active">🇯🇵</span><a href="31-en.html">🇺🇸</a><a href="31-zh.html">🇭🇰</a><a href="31-ko.html">🇰🇷</a></div>
+      <button class="font-scale-btn" aria-label="文字サイズ切替" onclick="cycleFontScale()"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
+      <button class="theme-toggle" id="themeToggleMobile" aria-label="テーマ切替" onclick="toggleTheme()">🌙</button>
+      <button class="nav-hamburger" id="navHamburger" aria-label="メニュー">☰</button>
+    </div>
+  </nav>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://yskzz121.github.io/ui-kabu-times-preview/morning/">朝刊アーカイブ</a>
+  <a href="https://yskzz121.github.io/ui-kabu-times-preview/extra/">号外</a>
+  <a href="https://yskzz121.github.io/ui-kabu-times-preview/glossary/">用語辞典</a>
+  <a href="https://atlas-financials.jp/reports/">決算分析</a>
+</div>
+
+<!-- ===== Newspaper Header ===== -->
+<header class="paper-header">
+  <div class="paper-date">2026年3月31日（火曜日）</div>
+  <div class="paper-logo">
+    <h1 class="paper-title">Atlas Daily</h1>
+  </div>
+  <span class="paper-accent">The Morning Briefing</span>
+</header>
+
+<!-- ===== Main ===== -->
+<main class="main" style="max-width:1100px;margin:0 auto;padding:28px 20px 60px">
+
+  <!-- ===== 1. Market Summary ===== -->
+  <section class="section-gap">
+    <div class="section-label">
+      <span class="section-label-icon">📝</span>
+      <span class="section-label-text">昨夜のマーケットサマリー</span>
+      <span class="section-label-line"></span>
+    </div>
+
+    <div class="card card-pad">
+      <div class="summary-text">
+        <p><span class="summary-num-label">1</span>3月30日の米国株式市場は、エネルギー価格の上昇とテクノロジーセクターの売りが交錯し、まだら模様の展開となった。ダウ平均は<span class="summary-num up">+49.50ポイント（+0.11%）</span>と小幅上昇し<span class="summary-num">45,216.14</span>で引けた一方、S&amp;P 500は<span class="summary-num down">-0.39%</span>の<span class="summary-num">6,343.72</span>、ナスダックは<span class="summary-num down">-0.73%</span>の<span class="summary-num">20,794.64</span>と続落。パウエルFRB議長がハーバード大で「金利は良い位置にある」と発言し、イラン戦争による原油高でも利上げに慎重な姿勢を示した。</p>
+        <p><span class="summary-num-label">2</span><span class="term">ホルムズ海峡<span class="tip tip-right"><span class="tip-title">ホルムズ海峡（Strait of Hormuz）</span>ペルシャ湾とオマーン湾を結ぶ幅約33kmの海峡。世界の原油輸送の約20%がここを通過する。イランとオマンの間に位置し、中東原油の大動脈。</span></span>の事実上の封鎖が続く中、WTI原油は<span class="summary-num up">+3.25%</span>の<span class="summary-num">102.88ドル</span>で取引を終了。エネルギーセクターはYTD+22%と圧倒的なパフォーマンスを記録。一方、テクノロジーセクターは-1%超と引き続き軟調で、Micron Technology（MU）は決算後の売りが止まらず<span class="summary-num down">-10%</span>。Google TurboQuantによるAIメモリ需要減少懸念が半導体株全体に重荷。</p>
+        <p><span class="summary-num-label">3</span>安全資産への逃避が続き、米10年債利回りは<span class="summary-num">4.36%</span>（<span class="summary-num down">-8bp</span>）に低下。<span class="term">VIX<span class="tip"><span class="tip-title">VIX（恐怖指数）</span>S&amp;P 500のオプション価格から算出されるボラティリティ指数。20以下は安定、30超は高い不安を示す。「恐怖指数」とも呼ばれる。</span></span>は<span class="summary-num">25.33</span>と高止まり。ドル円は<span class="summary-num">159.65円</span>（<span class="summary-num down">-0.38%</span>）。金は<span class="summary-num up">4,524ドル</span>と年初来+15%。ビットコインは<span class="summary-num">66,500ドル</span>で横ばい。今週は4/1に<span class="term">ISM製造業PMI<span class="tip tip-left"><span class="tip-title">ISM製造業PMI</span>米供給管理協会（ISM）が発表する製造業購買担当者景気指数。50を上回れば景気拡大、下回れば景気後退を示す先行指標。</span></span>、4/3（聖金曜日・休場）に雇用統計と重要指標が控える。</p>
+      </div>
+
+      <div class="summary-tickers">
+        <div class="summary-ticker">
+          <span class="summary-ticker-name">S&amp;P 500</span>
+          <span class="summary-ticker-val">6,343.72</span>
+          <span class="summary-ticker-chg down">-0.39%</span>
+        </div>
+        <div class="summary-ticker">
+          <span class="summary-ticker-name">NASDAQ</span>
+          <span class="summary-ticker-val">20,794.64</span>
+          <span class="summary-ticker-chg down">-0.73%</span>
+        </div>
+        <div class="summary-ticker">
+          <span class="summary-ticker-name">ダウ</span>
+          <span class="summary-ticker-val">45,216.14</span>
+          <span class="summary-ticker-chg up">+0.11%</span>
+        </div>
+        <div class="summary-ticker">
+          <span class="summary-ticker-name">VIX</span>
+          <span class="summary-ticker-val">25.33</span>
+          <span class="summary-ticker-chg">高止まり</span>
+        </div>
+        <div class="summary-ticker">
+          <span class="summary-ticker-name">米10年債</span>
+          <span class="summary-ticker-val">4.36%</span>
+          <span class="summary-ticker-chg down">-8bp</span>
+        </div>
+        <div class="summary-ticker">
+          <span class="summary-ticker-name">USD/JPY</span>
+          <span class="summary-ticker-val">159.65</span>
+          <span class="summary-ticker-chg down">-0.38%</span>
+        </div>
+        <div class="summary-ticker">
+          <span class="summary-ticker-name">WTI</span>
+          <span class="summary-ticker-val">$102.88</span>
+          <span class="summary-ticker-chg up">+3.25%</span>
+        </div>
+        <div class="summary-ticker">
+          <span class="summary-ticker-name">Gold</span>
+          <span class="summary-ticker-val">$4,524</span>
+          <span class="summary-ticker-chg up">+</span>
+        </div>
+        <div class="summary-ticker">
+          <span class="summary-ticker-name">BTC</span>
+          <span class="summary-ticker-val">$66,500</span>
+          <span class="summary-ticker-chg">横ばい</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2. Top News ===== -->
+  <section class="section-gap">
+    <div class="section-label">
+      <span class="section-label-icon">📰</span>
+      <span class="section-label-text">主要ニュース</span>
+      <span class="section-label-line"></span>
+    </div>
+
+    <!-- Top Story -->
+    <div class="top-story">
+      <span class="top-story-badge">TOP STORY</span>
+      <div class="section-hero">
+        <img src="https://images.pexels.com/photos/3483098/pexels-photo-3483098.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="米連邦準備制度理事会ビル" loading="lazy">
+      </div>
+      <div class="section-hero-caption">Photo: Pexels</div>
+      <span class="news-card-tag economy" style="margin-bottom:10px;display:inline-block">ECONOMY</span>
+      <h2 class="top-story-title">パウエルFRB議長「金利は良い位置」— イラン戦争の原油高にも利上げ不要と表明</h2>
+      <p class="top-story-body">
+        パウエルFRB議長は30日、ハーバード大学での講演で、イラン戦争に起因する原油価格の急騰にもかかわらず「金利は良い位置にある」と述べ、利上げに慎重な姿勢を改めて示した。パウエル氏は「金融引き締めの効果が経済に波及する頃には、原油ショックはおそらく過ぎ去っている。不適切なタイミングで経済に重荷を課すことになる」と指摘。インフレ期待は「短期を超えた範囲ではしっかりアンカーされている」と評価した一方で、「インフレ期待を注意深く監視することが極めて重要」とも付け加えた。この発言を受け、12月までの利上げ確率は2.2%に低下した。
+      </p>
+      <div class="why-box positive">
+        <span class="why-icon">💡</span>
+        <div><span class="why-label">なぜ重要か:</span> FRBが原油ショックを「一時的」と見なし、利上げカードを封印したことで、市場の最悪シナリオ（<span class="term">スタグフレーション<span class="tip"><span class="tip-title">スタグフレーション</span>景気停滞（Stagnation）とインフレーション（Inflation）が同時に進行する状態。1970年代の石油危機で顕在化した。金融政策の舵取りが極めて困難になる。</span></span>+金融引き締め）が後退。債券市場は安堵のラリーとなった。</div>
+      </div>
+      <div class="top-story-footer">
+        <span class="top-story-source">CNBC / CNN / Bloomberg</span>
+        <span>·</span>
+        <span>2026年3月30日</span>
+        <span>·</span>
+        <span>Economy</span>
+      </div>
+    </div>
+
+    <!-- Sub News Grid -->
+    <div class="news-grid">
+
+      <!-- ニュース1: 原油 -->
+      <div class="news-card">
+        <div class="news-card-img-wrap">
+          <img class="news-card-img" src="https://images.pexels.com/photos/10407689/pexels-photo-10407689.jpeg?auto=compress&cs=tinysrgb&w=800" alt="夜間の石油精製施設" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
+        <div class="news-card-meta">
+          <span class="news-card-tag geopolitics">GEOPOLITICS</span>
+          <span class="news-card-source">Al Jazeera / CNBC</span>
+        </div>
+        <div class="news-card-title">原油100ドル超え常態化 — ホルムズ海峡危機でエネルギー株YTD+22%</div>
+        <div class="news-card-excerpt">ホルムズ海峡の事実上の封鎖が続く中、WTI原油は102.88ドル、ブレントは114ドル近辺で推移。IEAは「史上最大の供給途絶」と評価。世界の日量4.5〜5百万バレルが失われ、4月半ばには倍増する見通し。エネルギーセクターはS&amp;P 500でYTD+22%のトップパフォーマー。ExxonMobilは+35%、Chevronは+40%と記録的な上昇。一方、イランは中国・ロシア・インドなど5カ国の船舶に海峡通過を許可し始め、人道物資も3/27から通過可能に。</div>
+        <div class="why-box negative">
+          <span class="why-icon">⚠️</span>
+          <div><span class="why-label">なぜ重要か:</span> 世界の原油供給の20%を担うホルムズ海峡の封鎖は、1970年代以来最悪のエネルギー危機を引き起こしている。エネルギーコスト上昇は企業収益と消費を直撃し、ECBは利下げを延期、景気後退リスクが高まっている。</div>
+        </div>
+      </div>
+
+      <!-- ニュース2: Micron -->
+      <div class="news-card">
+        <div class="news-card-img-wrap">
+          <img class="news-card-img" src="https://images.pexels.com/photos/14887614/pexels-photo-14887614.jpeg?auto=compress&cs=tinysrgb&w=800" alt="マイクロチッププロセッサのクローズアップ" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
+        <div class="news-card-meta">
+          <span class="news-card-tag tech">TECH</span>
+          <span class="news-card-source">CNBC / Motley Fool</span>
+        </div>
+        <div class="news-card-title">Micron 10%続落、決算後30%下落 — Google TurboQuantショックが半導体に波及</div>
+        <div class="news-card-excerpt">Micron Technology（MU）は30日も10%下落し、3月18日の決算発表以降の下落率は約30%に達した。EPS $12.20（コンセンサス$8.50を大幅ビート）、売上$23.86B（同$18.90Bを上回る）と好決算にもかかわらず、Googleが3/25に発表したAIメモリ圧縮アルゴリズム「TurboQuant」が<span class="term">KVキャッシュ<span class="tip"><span class="tip-title">KVキャッシュ（Key-Value Cache）</span>大規模言語モデル（LLM）の推論時に、過去のトークン情報をKey/Valueペアとしてメモリに保持する仕組み。これにより再計算を避けるが、大量のGPUメモリを消費する。</span></span>メモリ需要を6倍以上削減する可能性を示し、AIメモリ需要の長期見通しに暗雲。さらに設備投資計画$25B超への懸念、Summit Insightsの格下げも重なった。</div>
+        <div class="why-box warning">
+          <span class="why-icon">⚠️</span>
+          <div><span class="why-label">なぜ重要か:</span> TurboQuantはまだ研究段階だが、「AIにはメモリが無限に必要」という前提への疑問を突きつけた。半導体セクター全体のバリュエーション見直しにつながる可能性がある。</div>
+        </div>
+        <!-- 編集部はこう見る -->
+        <div class="ed-take">
+          <span class="ed-take-icon">🔍</span>
+          <span class="ed-take-label">編集部はこう見る</span>
+          <div class="ed-take-body">TurboQuantは研究段階であり、実用化には時間がかかる。しかし市場が過剰反応するのは、AIメモリ需要が「青天井」という前提に大きな資金が賭けられているからだ。<strong>Micronの決算自体は驚異的（EPS 43%ビート）</strong>であり、ファンダメンタルズと株価の乖離は広がる一方。冷静な投資家にとっては注視すべき局面。</div>
+        </div>
+      </div>
+
+      <!-- ニュース3: Uber -->
+      <div class="news-card">
+        <div class="news-card-img-wrap">
+          <img class="news-card-img" src="https://images.pexels.com/photos/804130/pexels-photo-804130.jpeg?auto=compress&cs=tinysrgb&w=800" alt="高級車のインテリア" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
+        <div class="news-card-meta">
+          <span class="news-card-tag tech">TECH</span>
+          <span class="news-card-source">TechCrunch / Bloomberg</span>
+        </div>
+        <div class="news-card-title">Uber、高級送迎Blacklaneを11億ドルで買収 — プレミアム戦略を加速</div>
+        <div class="news-card-excerpt">Uberは30日、ベルリン発の高級送迎サービスBlacklaneを11億ドルで買収すると発表した。Blacklaneは2011年設立、60カ国以上500都市以上で空港送迎や<span class="term">ショーファーサービス<span class="tip"><span class="tip-title">ショーファーサービス</span>専属運転手付きの高級送迎サービス。空港送迎やビジネスミーティングへの移動など、富裕層やエグゼクティブ向けに提供される。</span></span>を展開する。先日発表した「Uber Elite」ブランドの強化が狙いで、富裕層やビジネスエグゼクティブ向けのプレミアムセグメントが急成長している。買収は規制当局の承認後、2026年末までに完了予定。</div>
+        <div class="why-box positive">
+          <span class="why-icon">💡</span>
+          <div><span class="why-label">なぜ重要か:</span> Uberの戦略転換を象徴する動き。低価格ライドシェアから高収益プレミアムサービスへの軸足シフトは、同社の利益率改善と長期成長ストーリーを支える。</div>
+        </div>
+      </div>
+
+      <!-- ニュース4: CVS -->
+      <div class="news-card">
+        <div class="news-card-img-wrap">
+          <img class="news-card-img" src="https://images.pexels.com/photos/14797855/pexels-photo-14797855.jpeg?auto=compress&cs=tinysrgb&w=800" alt="薬局の棚と薬剤師" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
+        <div class="news-card-meta">
+          <span class="news-card-tag economy">ECONOMY</span>
+          <span class="news-card-source">Bloomberg / Axios</span>
+        </div>
+        <div class="news-card-title">CVS、4年ぶり純増へ — 薬局専門店を含む60店舗の新規出店計画</div>
+        <div class="news-card-excerpt">CVS Healthは30日、2026年に約60の新規店舗を出店し、4年ぶりの純増に転じると発表した。過去3年間で約800店を閉鎖してきた同社だが、新たに約3,000平方フィートの「薬局専門店」フォーマットを導入。処方箋、予防接種、薬剤師カウンセリングに特化する。シカゴで初の薬局専門店が30日にオープンし、ボストン、ブルックリンでも年内に展開予定。</div>
+        <div class="why-box default">
+          <span class="why-icon">📌</span>
+          <div><span class="why-label">なぜ重要か:</span> 米国の薬局チェーンが縮小から拡大へ転換する象徴的なニュース。薬局専門店という新フォーマットは、ヘルスケアの地域密着化トレンドを反映している。</div>
+        </div>
+      </div>
+
+      <!-- ニュース5: Mistral AI -->
+      <div class="news-card">
+        <div class="news-card-img-wrap">
+          <img class="news-card-img" src="https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=800" alt="データセンターのサーバーラック" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
+        <div class="news-card-meta">
+          <span class="news-card-tag tech">TECH</span>
+          <span class="news-card-source">CNBC / TechCrunch</span>
+        </div>
+        <div class="news-card-title">Mistral AI、パリ近郊にNvidia GPU 13,800基のデータセンター — 830Mドルの負債調達</div>
+        <div class="news-card-excerpt">フランスのAIスタートアップMistralは30日、Nvidia GB300 GPU 13,800基を搭載するデータセンター建設のため、7行のコンソーシアムから8億3,000万ドルの負債調達を実施したと発表。BNP Paribas、Crédit Agricole CIB、HSBC、MUFGが参加。施設はパリ南郊ブリュイエール・ル・シャテルに建設され、総容量44MWで2026年Q2に稼働予定。同社は2027年末までにヨーロッパ全体で200MWの計算能力を確保する計画。</div>
+        <div class="why-box positive">
+          <span class="why-icon">💡</span>
+          <div><span class="why-label">なぜ重要か:</span> 欧州のAIインフラ投資が加速している証左。米国勢（OpenAI、Google）への対抗軸として、欧州独自のAI基盤構築が進む。</div>
+        </div>
+      </div>
+
+      <!-- ニュース6: Nvidia -->
+      <div class="news-card">
+        <div class="news-card-img-wrap">
+          <img class="news-card-img" src="https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?auto=compress&cs=tinysrgb&w=800" alt="GPU基板のクローズアップ" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
+        <div class="news-card-meta">
+          <span class="news-card-tag tech">TECH</span>
+          <span class="news-card-source">Motley Fool / GuruFocus</span>
+        </div>
+        <div class="news-card-title">Nvidia、<span class="term">フォワードPE<span class="tip tip-left"><span class="tip-title">フォワードPE（予想PER）</span>今後12ヶ月の予想EPSに基づいて算出される株価収益率。将来の収益見通しに対して株価が割安か割高かを判断する指標。</span></span>がS&amp;P 500と一致 — 10年ぶりの「割安」シグナル</div>
+        <div class="news-card-excerpt">Nvidiaの株価がフォワードPERでS&amp;P 500の水準と一致したことが注目されている。AI革命の旗手として過去3年間プレミアム評価が続いてきた同社だが、イラン戦争に伴うリスクオフ、AI投資の回収期間への懸念、Google TurboQuantの影響が重なり、2019年以来最低のバリュエーション水準に。市場は「AIは変革的か」ではなく「回収に何年かかるか」「設備投資はいくらが適正か」を問い始めている。</div>
+        <div class="why-box warning">
+          <span class="why-icon">⚠️</span>
+          <div><span class="why-label">なぜ重要か:</span> AIバブル崩壊のシグナルか、それとも絶好の買い場か。Nvidiaのバリュエーション圧縮は、AI投資テーマ全体の再評価を意味する。</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== 3. Editorial ===== -->
+  <section class="section-gap">
+    <div class="section-label">
+      <span class="section-label-icon">🖊️</span>
+      <span class="section-label-text">編集部の目線</span>
+      <span class="section-label-line"></span>
+    </div>
+
+    <div class="editorial-card">
+      <div class="ed-hero">
+        <div class="ed-badge">✍️ EDITORIAL</div>
+        <h2 class="editorial-headline">「原油ショック vs AI再評価」— 二極化相場の本質</h2>
+      </div>
+      <div class="editorial-body">
+        <p>2026年Q1の米国株式市場は、誰もが予想しなかった二極化に直面している。エネルギーセクターが年初来+22%と歴史的なラリーを演じる一方、過去3年間相場を牽引してきたテクノロジーセクターは調整局面に入った。</p>
+        <p>この二極化の構造は明確だ。ホルムズ海峡の封鎖という「供給ショック」がエネルギー価格を押し上げ、原油関連企業の収益を爆発的に拡大させている。<strong>ExxonMobilは年初来+35%、Chevronは+40%</strong>。一方、テクノロジーセクターには三重苦が襲いかかっている — （1）原油高によるコスト増とマクロ減速懸念、（2）Google TurboQuantに象徴されるAI投資効率への疑問、（3）高バリュエーションからの巻き戻し。</p>
+        <p>パウエル議長は30日の講演で、この危機に対する金融政策のスタンスを明確にした。<strong>「利上げはしない。原油ショックは一時的。引き締め効果が出る頃にはショックは終わっている」</strong>。これは市場に安堵を与えたが、問題は「一時的」が本当に一時的かどうかだ。</p>
+        <p>今週は4月1日のISM製造業PMI（コンセンサス52.3）と、4月3日の雇用統計（コンセンサス+57,000人 vs 前月-92,000人）が焦点。製造業PMIが50を割れば景気後退懸念が一気に高まり、雇用統計が期待を下回れば「スタグフレーション」の文字がヘッドラインを飾ることになる。</p>
+        <p>聖金曜日に雇用統計が発表され、株式市場は閉場という異例のスケジュールも波乱要因。先物市場で消化しきれないリスクが、翌週月曜日のオープニングに集中する可能性がある。</p>
+        <p>ポートフォリオの観点では、エネルギーへの過度な集中はリスクが高い。イランの限定的な海峡開放（5カ国通行許可）が示すように、地政学リスクは一方向ではなく、原油価格は急反落する可能性もある。テック株のバリュエーション圧縮が「買い場」か「トレンド転換」かの判断は、今週の経済指標が鍵を握る。</p>
+      </div>
+      <div class="editorial-note">※ 本稿は特定の有価証券の売買推奨を行うものではありません。投資判断はご自身の責任においてお願いします。</div>
+    </div>
+  </section>
+
+  <!-- ===== 4. Today's Keyword ===== -->
+  <section class="section-gap">
+    <div class="section-label">
+      <span class="section-label-icon">📚</span>
+      <span class="section-label-text">今日のキーワード</span>
+      <span class="section-label-line"></span>
+    </div>
+
+    <div class="keyword-card">
+      <div class="keyword-hero-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin:-32px -32px 20px;overflow:hidden;border-radius:12px 12px 0 0">
+        <div style="position:relative">
+          <img src="https://images.pexels.com/photos/15944128/pexels-photo-15944128.jpeg?auto=compress&cs=tinysrgb&w=600" alt="ホルムズ海峡を航行するタンカー船" loading="lazy" style="width:100%;height:280px;object-fit:cover;display:block">
+          <span style="position:absolute;bottom:4px;right:8px;font-size:10px;color:#fff;background:rgba(0,0,0,.5);padding:2px 6px;border-radius:4px">Photo: Pexels</span>
+        </div>
+        <div style="position:relative;background:#0a1628">
+          <!-- Strait of Hormuz Illustrated Map -->
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:280px;display:block" aria-label="ホルムズ海峡の位置を示すイラストマップ">
+            <defs>
+              <!-- Blockade zone hatching -->
+              <pattern id="blockade" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(220,50,50,0.5)" stroke-width="2.5"/>
+              </pattern>
+              <!-- Sea gradient -->
+              <linearGradient id="seaGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#0e2a4a"/>
+                <stop offset="100%" stop-color="#143860"/>
+              </linearGradient>
+              <!-- Land color -->
+              <linearGradient id="landGrad" x1="0" y1="0" x2="0.5" y2="1">
+                <stop offset="0%" stop-color="#2a3a52"/>
+                <stop offset="100%" stop-color="#1e2d42"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Sea background -->
+            <rect width="500" height="280" fill="url(#seaGrad)"/>
+
+            <!-- Iran (top/north) -->
+            <path d="M0,0 L500,0 L500,60 Q460,55 420,62 Q380,70 350,85 Q320,100 300,108 Q280,115 265,125 Q250,135 240,148 Q235,155 232,162 Q228,170 220,175 Q210,180 195,178 Q175,175 160,185 Q150,190 135,188 Q110,184 85,195 Q60,205 30,198 L0,195 Z" fill="url(#landGrad)" stroke="rgba(184,145,42,0.25)" stroke-width="0.8"/>
+
+            <!-- UAE (bottom-right) -->
+            <path d="M310,200 Q325,185 345,180 Q365,175 385,178 Q405,182 420,175 Q435,168 450,172 Q470,178 500,168 L500,280 L280,280 Q285,250 290,235 Q295,220 310,200 Z" fill="url(#landGrad)" stroke="rgba(184,145,42,0.25)" stroke-width="0.8"/>
+
+            <!-- Oman (bottom-right, Musandam peninsula) -->
+            <path d="M230,195 Q240,180 255,172 Q270,168 278,175 Q285,182 280,195 Q275,208 268,218 Q260,228 248,230 Q235,228 228,218 Q225,208 230,195 Z" fill="url(#landGrad)" stroke="rgba(184,145,42,0.25)" stroke-width="0.8"/>
+
+            <!-- Oman (south coast, main) -->
+            <path d="M160,260 Q180,245 200,240 Q220,238 240,245 Q260,248 270,255 Q275,260 278,265 L280,280 L100,280 Q120,270 140,262 Z" fill="url(#landGrad)" stroke="rgba(184,145,42,0.25)" stroke-width="0.8"/>
+
+            <!-- Saudi Arabia (left) -->
+            <path d="M0,195 Q20,202 40,210 Q60,218 80,230 Q100,242 110,255 Q115,262 118,270 L120,280 L0,280 Z" fill="url(#landGrad)" stroke="rgba(184,145,42,0.25)" stroke-width="0.8"/>
+
+            <!-- Qatar peninsula -->
+            <path d="M125,195 Q130,180 138,175 Q145,178 148,190 Q146,200 140,205 Q132,203 125,195 Z" fill="url(#landGrad)" stroke="rgba(184,145,42,0.25)" stroke-width="0.8"/>
+
+            <!-- Blockade zone (Strait of Hormuz) — red hatched area -->
+            <ellipse cx="248" cy="178" rx="45" ry="28" fill="url(#blockade)" transform="rotate(-20,248,178)"/>
+            <ellipse cx="248" cy="178" rx="45" ry="28" fill="none" stroke="#dc3232" stroke-width="1.5" stroke-dasharray="4,3" transform="rotate(-20,248,178)"/>
+
+            <!-- Shipping lane arrows (blocked) -->
+            <line x1="180" y1="190" x2="300" y2="165" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-dasharray="6,4"/>
+            <line x1="300" y1="175" x2="180" y2="200" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+            <!-- X marks on shipping lanes -->
+            <g transform="translate(240,178)" stroke="#dc3232" stroke-width="2.5" stroke-linecap="round">
+              <line x1="-6" y1="-6" x2="6" y2="6"/><line x1="6" y1="-6" x2="-6" y2="6"/>
+            </g>
+
+            <!-- Country labels -->
+            <text x="180" y="55" fill="rgba(255,255,255,0.85)" font-family="Inter,sans-serif" font-size="15" font-weight="700" letter-spacing="3">イラン</text>
+            <text x="195" y="70" fill="rgba(255,255,255,0.4)" font-family="Inter,sans-serif" font-size="9" letter-spacing="2">IRAN</text>
+
+            <text x="380" y="225" fill="rgba(255,255,255,0.7)" font-family="Inter,sans-serif" font-size="11" font-weight="600" letter-spacing="2">UAE</text>
+
+            <text x="248" y="215" fill="rgba(255,255,255,0.7)" font-family="Inter,sans-serif" font-size="10" font-weight="600" letter-spacing="1" text-anchor="middle">ムサンダム</text>
+            <text x="248" y="225" fill="rgba(255,255,255,0.4)" font-family="Inter,sans-serif" font-size="8" text-anchor="middle">(オマーン)</text>
+
+            <text x="200" y="268" fill="rgba(255,255,255,0.7)" font-family="Inter,sans-serif" font-size="11" font-weight="600" letter-spacing="2">オマーン</text>
+
+            <text x="20" y="250" fill="rgba(255,255,255,0.6)" font-family="Inter,sans-serif" font-size="10" font-weight="600" letter-spacing="1">サウジ</text>
+            <text x="20" y="262" fill="rgba(255,255,255,0.6)" font-family="Inter,sans-serif" font-size="10" font-weight="600" letter-spacing="1">アラビア</text>
+
+            <text x="128" y="170" fill="rgba(255,255,255,0.5)" font-family="Inter,sans-serif" font-size="8" font-weight="600">カタール</text>
+
+            <!-- Sea labels -->
+            <text x="90" y="145" fill="rgba(100,170,240,0.5)" font-family="Inter,sans-serif" font-size="12" font-weight="600" font-style="italic" letter-spacing="4">ペルシャ湾</text>
+            <text x="90" y="158" fill="rgba(100,170,240,0.3)" font-family="Inter,sans-serif" font-size="8" font-style="italic" letter-spacing="3">Persian Gulf</text>
+
+            <text x="330" y="255" fill="rgba(100,170,240,0.5)" font-family="Inter,sans-serif" font-size="11" font-weight="600" font-style="italic" letter-spacing="3">オマーン湾</text>
+            <text x="330" y="267" fill="rgba(100,170,240,0.3)" font-family="Inter,sans-serif" font-size="8" font-style="italic" letter-spacing="2">Gulf of Oman</text>
+
+            <!-- Strait of Hormuz label with pointer -->
+            <line x1="248" y1="148" x2="248" y2="128" stroke="#dc3232" stroke-width="1.2"/>
+            <rect x="178" y="108" width="140" height="22" rx="4" fill="rgba(220,50,50,0.15)" stroke="#dc3232" stroke-width="1"/>
+            <text x="248" y="123" fill="#dc3232" font-family="Inter,sans-serif" font-size="11" font-weight="800" text-anchor="middle" letter-spacing="1">ホルムズ海峡 封鎖中</text>
+
+            <!-- Legend -->
+            <rect x="12" y="12" width="120" height="42" rx="6" fill="rgba(10,22,40,0.85)" stroke="rgba(184,145,42,0.2)" stroke-width="0.8"/>
+            <rect x="20" y="22" width="14" height="10" fill="url(#blockade)" stroke="#dc3232" stroke-width="0.8"/>
+            <text x="40" y="30" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="9" font-weight="600">封鎖エリア</text>
+            <line x1="20" y1="42" x2="34" y2="42" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="40" y="45" fill="rgba(255,255,255,0.6)" font-family="Inter,sans-serif" font-size="8">航路（停止中）</text>
+
+            <!-- Oil flow annotation -->
+            <text x="488" y="20" fill="rgba(255,255,255,0.5)" font-family="Inter,sans-serif" font-size="8" text-anchor="end">世界の原油輸送の</text>
+            <text x="488" y="34" fill="#D4A843" font-family="Inter,sans-serif" font-size="16" font-weight="800" text-anchor="end">~20%</text>
+            <text x="488" y="46" fill="rgba(255,255,255,0.5)" font-family="Inter,sans-serif" font-size="8" text-anchor="end">がここを通過</text>
+          </svg>
+        </div>
+      </div>
+      <div class="keyword-title">ホルムズ海峡（Strait of Hormuz）</div>
+      <div class="keyword-sub">Strait of Hormuz — The World's Most Critical Oil Chokepoint</div>
+      <div class="keyword-overview">
+        ホルムズ海峡は、ペルシャ湾とオマーン湾を結ぶ幅約33kmの海峡で、世界の原油輸送の約20〜21%がここを通過する。イランとオマーンの間に位置し、サウジアラビア、UAE、イラク、クウェートからの原油輸出の大動脈。2026年3月のイラン戦争開始以降、イラン革命防衛隊（IRGC）が海峡の封鎖を宣言し、商業船舶の航行が事実上停止。IEAは「史上最大の供給途絶」と評価している。
+      </div>
+
+      <div class="keyword-perspectives">
+        <div class="keyword-perspective">
+          <div class="keyword-perspective-icon">🛢️</div>
+          <div class="keyword-perspective-label">エネルギー供給</div>
+          <div class="keyword-perspective-text">日量2,000万バレルの原油と大量のLNGが通過。封鎖により世界の原油供給の5%（4.5〜5百万bpd）が失われ、4月半ばには倍増の見通し。</div>
+        </div>
+        <div class="keyword-perspective">
+          <div class="keyword-perspective-icon">📈</div>
+          <div class="keyword-perspective-label">市場インパクト</div>
+          <div class="keyword-perspective-text">ブレント原油は封鎖前の$80前後から$126のピークまで急騰。エネルギー株は歴史的上昇、テック・消費財は売られる「セクターローテーション」が発生。</div>
+        </div>
+        <div class="keyword-perspective">
+          <div class="keyword-perspective-icon">🌍</div>
+          <div class="keyword-perspective-label">地政学</div>
+          <div class="keyword-perspective-text">イランは中国・ロシア・インドなど5カ国に限定的な通行を許可。西側諸国 vs BRICS+ の地政学的分断が海上輸送路にも反映。</div>
+        </div>
+        <div class="keyword-perspective">
+          <div class="keyword-perspective-icon">💹</div>
+          <div class="keyword-perspective-label">投資への影響</div>
+          <div class="keyword-perspective-text">エネルギーETF（XLE）がYTD+22%。一方、ECBは利下げ延期、景気後退リスクが上昇。ポートフォリオの地政学リスクヘッジが急務。</div>
+        </div>
+      </div>
+
+      <div class="keyword-relation">
+        <span class="keyword-relation-label">📌 今日との関連</span>
+        WTI原油が$102.88と3日連続の上昇を記録。パウエル議長は原油ショックを「一時的」と見なし利上げを否定したが、ホルムズ海峡の封鎖が長期化すればインフレ圧力は構造的になりうる。エネルギーセクターの独走がいつまで続くかが焦点。
+      </div>
+
+      <a class="keyword-glossary-link" href="https://yskzz121.github.io/ui-kabu-times-preview/glossary/">
+        📖 用語辞典で詳しく見る →
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== 5. Economic Calendar ===== -->
+  <section class="section-gap">
+    <div class="section-label">
+      <span class="section-label-icon">📅</span>
+      <span class="section-label-text">今週の注目イベント</span>
+      <span class="section-label-line"></span>
+    </div>
+
+    <div class="calendar-list">
+      <div class="calendar-day-label">3/31（火）</div>
+      <div class="calendar-item">
+        <span class="calendar-flag">🇺🇸</span>
+        <span class="calendar-importance medium">MEDIUM</span>
+        <span class="calendar-event">消費者信頼感指数</span>
+        <span class="calendar-detail">前回: 98.3</span>
+      </div>
+      <div class="calendar-item">
+        <span class="calendar-flag">🇪🇺</span>
+        <span class="calendar-importance high">HIGH</span>
+        <span class="calendar-event">ユーロ圏CPI速報（3月）</span>
+        <span class="calendar-detail">コンセンサス: 2.5%</span>
+      </div>
+
+      <div class="calendar-day-label">4/1（水）</div>
+      <div class="calendar-item">
+        <span class="calendar-flag">🇺🇸</span>
+        <span class="calendar-importance high">HIGH</span>
+        <span class="calendar-event">ISM製造業PMI</span>
+        <span class="calendar-detail">前回: 52.4 / コンセンサス: 52.3</span>
+      </div>
+      <div class="calendar-item">
+        <span class="calendar-flag">🇺🇸</span>
+        <span class="calendar-importance high">HIGH</span>
+        <span class="calendar-event">小売売上高（2月）</span>
+        <span class="calendar-detail">コンセンサス: +0.4% MoM</span>
+      </div>
+
+      <div class="calendar-day-label">4/2（木）</div>
+      <div class="calendar-item">
+        <span class="calendar-flag">🇪🇺</span>
+        <span class="calendar-importance medium">MEDIUM</span>
+        <span class="calendar-event">聖木曜日（多くの欧州市場休場）</span>
+        <span class="calendar-detail">—</span>
+      </div>
+
+      <div class="calendar-day-label">4/3（金）</div>
+      <div class="calendar-item">
+        <span class="calendar-flag">🇺🇸</span>
+        <span class="calendar-importance high">HIGH</span>
+        <span class="calendar-event"><span class="term">非農業部門雇用者数<span class="tip tip-right"><span class="tip-title">非農業部門雇用者数（NFP）</span>米労働省が毎月第1金曜日に発表する雇用統計の中核指標。農業以外の全産業の雇用者数の増減を示し、FRBの金融政策判断に大きく影響する。</span></span>（雇用統計）</span>
+        <span class="calendar-detail">前回: -92K / コンセンサス: +57K ※株式市場は聖金曜日で休場</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. Earnings Preview ===== -->
+  <section class="section-gap">
+    <div class="section-label">
+      <span class="section-label-icon">📊</span>
+      <span class="section-label-text">決算予定（3/31発表）</span>
+      <span class="section-label-line"></span>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:10px;letter-spacing:.02em">🌅 BMO（プレマーケット）</div>
+    <div class="earnings-grid" style="margin-bottom:20px">
+      <div class="earnings-item" data-ticker="SNX">
+        <div class="earnings-item-header">
+          <span class="earnings-item-ticker">SNX</span>
+          <span class="earnings-item-timing bmo">BMO</span>
+        </div>
+        <div class="earnings-item-name">TD Synnex</div>
+        <div class="earnings-item-sector">ITディストリビューション</div>
+        <div class="earnings-item-consensus">
+          <span>EPS: $3.24</span>
+          <span>売上: $15.59B</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;color:var(--navy-mid);margin-bottom:10px;letter-spacing:.02em">🌙 AMC（アフターマーケット）</div>
+    <div class="earnings-grid">
+      <div class="earnings-item" data-ticker="NKE">
+        <div class="earnings-item-header">
+          <span class="earnings-item-ticker">NKE</span>
+          <span class="earnings-item-timing amc">AMC</span>
+        </div>
+        <div class="earnings-item-name">Nike</div>
+        <div class="earnings-item-sector">スポーツアパレル</div>
+        <div class="earnings-item-consensus">
+          <span>EPS: $0.28</span>
+          <span>売上: $11.2B</span>
+        </div>
+        <div class="earnings-item-note">★ 注目: ターンアラウンド進捗、中国市場の回復度</div>
+      </div>
+      <div class="earnings-item" data-ticker="MKC">
+        <div class="earnings-item-header">
+          <span class="earnings-item-ticker">MKC</span>
+          <span class="earnings-item-timing amc">AMC</span>
+        </div>
+        <div class="earnings-item-name">McCormick</div>
+        <div class="earnings-item-sector">食品・スパイス</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Disclaimer ===== -->
+<div class="disclaimer-section">
+  <p class="disclaimer-text">本コンテンツはU&amp;I株式会社が提供する教育目的の情報提供であり、特定の有価証券の売買を推奨・助言するものではありません。掲載情報の正確性・完全性・最新性を保証するものではなく、投資に関する最終的な判断はご自身の責任においてお願いいたします。当社は金融商品取引業（投資助言・代理業）の登録を受けておりません。</p>
+</div>
+
+<!-- ===== Footer ===== -->
+<footer class="paper-footer">
+  <div class="footer-day-nav">
+    <a href="https://yskzz121.github.io/ui-kabu-times-preview/morning/2026/03/28.html">← 前号（3月28日）</a>
+  </div>
+  <nav class="footer-nav">
+    <a href="https://atlas-financials.jp/reports/about.html">Atlasとは</a>
+    <a href="https://atlas-financials.jp/reports/">📊 決算分析</a>
+    <a href="https://yskzz121.github.io/ui-kabu-times-preview/glossary/">📖 用語辞典</a>
+    <a href="https://atlas-financials.jp/reports/faq.html">FAQ</a>
+    <a href="https://atlas-financials.jp/reports/terms.html">利用規約</a>
+  </nav>
+  <div class="footer-copy">&copy; 2026 Atlas Daily — U&amp;I CO., LTD.</div>
+</footer>
+
+<script>
+// ==========================================
+// Mobile Hamburger Menu
+// ==========================================
+(function() {
+  var btn = document.getElementById('navHamburger');
+  var menu = document.getElementById('mobileMenu');
+  if (btn && menu) {
+    btn.addEventListener('click', function() {
+      menu.classList.toggle('open');
+      btn.textContent = menu.classList.contains('open') ? '\u2715' : '\u2630';
+    });
+  }
+})();
+
+// ==========================================
+// Earnings — Portal Logo + Link Auto-Insert
+// ==========================================
+(function(){
+  var logoBase = 'https://raw.githubusercontent.com/AtlasFinancials/reports/main/logos/';
+  var portalBase = 'https://atlas-financials.jp/reports/';
+  var portalTickers = ['ACN','ADBE','ADI','ALAB','AMZN','AVGO','BABA','CCL','CIEN','COST','DAL','DDOG','DG','DOCU','FDX','FN','GOOGL','IOT','LLY','LULU','META','MRVL','MSFT','MU','NKE','NVDA','OKTA','ORCL','PANW','PATH','PAYP','RBRK','RDDT','S','SMCI','SNAP','TM','TSLA','TSM','TXN','VFC','WMT','ZS'];
+  var pngLogos = ['CIEN','S'];
+
+  document.querySelectorAll('.earnings-item[data-ticker]').forEach(function(item){
+    var ticker = item.getAttribute('data-ticker');
+    if(portalTickers.indexOf(ticker)===-1) return;
+    var header = item.querySelector('.earnings-item-header');
+    if(header){
+      var ext = pngLogos.indexOf(ticker)!==-1 ? '.png' : '.svg';
+      var logo = document.createElement('img');
+      logo.src = logoBase + ticker + ext;
+      logo.alt = ticker;
+      logo.className = 'earnings-item-logo';
+      if(ext==='.png') logo.style.borderRadius='4px';
+      header.insertBefore(logo, header.firstChild);
+    }
+    var link = document.createElement('a');
+    link.href = portalBase + ticker + '/';
+    link.target = '_blank';
+    link.className = 'earnings-item-link';
+    link.innerHTML = '📊 過去の決算分析を見る →';
+    item.appendChild(link);
+  });
+})();
+
+// ==========================================
+// Editorial Take — tap toggle for mobile
+// ==========================================
+document.querySelectorAll('.ed-take').forEach(function(el){
+  el.addEventListener('click', function(){ el.classList.toggle('open'); });
+});
+
+// ==========================================
+// Tooltip — unified PC hover + mobile tap
+// ==========================================
+(function() {
+  var overlay = document.createElement('div');
+  overlay.className = 'tip-overlay';
+  document.body.appendChild(overlay);
+
+  var activeTerm = null;
+  var isMobile = function(){ return window.innerWidth <= 767; };
+
+  function positionTip(term, tip) {
+    var rect = term.getBoundingClientRect();
+    var tipW = 320;
+    var pad = 16;
+
+    if (isMobile()) {
+      // Mobile: center of screen
+      tip.style.top = '50%';
+      tip.style.left = '50%';
+      tip.style.transform = 'translate(-50%, -50%)';
+      tip.style.width = 'calc(100vw - 48px)';
+      tip.style.maxWidth = '320px';
+    } else {
+      // PC: above the term, clamped within viewport
+      tip.style.transform = 'none';
+      tip.style.width = tipW + 'px';
+
+      // Horizontal: center on term, clamp to viewport
+      var centerX = rect.left + rect.width / 2 - tipW / 2;
+      var clampedX = Math.max(pad, Math.min(centerX, window.innerWidth - tipW - pad));
+      tip.style.left = clampedX + 'px';
+
+      // Vertical: above term; if not enough space, below
+      tip.style.top = '';
+      tip.style.bottom = '';
+      var spaceAbove = rect.top;
+      if (spaceAbove > 200) {
+        tip.style.bottom = (window.innerHeight - rect.top + 8) + 'px';
+      } else {
+        tip.style.top = (rect.bottom + 8) + 'px';
+      }
+    }
+  }
+
+  function showTip(term) {
+    var tip = term.querySelector('.tip');
+    if (!tip) return;
+    closeTip();
+    activeTerm = term;
+    positionTip(term, tip);
+    tip.classList.add('tip-visible');
+    // Disable parent card hover transform
+    var card = term.closest('.news-card, .top-story');
+    if (card) card.classList.add('tip-active');
+    if (isMobile()) overlay.classList.add('show');
+  }
+
+  function closeTip() {
+    if (activeTerm) {
+      var tip = activeTerm.querySelector('.tip');
+      if (tip) { tip.classList.remove('tip-visible'); tip.style.cssText = ''; }
+      var card = activeTerm.closest('.news-card, .top-story');
+      if (card) card.classList.remove('tip-active');
+      activeTerm = null;
+    }
+    overlay.classList.remove('show');
+  }
+
+  overlay.addEventListener('click', function(e) { e.stopPropagation(); closeTip(); });
+
+  document.querySelectorAll('.term').forEach(function(term) {
+    // Mobile: tap toggle
+    term.addEventListener('click', function(e) {
+      if (!isMobile()) return;
+      e.preventDefault();
+      e.stopPropagation();
+      if (activeTerm === this) { closeTip(); return; }
+      showTip(this);
+    });
+
+    // PC: hover
+    term.addEventListener('mouseenter', function() {
+      if (isMobile()) return;
+      showTip(this);
+    });
+    term.addEventListener('mouseleave', function() {
+      if (isMobile()) return;
+      closeTip();
+    });
+  });
+
+  // Close on outside click (mobile)
+  document.addEventListener('click', function(e) {
+    if (activeTerm && !activeTerm.contains(e.target)) closeTip();
+  });
+
+  // Close on scroll (PC)
+  window.addEventListener('scroll', function() {
+    if (!isMobile() && activeTerm) closeTip();
+  }, { passive: true });
+})();
+
+// ==========================================
+// Theme Toggle (light/dark)
+// ==========================================
+function toggleTheme(){
+  var html=document.documentElement;
+  var next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+  html.setAttribute('data-theme',next);
+  localStorage.setItem('atlas-theme',next);
+  var icon=next==='dark'?'☀️':'🌙';
+  document.querySelectorAll('.theme-toggle').forEach(function(b){b.textContent=icon;});
+}
+(function(){
+  var saved=localStorage.getItem('atlas-theme');
+  if(saved){document.documentElement.setAttribute('data-theme',saved)}
+  var icon=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';
+  document.querySelectorAll('.theme-toggle').forEach(function(b){b.textContent=icon;});
+})();
+
+// ==========================================
+// Font Scale (4 levels)
+// ==========================================
+function updateFontBtns(level){
+  document.querySelectorAll('.font-scale-btn').forEach(function(b){
+    b.innerHTML='<span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">'+level+'/4</span>';
+  });
+}
+function cycleFontScale(){
+  var html=document.documentElement;
+  var current=parseInt(html.getAttribute('data-font-scale')||'1',10);
+  var next=current>=4?1:current+1;
+  html.setAttribute('data-font-scale',next);
+  localStorage.setItem('atlas-font-scale',next);
+  updateFontBtns(next);
+}
+(function(){
+  var saved=localStorage.getItem('atlas-font-scale');
+  var level=saved?parseInt(saved,10):1;
+  if(level<1||level>4)level=1;
+  document.documentElement.setAttribute('data-font-scale',level);
+  updateFontBtns(level);
+})();
+</script>
+
+</body>
+</html>
