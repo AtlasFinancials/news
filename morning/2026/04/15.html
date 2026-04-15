@@ -1683,6 +1683,59 @@ body {
 .cur-val{transition:color .2s}
 .cur-val.jpy-mode{color:#D4A843;font-weight:700}
 [data-theme="light"] .cur-val.jpy-mode{color:#B8912A}
+
+/* ==========================================
+   Navigation Tools — unified tool cluster
+   ========================================== */
+.nav-tools{display:inline-flex;align-items:center;gap:6px;margin-left:12px;padding-left:12px;border-left:1px solid rgba(255,255,255,0.1)}
+.nav-tool-btn{background:transparent;border:1px solid rgba(255,255,255,0.18);cursor:pointer;padding:5px 8px;border-radius:6px;color:rgba(255,255,255,0.72);font-size:12px;line-height:1;display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:30px;transition:all .15s;white-space:nowrap;font-family:inherit}
+.nav-tool-btn:hover{border-color:rgba(184,145,42,0.55);color:var(--gold-lt,#D4A843);background:rgba(184,145,42,0.08)}
+.nav-tool-btn.theme-toggle{font-size:15px}
+.nav-tool-btn.font-scale-btn{gap:1px;font-weight:700;font-family:'Inter','Noto Sans JP',sans-serif}
+.nav-tool-btn.font-scale-btn .fs-sm{font-size:10px}
+.nav-tool-btn.font-scale-btn .fs-lg{font-size:14px}
+.nav-tool-btn.font-scale-btn .fs-level{font-size:9px;margin-left:3px;opacity:.55}
+.nav-tool-btn.currency-toggle{font-family:'Inter','Noto Sans JP',sans-serif;font-size:12px;font-weight:600;padding:5px 9px}
+.nav-tool-btn.currency-toggle .cur-active{color:#D4A843;font-weight:800}
+.nav-tool-btn.currency-toggle .cur-inactive{color:inherit;opacity:.5}
+.nav-tool-btn.currency-toggle .cur-sep{opacity:.35;margin:0 1px;font-weight:400}
+.nav-tool-btn.currency-toggle.jpy-mode{border-color:rgba(184,145,42,0.6);background:rgba(184,145,42,0.12)}
+
+/* Language dropdown */
+.lang-menu{position:relative;display:inline-block}
+.lang-menu-btn{background:transparent;border:1px solid rgba(255,255,255,0.18);cursor:pointer;padding:5px 8px;border-radius:6px;color:rgba(255,255,255,0.8);font-size:14px;line-height:1;display:inline-flex;align-items:center;gap:4px;height:30px;transition:all .15s}
+.lang-menu-btn:hover{border-color:rgba(184,145,42,0.55);color:var(--gold-lt,#D4A843);background:rgba(184,145,42,0.08)}
+.lang-menu-btn svg{opacity:.55;transition:transform .2s}
+.lang-menu.open .lang-menu-btn{border-color:rgba(184,145,42,0.6);background:rgba(184,145,42,0.12);color:var(--gold-lt,#D4A843)}
+.lang-menu.open .lang-menu-btn svg{transform:rotate(180deg)}
+.lang-menu-flag{font-size:14px;line-height:1}
+.lang-menu-dropdown{position:absolute;top:calc(100% + 6px);right:0;background:#0F1829;border:1px solid rgba(184,145,42,0.25);border-radius:10px;min-width:170px;box-shadow:0 12px 32px -8px rgba(0,0,0,.5),0 0 0 1px rgba(184,145,42,0.08) inset;display:none;overflow:hidden;z-index:1050;padding:4px}
+.lang-menu.open .lang-menu-dropdown{display:block;animation:langFadeIn .14s ease-out}
+@keyframes langFadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.lang-option{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:6px;font-size:13px;color:rgba(245,242,236,0.82);text-decoration:none;cursor:pointer;transition:background .12s,color .12s;font-family:var(--font-ui,'Noto Sans JP'),sans-serif;font-weight:500;white-space:nowrap}
+.lang-option:hover{background:rgba(184,145,42,0.14);color:#fff}
+.lang-option.active{color:var(--gold-lt,#D4A843);font-weight:700;background:rgba(184,145,42,0.08);cursor:default}
+.lang-option.active::after{content:'✓';margin-left:auto;color:var(--gold-lt,#D4A843);font-weight:800}
+
+[data-theme="light"] .lang-menu-dropdown{background:#FDFCFA;border-color:rgba(26,37,64,0.15);box-shadow:0 12px 32px -8px rgba(26,37,64,.15)}
+[data-theme="light"] .lang-option{color:rgba(26,37,64,0.8)}
+[data-theme="light"] .lang-option:hover{background:rgba(184,145,42,0.1);color:#0F1829}
+[data-theme="light"] .lang-option.active{color:#B8912A;background:rgba(184,145,42,0.08)}
+[data-theme="light"] .lang-option.active::after{color:#B8912A}
+
+/* Hide legacy lang-switch */
+.lang-switch{display:none !important}
+
+/* Mobile refinements */
+@media(max-width:767px){
+  .nav-tools{margin-left:0;padding-left:0;border-left:none;gap:4px}
+  .nav-mobile-actions{gap:4px}
+  .nav-mobile-actions .nav-tool-btn,.nav-mobile-actions .lang-menu-btn{padding:5px 7px;min-width:30px;height:28px;font-size:11px}
+  .nav-mobile-actions .lang-menu-flag{font-size:13px}
+  .nav-mobile-actions .nav-tool-btn.theme-toggle{font-size:13px}
+  .nav-mobile-actions .nav-tool-btn.font-scale-btn .fs-level{display:none}
+  .lang-menu-dropdown{min-width:160px;right:0;font-size:13px}
+}
 </style>
 </head>
 <body>
@@ -1701,16 +1754,34 @@ body {
       <a href="https://atlas-financials.jp/reports/">決算分析</a>
       <a href="https://atlas-financials.jp/news/glossary/">用語辞典</a>
       <a href="https://atlas-financials.jp/reports/join.html" class="nav-cta">入会する</a>
-      <div class="lang-switch"><span class="lang-active">🇯🇵</span><a href="15-en.html">🇺🇸</a><a href="15-zh.html">🇭🇰</a><a href="15-ko.html">🇰🇷</a></div>
-      <button class="font-scale-btn" aria-label="文字サイズ切替" onclick="cycleFontScale()"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
-      <button class="currency-toggle" aria-label="通貨切替 USD/JPY" onclick="toggleCurrency()"><span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span></button>
-      <button class="theme-toggle" id="themeToggle" aria-label="テーマ切替" onclick="toggleTheme()">🌙</button>
+      <div class="nav-tools">
+        <div class="lang-menu">
+          <button class="lang-menu-btn" aria-label="言語切替" onclick="toggleLangMenu(event)"><span class="lang-menu-flag">🇯🇵</span><svg width="9" height="9" viewBox="0 0 10 10"><path d="M1 3.5l4 3 4-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="lang-menu-dropdown">
+            <span class="lang-option active">🇯🇵 日本語</span>
+            <a class="lang-option" href="15-en.html">🇺🇸 English</a>
+            <a class="lang-option" href="15-zh.html">🇭🇰 繁體中文</a>
+            <a class="lang-option" href="15-ko.html">🇰🇷 한국어</a>
+          </div>
+        </div>
+        <button class="nav-tool-btn font-scale-btn" aria-label="文字サイズ切替" onclick="cycleFontScale()" title="文字サイズ"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
+        <button class="nav-tool-btn currency-toggle" aria-label="通貨切替 USD/JPY" onclick="toggleCurrency()" title="通貨切替 USD⇄JPY"><span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span></button>
+        <button class="nav-tool-btn theme-toggle" id="themeToggle" aria-label="テーマ切替" onclick="toggleTheme()" title="テーマ切替">🌙</button>
+      </div>
     </div>
     <div class="nav-mobile-actions">
-      <div class="lang-switch"><span class="lang-active">🇯🇵</span><a href="15-en.html">🇺🇸</a><a href="15-zh.html">🇭🇰</a><a href="15-ko.html">🇰🇷</a></div>
-      <button class="font-scale-btn" aria-label="文字サイズ切替" onclick="cycleFontScale()"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
-      <button class="currency-toggle" aria-label="通貨切替 USD/JPY" onclick="toggleCurrency()"><span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span></button>
-      <button class="theme-toggle" id="themeToggleMobile" aria-label="テーマ切替" onclick="toggleTheme()">🌙</button>
+      <div class="lang-menu">
+        <button class="lang-menu-btn" aria-label="言語切替" onclick="toggleLangMenu(event)"><span class="lang-menu-flag">🇯🇵</span><svg width="9" height="9" viewBox="0 0 10 10"><path d="M1 3.5l4 3 4-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="lang-menu-dropdown">
+          <span class="lang-option active">🇯🇵 日本語</span>
+          <a class="lang-option" href="15-en.html">🇺🇸 English</a>
+          <a class="lang-option" href="15-zh.html">🇭🇰 繁體中文</a>
+          <a class="lang-option" href="15-ko.html">🇰🇷 한국어</a>
+        </div>
+      </div>
+      <button class="nav-tool-btn font-scale-btn" aria-label="文字サイズ切替" onclick="cycleFontScale()" title="文字サイズ"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
+      <button class="nav-tool-btn currency-toggle" aria-label="通貨切替 USD/JPY" onclick="toggleCurrency()" title="通貨切替"><span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span></button>
+      <button class="nav-tool-btn theme-toggle" id="themeToggleMobile" aria-label="テーマ切替" onclick="toggleTheme()" title="テーマ切替">🌙</button>
       <button class="nav-hamburger" id="navHamburger" aria-label="メニュー">☰</button>
     </div>
   </nav>
@@ -3004,6 +3075,28 @@ function cycleFontScale(){
     }
   });
 })();
+</script>
+<script>
+/* Language menu dropdown */
+function toggleLangMenu(e){
+  if(e) e.stopPropagation();
+  var isOpen = document.querySelector('.lang-menu.open');
+  document.querySelectorAll('.lang-menu').forEach(function(m){ m.classList.remove('open'); });
+  if(!isOpen && e){
+    var menu = e.currentTarget.closest('.lang-menu');
+    if(menu) menu.classList.add('open');
+  }
+}
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.lang-menu')){
+    document.querySelectorAll('.lang-menu.open').forEach(function(m){ m.classList.remove('open'); });
+  }
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){
+    document.querySelectorAll('.lang-menu.open').forEach(function(m){ m.classList.remove('open'); });
+  }
+});
 </script>
 <script>
 /* Atlas Currency Toggle (USD ⇄ JPY) — from ~/atlas-shared/currency-toggle/snippet.js */

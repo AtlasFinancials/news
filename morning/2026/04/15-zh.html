@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script>window.ATLAS_FX = { rate: 158.45, date: '2026/4/14' };</script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
 <style>
 /* ==========================================
@@ -1636,6 +1637,70 @@ body {
 }
 body{font-family:'Noto Sans TC',var(--font-ui)}
 .summary-text,.top-story-body,.news-card-excerpt,.keyword-overview,.editorial-body{font-family:'Noto Sans TC',var(--font-body)}
+
+/* Currency Toggle */
+.currency-toggle{background:none;border:1px solid rgba(255,255,255,0.25);cursor:pointer;font-family:'Inter','Noto Sans JP',sans-serif;font-size:12px;font-weight:600;padding:3px 8px;border-radius:4px;line-height:1;letter-spacing:.3px;color:rgba(255,255,255,0.7);transition:all .15s;display:inline-flex;align-items:center;gap:2px;white-space:nowrap}
+.currency-toggle:hover{opacity:.85;border-color:rgba(184,145,42,0.6);color:var(--gold-lt,#D4A843)}
+.currency-toggle .cur-active{color:#D4A843;font-weight:800}
+.currency-toggle .cur-inactive{color:inherit;opacity:.55}
+.currency-toggle .cur-sep{opacity:.4;margin:0 1px;font-weight:400}
+.currency-toggle.jpy-mode{border-color:rgba(184,145,42,0.65);background:rgba(184,145,42,0.12)}
+.cur-val{transition:color .2s}
+.cur-val.jpy-mode{color:#D4A843;font-weight:700}
+[data-theme="light"] .cur-val.jpy-mode{color:#B8912A}
+
+/* ==========================================
+   Navigation Tools — unified tool cluster
+   ========================================== */
+.nav-tools{display:inline-flex;align-items:center;gap:6px;margin-left:12px;padding-left:12px;border-left:1px solid rgba(255,255,255,0.1)}
+.nav-tool-btn{background:transparent;border:1px solid rgba(255,255,255,0.18);cursor:pointer;padding:5px 8px;border-radius:6px;color:rgba(255,255,255,0.72);font-size:12px;line-height:1;display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:30px;transition:all .15s;white-space:nowrap;font-family:inherit}
+.nav-tool-btn:hover{border-color:rgba(184,145,42,0.55);color:var(--gold-lt,#D4A843);background:rgba(184,145,42,0.08)}
+.nav-tool-btn.theme-toggle{font-size:15px}
+.nav-tool-btn.font-scale-btn{gap:1px;font-weight:700;font-family:'Inter','Noto Sans JP',sans-serif}
+.nav-tool-btn.font-scale-btn .fs-sm{font-size:10px}
+.nav-tool-btn.font-scale-btn .fs-lg{font-size:14px}
+.nav-tool-btn.font-scale-btn .fs-level{font-size:9px;margin-left:3px;opacity:.55}
+.nav-tool-btn.currency-toggle{font-family:'Inter','Noto Sans JP',sans-serif;font-size:12px;font-weight:600;padding:5px 9px}
+.nav-tool-btn.currency-toggle .cur-active{color:#D4A843;font-weight:800}
+.nav-tool-btn.currency-toggle .cur-inactive{color:inherit;opacity:.5}
+.nav-tool-btn.currency-toggle .cur-sep{opacity:.35;margin:0 1px;font-weight:400}
+.nav-tool-btn.currency-toggle.jpy-mode{border-color:rgba(184,145,42,0.6);background:rgba(184,145,42,0.12)}
+
+/* Language dropdown */
+.lang-menu{position:relative;display:inline-block}
+.lang-menu-btn{background:transparent;border:1px solid rgba(255,255,255,0.18);cursor:pointer;padding:5px 8px;border-radius:6px;color:rgba(255,255,255,0.8);font-size:14px;line-height:1;display:inline-flex;align-items:center;gap:4px;height:30px;transition:all .15s}
+.lang-menu-btn:hover{border-color:rgba(184,145,42,0.55);color:var(--gold-lt,#D4A843);background:rgba(184,145,42,0.08)}
+.lang-menu-btn svg{opacity:.55;transition:transform .2s}
+.lang-menu.open .lang-menu-btn{border-color:rgba(184,145,42,0.6);background:rgba(184,145,42,0.12);color:var(--gold-lt,#D4A843)}
+.lang-menu.open .lang-menu-btn svg{transform:rotate(180deg)}
+.lang-menu-flag{font-size:14px;line-height:1}
+.lang-menu-dropdown{position:absolute;top:calc(100% + 6px);right:0;background:#0F1829;border:1px solid rgba(184,145,42,0.25);border-radius:10px;min-width:170px;box-shadow:0 12px 32px -8px rgba(0,0,0,.5),0 0 0 1px rgba(184,145,42,0.08) inset;display:none;overflow:hidden;z-index:1050;padding:4px}
+.lang-menu.open .lang-menu-dropdown{display:block;animation:langFadeIn .14s ease-out}
+@keyframes langFadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.lang-option{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:6px;font-size:13px;color:rgba(245,242,236,0.82);text-decoration:none;cursor:pointer;transition:background .12s,color .12s;font-family:var(--font-ui,'Noto Sans JP'),sans-serif;font-weight:500;white-space:nowrap}
+.lang-option:hover{background:rgba(184,145,42,0.14);color:#fff}
+.lang-option.active{color:var(--gold-lt,#D4A843);font-weight:700;background:rgba(184,145,42,0.08);cursor:default}
+.lang-option.active::after{content:'✓';margin-left:auto;color:var(--gold-lt,#D4A843);font-weight:800}
+
+[data-theme="light"] .lang-menu-dropdown{background:#FDFCFA;border-color:rgba(26,37,64,0.15);box-shadow:0 12px 32px -8px rgba(26,37,64,.15)}
+[data-theme="light"] .lang-option{color:rgba(26,37,64,0.8)}
+[data-theme="light"] .lang-option:hover{background:rgba(184,145,42,0.1);color:#0F1829}
+[data-theme="light"] .lang-option.active{color:#B8912A;background:rgba(184,145,42,0.08)}
+[data-theme="light"] .lang-option.active::after{color:#B8912A}
+
+/* Hide legacy lang-switch */
+.lang-switch{display:none !important}
+
+/* Mobile refinements */
+@media(max-width:767px){
+  .nav-tools{margin-left:0;padding-left:0;border-left:none;gap:4px}
+  .nav-mobile-actions{gap:4px}
+  .nav-mobile-actions .nav-tool-btn,.nav-mobile-actions .lang-menu-btn{padding:5px 7px;min-width:30px;height:28px;font-size:11px}
+  .nav-mobile-actions .lang-menu-flag{font-size:13px}
+  .nav-mobile-actions .nav-tool-btn.theme-toggle{font-size:13px}
+  .nav-mobile-actions .nav-tool-btn.font-scale-btn .fs-level{display:none}
+  .lang-menu-dropdown{min-width:160px;right:0;font-size:13px}
+}
 </style>
 </head>
 <body>
@@ -1654,14 +1719,34 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
       <a href="https://atlas-financials.jp/reports/">財報分析</a>
       <a href="https://atlas-financials.jp/news/glossary/">詞彙表</a>
       <a href="https://atlas-financials.jp/reports/join.html" class="nav-cta">加入</a>
-      <div class="lang-switch"><a href="9.html">🇯🇵</a><a href="9-en.html">🇺🇸</a><span class="lang-active">🇭🇰</span><a href="9-ko.html">🇰🇷</a></div>
-      <button class="font-scale-btn" aria-label="Font size" onclick="cycleFontScale()"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
-      <button class="theme-toggle" id="themeToggle" aria-label="Theme toggle" onclick="toggleTheme()">🌙</button>
+      <div class="nav-tools">
+        <div class="lang-menu">
+          <button class="lang-menu-btn" aria-label="語言" onclick="toggleLangMenu(event)"><span class="lang-menu-flag">🇭🇰</span><svg width="9" height="9" viewBox="0 0 10 10"><path d="M1 3.5l4 3 4-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="lang-menu-dropdown">
+            <a class="lang-option" href="15.html">🇯🇵 日本語</a>
+            <a class="lang-option" href="15-en.html">🇺🇸 English</a>
+            <span class="lang-option active">🇭🇰 繁體中文</span>
+            <a class="lang-option" href="15-ko.html">🇰🇷 한국어</a>
+          </div>
+        </div>
+        <button class="nav-tool-btn font-scale-btn" aria-label="字型大小" onclick="cycleFontScale()" title="字型大小"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
+        <button class="nav-tool-btn currency-toggle" aria-label="貨幣切換 USD/JPY" onclick="toggleCurrency()" title="USD/JPY"><span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span></button>
+        <button class="nav-tool-btn theme-toggle" id="themeToggle" aria-label="主題" onclick="toggleTheme()" title="主題">🌙</button>
+      </div>
     </div>
     <div class="nav-mobile-actions">
-      <div class="lang-switch"><a href="9.html">🇯🇵</a><a href="9-en.html">🇺🇸</a><span class="lang-active">🇭🇰</span><a href="9-ko.html">🇰🇷</a></div>
-      <button class="font-scale-btn" aria-label="Font size" onclick="cycleFontScale()"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
-      <button class="theme-toggle" id="themeToggleMobile" aria-label="Theme toggle" onclick="toggleTheme()">🌙</button>
+      <div class="lang-menu">
+        <button class="lang-menu-btn" aria-label="語言" onclick="toggleLangMenu(event)"><span class="lang-menu-flag">🇭🇰</span><svg width="9" height="9" viewBox="0 0 10 10"><path d="M1 3.5l4 3 4-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="lang-menu-dropdown">
+          <a class="lang-option" href="15.html">🇯🇵 日本語</a>
+          <a class="lang-option" href="15-en.html">🇺🇸 English</a>
+          <span class="lang-option active">🇭🇰 繁體中文</span>
+          <a class="lang-option" href="15-ko.html">🇰🇷 한국어</a>
+        </div>
+      </div>
+      <button class="nav-tool-btn font-scale-btn" aria-label="字型大小" onclick="cycleFontScale()" title="字型大小"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
+      <button class="nav-tool-btn currency-toggle" aria-label="貨幣切換 USD/JPY" onclick="toggleCurrency()" title="USD/JPY"><span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span></button>
+      <button class="nav-tool-btn theme-toggle" id="themeToggleMobile" aria-label="主題" onclick="toggleTheme()" title="主題">🌙</button>
       <button class="nav-hamburger" id="navHamburger" aria-label="Menu">☰</button>
     </div>
   </nav>
@@ -1768,7 +1853,7 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
       </div>
 
       <!-- Market Indicator Panels -->
-      <div class="market-panels">
+      <div class="market-panels no-currency">
         <div class="market-panel" data-chg="1.18">
           <span class="panel-name">S&amp;P 500</span>
           <span class="panel-val">6,967.38</span>
@@ -2892,6 +2977,131 @@ function cycleFontScale(){
         }
       }
     }
+  });
+})();
+</script>
+<script>
+/* Language menu dropdown */
+function toggleLangMenu(e){
+  if(e) e.stopPropagation();
+  var isOpen = document.querySelector('.lang-menu.open');
+  document.querySelectorAll('.lang-menu').forEach(function(m){ m.classList.remove('open'); });
+  if(!isOpen && e){
+    var menu = e.currentTarget.closest('.lang-menu');
+    if(menu) menu.classList.add('open');
+  }
+}
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.lang-menu')){
+    document.querySelectorAll('.lang-menu.open').forEach(function(m){ m.classList.remove('open'); });
+  }
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){
+    document.querySelectorAll('.lang-menu.open').forEach(function(m){ m.classList.remove('open'); });
+  }
+});
+</script>
+<script>
+/* Atlas Currency Toggle (USD ⇄ JPY) — from ~/atlas-shared/currency-toggle/snippet.js */
+(function(){
+  if(window.__ATLAS_CURRENCY_LOADED) return;
+  window.__ATLAS_CURRENCY_LOADED = true;
+  var FX = window.ATLAS_FX || { rate: 158.45, date: '2026/4/14' };
+  var currencyMode = localStorage.getItem('atlas-currency') || 'USD';
+  function fmtJPY(usd, unit){
+    var usd_b = unit==='T'?usd*1000:unit==='B'?usd:unit==='M'?usd/1000:unit==='K'?usd/1e6:null;
+    if(usd_b !== null){
+      var jpy_b = usd_b * FX.rate;
+      if(jpy_b >= 1000) return '¥' + (jpy_b/1000).toFixed(2) + '兆';
+      if(jpy_b >= 1) return '¥' + (jpy_b*10).toFixed(0) + '億';
+      return '¥' + (jpy_b*1000).toFixed(0) + '百万';
+    }
+    var jpy = usd * FX.rate;
+    if(jpy >= 10000) return '¥' + (jpy/10000).toFixed(2) + '万';
+    return '¥' + Math.round(jpy).toLocaleString();
+  }
+  var WRAP_DONE = false;
+  function wrapCurrencyValues(){
+    if(WRAP_DONE) return; WRAP_DONE = true;
+    var re = /\$(\d+(?:,\d{3})*(?:\.\d+)?)\s*([TBMK])?(?![\w%])/g;
+    var skipTags = {SCRIPT:1,STYLE:1,NOSCRIPT:1,BUTTON:1,A:1};
+    var skipClasses = ['portal-link','currency-toggle','theme-toggle','font-scale-btn','lang-switch','toc-toggle','toc-list','tradingview-widget-container','no-currency','nav-hamburger','overview-toggle-btn','market-panels'];
+    function shouldSkip(node){
+      var p = node.parentNode;
+      while(p && p !== document.body){
+        if(skipTags[p.tagName]) return true;
+        if(p.classList){
+          for(var i=0;i<skipClasses.length;i++) if(p.classList.contains(skipClasses[i])) return true;
+        }
+        p = p.parentNode;
+      }
+      return false;
+    }
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    var nodes = [], n;
+    while((n = walker.nextNode())){
+      if(n.nodeValue && n.nodeValue.indexOf('$') >= 0 && !shouldSkip(n)) nodes.push(n);
+    }
+    nodes.forEach(function(node){
+      var text = node.nodeValue;
+      if(!re.test(text)) return;
+      re.lastIndex = 0;
+      var frag = document.createDocumentFragment();
+      var lastIdx = 0, m;
+      while((m = re.exec(text)) !== null){
+        if(m.index > lastIdx) frag.appendChild(document.createTextNode(text.slice(lastIdx, m.index)));
+        var num = parseFloat(m[1].replace(/,/g,''));
+        var unit = m[2] || '';
+        var span = document.createElement('span');
+        span.className = 'cur-val';
+        span.setAttribute('data-usd', num);
+        span.setAttribute('data-unit', unit);
+        span.setAttribute('data-orig', m[0]);
+        span.textContent = m[0];
+        frag.appendChild(span);
+        lastIdx = m.index + m[0].length;
+      }
+      if(lastIdx < text.length) frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+  function applyCurrency(mode){
+    document.querySelectorAll('.cur-val').forEach(function(el){
+      if(mode === 'JPY'){
+        var usd = parseFloat(el.getAttribute('data-usd'));
+        var unit = el.getAttribute('data-unit') || '';
+        el.textContent = fmtJPY(usd, unit);
+        el.classList.add('jpy-mode');
+      } else {
+        el.textContent = el.getAttribute('data-orig');
+        el.classList.remove('jpy-mode');
+      }
+    });
+    document.querySelectorAll('.currency-toggle').forEach(function(btn){
+      var act = btn.querySelector('.cur-active');
+      var inact = btn.querySelector('.cur-inactive');
+      if(!act || !inact) return;
+      if(mode === 'JPY'){
+        btn.classList.add('jpy-mode');
+        act.textContent = '¥'; inact.textContent = '$';
+        btn.title = '円表示中（レート: ' + FX.rate + '円/$、' + FX.date + '）';
+      } else {
+        btn.classList.remove('jpy-mode');
+        act.textContent = '$'; inact.textContent = '¥';
+        btn.title = 'USD/JPY 切替（レート: ' + FX.rate + '円/$、' + FX.date + '）';
+      }
+    });
+  }
+  window.toggleCurrency = function(){
+    wrapCurrencyValues();
+    currencyMode = currencyMode === 'USD' ? 'JPY' : 'USD';
+    localStorage.setItem('atlas-currency', currencyMode);
+    applyCurrency(currencyMode);
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    if(currencyMode === 'JPY'){ wrapCurrencyValues(); applyCurrency('JPY'); }
+    else applyCurrency('USD');
   });
 })();
 </script>
