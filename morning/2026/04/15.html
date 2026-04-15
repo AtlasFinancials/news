@@ -1598,6 +1598,41 @@ body {
 [data-theme="dark"] .ed-hero{background:linear-gradient(135deg,rgba(212,168,67,0.06) 0%,rgba(224,85,85,0.03) 50%,rgba(15,24,41,0) 100%)}
 [data-theme="dark"] .section-hero-caption{background:transparent}
 [data-theme="dark"] .mobile-menu{background:rgba(15,24,41,0.98)}
+/* PPI Accordion */
+.ppi-accordion{margin:16px 0 12px;border:1px solid var(--paper-dk);border-radius:10px;background:var(--surface);overflow:hidden}
+.ppi-acc-summary{font-family:var(--font-heading);font-size:13px;font-weight:700;color:var(--ink);padding:12px 16px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;user-select:none;transition:background .15s}
+.ppi-acc-summary::-webkit-details-marker{display:none}
+.ppi-acc-summary::before{content:'▶';font-size:10px;color:var(--gold);transition:transform .2s;display:inline-block}
+.ppi-accordion[open] .ppi-acc-summary::before{transform:rotate(90deg)}
+.ppi-acc-summary:hover{background:var(--badge-bg)}
+.ppi-acc-hint{font-size:11px;font-weight:500;color:var(--slate-lt);margin-left:auto;font-family:var(--font-ui)}
+.ppi-acc-body{padding:14px 16px 18px;border-top:1px solid var(--paper-dk)}
+.ppi-stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px}
+.ppi-stat-col{background:var(--paper);border:1px solid var(--paper-dk);border-radius:8px;padding:10px 12px}
+.ppi-stat-label{font-family:var(--font-ui);font-size:11px;font-weight:700;color:var(--slate);letter-spacing:.05em;margin-bottom:8px;text-transform:uppercase}
+.ppi-stat-val{font-family:var(--font-data);font-size:13px;line-height:1.6}
+.ppi-stat-val>div{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px}
+.ppi-stat-val strong{font-size:16px;font-weight:800;color:var(--ink)}
+.ppi-stat-sub{font-size:10px;color:var(--slate-lt);font-family:var(--font-ui);font-weight:600}
+.ppi-consensus strong{color:var(--slate)}
+.ppi-actual strong{color:var(--navy)}
+.ppi-delta strong.down{color:#22c55e}
+.ppi-delta strong.up{color:#ef4444}
+.ppi-chart-title{font-family:var(--font-heading);font-size:13px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.ppi-chart-container{position:relative;height:240px;width:100%}
+.ppi-chart-note{font-family:var(--font-ui);font-size:10.5px;color:var(--slate-lt);margin-top:8px;line-height:1.5}
+[data-theme="dark"] .ppi-accordion{border-color:rgba(184,145,42,0.15);background:rgba(184,145,42,0.04)}
+[data-theme="dark"] .ppi-acc-summary{color:#F5F2EC}
+[data-theme="dark"] .ppi-acc-summary:hover{background:rgba(184,145,42,0.08)}
+[data-theme="dark"] .ppi-acc-body{border-top-color:rgba(184,145,42,0.12)}
+[data-theme="dark"] .ppi-stat-col{background:#0F1829;border-color:rgba(184,145,42,0.15)}
+[data-theme="dark"] .ppi-stat-val strong{color:#F5F2EC}
+[data-theme="dark"] .ppi-consensus strong{color:#8b949e}
+[data-theme="dark"] .ppi-actual strong{color:#D4A843}
+@media(max-width:767px){
+  .ppi-stat-grid{grid-template-columns:1fr;gap:8px}
+  .ppi-chart-container{height:220px}
+}
 </style>
 </head>
 <body>
@@ -1950,8 +1985,44 @@ body {
           <span class="news-card-tag economy">ECONOMY</span>
           <span class="news-card-source">BLS / CNBC / Reuters</span>
         </div>
-        <div class="news-card-title">3月PPI +0.5% — 予想+1.1%を大きく下回り、コアも+0.1%にとどまる</div>
+        <div class="news-card-title">3月<span class="term">PPI<span class="tip"><span class="tip-title">PPI（Producer Price Index・生産者物価指数）</span>企業が製品を出荷する段階での価格変動を測定する指標。「川上のインフレ指標」と呼ばれ、CPIに先行する傾向がある。原材料→中間財→最終財の3段階で測定され、米労働統計局（BLS）が毎月中旬に発表。FRBの金融政策判断の重要材料の一つ。</span></span> +0.5% — 予想+1.1%を大きく下回り、コアも+0.1%にとどまる</div>
         <div class="news-card-excerpt">3月PPIは前月比+0.5%、予想+1.1%を大きく下回った。食品・エネルギー除くコアPPIは+0.1%と予想+0.5%を大幅ショート。関税インフレ懸念が薄まり、FRBの利下げ余地を再確認。</div>
+
+        <!-- PPI詳細アコーディオン -->
+        <details class="ppi-accordion">
+          <summary class="ppi-acc-summary">📊 コンセンサス vs 実績の詳細を見る <span class="ppi-acc-hint">（クリックで展開）</span></summary>
+          <div class="ppi-acc-body">
+            <div class="ppi-stat-grid">
+              <div class="ppi-stat-col">
+                <div class="ppi-stat-label">コンセンサス予想</div>
+                <div class="ppi-stat-val ppi-consensus">
+                  <div><span class="ppi-stat-sub">ヘッドライン</span> <strong>+1.1%</strong></div>
+                  <div><span class="ppi-stat-sub">コアPPI</span> <strong>+0.5%</strong></div>
+                </div>
+              </div>
+              <div class="ppi-stat-col">
+                <div class="ppi-stat-label">実績</div>
+                <div class="ppi-stat-val ppi-actual">
+                  <div><span class="ppi-stat-sub">ヘッドライン</span> <strong>+0.5%</strong></div>
+                  <div><span class="ppi-stat-sub">コアPPI</span> <strong>+0.1%</strong></div>
+                </div>
+              </div>
+              <div class="ppi-stat-col">
+                <div class="ppi-stat-label">乖離率</div>
+                <div class="ppi-stat-val ppi-delta">
+                  <div><span class="ppi-stat-sub">ヘッドライン</span> <strong class="down">-0.6pt</strong></div>
+                  <div><span class="ppi-stat-sub">コアPPI</span> <strong class="down">-0.4pt</strong></div>
+                </div>
+              </div>
+            </div>
+            <div class="ppi-chart-wrap">
+              <div class="ppi-chart-title">PPI / コアPPI 前月比推移（2025年4月〜2026年3月）</div>
+              <div class="ppi-chart-container"><canvas id="ppiTrendChart"></canvas></div>
+              <div class="ppi-chart-note">出所: 米労働統計局（BLS）。縦軸は前月比（%）。3月は予想を大きく下回り、コアPPIは1年間で最低水準。</div>
+            </div>
+          </div>
+        </details>
+
         <div class="why-box positive">
           <span class="why-icon">💡</span>
           <div><span class="why-label">なぜ重要か:</span> 4/10 CPIは加速していたため市場はインフレ再燃を警戒していたが、上流PPI鎮静化でCPI加速が一時的との見方が強まる。</div>
@@ -2739,5 +2810,87 @@ function cycleFontScale(){
 })();
 </script>
 
+<script>
+// PPI Trend Chart (Apr 2025 - Mar 2026)
+(function(){
+  var el = document.getElementById('ppiTrendChart');
+  if(!el || typeof Chart === 'undefined') return;
+  var labels = ['25/4','25/5','25/6','25/7','25/8','25/9','25/10','25/11','25/12','26/1','26/2','26/3'];
+  var ppi     = [0.4, 0.2, 0.3, 0.5, 0.4, 0.6, 0.8, 0.9, 1.0, 0.7, 1.0, 0.5];
+  var corePpi = [0.3, 0.1, 0.2, 0.3, 0.2, 0.3, 0.4, 0.5, 0.4, 0.3, 0.4, 0.1];
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  var gridColor = isDark ? 'rgba(184,145,42,0.1)' : 'rgba(26,37,64,0.08)';
+  var tickColor = isDark ? '#8b949e' : '#6e7681';
+  new Chart(el, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'PPI（ヘッドライン）',
+          data: ppi,
+          borderColor: '#B8912A',
+          backgroundColor: 'rgba(184,145,42,0.1)',
+          borderWidth: 2.5,
+          tension: 0.3,
+          pointRadius: 3.5,
+          pointHoverRadius: 5,
+          pointBackgroundColor: '#B8912A',
+          fill: false
+        },
+        {
+          label: 'コアPPI（食品・エネルギー除く）',
+          data: corePpi,
+          borderColor: '#1A2540',
+          backgroundColor: 'rgba(26,37,64,0.08)',
+          borderWidth: 2,
+          borderDash: [6, 4],
+          tension: 0.3,
+          pointRadius: 3,
+          pointHoverRadius: 5,
+          pointBackgroundColor: '#1A2540',
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { font: { size: 11, family: 'Noto Sans JP' }, color: tickColor, padding: 12, boxWidth: 16 }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(26,37,64,0.95)',
+          titleColor: '#D4A843',
+          bodyColor: '#fff',
+          borderColor: '#B8912A',
+          borderWidth: 1,
+          padding: 10,
+          callbacks: { label: function(ctx){ return ctx.dataset.label + ': +' + ctx.parsed.y.toFixed(1) + '%'; } }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: gridColor, drawBorder: false },
+          ticks: { color: tickColor, font: { size: 10, family: 'Inter' } }
+        },
+        y: {
+          beginAtZero: true,
+          suggestedMax: 1.2,
+          grid: { color: gridColor, drawBorder: false },
+          ticks: {
+            color: tickColor,
+            font: { size: 10, family: 'Inter' },
+            callback: function(v){ return '+' + v.toFixed(1) + '%'; }
+          }
+        }
+      }
+    }
+  });
+})();
+</script>
 </body>
 </html>
