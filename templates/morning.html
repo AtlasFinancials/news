@@ -1684,5 +1684,153 @@ function toggleTheme(){
 })();
 </script>
 
+<!-- ATLAS-TICKER-AUTOLINK -->
+<script>
+/*!
+ * Atlas Ticker Auto-Link
+ * Scans article body for ticker symbols (NVDA, MSFT...) and wraps them in
+ * links to the corresponding /reports/{TICKER}/ page.
+ *
+ * Usage:
+ *   <script src="https://atlas-financials.jp/assets/ticker-autolink.js" defer><\/script>
+ * or include inline.
+ *
+ * Behavior:
+ *   - Scans only elements matching `.atlas-article-body, main.main, article`
+ *   - Skips text inside <a>, <code>, <pre>, <script>, <style>, <.no-autolink>
+ *   - Only links the first occurrence of each ticker (per page)
+ *   - Uses canonical TICKERS list (updated when new reports published)
+ */
+(function () {
+  // Canonical tickers (mirror of ~/ui-kabu-reports/*/). Keep alphabetical.
+  var TICKERS = [
+    'ACN','ADBE','ADI','ALAB','AMZN','ASML','AVGO','BABA','BAC','C',
+    'CCL','CIEN','COST','DAL','DDOG','DG','DOCU','FDX','FN','GOOGL',
+    'GS','IOT','JPM','LLY','LULU','META','MRVL','MS','MSFT','MU',
+    'NKE','NVDA','OKTA','ORCL','PANW','PATH','PAYP','RBRK','RDDT','S',
+    'SMCI','SNAP','TM','TSLA','TSM','TXN','VFC','WMT','ZS'
+  ];
+
+  // Words that look like tickers but are common English/financial jargon — never link
+  var DENYLIST = {
+    'A':1,'I':1,'AI':1,'IT':1,'IP':1,'IPO':1,'CEO':1,'CFO':1,'COO':1,'CTO':1,
+    'USD':1,'JPY':1,'EUR':1,'CNY':1,'GDP':1,'CPI':1,'PPI':1,'PMI':1,
+    'EPS':1,'PER':1,'EBIT':1,'FY':1,'ATH':1,'OTC':1,'ETF':1,
+    'US':1,'EU':1,'UK':1,'JP':1,'CN':1,'UN':1,'UAE':1,
+    'API':1,'SDK':1,'SaaS':1,'ARR':1,'NRR':1,'TAM':1,'SAM':1,
+    'Q1':1,'Q2':1,'Q3':1,'Q4':1,'H1':1,'H2':1,'YOY':1,'QOQ':1
+  };
+
+  var TICKER_SET = {};
+  for (var i = 0; i < TICKERS.length; i++) TICKER_SET[TICKERS[i]] = true;
+
+  // Match 1-5 uppercase letters with word boundaries. Does not cross tags.
+  var RX = /\b([A-Z]{1,5})\b/g;
+
+  var SKIP_TAGS = {A:1,CODE:1,PRE:1,SCRIPT:1,STYLE:1,HEAD:1,TITLE:1,TEXTAREA:1,INPUT:1,BUTTON:1};
+  var SELECTORS = [
+    '.atlas-article-body',
+    '.top-story-body',
+    '.news-card-excerpt',
+    '.editorial-body',
+    '.keyword-body',
+    'article .article-body',
+    'article .post-content'
+  ];
+
+  function findRoots() {
+    var roots = [];
+    // Prefer specific article-body selectors if present
+    var found = document.querySelectorAll(SELECTORS.join(','));
+    for (var i = 0; i < found.length; i++) roots.push(found[i]);
+    if (roots.length) return roots;
+    // Fallback: main.main (Atlas Daily default)
+    var main = document.querySelector('main.main, main');
+    return main ? [main] : [];
+  }
+
+  function shouldSkip(node) {
+    var el = node.parentNode;
+    while (el && el.nodeType === 1) {
+      if (SKIP_TAGS[el.tagName]) return true;
+      if (el.classList && el.classList.contains('no-autolink')) return true;
+      if (el.classList && el.classList.contains('ticker-link')) return true;
+      el = el.parentNode;
+    }
+    return false;
+  }
+
+  function linkifyTextNode(node, seen) {
+    var txt = node.nodeValue;
+    if (!/[A-Z]{2,}/.test(txt)) return; // fast path
+    RX.lastIndex = 0;
+    var matches = [];
+    var m;
+    while ((m = RX.exec(txt)) !== null) {
+      var t = m[1];
+      if (!TICKER_SET[t]) continue;
+      if (DENYLIST[t]) continue;
+      if (seen[t]) continue; // only first occurrence per page
+      matches.push({ index: m.index, ticker: t, len: t.length });
+      seen[t] = true;
+    }
+    if (!matches.length) return;
+
+    var frag = document.createDocumentFragment();
+    var cursor = 0;
+    for (var i = 0; i < matches.length; i++) {
+      var mm = matches[i];
+      if (mm.index > cursor) {
+        frag.appendChild(document.createTextNode(txt.slice(cursor, mm.index)));
+      }
+      var a = document.createElement('a');
+      a.className = 'ticker-link';
+      a.href = 'https://atlas-financials.jp/reports/' + mm.ticker + '/';
+      a.textContent = mm.ticker;
+      a.setAttribute('data-ticker', mm.ticker);
+      a.setAttribute('title', mm.ticker + ' — 決算レポートを見る');
+      frag.appendChild(a);
+      cursor = mm.index + mm.len;
+    }
+    if (cursor < txt.length) frag.appendChild(document.createTextNode(txt.slice(cursor)));
+    node.parentNode.replaceChild(frag, node);
+  }
+
+  function run() {
+    var roots = findRoots();
+    if (!roots.length) return;
+    var seen = {};
+    for (var r = 0; r < roots.length; r++) {
+      var walker = document.createTreeWalker(roots[r], NodeFilter.SHOW_TEXT, {
+        acceptNode: function (n) {
+          if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          if (shouldSkip(n)) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+      var nodes = [];
+      var cur;
+      while ((cur = walker.nextNode())) nodes.push(cur);
+      for (var i = 0; i < nodes.length; i++) linkifyTextNode(nodes[i], seen);
+    }
+  }
+
+  // Minimal inline style — inherits Atlas gold. Page CSS can override.
+  var css = '.ticker-link{color:#B8912A;text-decoration:none;border-bottom:1px dotted rgba(184,145,42,.4);font-weight:600;transition:color .15s,border-color .15s}' +
+            '.ticker-link:hover{color:#D4A843;border-bottom-color:#D4A843}' +
+            'html[data-theme="light"] .ticker-link{color:#8a6c1f}';
+  var style = document.createElement('style');
+  style.textContent = css;
+  (document.head || document.documentElement).appendChild(style);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run, { once: true });
+  } else {
+    run();
+  }
+})();
+
+</script>
+<!-- /ATLAS-TICKER-AUTOLINK -->
 </body>
 </html>

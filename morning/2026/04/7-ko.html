@@ -1498,6 +1498,9 @@ body {
 body { font-family: 'Noto Sans KR', var(--font-ui); }
 .summary-text, .top-story-body, .news-card-excerpt, .keyword-overview, .editorial-body { font-family: 'Noto Sans KR', var(--font-body); }
 </style>
+<!-- ATLAS-PAYWALL-META -->
+<meta name="atlas-access" content='{"kind":"morning","date":"2026-04-07"}'>
+<!-- /ATLAS-PAYWALL-META -->
 </head>
 <body>
 
@@ -2639,5 +2642,415 @@ function cycleFontScale(){
 })();
 </script>
 
+<!-- ATLAS-TICKER-AUTOLINK -->
+<script>
+/*!
+ * Atlas Ticker Auto-Link
+ * Scans article body for ticker symbols (NVDA, MSFT...) and wraps them in
+ * links to the corresponding /reports/{TICKER}/ page.
+ *
+ * Usage:
+ *   <script src="https://atlas-financials.jp/assets/ticker-autolink.js" defer><\/script>
+ * or include inline.
+ *
+ * Behavior:
+ *   - Scans only elements matching `.atlas-article-body, main.main, article`
+ *   - Skips text inside <a>, <code>, <pre>, <script>, <style>, <.no-autolink>
+ *   - Only links the first occurrence of each ticker (per page)
+ *   - Uses canonical TICKERS list (updated when new reports published)
+ */
+(function () {
+  // Canonical tickers (mirror of ~/ui-kabu-reports/*/). Keep alphabetical.
+  var TICKERS = [
+    'ACN','ADBE','ADI','ALAB','AMZN','ASML','AVGO','BABA','BAC','C',
+    'CCL','CIEN','COST','DAL','DDOG','DG','DOCU','FDX','FN','GOOGL',
+    'GS','IOT','JPM','LLY','LULU','META','MRVL','MS','MSFT','MU',
+    'NKE','NVDA','OKTA','ORCL','PANW','PATH','PAYP','RBRK','RDDT','S',
+    'SMCI','SNAP','TM','TSLA','TSM','TXN','VFC','WMT','ZS'
+  ];
+
+  // Words that look like tickers but are common English/financial jargon — never link
+  var DENYLIST = {
+    'A':1,'I':1,'AI':1,'IT':1,'IP':1,'IPO':1,'CEO':1,'CFO':1,'COO':1,'CTO':1,
+    'USD':1,'JPY':1,'EUR':1,'CNY':1,'GDP':1,'CPI':1,'PPI':1,'PMI':1,
+    'EPS':1,'PER':1,'EBIT':1,'FY':1,'ATH':1,'OTC':1,'ETF':1,
+    'US':1,'EU':1,'UK':1,'JP':1,'CN':1,'UN':1,'UAE':1,
+    'API':1,'SDK':1,'SaaS':1,'ARR':1,'NRR':1,'TAM':1,'SAM':1,
+    'Q1':1,'Q2':1,'Q3':1,'Q4':1,'H1':1,'H2':1,'YOY':1,'QOQ':1
+  };
+
+  var TICKER_SET = {};
+  for (var i = 0; i < TICKERS.length; i++) TICKER_SET[TICKERS[i]] = true;
+
+  // Match 1-5 uppercase letters with word boundaries. Does not cross tags.
+  var RX = /\b([A-Z]{1,5})\b/g;
+
+  var SKIP_TAGS = {A:1,CODE:1,PRE:1,SCRIPT:1,STYLE:1,HEAD:1,TITLE:1,TEXTAREA:1,INPUT:1,BUTTON:1};
+  var SELECTORS = [
+    '.atlas-article-body',
+    '.top-story-body',
+    '.news-card-excerpt',
+    '.editorial-body',
+    '.keyword-body',
+    'article .article-body',
+    'article .post-content'
+  ];
+
+  function findRoots() {
+    var roots = [];
+    // Prefer specific article-body selectors if present
+    var found = document.querySelectorAll(SELECTORS.join(','));
+    for (var i = 0; i < found.length; i++) roots.push(found[i]);
+    if (roots.length) return roots;
+    // Fallback: main.main (Atlas Daily default)
+    var main = document.querySelector('main.main, main');
+    return main ? [main] : [];
+  }
+
+  function shouldSkip(node) {
+    var el = node.parentNode;
+    while (el && el.nodeType === 1) {
+      if (SKIP_TAGS[el.tagName]) return true;
+      if (el.classList && el.classList.contains('no-autolink')) return true;
+      if (el.classList && el.classList.contains('ticker-link')) return true;
+      el = el.parentNode;
+    }
+    return false;
+  }
+
+  function linkifyTextNode(node, seen) {
+    var txt = node.nodeValue;
+    if (!/[A-Z]{2,}/.test(txt)) return; // fast path
+    RX.lastIndex = 0;
+    var matches = [];
+    var m;
+    while ((m = RX.exec(txt)) !== null) {
+      var t = m[1];
+      if (!TICKER_SET[t]) continue;
+      if (DENYLIST[t]) continue;
+      if (seen[t]) continue; // only first occurrence per page
+      matches.push({ index: m.index, ticker: t, len: t.length });
+      seen[t] = true;
+    }
+    if (!matches.length) return;
+
+    var frag = document.createDocumentFragment();
+    var cursor = 0;
+    for (var i = 0; i < matches.length; i++) {
+      var mm = matches[i];
+      if (mm.index > cursor) {
+        frag.appendChild(document.createTextNode(txt.slice(cursor, mm.index)));
+      }
+      var a = document.createElement('a');
+      a.className = 'ticker-link';
+      a.href = 'https://atlas-financials.jp/reports/' + mm.ticker + '/';
+      a.textContent = mm.ticker;
+      a.setAttribute('data-ticker', mm.ticker);
+      a.setAttribute('title', mm.ticker + ' — 決算レポートを見る');
+      frag.appendChild(a);
+      cursor = mm.index + mm.len;
+    }
+    if (cursor < txt.length) frag.appendChild(document.createTextNode(txt.slice(cursor)));
+    node.parentNode.replaceChild(frag, node);
+  }
+
+  function run() {
+    var roots = findRoots();
+    if (!roots.length) return;
+    var seen = {};
+    for (var r = 0; r < roots.length; r++) {
+      var walker = document.createTreeWalker(roots[r], NodeFilter.SHOW_TEXT, {
+        acceptNode: function (n) {
+          if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          if (shouldSkip(n)) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+      var nodes = [];
+      var cur;
+      while ((cur = walker.nextNode())) nodes.push(cur);
+      for (var i = 0; i < nodes.length; i++) linkifyTextNode(nodes[i], seen);
+    }
+  }
+
+  // Minimal inline style — inherits Atlas gold. Page CSS can override.
+  var css = '.ticker-link{color:#B8912A;text-decoration:none;border-bottom:1px dotted rgba(184,145,42,.4);font-weight:600;transition:color .15s,border-color .15s}' +
+            '.ticker-link:hover{color:#D4A843;border-bottom-color:#D4A843}' +
+            'html[data-theme="light"] .ticker-link{color:#8a6c1f}';
+  var style = document.createElement('style');
+  style.textContent = css;
+  (document.head || document.documentElement).appendChild(style);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run, { once: true });
+  } else {
+    run();
+  }
+})();
+
+</script>
+<!-- /ATLAS-TICKER-AUTOLINK -->
+<!-- ATLAS-PAYWALL-SCRIPT -->
+<script>
+/*!
+ * Atlas Paywall — Phase 1 (client-side MVP)
+ *
+ * 各ページの <meta name="atlas-access" content='{"kind":"...","...":...}'> を読み、
+ * 非会員に対して overlay または truncate を表示する。
+ *
+ * kind:
+ *   - "morning"  : date (YYYY-MM-DD) を持つ。今日/昨日なら free、それ以外は gated
+ *   - "extra"    : 常に truncate（本文文字数の1/3だけ無料公開）
+ *   - "special"  : 常に gated（冒頭プレビュー以外は非表示）
+ *   - "report"   : ticker + isLatest。flagship かつ latest なら free、それ以外は gated
+ *
+ * 会員判定:
+ *   - cookie `atlas_session` 無し → ゲスト（free制限あり）
+ *   - cookie あり → /api/me を fetch。plan_expires_at > now なら Pro（制限なし）
+ *
+ * デバッグ:
+ *   - URLに ?atlas-debug=pro  → 強制Pro扱い
+ *   - URLに ?atlas-debug=free → 強制Free扱い
+ */
+(function () {
+  var FLAGSHIP = { NVDA: 1, GOOGL: 1, TSLA: 1, MSFT: 1, META: 1, AMZN: 1, AAPL: 1 };
+  var MORNING_FREE_DAYS = 2;       // today + yesterday = 2 calendar days
+  var EXTRA_FREE_FRACTION = 1 / 3; // 号外: 本文文字数の1/3
+
+  function readAccess() {
+    var meta = document.querySelector('meta[name="atlas-access"]');
+    if (!meta) return null;
+    try { return JSON.parse(meta.getAttribute('content') || '{}'); }
+    catch (e) { return null; }
+  }
+
+  function daysAgoJST(ymd) {
+    // ymd: "2026-04-15". Compare JST midnight to JST midnight.
+    if (!ymd || !/^\d{4}-\d{2}-\d{2}$/.test(ymd)) return Infinity;
+    var parts = ymd.split('-').map(Number);
+    var pubUTC = Date.UTC(parts[0], parts[1] - 1, parts[2]);
+    var now = new Date();
+    // JST = UTC+9. Midnight JST today = today's UTC date at 15:00 prev day in UTC.
+    var jstNow = new Date(now.getTime() + 9 * 3600 * 1000);
+    var jstToday = Date.UTC(jstNow.getUTCFullYear(), jstNow.getUTCMonth(), jstNow.getUTCDate());
+    return Math.floor((jstToday - pubUTC) / 86400000);
+  }
+
+  function resolveStatus(cfg) {
+    if (!cfg || !cfg.kind) return 'full';
+    if (cfg.kind === 'morning') {
+      var diff = daysAgoJST(cfg.date);
+      return diff < MORNING_FREE_DAYS ? 'full' : 'gated';
+    }
+    if (cfg.kind === 'extra') return 'truncate';
+    if (cfg.kind === 'special') return 'gated';
+    if (cfg.kind === 'report') {
+      if (cfg.isLatest && FLAGSHIP[cfg.ticker]) return 'full';
+      return 'gated';
+    }
+    return 'full';
+  }
+
+  function hasSession() {
+    return document.cookie.split(';').some(function (c) { return /^\s*atlas_session=/.test(c); });
+  }
+
+  function getDebugOverride() {
+    var m = location.search.match(/[?&]atlas-debug=(pro|free)/);
+    return m ? m[1] : null;
+  }
+
+  function checkPro() {
+    return new Promise(function (resolve) {
+      var dbg = getDebugOverride();
+      if (dbg === 'pro') return resolve(true);
+      if (dbg === 'free') return resolve(false);
+      if (!hasSession()) return resolve(false);
+      var ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+      if (ctrl) setTimeout(function () { try { ctrl.abort(); } catch(e){} }, 3000);
+      fetch('/api/me', { credentials: 'include', signal: ctrl ? ctrl.signal : undefined })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+          if (!data || !data.user) return resolve(false);
+          var exp = data.user.plan_expires_at;
+          if (!exp) return resolve(false);
+          resolve(new Date(exp) > new Date());
+        })
+        .catch(function () { resolve(false); });
+    });
+  }
+
+  // === UI helpers ===
+  var BASE_CSS =
+    '.atlas-paywall-card{background:linear-gradient(135deg,#1A2540 0%,#0F1829 100%);border:1px solid rgba(184,145,42,.3);border-radius:12px;padding:36px 32px;margin:32px auto;max-width:600px;text-align:center;font-family:"Noto Sans JP",sans-serif;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.35)}' +
+    '.atlas-paywall-card .apw-kicker{color:#D4A843;font-size:11px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px;font-weight:700}' +
+    '.atlas-paywall-card .apw-ttl{font-family:"Shippori Mincho B1",serif;font-size:22px;font-weight:700;line-height:1.45;margin-bottom:14px;color:#fff}' +
+    '.atlas-paywall-card .apw-desc{font-size:13px;line-height:1.85;color:rgba(255,255,255,.75);margin-bottom:24px}' +
+    '.atlas-paywall-card .apw-price{display:inline-block;background:rgba(184,145,42,.1);border:1px solid rgba(184,145,42,.35);border-radius:8px;padding:10px 18px;margin-bottom:20px;color:#D4A843;font-size:13px;font-weight:600;letter-spacing:.03em}' +
+    '.atlas-paywall-card .apw-cta{display:inline-block;background:#B8912A;color:#0F1829;text-decoration:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:14px;letter-spacing:.04em;transition:background .15s}' +
+    '.atlas-paywall-card .apw-cta:hover{background:#D4A843}' +
+    '.atlas-paywall-card .apw-alt{display:block;margin-top:14px;color:rgba(255,255,255,.45);font-size:11px;text-decoration:none}' +
+    '.atlas-paywall-card .apw-alt:hover{color:#D4A843}' +
+    '.atlas-paywall-fade{position:relative;height:160px;margin-top:-160px;pointer-events:none;background:linear-gradient(to bottom,transparent 0%,rgba(13,17,23,.6) 55%,rgba(13,17,23,.98) 100%)}' +
+    '.atlas-paywall-gated-hide{display:none!important}' +
+    '.atlas-paywall-preview-wrap{position:relative;max-height:320px;overflow:hidden}' +
+    '.atlas-paywall-preview-wrap::after{content:"";position:absolute;bottom:0;left:0;right:0;height:140px;background:linear-gradient(to bottom,transparent 0%,rgba(13,17,23,.6) 50%,rgba(13,17,23,.98) 100%);pointer-events:none}' +
+    'html[data-theme="light"] .atlas-paywall-card{background:linear-gradient(135deg,#FDFCFA 0%,#F5F2EC 100%);color:#1A2540;border-color:rgba(26,37,64,.15)}' +
+    'html[data-theme="light"] .atlas-paywall-card .apw-ttl{color:#1A2540}' +
+    'html[data-theme="light"] .atlas-paywall-card .apw-desc{color:#4A5568}' +
+    'html[data-theme="light"] .atlas-paywall-card .apw-price{background:rgba(184,145,42,.08);color:#8a6c1f;border-color:rgba(184,145,42,.25)}' +
+    'html[data-theme="light"] .atlas-paywall-fade{background:linear-gradient(to bottom,transparent 0%,rgba(245,242,236,.6) 55%,rgba(245,242,236,.98) 100%)}' +
+    'html[data-theme="light"] .atlas-paywall-preview-wrap::after{background:linear-gradient(to bottom,transparent 0%,rgba(245,242,236,.6) 50%,rgba(245,242,236,.98) 100%)}';
+
+  function ensureCss() {
+    if (document.getElementById('atlas-paywall-css')) return;
+    var s = document.createElement('style');
+    s.id = 'atlas-paywall-css';
+    s.textContent = BASE_CSS;
+    document.head.appendChild(s);
+  }
+
+  function buildCard(opts) {
+    var url = '/login?redirect=' + encodeURIComponent(location.pathname + location.search);
+    var div = document.createElement('div');
+    div.className = 'atlas-paywall-card';
+    div.setAttribute('data-atlas-paywall', opts.kind);
+    div.innerHTML =
+      '<div class="apw-kicker">' + (opts.kicker || 'Atlas 会員限定') + '</div>' +
+      '<div class="apw-ttl">' + opts.title + '</div>' +
+      '<div class="apw-desc">' + opts.desc + '</div>' +
+      '<div class="apw-price">月額 ¥980（税込）・いつでも解約可能</div><br>' +
+      '<a class="apw-cta" href="' + url + '">会員登録して続きを読む</a>' +
+      '<a class="apw-alt" href="/login?redirect=' + encodeURIComponent(location.pathname + location.search) + '">すでに会員の方はログイン →</a>';
+    return div;
+  }
+
+  function findArticleBody() {
+    var selectors = [
+      'main.main',
+      'main.atlas-article-body',
+      'article',
+      'main',
+      '.container',
+      'body'
+    ];
+    for (var i = 0; i < selectors.length; i++) {
+      var el = document.querySelector(selectors[i]);
+      if (el) return el;
+    }
+    return document.body;
+  }
+
+  // Truncate body to N fraction of total text, insert paywall card.
+  function applyTruncate(cfg) {
+    ensureCss();
+    var body = findArticleBody();
+    // Find block-level content containers (direct children + deep)
+    // We walk through direct children and compute cumulative text length.
+    var children = Array.prototype.slice.call(body.children);
+    var totalLen = body.textContent.replace(/\s+/g, '').length;
+    if (!totalLen) return;
+    var target = Math.floor(totalLen * EXTRA_FREE_FRACTION);
+    var cum = 0, cutIdx = -1;
+    for (var i = 0; i < children.length; i++) {
+      var el = children[i];
+      // Skip header/nav/footer/script/style
+      var tag = el.tagName;
+      if (tag === 'HEADER' || tag === 'NAV' || tag === 'FOOTER' || tag === 'SCRIPT' || tag === 'STYLE') continue;
+      if (el.classList && (el.classList.contains('atlas-nav') || el.classList.contains('site-header') || el.id === 'tocNav')) continue;
+      var l = el.textContent.replace(/\s+/g, '').length;
+      if (cum + l >= target && cum > 0) { cutIdx = i; break; }
+      cum += l;
+    }
+    if (cutIdx < 0) return; // content too short to truncate meaningfully
+    var card = buildCard({
+      kind: 'extra',
+      kicker: 'Atlas 会員限定 — 号外',
+      title: 'この先は Atlas 会員限定です。',
+      desc: '号外記事の続き（残り約 ' + Math.round((1 - EXTRA_FREE_FRACTION) * 100) + '%）は有料会員向けコンテンツです。<br>市場の重要イベントを深掘りするAtlas独自の分析を、ぜひお楽しみください。'
+    });
+    // Add fade overlay before hiding rest
+    var fade = document.createElement('div');
+    fade.className = 'atlas-paywall-fade';
+    var cutElement = children[cutIdx];
+    cutElement.parentNode.insertBefore(fade, cutElement);
+    cutElement.parentNode.insertBefore(card, cutElement);
+    // Hide remaining children
+    for (var j = cutIdx; j < children.length; j++) {
+      var c = children[j];
+      var ctag = c.tagName;
+      if (ctag === 'FOOTER' || ctag === 'SCRIPT' || ctag === 'STYLE') continue;
+      if (c.classList && (c.classList.contains('atlas-related-morning') || c.classList.contains('atlas-nav'))) continue;
+      c.classList.add('atlas-paywall-gated-hide');
+    }
+  }
+
+  // Full gate: show minimal preview (hero/intro) + paywall card covering rest.
+  function applyGate(cfg) {
+    ensureCss();
+    var body = findArticleBody();
+    // Preserve first 1-2 obvious "intro" elements (header + first section/paragraph)
+    // Hide everything else in the main content area.
+    var children = Array.prototype.slice.call(body.children);
+    var kept = 0, maxKeep = 2;
+    var insertAt = null;
+    for (var i = 0; i < children.length; i++) {
+      var el = children[i];
+      var tag = el.tagName;
+      if (tag === 'HEADER' || tag === 'NAV' || tag === 'FOOTER' || tag === 'SCRIPT' || tag === 'STYLE') continue;
+      if (el.classList && (el.classList.contains('atlas-nav') || el.classList.contains('site-header'))) continue;
+      if (kept < maxKeep) { kept++; continue; }
+      // This is where we insert the paywall, and hide from here
+      insertAt = el;
+      break;
+    }
+    var titles = {
+      morning: { kicker: 'Atlas 会員限定 — 過去の朝刊', title: 'この朝刊は Atlas 会員限定です。', desc: '当日・前日の朝刊は無料でご覧いただけますが、過去のアーカイブをお読みいただくには会員登録が必要です。<br>米国市場の動きを毎朝定点観測し、意思決定の土台に。' },
+      special: { kicker: 'Atlas 会員限定 — 特集', title: 'この特集記事は Atlas 会員限定です。', desc: '財務・戦略・マクロ経済の観点から編集部が深掘りした長編分析記事です。<br>会員登録で、すべての特集をお楽しみいただけます。' },
+      report: { kicker: 'Atlas 会員限定 — 決算分析', title: 'このレポートは Atlas 会員限定です。', desc: '主要7銘柄（NVDA/GOOGL/TSLA/MSFT/META/AMZN/AAPL）の直近四半期は無料でご覧いただけますが、<br>過去四半期や他の銘柄レポートをお読みいただくには会員登録が必要です。' }
+    };
+    var info = titles[cfg.kind] || { kicker: 'Atlas 会員限定', title: 'この記事は Atlas 会員限定です。', desc: '続きをお読みいただくには会員登録が必要です。' };
+    var card = buildCard({ kind: cfg.kind, kicker: info.kicker, title: info.title, desc: info.desc });
+    if (insertAt) {
+      // Wrap kept preview in max-height wrapper for fade effect
+      // Simpler: just insert card before insertAt, and hide everything after
+      insertAt.parentNode.insertBefore(card, insertAt);
+      for (var k = 0; k < children.length; k++) {
+        var c = children[k];
+        if (c === card) continue;
+        var idx = Array.prototype.indexOf.call(c.parentNode.children, c);
+        var cardIdx = Array.prototype.indexOf.call(card.parentNode.children, card);
+        if (idx <= cardIdx) continue; // keep before card
+        var ctag = c.tagName;
+        if (ctag === 'FOOTER' || ctag === 'SCRIPT' || ctag === 'STYLE') continue;
+        if (c.classList && (c.classList.contains('atlas-related-morning') || c.classList.contains('atlas-nav'))) continue;
+        c.classList.add('atlas-paywall-gated-hide');
+      }
+    } else {
+      // No content to preview; just append card to body
+      body.appendChild(card);
+    }
+  }
+
+  function main() {
+    var cfg = readAccess();
+    var status = resolveStatus(cfg);
+    if (status === 'full') return;
+    checkPro().then(function (isPro) {
+      if (isPro) return;
+      if (status === 'truncate') applyTruncate(cfg);
+      else if (status === 'gated') applyGate(cfg);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', main, { once: true });
+  } else {
+    main();
+  }
+})();
+
+</script>
+<!-- /ATLAS-PAYWALL-SCRIPT -->
 </body>
 </html>
