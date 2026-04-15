@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script>window.ATLAS_FX = { rate: 158.45, date: '2026/4/14' };</script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
 <style>
 /* ==========================================
@@ -1671,6 +1672,17 @@ body {
 [data-theme="light"] .radio-player{background:linear-gradient(160deg,#F5F2EC 0%,#EAE6DA 100%);border-color:rgba(26,37,64,0.1);--rp-text:#1A2540;--rp-sub:rgba(26,37,64,0.55);--rp-track:rgba(26,37,64,0.15);--rp-thumb:#1A2540}
 [data-theme="light"] .radio-ctl-play{background:#1A2540;color:#F5F2EC}
 [data-theme="light"] .radio-speed-btn.active{background:rgba(26,37,64,0.12)}
+
+/* Currency Toggle */
+.currency-toggle{background:none;border:1px solid rgba(255,255,255,0.25);cursor:pointer;font-family:'Inter','Noto Sans JP',sans-serif;font-size:12px;font-weight:600;padding:3px 8px;border-radius:4px;line-height:1;letter-spacing:.3px;color:rgba(255,255,255,0.7);transition:all .15s;display:inline-flex;align-items:center;gap:2px;white-space:nowrap}
+.currency-toggle:hover{opacity:.85;border-color:rgba(184,145,42,0.6);color:var(--gold-lt,#D4A843)}
+.currency-toggle .cur-active{color:#D4A843;font-weight:800}
+.currency-toggle .cur-inactive{color:inherit;opacity:.55}
+.currency-toggle .cur-sep{opacity:.4;margin:0 1px;font-weight:400}
+.currency-toggle.jpy-mode{border-color:rgba(184,145,42,0.65);background:rgba(184,145,42,0.12)}
+.cur-val{transition:color .2s}
+.cur-val.jpy-mode{color:#D4A843;font-weight:700}
+[data-theme="light"] .cur-val.jpy-mode{color:#B8912A}
 </style>
 </head>
 <body>
@@ -1689,13 +1701,15 @@ body {
       <a href="https://atlas-financials.jp/reports/">決算分析</a>
       <a href="https://atlas-financials.jp/news/glossary/">用語辞典</a>
       <a href="https://atlas-financials.jp/reports/join.html" class="nav-cta">入会する</a>
-      <div class="lang-switch"><span class="lang-active">🇯🇵</span><a href="9-en.html">🇺🇸</a><a href="9-zh.html">🇭🇰</a><a href="9-ko.html">🇰🇷</a></div>
+      <div class="lang-switch"><span class="lang-active">🇯🇵</span><a href="15-en.html">🇺🇸</a><a href="15-zh.html">🇭🇰</a><a href="15-ko.html">🇰🇷</a></div>
       <button class="font-scale-btn" aria-label="文字サイズ切替" onclick="cycleFontScale()"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
+      <button class="currency-toggle" aria-label="通貨切替 USD/JPY" onclick="toggleCurrency()"><span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span></button>
       <button class="theme-toggle" id="themeToggle" aria-label="テーマ切替" onclick="toggleTheme()">🌙</button>
     </div>
     <div class="nav-mobile-actions">
-      <div class="lang-switch"><span class="lang-active">🇯🇵</span><a href="9-en.html">🇺🇸</a><a href="9-zh.html">🇭🇰</a><a href="9-ko.html">🇰🇷</a></div>
+      <div class="lang-switch"><span class="lang-active">🇯🇵</span><a href="15-en.html">🇺🇸</a><a href="15-zh.html">🇭🇰</a><a href="15-ko.html">🇰🇷</a></div>
       <button class="font-scale-btn" aria-label="文字サイズ切替" onclick="cycleFontScale()"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
+      <button class="currency-toggle" aria-label="通貨切替 USD/JPY" onclick="toggleCurrency()"><span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span></button>
       <button class="theme-toggle" id="themeToggleMobile" aria-label="テーマ切替" onclick="toggleTheme()">🌙</button>
       <button class="nav-hamburger" id="navHamburger" aria-label="メニュー">☰</button>
     </div>
@@ -1792,7 +1806,7 @@ body {
     <div class="card card-pad">
       <div class="summary-text">
         <p><span class="summary-num-label">1</span>米株は3つの追い風で急伸し、S&amp;P 500は6,967.38（+1.18%）、Nasdaq 100は10日連続高で2021年以来最長、ダウも+0.66%と主要3指数が揃って上昇。S&amp;Pは過去最高値まで視野に入れる水準まで戻した。</p>
-        <p><span class="summary-num-label">2</span>牽引したのは (i) パキスタン仲介による米イラン和平協議第2ラウンド観測、(ii) 3月PPIが+0.5%と予想の+1.1%を大きく下回りインフレ懸念後退、(iii) JPモルガン・シティグループ・J&amp;Jの決算ビート — の三つ。WTI原油はイラン戦争プレミアムが剥落し-7%で$92割れ。</p>
+        <p><span class="summary-num-label">2</span>牽引したのは (i) パキスタン仲介による米イラン和平協議第2ラウンド観測、(ii) 3月PPIが+0.5%と予想の+1.1%を大きく下回りインフレ懸念後退、(iii) JPモルガン・シティグループ・J&amp;Jの決算ビート — の三つ。WTI原油はイラン戦争プレミアムが剥落し-7%で<span class="no-currency">$92割れ</span>。</p>
         <p><span class="summary-num-label">3</span>一方で Wells Fargo は複数指標ミスで-5%、JPMは通年NII見通しを$104.5B→$103Bに下方修正するなど、銀行セクターのなかでも強弱が鮮明に分かれた。Alphabetは Citi が90日監視リスト入りさせるニュースで上値を抑えられた。</p>
       </div>
 
@@ -1864,7 +1878,7 @@ body {
       </div>
 
       <!-- Market Indicator Panels -->
-      <div class="market-panels">
+      <div class="market-panels no-currency">
         <div class="market-panel" data-chg="1.18">
           <span class="panel-name">S&amp;P 500</span>
           <span class="panel-val">6,967.38</span>
@@ -2020,11 +2034,11 @@ body {
       <span class="news-card-tag geopolitics" style="margin-bottom:10px;display:inline-block">GEOPOLITICS</span>
       <h2 class="top-story-title">S&amp;P 500、イラン戦争損失を完全回復 — 和平協議再開期待で過去最高値圏まで戻す</h2>
       <p class="top-story-body">
-        パキスタン仲介の米イラン和平協議第2ラウンド観測が広がり、S&amp;P 500は1.18%高の6,967.38で引け、約半月前のイラン戦争勃発前の水準を完全に回復した。Nasdaq 100は10日連続高を記録し、2021年以来最長のラリーに。WTI原油は-7%で$92割れと、戦争プレミアムがほぼ全て剥落。市場は過去最高値まで指呼の間にある。
+        パキスタン仲介の米イラン和平協議第2ラウンド観測が広がり、S&amp;P 500は1.18%高の6,967.38で引け、約半月前のイラン戦争勃発前の水準を完全に回復した。Nasdaq 100は10日連続高を記録し、2021年以来最長のラリーに。WTI原油は<span class="no-currency">-7%で$92割れ</span>と、戦争プレミアムがほぼ全て剥落。市場は過去最高値まで指呼の間にある。
       </p>
       <div class="why-box positive">
         <span class="why-icon">💡</span>
-        <div><span class="why-label">なぜ重要か:</span> 戦争ショックで失った時価総額（S&amp;P基準約$3兆）が3週間足らずで全戻し。ボラティリティ・金利・原油の「3セット反転」が同時発生したのは過去1年で最もクリーンな追い風局面。</div>
+        <div><span class="why-label">なぜ重要か:</span> 戦争ショックで失った時価総額（<span class="no-currency">S&amp;P基準約$3兆</span>）が3週間足らずで全戻し。ボラティリティ・金利・原油の「3セット反転」が同時発生したのは過去1年で最もクリーンな追い風局面。</div>
       </div>
       <div class="top-story-footer">
         <span class="top-story-source">Bloomberg / CNBC</span>
@@ -2988,6 +3002,109 @@ function cycleFontScale(){
         }
       }
     }
+  });
+})();
+</script>
+<script>
+/* Atlas Currency Toggle (USD ⇄ JPY) — from ~/atlas-shared/currency-toggle/snippet.js */
+(function(){
+  if(window.__ATLAS_CURRENCY_LOADED) return;
+  window.__ATLAS_CURRENCY_LOADED = true;
+  var FX = window.ATLAS_FX || { rate: 158.45, date: '2026/4/14' };
+  var currencyMode = localStorage.getItem('atlas-currency') || 'USD';
+  function fmtJPY(usd, unit){
+    var usd_b = unit==='T'?usd*1000:unit==='B'?usd:unit==='M'?usd/1000:unit==='K'?usd/1e6:null;
+    if(usd_b !== null){
+      var jpy_b = usd_b * FX.rate;
+      if(jpy_b >= 1000) return '¥' + (jpy_b/1000).toFixed(2) + '兆';
+      if(jpy_b >= 1) return '¥' + (jpy_b*10).toFixed(0) + '億';
+      return '¥' + (jpy_b*1000).toFixed(0) + '百万';
+    }
+    var jpy = usd * FX.rate;
+    if(jpy >= 10000) return '¥' + (jpy/10000).toFixed(2) + '万';
+    return '¥' + Math.round(jpy).toLocaleString();
+  }
+  var WRAP_DONE = false;
+  function wrapCurrencyValues(){
+    if(WRAP_DONE) return; WRAP_DONE = true;
+    var re = /\$(\d+(?:,\d{3})*(?:\.\d+)?)\s*([TBMK])?(?![\w%])/g;
+    var skipTags = {SCRIPT:1,STYLE:1,NOSCRIPT:1,BUTTON:1,A:1};
+    var skipClasses = ['portal-link','currency-toggle','theme-toggle','font-scale-btn','lang-switch','toc-toggle','toc-list','tradingview-widget-container','no-currency','nav-hamburger','overview-toggle-btn','market-panels'];
+    function shouldSkip(node){
+      var p = node.parentNode;
+      while(p && p !== document.body){
+        if(skipTags[p.tagName]) return true;
+        if(p.classList){
+          for(var i=0;i<skipClasses.length;i++) if(p.classList.contains(skipClasses[i])) return true;
+        }
+        p = p.parentNode;
+      }
+      return false;
+    }
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    var nodes = [], n;
+    while((n = walker.nextNode())){
+      if(n.nodeValue && n.nodeValue.indexOf('$') >= 0 && !shouldSkip(n)) nodes.push(n);
+    }
+    nodes.forEach(function(node){
+      var text = node.nodeValue;
+      if(!re.test(text)) return;
+      re.lastIndex = 0;
+      var frag = document.createDocumentFragment();
+      var lastIdx = 0, m;
+      while((m = re.exec(text)) !== null){
+        if(m.index > lastIdx) frag.appendChild(document.createTextNode(text.slice(lastIdx, m.index)));
+        var num = parseFloat(m[1].replace(/,/g,''));
+        var unit = m[2] || '';
+        var span = document.createElement('span');
+        span.className = 'cur-val';
+        span.setAttribute('data-usd', num);
+        span.setAttribute('data-unit', unit);
+        span.setAttribute('data-orig', m[0]);
+        span.textContent = m[0];
+        frag.appendChild(span);
+        lastIdx = m.index + m[0].length;
+      }
+      if(lastIdx < text.length) frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+  function applyCurrency(mode){
+    document.querySelectorAll('.cur-val').forEach(function(el){
+      if(mode === 'JPY'){
+        var usd = parseFloat(el.getAttribute('data-usd'));
+        var unit = el.getAttribute('data-unit') || '';
+        el.textContent = fmtJPY(usd, unit);
+        el.classList.add('jpy-mode');
+      } else {
+        el.textContent = el.getAttribute('data-orig');
+        el.classList.remove('jpy-mode');
+      }
+    });
+    document.querySelectorAll('.currency-toggle').forEach(function(btn){
+      var act = btn.querySelector('.cur-active');
+      var inact = btn.querySelector('.cur-inactive');
+      if(!act || !inact) return;
+      if(mode === 'JPY'){
+        btn.classList.add('jpy-mode');
+        act.textContent = '¥'; inact.textContent = '$';
+        btn.title = '円表示中（レート: ' + FX.rate + '円/$、' + FX.date + '）';
+      } else {
+        btn.classList.remove('jpy-mode');
+        act.textContent = '$'; inact.textContent = '¥';
+        btn.title = 'USD/JPY 切替（レート: ' + FX.rate + '円/$、' + FX.date + '）';
+      }
+    });
+  }
+  window.toggleCurrency = function(){
+    wrapCurrencyValues();
+    currencyMode = currencyMode === 'USD' ? 'JPY' : 'USD';
+    localStorage.setItem('atlas-currency', currencyMode);
+    applyCurrency(currencyMode);
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    if(currencyMode === 'JPY'){ wrapCurrencyValues(); applyCurrency('JPY'); }
+    else applyCurrency('USD');
   });
 })();
 </script>
