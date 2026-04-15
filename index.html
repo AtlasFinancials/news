@@ -217,7 +217,8 @@ footer{background:var(--navy);padding:28px 20px;text-align:center}
       <a href="https://atlas-financials.jp/reports/" data-path="/reports/">決算分析</a>
       <a href="https://atlas-financials.jp/news/glossary/" data-path="/news/glossary/">経済辞書</a>
       <a href="https://atlas-financials.jp/reports/faq.html" data-path="/reports/faq.html">FAQ</a>
-      <a href="https://atlas-financials.jp/login" class="atlas-nav-cta" data-atlas-login-cta>ログイン</a>
+      <a href="https://atlas-financials.jp/login" class="atlas-nav-login-link" data-atlas-login-cta>ログイン</a>
+      <a href="https://atlas-financials.jp/signup" class="atlas-nav-cta" data-atlas-signup-cta>無料ではじめる</a>
       <div class="atlas-nav-user" data-atlas-nav-user style="display:none">
         <button class="atlas-nav-avatar-btn" type="button" aria-expanded="false" aria-haspopup="menu" data-atlas-nav-user-btn>
           <span class="atlas-nav-avatar" data-atlas-nav-avatar>?</span>
@@ -254,6 +255,7 @@ footer{background:var(--navy);padding:28px 20px;text-align:center}
     <a href="https://atlas-financials.jp/reports/faq.html">FAQ</a>
     <a href="https://atlas-financials.jp/account" data-atlas-drawer-account style="display:none">マイページ</a>
     <a href="https://atlas-financials.jp/login" data-atlas-drawer-login>ログイン</a>
+    <a href="https://atlas-financials.jp/signup" data-atlas-drawer-signup style="background:rgba(184,145,42,.14)">無料ではじめる</a>
     <button type="button" data-atlas-drawer-logout style="display:none;background:none;border:none;color:#D4A843;padding:14px 24px;text-align:left;font-family:inherit;font-size:14px;cursor:pointer;width:100%">ログアウト</button>
   </div>
 </header>
@@ -270,6 +272,8 @@ footer{background:var(--navy);padding:28px 20px;text-align:center}
 .atlas-nav-links > a.active{color:#fff;border-bottom-color:#D4A843}
 .atlas-nav-links > a.atlas-nav-cta{background:#B8912A;color:#0F1829;padding:7px 14px;border-radius:6px;font-weight:600;border:none}
 .atlas-nav-links > a.atlas-nav-cta:hover{background:#D4A843;border-bottom:none;color:#0F1829}
+.atlas-nav-links > a.atlas-nav-login-link{color:#D4A843;font-weight:500}
+.atlas-nav-links > a.atlas-nav-login-link:hover{color:#fff;border-bottom-color:rgba(212,168,67,.5)}
 /* User widget */
 .atlas-nav-user{position:relative;display:flex}
 .atlas-nav-avatar-btn{display:flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(212,168,67,.2);border-radius:24px;padding:4px 12px 4px 4px;cursor:pointer;font-family:inherit;transition:border-color .15s,background .15s}
@@ -369,24 +373,30 @@ html[data-theme="light"] .atlas-nav-username{color:#1A2540}
 
   var user = readUserHint();
   var loginCta = nav.querySelector('[data-atlas-login-cta]');
+  var signupCta = nav.querySelector('[data-atlas-signup-cta]');
   var userWidget = nav.querySelector('[data-atlas-nav-user]');
   var drawerUserBox = nav.querySelector('[data-atlas-nav-drawer-user]');
   var drawerLogin = nav.querySelector('[data-atlas-drawer-login]');
+  var drawerSignup = nav.querySelector('[data-atlas-drawer-signup]');
   var drawerAccount = nav.querySelector('[data-atlas-drawer-account]');
   var drawerLogout = nav.querySelector('[data-atlas-drawer-logout]');
 
   function applyUser(u){
     if(!u){
       if(loginCta) loginCta.style.display = '';
+      if(signupCta) signupCta.style.display = '';
       if(userWidget) userWidget.style.display = 'none';
       if(drawerUserBox) drawerUserBox.style.display = 'none';
       if(drawerLogin) drawerLogin.style.display = '';
+      if(drawerSignup) drawerSignup.style.display = '';
       if(drawerAccount) drawerAccount.style.display = 'none';
       if(drawerLogout) drawerLogout.style.display = 'none';
       return;
     }
     // Desktop widget
     if(loginCta) loginCta.style.display = 'none';
+    if(signupCta) signupCta.style.display = 'none';
+    if(drawerSignup) drawerSignup.style.display = 'none';
     if(userWidget) userWidget.style.display = 'flex';
     var nameEl = nav.querySelector('[data-atlas-nav-username]');
     var avEl = nav.querySelector('[data-atlas-nav-avatar]');
