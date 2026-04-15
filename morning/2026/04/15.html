@@ -1693,7 +1693,7 @@ body {
     <div class="card card-pad">
       <div class="summary-text">
         <p><span class="summary-num-label">1</span>米株は3つの追い風で急伸し、S&amp;P 500は6,967.38（+1.18%）、Nasdaq 100は10日連続高で2021年以来最長、ダウも+0.66%と主要3指数が揃って上昇。S&amp;Pは過去最高値まで視野に入れる水準まで戻した。</p>
-        <p><span class="summary-num-label">2</span>牽引したのは (i) パキスタン仲介による米イラン和平協議第2ラウンド観測、(ii) 3月PPIが+0.5%と予想の+1.1%を大きく下回りインフレ懸念後退、(iii) JPMチェース・シティグループ・J&amp;Jの決算ビート — の三つ。WTI原油はイラン戦争プレミアムが剥落し-7%で$92割れ。</p>
+        <p><span class="summary-num-label">2</span>牽引したのは (i) パキスタン仲介による米イラン和平協議第2ラウンド観測、(ii) 3月PPIが+0.5%と予想の+1.1%を大きく下回りインフレ懸念後退、(iii) JPモルガン・シティグループ・J&amp;Jの決算ビート — の三つ。WTI原油はイラン戦争プレミアムが剥落し-7%で$92割れ。</p>
         <p><span class="summary-num-label">3</span>一方で Wells Fargo は複数指標ミスで-5%、JPMは通年NII見通しを$104.5B→$103Bに下方修正するなど、銀行セクターのなかでも強弱が鮮明に分かれた。Alphabetは Citi が90日監視リスト入りさせるニュースで上値を抑えられた。</p>
       </div>
 
@@ -1839,7 +1839,7 @@ body {
         </div>
         <div class="risk-meter-info">
           <div class="risk-meter-title">8指標の総合評価 — 安全圏（0〜30）</div>
-          <div class="risk-meter-prev">基準日: 4月14日終値時点 ｜ 前日比: 37 → 30（-7pt ↓ 改善）</div>
+          <div class="risk-meter-prev">基準日: 4月14日終値時点 ｜ 前号比（4/9→4/14）: 37 → 30（-7pt ↓ 改善）</div>
         </div>
       </div>
 
@@ -1883,7 +1883,7 @@ body {
           <div class="risk-bar-score">20</div>
         </div>
         <div class="risk-bar-row">
-          <div class="risk-bar-label">SPXA50R（ブレッス）</div>
+          <div class="risk-bar-label">SPXA50R（ブレッドス）</div>
           <div class="risk-bar-track"><div class="risk-bar-fill" data-score="30"></div></div>
           <div class="risk-bar-val">72%</div>
           <div class="risk-bar-score">30</div>
@@ -1949,7 +1949,7 @@ body {
           <span class="news-card-tag earnings">EARNINGS</span>
           <span class="news-card-source">CNBC / Bloomberg / WSJ</span>
         </div>
-        <div class="news-card-title">JPMチェース、Q1純利益+13%で$16.5B — FICC過去最高も通年NII見通しを下方修正</div>
+        <div class="news-card-title">JPモルガン、Q1純利益+13%で$16.5B — FICC過去最高も通年NII見通しを下方修正</div>
         <div class="news-card-excerpt">EPS $5.94（予想$5.45）、売上$50.54B(+10%)、FICC収入+21%の$7.08B、投資銀行手数料+28%の$2.88B。ただし通年NIIガイダンスを$104.5B→$103Bに下方修正し、市場は好悪まだら。ダイモンCEOは関税・貿易不確実性を警戒トーンで言及。</div>
         <div class="why-box default">
           <span class="why-icon">💡</span>
@@ -2884,7 +2884,7 @@ function cycleFontScale(){
           ticks: {
             color: tickColor,
             font: { size: 10, family: 'Inter' },
-            callback: function(v){ return '+' + v.toFixed(1) + '%'; }
+            callback: function(v){ return (v>=0?'+':'') + v.toFixed(1) + '%'; }
           }
         }
       }
