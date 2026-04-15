@@ -1,0 +1,91 @@
+{
+  "date": "2026-04-16",
+  "total_ms": 865152,
+  "total_label": "14:25",
+  "chapters": [
+    {
+      "id": "opening",
+      "title": "オープニング",
+      "start_ms": 0,
+      "end_ms": 38160,
+      "start_label": "0:00"
+    },
+    {
+      "id": "market_summary",
+      "title": "マーケット・サマリー",
+      "start_ms": 38160,
+      "end_ms": 127704,
+      "start_label": "0:38"
+    },
+    {
+      "id": "news_sp7000",
+      "title": "ヘッドライン1　S&P500、史上初の7,000突破",
+      "start_ms": 127704,
+      "end_ms": 191640,
+      "start_label": "2:07"
+    },
+    {
+      "id": "news_ms",
+      "title": "ヘッドライン2　モルガン・スタンレー、四半期売上初の200億ドル突破",
+      "start_ms": 191640,
+      "end_ms": 252912,
+      "start_label": "3:11"
+    },
+    {
+      "id": "news_bac",
+      "title": "ヘッドライン3　バンク・オブ・アメリカ、純利益86億ドルで約20年ぶり高水準",
+      "start_ms": 252912,
+      "end_ms": 310152,
+      "start_label": "4:12"
+    },
+    {
+      "id": "news_tesla",
+      "title": "ヘッドライン4　テスラ、AI5チップ・タペアウト完了",
+      "start_ms": 310152,
+      "end_ms": 369000,
+      "start_label": "5:10"
+    },
+    {
+      "id": "news_sec",
+      "title": "ヘッドライン5　SEC、デイトレード2万5000ドル規則を撤廃",
+      "start_ms": 369000,
+      "end_ms": 419448,
+      "start_label": "6:09"
+    },
+    {
+      "id": "news_asml",
+      "title": "ヘッドライン6　ASML、通期ガイダンスを上方修正",
+      "start_ms": 419448,
+      "end_ms": 490200,
+      "start_label": "6:59"
+    },
+    {
+      "id": "risk_meter",
+      "title": "Atlasリスクメーター　沈黙の危機シグナル点灯",
+      "start_ms": 490200,
+      "end_ms": 586008,
+      "start_label": "8:10"
+    },
+    {
+      "id": "keyword",
+      "title": "今日のキーワード　沈黙の危機",
+      "start_ms": 586008,
+      "end_ms": 662856,
+      "start_label": "9:46"
+    },
+    {
+      "id": "editorial",
+      "title": "編集部の目線　7,000突破の舞台裏",
+      "start_ms": 662856,
+      "end_ms": 810912,
+      "start_label": "11:02"
+    },
+    {
+      "id": "closing",
+      "title": "本日の予定とクロージング",
+      "start_ms": 810912,
+      "end_ms": 865152,
+      "start_label": "13:30"
+    }
+  ]
+}
