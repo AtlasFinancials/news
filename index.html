@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Atlas Daily — Archive</title>
-<meta name="description" content="Atlas Daily — 米国株マーケットの朝刊・号外・特集アーカイブ。">
+<meta name="description" content="Atlas Daily — 米国株マーケットのニュース・号外・特集アーカイブ。">
 <meta property="og:image" content="https://atlas-financials.jp/news/assets/og-image.png">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -511,7 +511,7 @@ html[data-theme="light"] .atlas-nav-username{color:#1A2540}
       </div>
       <div class="filter-type" id="filterType" role="tablist">
         <button class="type-btn active" data-type="all" role="tab">すべて</button>
-        <button class="type-btn" data-type="morning" role="tab">朝刊</button>
+        <button class="type-btn" data-type="morning" role="tab">ニュース</button>
         <button class="type-btn" data-type="extra" role="tab">号外</button>
         <button class="type-btn" data-type="special" role="tab">特集</button>
       </div>
@@ -523,8 +523,9 @@ html[data-theme="light"] .atlas-nav-username{color:#1A2540}
     <!-- Archive raw data: deploy_times.py が生成する -->
     <!-- Archive -->
         <div class="archive-list" id="archiveList">
+      <a class="article-item" href="morning/2026/04/16.html" data-type="morning" data-date="2026-04-16" data-month="2026/04" data-title="Morgan Stanley・BAC Q1決算ダブルビートで銀行株急伸、Tesla AI5チップ・タペアウト発表で+8%、Fed Beige Bookはイラン戦"></a>
+      <a class="article-item" href="special/okinawa-chika-2026.html" data-type="special" data-date="2026-04-16" data-month="2026/04" data-title="沖縄不動産地価分析 2026"></a>
       <a class="article-item" href="morning/2026/04/15.html" data-type="morning" data-date="2026-04-15" data-month="2026/04" data-title="米イラン和平協議再開期待＋3月PPI鈍化＋銀行決算ビートで3つの追い風同時発火。Nasdaq100は10連騰で2021年以来最長。"></a>
-      <a class="article-item" href="special/okinawa-chika-2026.html" data-type="special" data-date="2026-04-15" data-month="2026/04" data-title="沖縄不動産地価分析 2026"></a>
       <a class="article-item" href="morning/2026/04/14.html" data-type="morning" data-date="2026-04-14" data-month="2026/04" data-title="Oracle +12.74%でソフトウェア反騰 — 原油100ドル超、逆イールド解消で4.32%"></a>
       <a class="article-item" href="extra/2026/04/14-neocloud-2026.html" data-type="extra" data-date="2026-04-14" data-month="2026/04" data-title="ネオクラウド13社徹底比較 — Oracle推奨の根拠"></a>
       <a class="article-item" href="morning/2026/04/13.html" data-type="morning" data-date="2026-04-13" data-month="2026/04" data-title="消費者信頼感が史上最低47.6、CPI+0.9%のエネルギーショック — イスラマバード和平交渉は決裂"></a>
@@ -618,7 +619,7 @@ function fmtJaDateHero(dateStr){
 }
 
 function typeLabel(t){
-  return t==='morning'?'朝刊':t==='extra'?'号外':'特集';
+  return t==='morning'?'ニュース':t==='extra'?'号外':'特集';
 }
 
 /* =============================================

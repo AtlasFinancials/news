@@ -2,11 +2,11 @@
 """
 deploy_times.py
 ===============
-U&I株倶楽部新聞（朝刊・号外）をGitHub Pagesにデプロイし、
+U&I株倶楽部新聞（ニュース・号外）をGitHub Pagesにデプロイし、
 LINE U&I株倶楽部グループに自動通知するスクリプト。
 
 使い方:
-  # 朝刊
+  # ニュース
   python3 deploy_times.py morning <HTMLパス> <YYYY-MM-DD> "<見出し>"
 
   # 号外
@@ -102,11 +102,11 @@ def extract_headline(html_path):
         m = re.search(r'name="extra-headline"\s+content="([^"]+)"', content)
         if m:
             return m.group(1).strip()[:80]
-        # 1. summary-topic（朝刊マーケットサマリーの見出し）
+        # 1. summary-topic（ニュースマーケットサマリーの見出し）
         m = re.search(r'class="summary-topic[^"]*">(.*?)</span>', content)
         if m:
             return re.sub(r'<[^>]+>', '', m.group(1)).strip()
-        # 2. top-story-title（朝刊TOP STORY）
+        # 2. top-story-title（ニュースTOP STORY）
         m = re.search(r'class="top-story-title">(.*?)</h2>', content, re.DOTALL)
         if m:
             return re.sub(r'<[^>]+>', '', m.group(1)).strip()[:80]
@@ -140,7 +140,7 @@ def update_morning_latest(date_obj):
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="refresh" content="0;url={rel}">
-<title>U&amp;I株倶楽部新聞 朝刊 - 最新号</title>
+<title>U&amp;I株倶楽部新聞 ニュース - 最新号</title>
 </head>
 <body>
 <p>最新号にリダイレクトしています... <a href="{rel}">こちらをクリック</a></p>
@@ -319,7 +319,7 @@ def main():
     weekday = WEEKDAYS[date_obj.weekday()]
 
     if article_type == "morning":
-        type_label = "朝刊"
+        type_label = "ニュース"
         type_icon = "📰"
     elif article_type == "extra":
         type_label = "号外"
