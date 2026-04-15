@@ -1633,6 +1633,44 @@ body {
   .ppi-stat-grid{grid-template-columns:1fr;gap:8px}
   .ppi-chart-container{height:220px}
 }
+
+/* ==========================================
+   Radio Player — Apple Music inspired
+   ========================================== */
+.radio-player{--rp-bg:rgba(26,37,64,0.92);--rp-border:rgba(255,255,255,0.08);--rp-text:#F5F2EC;--rp-sub:rgba(245,242,236,0.55);--rp-accent:#D4A843;--rp-track:rgba(245,242,236,0.18);--rp-thumb:#F5F2EC;margin:22px auto 0;width:420px;max-width:92vw;padding:22px 22px 18px;background:linear-gradient(160deg,rgba(40,54,88,0.95) 0%,rgba(20,28,48,0.95) 100%);border:1px solid var(--rp-border);border-radius:18px;box-shadow:0 20px 50px -20px rgba(0,0,0,.6),0 0 0 1px rgba(184,145,42,0.08) inset;backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);text-align:left;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Noto Sans JP',sans-serif}
+.radio-top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.radio-artwork{width:64px;height:64px;flex-shrink:0;border-radius:10px;background:linear-gradient(135deg,#1A2540 0%,#3a4a7a 50%,#D4A843 100%);position:relative;overflow:hidden;box-shadow:0 8px 20px -6px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center}
+.radio-artwork::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(245,242,236,0.15) 0%,transparent 60%)}
+.radio-artwork-logo{font-family:'Shippori Mincho B1',serif;font-size:28px;font-weight:800;color:#F5F2EC;letter-spacing:-0.02em;position:relative;z-index:1;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.radio-meta{flex:1;min-width:0}
+.radio-title-main{font-size:15px;font-weight:700;color:var(--rp-text);line-height:1.3;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.radio-subtitle{font-size:12px;color:var(--rp-sub);font-weight:500;letter-spacing:.01em}
+.radio-chapter-now{font-size:11px;color:var(--rp-accent);font-weight:600;letter-spacing:.02em;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.radio-scrubber{margin:4px 0 8px}
+.radio-range{-webkit-appearance:none;appearance:none;width:100%;height:3px;background:var(--rp-track);border-radius:2px;cursor:pointer;outline:none;margin:0;transition:height .15s}
+.radio-range:hover{height:5px}
+.radio-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:12px;height:12px;border-radius:50%;background:var(--rp-thumb);box-shadow:0 1px 3px rgba(0,0,0,.4);cursor:pointer}
+.radio-range::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--rp-thumb);border:none;box-shadow:0 1px 3px rgba(0,0,0,.4);cursor:pointer}
+.radio-time-row{display:flex;justify-content:space-between;font-size:10.5px;font-weight:500;color:var(--rp-sub);letter-spacing:.02em;font-variant-numeric:tabular-nums;margin-top:4px}
+.radio-controls{display:flex;align-items:center;justify-content:center;gap:18px;margin:10px 0 8px}
+.radio-ctl{background:transparent;border:none;cursor:pointer;color:var(--rp-text);padding:6px;display:inline-flex;align-items:center;justify-content:center;transition:opacity .15s,transform .1s}
+.radio-ctl:hover{opacity:.75}
+.radio-ctl:active{transform:scale(0.92)}
+.radio-ctl svg{display:block}
+.radio-ctl-skip{position:relative}
+.radio-ctl-skip span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;font-weight:700;color:var(--rp-text);pointer-events:none}
+.radio-ctl-play{width:52px;height:52px;border-radius:50%;background:var(--rp-text);color:#1A2540;box-shadow:0 4px 14px -4px rgba(245,242,236,.4)}
+.radio-ctl-play:hover{opacity:1;transform:scale(1.04)}
+.radio-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;padding-top:10px;border-top:1px solid var(--rp-border)}
+.radio-speed-row{display:flex;align-items:center;gap:4px}
+.radio-speed-row .label{font-size:10px;color:var(--rp-sub);margin-right:4px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.radio-speed-btn{font-family:inherit;font-size:11px;font-weight:600;padding:3px 9px;border-radius:14px;border:none;background:transparent;color:var(--rp-sub);cursor:pointer;transition:all .15s;font-variant-numeric:tabular-nums}
+.radio-speed-btn:hover{color:var(--rp-text)}
+.radio-speed-btn.active{background:rgba(245,242,236,0.15);color:var(--rp-text)}
+@media(max-width:480px){.radio-player{width:100%;padding:18px 16px 14px;border-radius:14px}.radio-artwork{width:56px;height:56px}.radio-artwork-logo{font-size:24px}.radio-title-main{font-size:14px}.radio-controls{gap:14px}.radio-ctl-play{width:48px;height:48px}}
+[data-theme="light"] .radio-player{background:linear-gradient(160deg,#F5F2EC 0%,#EAE6DA 100%);border-color:rgba(26,37,64,0.1);--rp-text:#1A2540;--rp-sub:rgba(26,37,64,0.55);--rp-track:rgba(26,37,64,0.15);--rp-thumb:#1A2540}
+[data-theme="light"] .radio-ctl-play{background:#1A2540;color:#F5F2EC}
+[data-theme="light"] .radio-speed-btn.active{background:rgba(26,37,64,0.12)}
 </style>
 </head>
 <body>
@@ -1677,7 +1715,68 @@ body {
     <h1 class="paper-title">Atlas Daily</h1>
   </div>
   <span class="paper-accent">The Morning Briefing</span>
+  <div class="radio-player" id="radioPlayer" data-chapters="15-chapters.json">
+    <audio preload="metadata" id="radioAudio">
+      <source src="15.mp3" type="audio/mpeg">
+    </audio>
+    <div class="radio-top">
+      <div class="radio-artwork"><span class="radio-artwork-logo">A</span></div>
+      <div class="radio-meta">
+        <div class="radio-title-main">Atlas Morning Brief</div>
+        <div class="radio-subtitle">2026年4月15日（水曜日）</div>
+        <div class="radio-chapter-now" id="radioChapterNow">読み込み中…</div>
+      </div>
+    </div>
+    <div class="radio-scrubber">
+      <input type="range" class="radio-range" id="radioSeek" min="0" max="100" step="0.1" value="0" aria-label="シーク">
+      <div class="radio-time-row"><span id="radioTimeCur">0:00</span><span id="radioTimeRem">-11:13</span></div>
+    </div>
+    <div class="radio-controls">
+      <button class="radio-ctl" id="radioPrev" aria-label="前のチャプター"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+      <button class="radio-ctl radio-ctl-skip" id="radioBack" aria-label="10秒戻る"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span>10</span></button>
+      <button class="radio-ctl radio-ctl-play" id="radioPlay" aria-label="再生／一時停止"><svg id="radioPlayIcon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+      <button class="radio-ctl radio-ctl-skip" id="radioFwd" aria-label="10秒進む"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg><span>10</span></button>
+      <button class="radio-ctl" id="radioNext" aria-label="次のチャプター"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg></button>
+    </div>
+    <div class="radio-bottom">
+      <div class="radio-speed-row">
+        <span class="label">SPEED</span>
+        <button class="radio-speed-btn" data-rate="0.9">0.9x</button>
+        <button class="radio-speed-btn active" data-rate="1">1x</button>
+        <button class="radio-speed-btn" data-rate="1.2">1.2x</button>
+        <button class="radio-speed-btn" data-rate="1.5">1.5x</button>
+        <button class="radio-speed-btn" data-rate="2">2x</button>
+      </div>
+    </div>
+  </div>
 </header>
+<script>
+(function(){
+  var audio=document.getElementById('radioAudio'),now=document.getElementById('radioChapterNow'),player=document.getElementById('radioPlayer'),playBtn=document.getElementById('radioPlay'),playIcon=document.getElementById('radioPlayIcon'),prevBtn=document.getElementById('radioPrev'),nextBtn=document.getElementById('radioNext'),backBtn=document.getElementById('radioBack'),fwdBtn=document.getElementById('radioFwd'),seek=document.getElementById('radioSeek'),timeCur=document.getElementById('radioTimeCur'),timeRem=document.getElementById('radioTimeRem');
+  if(!audio||!player)return;
+  var chapters=[],seeking=false;
+  var PLAY_ICON='<path d="M8 5v14l11-7z"/>',PAUSE_ICON='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+  function fmt(s){if(!isFinite(s)||s<0)s=0;var m=Math.floor(s/60),r=Math.floor(s%60);return m+':'+(r<10?'0':'')+r}
+  function fillTrack(){if(!audio.duration)return;var pct=(audio.currentTime/audio.duration)*100;seek.style.background='linear-gradient(to right,var(--rp-accent) 0%,var(--rp-accent) '+pct+'%,var(--rp-track) '+pct+'%,var(--rp-track) 100%)'}
+  function updateTimes(){timeCur.textContent=fmt(audio.currentTime);timeRem.textContent='-'+fmt((audio.duration||0)-audio.currentTime);if(!seeking&&audio.duration)seek.value=(audio.currentTime/audio.duration)*100;fillTrack()}
+  function currentIndex(){var t=audio.currentTime*1000;for(var i=chapters.length-1;i>=0;i--)if(t>=chapters[i].start_ms)return i;return 0}
+  function updateNow(){if(!chapters.length)return;var ch=chapters[currentIndex()];if(ch)now.textContent=ch.title}
+  fetch(player.dataset.chapters).then(function(r){return r.json()}).then(function(d){chapters=d.chapters||[];updateNow()}).catch(function(){now.textContent=''});
+  audio.addEventListener('loadedmetadata',function(){updateTimes();updateNow()});
+  audio.addEventListener('timeupdate',function(){updateTimes();updateNow()});
+  audio.addEventListener('play',function(){playIcon.innerHTML=PAUSE_ICON});
+  audio.addEventListener('pause',function(){playIcon.innerHTML=PLAY_ICON});
+  audio.addEventListener('ended',function(){playIcon.innerHTML=PLAY_ICON});
+  playBtn.addEventListener('click',function(){if(audio.paused)audio.play();else audio.pause()});
+  seek.addEventListener('input',function(){seeking=true;if(audio.duration){audio.currentTime=(this.value/100)*audio.duration;timeCur.textContent=fmt(audio.currentTime);timeRem.textContent='-'+fmt(audio.duration-audio.currentTime);fillTrack()}});
+  seek.addEventListener('change',function(){seeking=false});
+  prevBtn.addEventListener('click',function(){if(!chapters.length)return;var t=audio.currentTime*1000,idx=currentIndex();if(t-chapters[idx].start_ms<3000&&idx>0)idx--;audio.currentTime=chapters[idx].start_ms/1000;updateNow()});
+  nextBtn.addEventListener('click',function(){if(!chapters.length)return;var idx=Math.min(chapters.length-1,currentIndex()+1);audio.currentTime=chapters[idx].start_ms/1000;updateNow()});
+  backBtn.addEventListener('click',function(){audio.currentTime=Math.max(0,audio.currentTime-10)});
+  fwdBtn.addEventListener('click',function(){audio.currentTime=Math.min(audio.duration||9999,audio.currentTime+10)});
+  document.querySelectorAll('.radio-speed-btn').forEach(function(b){b.addEventListener('click',function(){audio.playbackRate=parseFloat(this.dataset.rate);document.querySelectorAll('.radio-speed-btn').forEach(function(x){x.classList.remove('active')});this.classList.add('active')})});
+})();
+</script>
 
 <!-- ===== Main ===== -->
 <main class="main" style="max-width:1100px;margin:0 auto;padding:28px 20px 60px">

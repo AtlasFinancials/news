@@ -1,0 +1,84 @@
+{
+  "date": "2026-04-15",
+  "total_ms": 673944,
+  "total_label": "11:13",
+  "chapters": [
+    {
+      "id": "opening",
+      "title": "オープニング",
+      "start_ms": 0,
+      "end_ms": 42432,
+      "start_label": "0:00"
+    },
+    {
+      "id": "market_summary",
+      "title": "マーケット・サマリー",
+      "start_ms": 42432,
+      "end_ms": 115104,
+      "start_label": "0:42"
+    },
+    {
+      "id": "top_story",
+      "title": "トップ・S&P500、戦争損失を完全回復",
+      "start_ms": 115104,
+      "end_ms": 169344,
+      "start_label": "1:55"
+    },
+    {
+      "id": "jpm",
+      "title": "ヘッドライン1・JPモルガン決算ビート",
+      "start_ms": 169344,
+      "end_ms": 231264,
+      "start_label": "2:49"
+    },
+    {
+      "id": "citi_jnj",
+      "title": "ヘッドライン2・シティグループとJ&J",
+      "start_ms": 231264,
+      "end_ms": 287112,
+      "start_label": "3:51"
+    },
+    {
+      "id": "ppi",
+      "title": "ヘッドライン3・3月PPIが予想を大きく下回る",
+      "start_ms": 287112,
+      "end_ms": 356136,
+      "start_label": "4:47"
+    },
+    {
+      "id": "wfc",
+      "title": "ヘッドライン4・ウェルスファーゴ5%安",
+      "start_ms": 356136,
+      "end_ms": 403248,
+      "start_label": "5:56"
+    },
+    {
+      "id": "nasdaq",
+      "title": "ヘッドライン5・ナスダック100、10連騰",
+      "start_ms": 403248,
+      "end_ms": 462720,
+      "start_label": "6:43"
+    },
+    {
+      "id": "risk_meter",
+      "title": "Atlas リスクメーター・注意圏から安全圏へ",
+      "start_ms": 462720,
+      "end_ms": 520968,
+      "start_label": "7:42"
+    },
+    {
+      "id": "keyword",
+      "title": "今日のキーワード・地政学リスクプレミアム剥落",
+      "start_ms": 520968,
+      "end_ms": 597192,
+      "start_label": "8:40"
+    },
+    {
+      "id": "editorial_closing",
+      "title": "編集部の目線とクロージング",
+      "start_ms": 597192,
+      "end_ms": 673944,
+      "start_label": "9:57"
+    }
+  ]
+}
