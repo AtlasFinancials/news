@@ -1,0 +1,2 @@
+file '/Users/yskzz121/ui-kabu-times/morning/2026/04/audio_work_16/intro_titlebgm.mp3'
+file '/Users/yskzz121/ui-kabu-times/morning/2026/04/audio_work_16/main_with_bgm.mp3'
