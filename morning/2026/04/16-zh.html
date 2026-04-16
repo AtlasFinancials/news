@@ -1338,50 +1338,62 @@ body {
 .top-story.tip-active:hover { transform: none !important; }
 
 /* ==========================================
-   Disclaimer
-   ========================================== */
-.disclaimer-section {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 24px 20px 0;
-}
-.disclaimer-text {
-  font-family: var(--font-ui);
-  font-size: 11px;
-  line-height: 1.8;
-  color: var(--slate-lt);
-  padding: 16px 20px;
-  background: var(--paper-dk);
-  border-radius: 8px;
-  border: 1px solid rgba(0,0,0,0.04);
-}
-
-/* ==========================================
    Footer
    ========================================== */
 .paper-footer {
   background: var(--navy-deep);
   border-top: 3px solid var(--gold);
-  padding: 32px 20px;
+  padding: 36px 20px 28px;
   text-align: center;
 }
 .footer-day-nav {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.footer-day-nav a {
-  font-family: var(--font-ui);
-  font-size: 13px;
-  font-weight: 600;
+.day-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(184,145,42,0.25);
+  border-radius: 10px;
   color: var(--gold);
   text-decoration: none;
+  font-family: var(--font-ui);
+  transition: all .18s ease;
+  min-width: 150px;
 }
-.footer-day-nav a:hover { text-decoration: underline; color: var(--gold-lt); }
+.day-nav-btn:hover {
+  background: rgba(184,145,42,0.12);
+  border-color: var(--gold);
+  color: var(--gold-lt);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(184,145,42,0.18);
+}
+.day-nav-btn svg { opacity: .85; flex-shrink: 0; transition: transform .18s ease; }
+.day-nav-btn:hover svg { opacity: 1; }
+.day-nav-prev:hover svg { transform: translateX(-2px); }
+.day-nav-next:hover svg { transform: translateX(2px); }
+.day-nav-meta { display: flex; flex-direction: column; line-height: 1.25; }
+.day-nav-prev { }
+.day-nav-prev .day-nav-meta { align-items: flex-start; }
+.day-nav-next { flex-direction: row-reverse; }
+.day-nav-next .day-nav-meta { align-items: flex-end; }
+.day-nav-label {
+  font-size: 10px;
+  opacity: .55;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: var(--font-data);
+}
+.day-nav-date { font-size: 14px; font-weight: 700; letter-spacing: .02em; }
 .footer-nav {
   display: flex;
   justify-content: center;
@@ -1397,7 +1409,16 @@ body {
   text-decoration: none;
 }
 .footer-nav a:hover { text-decoration: underline; color: var(--gold-lt); }
-.footer-copy { font-family: var(--font-ui); font-size: 12px; color: var(--slate-lt); }
+.footer-copy { font-family: var(--font-ui); font-size: 12px; color: var(--slate-lt); margin-bottom: 14px; }
+.footer-disclaimer {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.32);
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
 
 /* ==========================================
    Responsive
@@ -1741,7 +1762,7 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
 .summary-text,.top-story-body,.news-card-excerpt,.keyword-overview,.editorial-body{font-family:'Noto Sans TC',var(--font-body)}
 </style>
 <!-- ATLAS-PAYWALL-META -->
-<meta name="atlas-access" content='{"kind":"morning","date":"2026-04-15"}'>
+<meta name="atlas-access" content='{"kind":"morning","date":"2026-04-16"}'>
 <!-- /ATLAS-PAYWALL-META -->
 </head>
 <body>
@@ -2496,16 +2517,16 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
 
 </main>
 
-<!-- ===== Disclaimer ===== -->
-<div class="disclaimer-section">
-  <p class="disclaimer-text">本文依AI蒐集與摘要之資訊編寫，無法保證完全正確與完整。</p>
-  <p class="disclaimer-text">本文以提供資訊為目的，並非對特定金融商品買賣的推薦。投資判斷請自行負責。</p>
-</div>
-
 <!-- ===== Footer ===== -->
 <footer class="paper-footer">
   <div class="footer-day-nav">
-    <a href="15-zh.html">← 前期：4月15日</a>
+    <a class="day-nav-btn day-nav-prev" href="15-zh.html">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      <div class="day-nav-meta">
+        <span class="day-nav-label">上一期</span>
+        <span class="day-nav-date">4月15日</span>
+      </div>
+    </a>
   </div>
   <nav class="footer-nav">
     <a href="https://atlas-financials.jp/reports/about.html">關於Atlas</a>
@@ -2515,6 +2536,7 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
     <a href="https://atlas-financials.jp/reports/terms.html">使用條款</a>
   </nav>
   <div class="footer-copy">&copy; 2026 Atlas Daily — U&amp;I CO., LTD.</div>
+  <p class="footer-disclaimer">本文係基於AI蒐集與摘要之資訊製作，不保證其正確性與完整性。本文僅作為資訊提供之用，並非推薦任何特定金融商品之買賣。投資判斷請依自身責任進行。</p>
 </footer>
 
 <script>
@@ -3416,8 +3438,12 @@ document.addEventListener('keydown', function(e){
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (data) {
           if (!data || !data.user) return resolve(false);
+          // plan が 'pro' 以外は Pro 非会員
+          if (data.user.plan !== 'pro') return resolve(false);
+          // plan_expires_at が null → 解約予約無し = Pro継続中
           var exp = data.user.plan_expires_at;
-          if (!exp) return resolve(false);
+          if (!exp) return resolve(true);
+          // 期限あり → 期限前なら Pro 有効
           resolve(new Date(exp) > new Date());
         })
         .catch(function () { resolve(false); });
@@ -3549,7 +3575,7 @@ document.addEventListener('keydown', function(e){
       break;
     }
     var titles = {
-      morning: { kicker: 'Atlas 会員限定 — 過去のニュース', title: 'このニュースは Atlas 会員限定です。', desc: '当日・前日のニュースは無料でご覧いただけますが、過去のアーカイブをお読みいただくには会員登録が必要です。<br>米国市場の動きを毎朝定点観測し、意思決定の土台に。' },
+      morning: { kicker: 'Atlas 会員限定 — 過去の朝刊', title: 'この朝刊は Atlas 会員限定です。', desc: '当日・前日の朝刊は無料でご覧いただけますが、過去のアーカイブをお読みいただくには会員登録が必要です。<br>米国市場の動きを毎朝定点観測し、意思決定の土台に。' },
       special: { kicker: 'Atlas 会員限定 — 特集', title: 'この特集記事は Atlas 会員限定です。', desc: '財務・戦略・マクロ経済の観点から編集部が深掘りした長編分析記事です。<br>会員登録で、すべての特集をお楽しみいただけます。' },
       report: { kicker: 'Atlas 会員限定 — 決算分析', title: 'このレポートは Atlas 会員限定です。', desc: '主要7銘柄（NVDA/GOOGL/TSLA/MSFT/META/AMZN/AAPL）の直近四半期は無料でご覧いただけますが、<br>過去四半期や他の銘柄レポートをお読みいただくには会員登録が必要です。' }
     };
