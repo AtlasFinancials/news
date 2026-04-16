@@ -1217,8 +1217,8 @@ body {
    ========================================== */
 .earnings-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
 }
 .earnings-item {
   background: var(--surface);
@@ -1227,42 +1227,95 @@ body {
   padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   transition: all .25s ease;
   box-shadow: var(--shadow-card);
+  min-width: 0;   /* prevent flex overflow */
 }
 .earnings-item:hover { border-color: rgba(184,145,42,0.4); transform: translateY(-2px); }
-.earnings-item-header { display: flex; align-items: center; gap: 6px; }
+
+/* === Header: ticker (left) + badges cluster (right), flex-wrap safe === */
+.earnings-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
 .earnings-item-logo { height: 20px; width: auto; max-width: 60px; object-fit: contain; flex-shrink: 0; }
-.earnings-item-ticker { font-family: var(--font-data); font-size: 18px; font-weight: 800; color: var(--navy); }
-.earnings-item-timing {
+.earnings-item-ticker {
   font-family: var(--font-data);
-  font-size: 11px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--navy);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* Badges cluster pushed to right with margin-left:auto */
+.earnings-item-badges {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+/* Pills — all whitespace nowrap to prevent vertical text */
+.earnings-item-timing,
+.earnings-item-result {
+  font-family: var(--font-data);
   font-weight: 700;
-  padding: 2px 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1;
+  letter-spacing: .02em;
+}
+.earnings-item-timing {
+  font-size: 11px;
+  padding: 3px 9px;
   border-radius: 4px;
   background: var(--badge-bg);
   color: var(--slate-lt);
   border: 1px solid var(--paper-dk);
-  margin-left: auto;
 }
 .earnings-item-timing.bmo { background: var(--gold-lt-light); color: var(--gold-lt); border-color: transparent; }
 .earnings-item-timing.amc { background: var(--navy-light); color: var(--navy-mid); border-color: transparent; }
-.earnings-item-name { font-size: 13px; color: var(--slate); font-weight: 500; }
+
+.earnings-item-result {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: .08em;
+}
+.earnings-item-result.beat { background: var(--gold-light); color: var(--gold); }
+.earnings-item-result.miss { background: var(--alert-light); color: var(--alert); }
+.earnings-item-result.inline { background: var(--badge-bg); color: var(--slate-lt); }
+
+.earnings-item-name { font-size: 13px; color: var(--slate); font-weight: 500; line-height: 1.35; }
 .earnings-item-sector {
   font-family: var(--font-data);
   font-size: 10px;
   font-weight: 600;
   color: var(--slate-lt);
-  padding: 1px 6px;
+  padding: 2px 7px;
   border-radius: 4px;
   background: var(--badge-bg);
   border: 1px solid var(--paper-dk);
   display: inline-block;
   align-self: flex-start;
   line-height: 1.4;
+  white-space: nowrap;
 }
-.earnings-item-consensus { font-size: 12px; color: var(--slate-lt); display: flex; gap: 12px; }
+.earnings-item-consensus {
+  font-size: 12px;
+  color: var(--slate-lt);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  line-height: 1.5;
+}
 .earnings-item-consensus span { font-family: var(--font-data); }
 .earnings-item-link {
   display: inline-flex;
@@ -1274,6 +1327,7 @@ body {
   color: var(--gold);
   text-decoration: none;
   transition: opacity .25s ease;
+  align-self: flex-start;
 }
 .earnings-item-link:hover { opacity: .7; }
 .earnings-item-note {
@@ -1281,17 +1335,15 @@ body {
   color: var(--gold);
   font-weight: 600;
   margin-top: 2px;
+  line-height: 1.45;
 }
-.earnings-item-result {
-  font-family: var(--font-data);
-  font-size: 11px;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 4px;
+
+/* Mobile tighten */
+@media (max-width: 480px) {
+  .earnings-grid { grid-template-columns: 1fr; }
+  .earnings-item { padding: 14px; }
+  .earnings-item-ticker { font-size: 16px; }
 }
-.earnings-item-result.beat { background: var(--gold-light); color: var(--gold); }
-.earnings-item-result.miss { background: var(--alert-light); color: var(--alert); }
-.earnings-item-result.inline { background: var(--badge-bg); color: var(--slate-lt); }
 
 /* ==========================================
    Tooltip — fixed positioning
@@ -2436,8 +2488,8 @@ body {
       <div class="earnings-item" data-ticker="MS">
         <div class="earnings-item-header">
           <span class="earnings-item-ticker">MS</span>
-          <span class="earnings-item-timing bmo">BMO</span>
-          <span class="earnings-item-result beat">ビート</span>
+          <span class="earnings-item-badges"><span class="earnings-item-timing bmo">BMO</span>
+          <span class="earnings-item-result beat">ビート</span></span>
         </div>
         <div class="earnings-item-name">Morgan Stanley</div>
         <div class="earnings-item-sector">金融</div>
@@ -2450,8 +2502,8 @@ body {
       <div class="earnings-item" data-ticker="BAC">
         <div class="earnings-item-header">
           <span class="earnings-item-ticker">BAC</span>
-          <span class="earnings-item-timing bmo">BMO</span>
-          <span class="earnings-item-result beat">ビート</span>
+          <span class="earnings-item-badges"><span class="earnings-item-timing bmo">BMO</span>
+          <span class="earnings-item-result beat">ビート</span></span>
         </div>
         <div class="earnings-item-name">Bank of America</div>
         <div class="earnings-item-sector">金融</div>
@@ -2464,8 +2516,8 @@ body {
       <div class="earnings-item" data-ticker="ASML">
         <div class="earnings-item-header">
           <span class="earnings-item-ticker">ASML</span>
-          <span class="earnings-item-timing bmo">BMO</span>
-          <span class="earnings-item-result beat">ビート</span>
+          <span class="earnings-item-badges"><span class="earnings-item-timing bmo">BMO</span>
+          <span class="earnings-item-result beat">ビート</span></span>
         </div>
         <div class="earnings-item-name">ASML Holding</div>
         <div class="earnings-item-sector">半導体装置</div>
@@ -2478,7 +2530,7 @@ body {
       <div class="earnings-item" data-ticker="TSM">
         <div class="earnings-item-header">
           <span class="earnings-item-ticker">TSM</span>
-          <span class="earnings-item-timing bmo">BMO</span>
+          <span class="earnings-item-badges"><span class="earnings-item-timing bmo">BMO</span></span>
         </div>
         <div class="earnings-item-name">Taiwan Semiconductor</div>
         <div class="earnings-item-sector">テクノロジー</div>
@@ -2491,7 +2543,7 @@ body {
       <div class="earnings-item" data-ticker="NFLX">
         <div class="earnings-item-header">
           <span class="earnings-item-ticker">NFLX</span>
-          <span class="earnings-item-timing amc">AMC</span>
+          <span class="earnings-item-badges"><span class="earnings-item-timing amc">AMC</span></span>
         </div>
         <div class="earnings-item-name">Netflix</div>
         <div class="earnings-item-sector">エンターテイメント</div>
@@ -2504,7 +2556,7 @@ body {
       <div class="earnings-item" data-ticker="UNH">
         <div class="earnings-item-header">
           <span class="earnings-item-ticker">UNH</span>
-          <span class="earnings-item-timing bmo">BMO</span>
+          <span class="earnings-item-badges"><span class="earnings-item-timing bmo">BMO</span></span>
         </div>
         <div class="earnings-item-name">UnitedHealth</div>
         <div class="earnings-item-sector">ヘルスケア</div>
