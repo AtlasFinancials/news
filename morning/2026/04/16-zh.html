@@ -1358,42 +1358,58 @@ body {
 .day-nav-btn {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 18px;
-  background: rgba(255,255,255,0.035);
-  border: 1px solid rgba(184,145,42,0.25);
-  border-radius: 10px;
+  gap: 22px;
+  padding: 16px 32px 16px 24px;
+  background: transparent;
+  border: none;
+  border-left: 3px solid var(--gold);
+  border-radius: 0;
   color: var(--gold);
   text-decoration: none;
   font-family: var(--font-ui);
-  transition: all .18s ease;
-  min-width: 150px;
+  transition: all .25s ease;
 }
-.day-nav-btn:hover {
-  background: rgba(184,145,42,0.12);
-  border-color: var(--gold);
-  color: var(--gold-lt);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(184,145,42,0.18);
+.day-nav-btn:hover { border-left-width: 5px; padding-left: 22px; }
+.day-nav-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--gold);
+  transition: transform .25s ease;
 }
-.day-nav-btn svg { opacity: .85; flex-shrink: 0; transition: transform .18s ease; }
-.day-nav-btn:hover svg { opacity: 1; }
-.day-nav-prev:hover svg { transform: translateX(-2px); }
-.day-nav-next:hover svg { transform: translateX(2px); }
-.day-nav-meta { display: flex; flex-direction: column; line-height: 1.25; }
-.day-nav-prev { }
-.day-nav-prev .day-nav-meta { align-items: flex-start; }
-.day-nav-next { flex-direction: row-reverse; }
-.day-nav-next .day-nav-meta { align-items: flex-end; }
+.day-nav-prev:hover .day-nav-arrow { transform: translateX(-4px); }
+.day-nav-next:hover .day-nav-arrow { transform: translateX(4px); }
+.day-nav-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  line-height: 1;
+}
 .day-nav-label {
-  font-size: 10px;
-  opacity: .55;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  font-weight: 700;
   font-family: var(--font-data);
+  font-size: 10px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
 }
-.day-nav-date { font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+.day-nav-date {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.day-nav-next {
+  border-left: none;
+  border-right: 3px solid var(--gold);
+  padding: 16px 24px 16px 32px;
+  flex-direction: row-reverse;
+}
+.day-nav-next:hover { border-right-width: 5px; padding-right: 22px; }
 .footer-nav {
   display: flex;
   justify-content: center;
@@ -2521,7 +2537,12 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
 <footer class="paper-footer">
   <div class="footer-day-nav">
     <a class="day-nav-btn day-nav-prev" href="15-zh.html">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      <span class="day-nav-arrow">
+        <svg width="22" height="24" viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="13,6 5,12 13,18"/>
+          <polyline points="20,6 12,12 20,18"/>
+        </svg>
+      </span>
       <div class="day-nav-meta">
         <span class="day-nav-label">上一期</span>
         <span class="day-nav-date">4月15日</span>
