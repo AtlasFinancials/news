@@ -22,6 +22,8 @@ NARRATION = os.path.join(WORK, "narration_only_backup.mp3")
 
 TITLE_OFFSET = 2.0          # ジングル開始からタイトル開始までの秒数
 GAP_AFTER_INTRO = 0.3       # イントロ後の余白
+JINGLE_GAIN_DB = -4         # ジングル音量調整（dB、マイナスで下げる）
+TITLE_GAIN_DB = +5          # タイトルコール音量調整（dB、プラスで上げる）
 MAIN_BGM_VOL = 0.08         # ~-22dB
 BGM_FADE_IN = 2.0
 BGM_FADE_OUT = 3.0
@@ -41,10 +43,12 @@ subprocess.run([
     "-i", JINGLE,
     "-i", TITLE,
     "-filter_complex",
-    # Delay title by TITLE_OFFSET*1000 ms on both channels (mono→stereo safe)
-    f"[1]adelay={int(TITLE_OFFSET*1000)}|{int(TITLE_OFFSET*1000)}[titleDel];"
-    # Mix jingle + delayed title, extend duration to cover the longer of them
-    f"[0][titleDel]amix=inputs=2:duration=longest:normalize=0,"
+    # Jingle: apply gain adjustment
+    f"[0]volume={JINGLE_GAIN_DB}dB[jAdj];"
+    # Title: apply gain + delay by TITLE_OFFSET*1000 ms
+    f"[1]volume={TITLE_GAIN_DB}dB,adelay={int(TITLE_OFFSET*1000)}|{int(TITLE_OFFSET*1000)}[titleDel];"
+    # Mix adjusted jingle + delayed title, extend duration to cover the longer of them
+    f"[jAdj][titleDel]amix=inputs=2:duration=longest:normalize=0,"
     # Add 0.3s silence at the end
     f"apad=pad_dur={GAP_AFTER_INTRO}[out]",
     "-map","[out]",

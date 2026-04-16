@@ -1,91 +1,98 @@
 {
   "date": "2026-04-16",
-  "total_ms": 865152,
-  "total_label": "14:25",
+  "total_ms": 871156,
+  "total_label": "14:31",
   "chapters": [
+    {
+      "id": "jingle",
+      "title": "ジングル+タイトルコール",
+      "start_ms": 0,
+      "end_ms": 6026,
+      "start_label": "0:00"
+    },
     {
       "id": "opening",
       "title": "オープニング",
-      "start_ms": 0,
-      "end_ms": 38160,
-      "start_label": "0:00"
+      "start_ms": 6026,
+      "end_ms": 44186,
+      "start_label": "0:06"
     },
     {
       "id": "market_summary",
       "title": "マーケット・サマリー",
-      "start_ms": 38160,
-      "end_ms": 127704,
-      "start_label": "0:38"
+      "start_ms": 44186,
+      "end_ms": 133730,
+      "start_label": "0:44"
     },
     {
       "id": "news_sp7000",
       "title": "ヘッドライン1　S&P500、史上初の7,000突破",
-      "start_ms": 127704,
-      "end_ms": 191640,
-      "start_label": "2:07"
+      "start_ms": 133730,
+      "end_ms": 197666,
+      "start_label": "2:13"
     },
     {
       "id": "news_ms",
       "title": "ヘッドライン2　モルガン・スタンレー、四半期売上初の200億ドル突破",
-      "start_ms": 191640,
-      "end_ms": 252912,
-      "start_label": "3:11"
+      "start_ms": 197666,
+      "end_ms": 258938,
+      "start_label": "3:17"
     },
     {
       "id": "news_bac",
       "title": "ヘッドライン3　バンク・オブ・アメリカ、純利益86億ドルで約20年ぶり高水準",
-      "start_ms": 252912,
-      "end_ms": 310152,
-      "start_label": "4:12"
+      "start_ms": 258938,
+      "end_ms": 316178,
+      "start_label": "4:18"
     },
     {
       "id": "news_tesla",
       "title": "ヘッドライン4　テスラ、AI5チップ・タペアウト完了",
-      "start_ms": 310152,
-      "end_ms": 369000,
-      "start_label": "5:10"
+      "start_ms": 316178,
+      "end_ms": 375026,
+      "start_label": "5:16"
     },
     {
       "id": "news_sec",
       "title": "ヘッドライン5　SEC、デイトレード2万5000ドル規則を撤廃",
-      "start_ms": 369000,
-      "end_ms": 419448,
-      "start_label": "6:09"
+      "start_ms": 375026,
+      "end_ms": 425474,
+      "start_label": "6:15"
     },
     {
       "id": "news_asml",
       "title": "ヘッドライン6　ASML、通期ガイダンスを上方修正",
-      "start_ms": 419448,
-      "end_ms": 490200,
-      "start_label": "6:59"
+      "start_ms": 425474,
+      "end_ms": 496226,
+      "start_label": "7:05"
     },
     {
       "id": "risk_meter",
       "title": "Atlasリスクメーター　沈黙の危機シグナル点灯",
-      "start_ms": 490200,
-      "end_ms": 586008,
-      "start_label": "8:10"
+      "start_ms": 496226,
+      "end_ms": 592034,
+      "start_label": "8:16"
     },
     {
       "id": "keyword",
       "title": "今日のキーワード　沈黙の危機",
-      "start_ms": 586008,
-      "end_ms": 662856,
-      "start_label": "9:46"
+      "start_ms": 592034,
+      "end_ms": 668882,
+      "start_label": "9:52"
     },
     {
       "id": "editorial",
       "title": "編集部の目線　7,000突破の舞台裏",
-      "start_ms": 662856,
-      "end_ms": 810912,
-      "start_label": "11:02"
+      "start_ms": 668882,
+      "end_ms": 816938,
+      "start_label": "11:08"
     },
     {
       "id": "closing",
       "title": "本日の予定とクロージング",
-      "start_ms": 810912,
-      "end_ms": 865152,
-      "start_label": "13:30"
+      "start_ms": 816938,
+      "end_ms": 871178,
+      "start_label": "13:36"
     }
   ]
 }
