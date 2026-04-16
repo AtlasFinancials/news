@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
-<script>window.ATLAS_FX = { code: 'JPY', symbol: '¥',   rate: 158.45, date: '2026/4/15', fmt: 'cjk-ja' };</script>
+<script>window.ATLAS_FX = { code: 'JPY', symbol: '¥',   rate: 158.45, eur_usd: 1.10, date: '2026/4/15', fmt: 'cjk-ja' };</script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
 <style>
 /* ==========================================
@@ -3031,22 +3031,31 @@ document.addEventListener('keydown', function(e){
 </script>
 <script>
 /* === Atlas Currency Toggle (USD ⇄ 現地通貨) ===
- * Multi-currency support (2026-04-15 updated).
+ * Multi-currency + Multi-notation support (2026-04-16 updated).
  *
  * Configuration via window.ATLAS_FX:
- *   { code: 'JPY', symbol: '¥', rate: 158.45, date: '2026/4/14', fmt: 'cjk-ja' }
- *   { code: 'HKD', symbol: 'HK$', rate: 7.78,  date: '2026/4/14', fmt: 'western' }
- *   { code: 'KRW', symbol: '₩',  rate: 1420,   date: '2026/4/14', fmt: 'cjk-ko' }
+ *   { code: 'JPY', symbol: '¥', rate: 158.45, eur_usd: 1.10, date: '2026/4/15', fmt: 'cjk-ja' }
+ *   { code: 'HKD', symbol: 'HK$', rate: 7.78,  eur_usd: 1.10, date: '2026/4/15', fmt: 'western' }
+ *   { code: 'KRW', symbol: '₩',  rate: 1420,   eur_usd: 1.10, date: '2026/4/15', fmt: 'cjk-ko' }
+ *   eur_usd is optional; default 1.10. Used to convert EUR amounts → USD → local.
  *
  * If ATLAS_FX is undefined or { code: 'USD' }, the toggle is auto-hidden.
+ *
+ * Recognized notations (all converted to local currency when toggled):
+ *   Western: $X.XB / $X.XXM / $X.XXK / $X
+ *   Euro:    €X.XB / €X.XXM / €X.XXK / €X  (converted via eur_usd rate)
+ *   Japanese dollar: NNN[万億兆]?ドル       (e.g., 86億ドル, 25,000ドル)
+ *   Chinese dollar:  NNN[萬億兆]?美元       (e.g., 86億美元)
+ *   Korean dollar:   NNN[만억조]?\s*달러    (e.g., 86억 달러)
+ *   Japanese euro:   NNN[万億兆]?ユーロ     (e.g., 25億ユーロ)
  *
  * HTML button:
  *   <button class="currency-toggle" onclick="toggleCurrency()">
  *     <span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span>
  *   </button>
  *
- * Skip containers: add class "no-currency" to any element whose $ values
- * must stay in USD (stock prices, commodity prices, market caps in 兆, etc.)
+ * Skip containers: add class "no-currency" to any element whose values
+ * must stay in original notation (stock prices, commodity prices, market caps in 兆, etc.)
  */
 (function(){
   if(window.__ATLAS_CURRENCY_LOADED) return;
@@ -3063,72 +3072,103 @@ document.addEventListener('keydown', function(e){
     return;
   }
 
-  // Defaults for backward compatibility (old JP-only config without code/symbol)
+  // Defaults for backward compatibility
   if(!FX.code) FX.code = 'JPY';
   if(!FX.symbol) FX.symbol = '¥';
   if(!FX.fmt) FX.fmt = 'cjk-ja';
+  if(!FX.eur_usd) FX.eur_usd = 1.10;
 
   var localKey = 'atlas-currency';
   var currencyMode = localStorage.getItem(localKey) || 'USD';
-  // Normalize legacy 'JPY' mode for non-JPY languages
   if(currencyMode !== 'USD' && currencyMode !== FX.code) currencyMode = FX.code;
 
-  function fmtLocal(usd, unit){
-    // usd_b = amount in billions USD
-    var usd_b = unit==='T'?usd*1000:unit==='B'?usd:unit==='M'?usd/1000:unit==='K'?usd/1e6:null;
+  // CJK unit → multiplier (to raw USD dollars)
+  var CJK_UNITS = {
+    '万':1e4, '萬':1e4, '만':1e4,
+    '億':1e8, '억':1e8,
+    '兆':1e12, '조':1e12
+  };
+
+  // TBMK unit → multiplier to raw USD dollars
+  var TBMK_UNITS = { 'K':1e3, 'M':1e6, 'B':1e9, 'T':1e12 };
+
+  // Normalize raw USD $ amount → (num, TBMK unit) pair used by fmtLocal
+  function toBillionsPair(rawUsd){
+    if(rawUsd >= 1e12) return { num: rawUsd/1e12, unit: 'T' };
+    if(rawUsd >= 1e9)  return { num: rawUsd/1e9,  unit: 'B' };
+    if(rawUsd >= 1e6)  return { num: rawUsd/1e6,  unit: 'M' };
+    if(rawUsd >= 1e3)  return { num: rawUsd/1e3,  unit: 'K' };
+    return { num: rawUsd, unit: '' };
+  }
+
+  function fmtLocal(num, unit){
+    // num+unit: e.g., (20.6, 'B') means $20.6B. Convert to local.
+    var usd_b = unit==='T'?num*1000:unit==='B'?num:unit==='M'?num/1000:unit==='K'?num/1e6:null;
 
     if(FX.fmt === 'cjk-ja'){
-      // 日本円: 万 / 億 / 兆
       if(usd_b !== null){
         var jpy_b = usd_b * FX.rate;
         if(jpy_b >= 1000) return FX.symbol + (jpy_b/1000).toFixed(2) + '兆';
         if(jpy_b >= 1) return FX.symbol + (jpy_b*10).toFixed(0) + '億';
         return FX.symbol + (jpy_b*1000).toFixed(0) + '百万';
       }
-      var jpy = usd * FX.rate;
+      var jpy = num * FX.rate;
       if(jpy >= 10000) return FX.symbol + (jpy/10000).toFixed(2) + '万';
       return FX.symbol + Math.round(jpy).toLocaleString();
     }
 
     if(FX.fmt === 'cjk-ko'){
-      // 韓国ウォン: 만 / 억 / 조
-      // 1억 = 1e8 KRW, 1조 = 1e12 KRW
       if(usd_b !== null){
-        var krw_b = usd_b * FX.rate; // billions of KRW = 1e9 KRW each
-        // 1 billion KRW = 10억. So krw_b billions = krw_b * 10 억
-        // If krw_b >= 1000 (i.e., 1T KRW = 1조): express in 조
+        var krw_b = usd_b * FX.rate;
         if(krw_b >= 1000) return FX.symbol + (krw_b/1000).toFixed(2) + '조';
-        // Else express in 억
         return FX.symbol + (krw_b*10).toFixed(0) + '억';
       }
-      var krw = usd * FX.rate;
+      var krw = num * FX.rate;
       if(krw >= 10000) return FX.symbol + (krw/10000).toFixed(2) + '만';
       return FX.symbol + Math.round(krw).toLocaleString();
     }
 
     if(FX.fmt === 'western'){
-      // HKD / EUR / GBP etc: K / M / B / T
       if(usd_b !== null){
         var x_b = usd_b * FX.rate;
         if(x_b >= 1000) return FX.symbol + (x_b/1000).toFixed(2) + 'T';
         if(x_b >= 1) return FX.symbol + x_b.toFixed(2) + 'B';
         return FX.symbol + (x_b*1000).toFixed(0) + 'M';
       }
-      var x = usd * FX.rate;
+      var x = num * FX.rate;
       if(x >= 1e9) return FX.symbol + (x/1e9).toFixed(2) + 'B';
       if(x >= 1e6) return FX.symbol + (x/1e6).toFixed(2) + 'M';
       if(x >= 1e3) return FX.symbol + (x/1e3).toFixed(1) + 'K';
       return FX.symbol + Math.round(x).toLocaleString();
     }
 
-    // Fallback
-    return FX.symbol + Math.round(usd * FX.rate).toLocaleString();
+    return FX.symbol + Math.round(num * FX.rate).toLocaleString();
+  }
+
+  // Combined regex — captures 6 formats in one sweep
+  // Groups:
+  //   1=USD Western num, 2=TBMK unit
+  //   3=EUR Western num, 4=TBMK unit
+  //   5=CJK USD num, 6=CJK unit, 7=currency word (ドル|美元|달러)
+  //   8=CJK EUR num, 9=CJK unit (ユーロ)
+  var CURRENCY_RE = new RegExp(
+    '\\$(\\d+(?:,\\d{3})*(?:\\.\\d+)?)\\s*([TBMK])?(?![\\w%])' +                 // $X.XB
+    '|€(\\d+(?:,\\d{3})*(?:\\.\\d+)?)\\s*([TBMK])?(?![\\w%])' +                  // €X.XB
+    '|(\\d+(?:,\\d{3})*(?:\\.\\d+)?)\\s*([万億兆萬억조만])?\\s*(ドル|美元|달러)' +  // 86億ドル
+    '|(\\d+(?:,\\d{3})*(?:\\.\\d+)?)\\s*([万億兆萬억조만])?\\s*ユーロ',             // 25億ユーロ
+    'g'
+  );
+
+  // Decide if a text node should be scanned (fast prefilter)
+  function hasCurrency(s){
+    return s.indexOf('$')>=0 || s.indexOf('€')>=0 ||
+           s.indexOf('ドル')>=0 || s.indexOf('美元')>=0 ||
+           s.indexOf('달러')>=0 || s.indexOf('ユーロ')>=0;
   }
 
   var WRAP_DONE = false;
   function wrapCurrencyValues(){
     if(WRAP_DONE) return; WRAP_DONE = true;
-    var re = /\$(\d+(?:,\d{3})*(?:\.\d+)?)\s*([TBMK])?(?![\w%])/g;
     var skipTags = {SCRIPT:1,STYLE:1,NOSCRIPT:1,BUTTON:1,A:1};
     var skipClasses = ['portal-link','currency-toggle','theme-toggle','font-scale-btn','lang-switch','lang-menu','toc-toggle','toc-list','tradingview-widget-container','no-currency','nav-hamburger','overview-toggle-btn','market-panels'];
     function shouldSkip(node){
@@ -3145,22 +3185,40 @@ document.addEventListener('keydown', function(e){
     var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
     var nodes = [], n;
     while((n = walker.nextNode())){
-      if(n.nodeValue && n.nodeValue.indexOf('$') >= 0 && !shouldSkip(n)) nodes.push(n);
+      if(n.nodeValue && hasCurrency(n.nodeValue) && !shouldSkip(n)) nodes.push(n);
     }
     nodes.forEach(function(node){
       var text = node.nodeValue;
-      if(!re.test(text)) return;
-      re.lastIndex = 0;
+      CURRENCY_RE.lastIndex = 0;
+      if(!CURRENCY_RE.test(text)) return;
+      CURRENCY_RE.lastIndex = 0;
       var frag = document.createDocumentFragment();
       var lastIdx = 0, m;
-      while((m = re.exec(text)) !== null){
+      while((m = CURRENCY_RE.exec(text)) !== null){
         if(m.index > lastIdx) frag.appendChild(document.createTextNode(text.slice(lastIdx, m.index)));
-        var num = parseFloat(m[1].replace(/,/g,''));
-        var unit = m[2] || '';
+
+        var rawUsd = 0; // total raw USD dollars
+        if(m[1]){
+          // $X.XB (USD Western)
+          rawUsd = parseFloat(m[1].replace(/,/g,'')) * (TBMK_UNITS[m[2]] || 1);
+        } else if(m[3]){
+          // €X.XB (EUR Western)
+          var rawEur = parseFloat(m[3].replace(/,/g,'')) * (TBMK_UNITS[m[4]] || 1);
+          rawUsd = rawEur * FX.eur_usd;
+        } else if(m[5]){
+          // NNN[万億兆]? (ドル|美元|달러)
+          rawUsd = parseFloat(m[5].replace(/,/g,'')) * (CJK_UNITS[m[6]] || 1);
+        } else if(m[8]){
+          // NNN[万億兆]? ユーロ
+          var rawEur2 = parseFloat(m[8].replace(/,/g,'')) * (CJK_UNITS[m[9]] || 1);
+          rawUsd = rawEur2 * FX.eur_usd;
+        }
+
+        var pair = toBillionsPair(rawUsd);
         var span = document.createElement('span');
         span.className = 'cur-val';
-        span.setAttribute('data-usd', num);
-        span.setAttribute('data-unit', unit);
+        span.setAttribute('data-usd', pair.num);
+        span.setAttribute('data-unit', pair.unit);
         span.setAttribute('data-orig', m[0]);
         span.textContent = m[0];
         frag.appendChild(span);
@@ -3177,12 +3235,10 @@ document.addEventListener('keydown', function(e){
         var usd = parseFloat(el.getAttribute('data-usd'));
         var unit = el.getAttribute('data-unit') || '';
         el.textContent = fmtLocal(usd, unit);
-        el.classList.add('local-mode');
-        el.classList.add('jpy-mode'); // backward compat
+        el.classList.add('local-mode','jpy-mode');
       } else {
         el.textContent = el.getAttribute('data-orig');
-        el.classList.remove('local-mode');
-        el.classList.remove('jpy-mode');
+        el.classList.remove('local-mode','jpy-mode');
       }
     });
     document.querySelectorAll('.currency-toggle').forEach(function(btn){
@@ -3201,7 +3257,6 @@ document.addEventListener('keydown', function(e){
     });
   }
 
-  // Init toggle button's inactive symbol before any click
   function initButtons(){
     document.querySelectorAll('.currency-toggle').forEach(function(btn){
       var inact = btn.querySelector('.cur-inactive');
