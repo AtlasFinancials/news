@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="zh-Hant" data-theme="light" data-font-scale="1">
+<html lang="ja" data-theme="light" data-font-scale="1">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atlas Daily — 2026年4月15日 早報 | 標普500完全收復伊朗戰爭跌幅</title>
-<meta name="description" content="美伊和談重啟預期、3月PPI放緩、銀行業財報超預期——三大順風同時點火。那斯達克100連續10日上漲，創2021年以來最長紀錄。">
-<meta property="og:title" content="Atlas Daily — 2026年4月15日 早報 | 標普500完全收復伊朗戰爭跌幅">
-<meta property="og:description" content="美伊和談重啟預期、3月PPI放緩、銀行業財報超預期——三大順風同時點火。那斯達克100連續10日上漲，創2021年以來最長紀錄。">
+<title>Atlas Daily — 2026年4月17日朝刊｜NASDAQ12連騰で史上最高値更新、TSMC決算でAI需要再確認</title>
+<meta property="og:title" content="Atlas Daily — 2026年4月17日朝刊｜NASDAQ12連騰で史上最高値更新、TSMC決算でAI需要再確認">
+<meta property="og:description" content="TSMCがQ1純利益+58%と過去最高、2026年CapEx上限へ引き上げ。NASDAQは12営業日連続高で2009年以来の連騰記録。Netflixは業績ビートも翌Q2ガイダンス失望でヘイスティングス氏取締役退任。VIX低位でもSKEWは歴史的高水準、リスクメーターは「注意圏」。">
 <meta property="og:image" content="https://atlas-financials.jp/news/assets/og-image.png">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://atlas-financials.jp/news/morning/2026/04/15-zh.html">
-<link rel="canonical" href="https://atlas-financials.jp/news/morning/2026/04/15-zh.html">
+<meta property="og:url" content="https://atlas-financials.jp/news/morning/2026/04/17.html">
+<link rel="canonical" href="https://atlas-financials.jp/news/morning/2026/04/17.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="https://atlas-financials.jp/news/assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
-<script>window.ATLAS_FX = { code: 'HKD', symbol: 'HK$', rate: 7.78,   date: '2026/4/14', fmt: 'western' };</script>
+<script>window.ATLAS_FX = { code: 'JPY', symbol: '¥',   rate: 159.24, eur_usd: 1.10, date: '2026/4/16', fmt: 'cjk-ja' };</script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
 <style>
 /* ==========================================
@@ -929,7 +928,7 @@ body {
   letter-spacing: .02em;
 }
 .ed-take-label::after {
-  content: ' \25B8 Hover to reveal';
+  content: ' \25B8 \30DB\30D0\30FC\3067\8868\793A';
   font-weight: 400;
   font-size: 10px;
   color: var(--slate-lt);
@@ -1218,8 +1217,8 @@ body {
    ========================================== */
 .earnings-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
 }
 .earnings-item {
   background: var(--surface);
@@ -1228,42 +1227,95 @@ body {
   padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   transition: all .25s ease;
   box-shadow: var(--shadow-card);
+  min-width: 0;   /* prevent flex overflow */
 }
 .earnings-item:hover { border-color: rgba(184,145,42,0.4); transform: translateY(-2px); }
-.earnings-item-header { display: flex; align-items: center; gap: 6px; }
+
+/* === Header: ticker (left) + badges cluster (right), flex-wrap safe === */
+.earnings-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
 .earnings-item-logo { height: 20px; width: auto; max-width: 60px; object-fit: contain; flex-shrink: 0; }
-.earnings-item-ticker { font-family: var(--font-data); font-size: 18px; font-weight: 800; color: var(--navy); }
-.earnings-item-timing {
+.earnings-item-ticker {
   font-family: var(--font-data);
-  font-size: 11px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--navy);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* Badges cluster pushed to right with margin-left:auto */
+.earnings-item-badges {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+/* Pills — all whitespace nowrap to prevent vertical text */
+.earnings-item-timing,
+.earnings-item-result {
+  font-family: var(--font-data);
   font-weight: 700;
-  padding: 2px 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1;
+  letter-spacing: .02em;
+}
+.earnings-item-timing {
+  font-size: 11px;
+  padding: 3px 9px;
   border-radius: 4px;
   background: var(--badge-bg);
   color: var(--slate-lt);
   border: 1px solid var(--paper-dk);
-  margin-left: auto;
 }
 .earnings-item-timing.bmo { background: var(--gold-lt-light); color: var(--gold-lt); border-color: transparent; }
 .earnings-item-timing.amc { background: var(--navy-light); color: var(--navy-mid); border-color: transparent; }
-.earnings-item-name { font-size: 13px; color: var(--slate); font-weight: 500; }
+
+.earnings-item-result {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: .08em;
+}
+.earnings-item-result.beat { background: var(--gold-light); color: var(--gold); }
+.earnings-item-result.miss { background: var(--alert-light); color: var(--alert); }
+.earnings-item-result.inline { background: var(--badge-bg); color: var(--slate-lt); }
+
+.earnings-item-name { font-size: 13px; color: var(--slate); font-weight: 500; line-height: 1.35; }
 .earnings-item-sector {
   font-family: var(--font-data);
   font-size: 10px;
   font-weight: 600;
   color: var(--slate-lt);
-  padding: 1px 6px;
+  padding: 2px 7px;
   border-radius: 4px;
   background: var(--badge-bg);
   border: 1px solid var(--paper-dk);
   display: inline-block;
   align-self: flex-start;
   line-height: 1.4;
+  white-space: nowrap;
 }
-.earnings-item-consensus { font-size: 12px; color: var(--slate-lt); display: flex; gap: 12px; }
+.earnings-item-consensus {
+  font-size: 12px;
+  color: var(--slate-lt);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  line-height: 1.5;
+}
 .earnings-item-consensus span { font-family: var(--font-data); }
 .earnings-item-link {
   display: inline-flex;
@@ -1275,6 +1327,7 @@ body {
   color: var(--gold);
   text-decoration: none;
   transition: opacity .25s ease;
+  align-self: flex-start;
 }
 .earnings-item-link:hover { opacity: .7; }
 .earnings-item-note {
@@ -1282,17 +1335,15 @@ body {
   color: var(--gold);
   font-weight: 600;
   margin-top: 2px;
+  line-height: 1.45;
 }
-.earnings-item-result {
-  font-family: var(--font-data);
-  font-size: 11px;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 4px;
+
+/* Mobile tighten */
+@media (max-width: 480px) {
+  .earnings-grid { grid-template-columns: 1fr; }
+  .earnings-item { padding: 14px; }
+  .earnings-item-ticker { font-size: 16px; }
 }
-.earnings-item-result.beat { background: var(--gold-light); color: var(--gold); }
-.earnings-item-result.miss { background: var(--alert-light); color: var(--alert); }
-.earnings-item-result.inline { background: var(--badge-bg); color: var(--slate-lt); }
 
 /* ==========================================
    Tooltip — fixed positioning
@@ -1338,50 +1389,78 @@ body {
 .top-story.tip-active:hover { transform: none !important; }
 
 /* ==========================================
-   Disclaimer
-   ========================================== */
-.disclaimer-section {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 24px 20px 0;
-}
-.disclaimer-text {
-  font-family: var(--font-ui);
-  font-size: 11px;
-  line-height: 1.8;
-  color: var(--slate-lt);
-  padding: 16px 20px;
-  background: var(--paper-dk);
-  border-radius: 8px;
-  border: 1px solid rgba(0,0,0,0.04);
-}
-
-/* ==========================================
    Footer
    ========================================== */
 .paper-footer {
   background: var(--navy-deep);
   border-top: 3px solid var(--gold);
-  padding: 32px 20px;
+  padding: 36px 20px 28px;
   text-align: center;
 }
 .footer-day-nav {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.footer-day-nav a {
-  font-family: var(--font-ui);
-  font-size: 13px;
-  font-weight: 600;
+.day-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding: 16px 32px 16px 24px;
+  background: transparent;
+  border: none;
+  border-left: 3px solid var(--gold);
+  border-radius: 0;
   color: var(--gold);
   text-decoration: none;
+  font-family: var(--font-ui);
+  transition: all .25s ease;
 }
-.footer-day-nav a:hover { text-decoration: underline; color: var(--gold-lt); }
+.day-nav-btn:hover { border-left-width: 5px; padding-left: 22px; }
+.day-nav-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--gold);
+  transition: transform .25s ease;
+}
+.day-nav-prev:hover .day-nav-arrow { transform: translateX(-4px); }
+.day-nav-next:hover .day-nav-arrow { transform: translateX(4px); }
+.day-nav-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  line-height: 1;
+}
+.day-nav-label {
+  font-family: var(--font-data);
+  font-size: 10px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+.day-nav-date {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.day-nav-next {
+  border-left: none;
+  border-right: 3px solid var(--gold);
+  padding: 16px 24px 16px 32px;
+  flex-direction: row-reverse;
+}
+.day-nav-next:hover { border-right-width: 5px; padding-right: 22px; }
 .footer-nav {
   display: flex;
   justify-content: center;
@@ -1397,7 +1476,16 @@ body {
   text-decoration: none;
 }
 .footer-nav a:hover { text-decoration: underline; color: var(--gold-lt); }
-.footer-copy { font-family: var(--font-ui); font-size: 12px; color: var(--slate-lt); }
+.footer-copy { font-family: var(--font-ui); font-size: 12px; color: var(--slate-lt); margin-bottom: 14px; }
+.footer-disclaimer {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.32);
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
 
 /* ==========================================
    Responsive
@@ -1635,8 +1723,44 @@ body {
   .ppi-stat-grid{grid-template-columns:1fr;gap:8px}
   .ppi-chart-container{height:220px}
 }
-body{font-family:'Noto Sans TC',var(--font-ui)}
-.summary-text,.top-story-body,.news-card-excerpt,.keyword-overview,.editorial-body{font-family:'Noto Sans TC',var(--font-body)}
+
+/* ==========================================
+   Radio Player — Apple Music inspired
+   ========================================== */
+.radio-player{--rp-bg:rgba(26,37,64,0.92);--rp-border:rgba(255,255,255,0.08);--rp-text:#F5F2EC;--rp-sub:rgba(245,242,236,0.55);--rp-accent:#D4A843;--rp-track:rgba(245,242,236,0.18);--rp-thumb:#F5F2EC;margin:22px auto 0;width:420px;max-width:92vw;padding:22px 22px 18px;background:linear-gradient(160deg,rgba(40,54,88,0.95) 0%,rgba(20,28,48,0.95) 100%);border:1px solid var(--rp-border);border-radius:18px;box-shadow:0 20px 50px -20px rgba(0,0,0,.6),0 0 0 1px rgba(184,145,42,0.08) inset;backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);text-align:left;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Noto Sans JP',sans-serif}
+.radio-top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.radio-artwork{width:64px;height:64px;flex-shrink:0;border-radius:10px;background:linear-gradient(135deg,#1A2540 0%,#3a4a7a 50%,#D4A843 100%);position:relative;overflow:hidden;box-shadow:0 8px 20px -6px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center}
+.radio-artwork::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(245,242,236,0.15) 0%,transparent 60%)}
+.radio-artwork-logo{font-family:'Shippori Mincho B1',serif;font-size:28px;font-weight:800;color:#F5F2EC;letter-spacing:-0.02em;position:relative;z-index:1;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.radio-meta{flex:1;min-width:0}
+.radio-title-main{font-size:15px;font-weight:700;color:var(--rp-text);line-height:1.3;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.radio-subtitle{font-size:12px;color:var(--rp-sub);font-weight:500;letter-spacing:.01em}
+.radio-chapter-now{font-size:11px;color:var(--rp-accent);font-weight:600;letter-spacing:.02em;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.radio-scrubber{margin:4px 0 8px}
+.radio-range{-webkit-appearance:none;appearance:none;width:100%;height:3px;background:var(--rp-track);border-radius:2px;cursor:pointer;outline:none;margin:0;transition:height .15s}
+.radio-range:hover{height:5px}
+.radio-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:12px;height:12px;border-radius:50%;background:var(--rp-thumb);box-shadow:0 1px 3px rgba(0,0,0,.4);cursor:pointer}
+.radio-range::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--rp-thumb);border:none;box-shadow:0 1px 3px rgba(0,0,0,.4);cursor:pointer}
+.radio-time-row{display:flex;justify-content:space-between;font-size:10.5px;font-weight:500;color:var(--rp-sub);letter-spacing:.02em;font-variant-numeric:tabular-nums;margin-top:4px}
+.radio-controls{display:flex;align-items:center;justify-content:center;gap:18px;margin:10px 0 8px}
+.radio-ctl{background:transparent;border:none;cursor:pointer;color:var(--rp-text);padding:6px;display:inline-flex;align-items:center;justify-content:center;transition:opacity .15s,transform .1s}
+.radio-ctl:hover{opacity:.75}
+.radio-ctl:active{transform:scale(0.92)}
+.radio-ctl svg{display:block}
+.radio-ctl-skip{position:relative}
+.radio-ctl-skip span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;font-weight:700;color:var(--rp-text);pointer-events:none}
+.radio-ctl-play{width:52px;height:52px;border-radius:50%;background:var(--rp-text);color:#1A2540;box-shadow:0 4px 14px -4px rgba(245,242,236,.4)}
+.radio-ctl-play:hover{opacity:1;transform:scale(1.04)}
+.radio-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;padding-top:10px;border-top:1px solid var(--rp-border)}
+.radio-speed-row{display:flex;align-items:center;gap:4px}
+.radio-speed-row .label{font-size:10px;color:var(--rp-sub);margin-right:4px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.radio-speed-btn{font-family:inherit;font-size:11px;font-weight:600;padding:3px 9px;border-radius:14px;border:none;background:transparent;color:var(--rp-sub);cursor:pointer;transition:all .15s;font-variant-numeric:tabular-nums}
+.radio-speed-btn:hover{color:var(--rp-text)}
+.radio-speed-btn.active{background:rgba(245,242,236,0.15);color:var(--rp-text)}
+@media(max-width:480px){.radio-player{width:100%;padding:18px 16px 14px;border-radius:14px}.radio-artwork{width:56px;height:56px}.radio-artwork-logo{font-size:24px}.radio-title-main{font-size:14px}.radio-controls{gap:14px}.radio-ctl-play{width:48px;height:48px}}
+[data-theme="light"] .radio-player{background:linear-gradient(160deg,#F5F2EC 0%,#EAE6DA 100%);border-color:rgba(26,37,64,0.1);--rp-text:#1A2540;--rp-sub:rgba(26,37,64,0.55);--rp-track:rgba(26,37,64,0.15);--rp-thumb:#1A2540}
+[data-theme="light"] .radio-ctl-play{background:#1A2540;color:#F5F2EC}
+[data-theme="light"] .radio-speed-btn.active{background:rgba(26,37,64,0.12)}
 
 /* Currency Toggle */
 .currency-toggle{background:none;border:1px solid rgba(255,255,255,0.25);cursor:pointer;font-family:'Inter','Noto Sans JP',sans-serif;font-size:12px;font-weight:600;padding:3px 8px;border-radius:4px;line-height:1;letter-spacing:.3px;color:rgba(255,255,255,0.7);transition:all .15s;display:inline-flex;align-items:center;gap:2px;white-space:nowrap}
@@ -1703,7 +1827,7 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
 }
 </style>
 <!-- ATLAS-PAYWALL-META -->
-<meta name="atlas-access" content='{"kind":"morning","date":"2026-04-15"}'>
+<meta name="atlas-access" content='{"kind":"morning","date":"2026-04-17"}'>
 <!-- /ATLAS-PAYWALL-META -->
 </head>
 <body>
@@ -1716,59 +1840,120 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
       <span class="nav-sub">Powered by U&amp;I CO., LTD.</span>
     </a>
     <div class="nav-links">
-      <a href="https://atlas-financials.jp/news/morning/">過往期刊</a>
-      <a href="https://atlas-financials.jp/news/" class="active">早報</a>
-      <a href="https://atlas-financials.jp/news/extra/">特刊</a>
-      <a href="https://atlas-financials.jp/reports/">財報分析</a>
-      <a href="https://atlas-financials.jp/news/glossary/">詞彙表</a>
-      <a href="https://atlas-financials.jp/login" class="nav-cta">加入</a>
+      <a href="https://atlas-financials.jp/news/morning/">ニュースアーカイブ</a>
+      <a href="https://atlas-financials.jp/news/" class="active">ニュース</a>
+      <a href="https://atlas-financials.jp/news/extra/">号外</a>
+      <a href="https://atlas-financials.jp/reports/">決算分析</a>
+      <a href="https://atlas-financials.jp/news/glossary/">用語辞典</a>
+      <a href="https://atlas-financials.jp/login" class="nav-cta">入会する</a>
       <div class="nav-tools">
         <div class="lang-menu">
-          <button class="lang-menu-btn" aria-label="語言" onclick="toggleLangMenu(event)"><span class="lang-menu-flag">🇭🇰</span><svg width="9" height="9" viewBox="0 0 10 10"><path d="M1 3.5l4 3 4-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="lang-menu-btn" aria-label="言語切替" onclick="toggleLangMenu(event)"><span class="lang-menu-flag">🇯🇵</span><svg width="9" height="9" viewBox="0 0 10 10"><path d="M1 3.5l4 3 4-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <div class="lang-menu-dropdown">
-            <a class="lang-option" href="15.html">🇯🇵 日本語</a>
-            <a class="lang-option" href="15-en.html">🇺🇸 English</a>
-            <span class="lang-option active">🇭🇰 繁體中文</span>
-            <a class="lang-option" href="15-ko.html">🇰🇷 한국어</a>
+            <span class="lang-option active">🇯🇵 日本語</span>
+            <a class="lang-option" href="17-en.html">🇺🇸 English</a>
+            <a class="lang-option" href="17-zh.html">🇭🇰 繁體中文</a>
+            <a class="lang-option" href="17-ko.html">🇰🇷 한국어</a>
           </div>
         </div>
-        <button class="nav-tool-btn font-scale-btn" aria-label="字型大小" onclick="cycleFontScale()" title="字型大小"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
-        <button class="nav-tool-btn currency-toggle" aria-label="貨幣切換 USD/JPY" onclick="toggleCurrency()" title="USD/JPY"><span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span></button>
-        <button class="nav-tool-btn theme-toggle" id="themeToggle" aria-label="主題" onclick="toggleTheme()" title="主題">🌙</button>
+        <button class="nav-tool-btn font-scale-btn" aria-label="文字サイズ切替" onclick="cycleFontScale()" title="文字サイズ"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
+        <button class="nav-tool-btn currency-toggle" aria-label="通貨切替 USD/JPY" onclick="toggleCurrency()" title="通貨切替 USD⇄JPY"><span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span></button>
+        <button class="nav-tool-btn theme-toggle" id="themeToggle" aria-label="テーマ切替" onclick="toggleTheme()" title="テーマ切替">🌙</button>
       </div>
     </div>
     <div class="nav-mobile-actions">
       <div class="lang-menu">
-        <button class="lang-menu-btn" aria-label="語言" onclick="toggleLangMenu(event)"><span class="lang-menu-flag">🇭🇰</span><svg width="9" height="9" viewBox="0 0 10 10"><path d="M1 3.5l4 3 4-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="lang-menu-btn" aria-label="言語切替" onclick="toggleLangMenu(event)"><span class="lang-menu-flag">🇯🇵</span><svg width="9" height="9" viewBox="0 0 10 10"><path d="M1 3.5l4 3 4-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="lang-menu-dropdown">
-          <a class="lang-option" href="15.html">🇯🇵 日本語</a>
-          <a class="lang-option" href="15-en.html">🇺🇸 English</a>
-          <span class="lang-option active">🇭🇰 繁體中文</span>
-          <a class="lang-option" href="15-ko.html">🇰🇷 한국어</a>
+          <span class="lang-option active">🇯🇵 日本語</span>
+          <a class="lang-option" href="17-en.html">🇺🇸 English</a>
+          <a class="lang-option" href="17-zh.html">🇭🇰 繁體中文</a>
+          <a class="lang-option" href="17-ko.html">🇰🇷 한국어</a>
         </div>
       </div>
-      <button class="nav-tool-btn font-scale-btn" aria-label="字型大小" onclick="cycleFontScale()" title="字型大小"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
-      <button class="nav-tool-btn currency-toggle" aria-label="貨幣切換 USD/JPY" onclick="toggleCurrency()" title="USD/JPY"><span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span></button>
-      <button class="nav-tool-btn theme-toggle" id="themeToggleMobile" aria-label="主題" onclick="toggleTheme()" title="主題">🌙</button>
-      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">☰</button>
+      <button class="nav-tool-btn font-scale-btn" aria-label="文字サイズ切替" onclick="cycleFontScale()" title="文字サイズ"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
+      <button class="nav-tool-btn currency-toggle" aria-label="通貨切替 USD/JPY" onclick="toggleCurrency()" title="通貨切替"><span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span></button>
+      <button class="nav-tool-btn theme-toggle" id="themeToggleMobile" aria-label="テーマ切替" onclick="toggleTheme()" title="テーマ切替">🌙</button>
+      <button class="nav-hamburger" id="navHamburger" aria-label="メニュー">☰</button>
     </div>
   </nav>
 </header>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="https://atlas-financials.jp/news/morning/">過往期刊</a>
-  <a href="https://atlas-financials.jp/news/extra/">特刊</a>
-  <a href="https://atlas-financials.jp/news/glossary/">詞彙表</a>
-  <a href="https://atlas-financials.jp/reports/">財報分析</a>
+  <a href="https://atlas-financials.jp/news/morning/">ニュースアーカイブ</a>
+  <a href="https://atlas-financials.jp/news/extra/">号外</a>
+  <a href="https://atlas-financials.jp/news/glossary/">用語辞典</a>
+  <a href="https://atlas-financials.jp/reports/">決算分析</a>
 </div>
 
 <!-- ===== Newspaper Header ===== -->
 <header class="paper-header">
-  <div class="paper-date">2026年4月15日（星期三）</div>
+  <div class="paper-date">2026年4月17日（金曜日）</div>
   <div class="paper-logo">
     <h1 class="paper-title">Atlas Daily</h1>
   </div>
   <span class="paper-accent">The Morning Briefing</span>
+  <div class="radio-player" id="radioPlayer" data-chapters="17-chapters.json">
+    <audio preload="metadata" id="radioAudio">
+      <source src="17.mp3" type="audio/mpeg">
+    </audio>
+    <div class="radio-top">
+      <div class="radio-artwork"><span class="radio-artwork-logo">A</span></div>
+      <div class="radio-meta">
+        <div class="radio-title-main">Atlas Morning Brief</div>
+        <div class="radio-subtitle">2026年4月17日（金曜日）</div>
+        <div class="radio-chapter-now" id="radioChapterNow">読み込み中…</div>
+      </div>
+    </div>
+    <div class="radio-scrubber">
+      <input type="range" class="radio-range" id="radioSeek" min="0" max="100" step="0.1" value="0" aria-label="シーク">
+      <div class="radio-time-row"><span id="radioTimeCur">0:00</span><span id="radioTimeRem">-11:13</span></div>
+    </div>
+    <div class="radio-controls">
+      <button class="radio-ctl" id="radioPrev" aria-label="前のチャプター"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+      <button class="radio-ctl radio-ctl-skip" id="radioBack" aria-label="10秒戻る"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span>10</span></button>
+      <button class="radio-ctl radio-ctl-play" id="radioPlay" aria-label="再生／一時停止"><svg id="radioPlayIcon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+      <button class="radio-ctl radio-ctl-skip" id="radioFwd" aria-label="10秒進む"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg><span>10</span></button>
+      <button class="radio-ctl" id="radioNext" aria-label="次のチャプター"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg></button>
+    </div>
+    <div class="radio-bottom">
+      <div class="radio-speed-row">
+        <span class="label">SPEED</span>
+        <button class="radio-speed-btn" data-rate="0.9">0.9x</button>
+        <button class="radio-speed-btn active" data-rate="1">1x</button>
+        <button class="radio-speed-btn" data-rate="1.2">1.2x</button>
+        <button class="radio-speed-btn" data-rate="1.5">1.5x</button>
+        <button class="radio-speed-btn" data-rate="2">2x</button>
+      </div>
+    </div>
+  </div>
 </header>
+<script>
+(function(){
+  var audio=document.getElementById('radioAudio'),now=document.getElementById('radioChapterNow'),player=document.getElementById('radioPlayer'),playBtn=document.getElementById('radioPlay'),playIcon=document.getElementById('radioPlayIcon'),prevBtn=document.getElementById('radioPrev'),nextBtn=document.getElementById('radioNext'),backBtn=document.getElementById('radioBack'),fwdBtn=document.getElementById('radioFwd'),seek=document.getElementById('radioSeek'),timeCur=document.getElementById('radioTimeCur'),timeRem=document.getElementById('radioTimeRem');
+  if(!audio||!player)return;
+  var chapters=[],seeking=false;
+  var PLAY_ICON='<path d="M8 5v14l11-7z"/>',PAUSE_ICON='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+  function fmt(s){if(!isFinite(s)||s<0)s=0;var m=Math.floor(s/60),r=Math.floor(s%60);return m+':'+(r<10?'0':'')+r}
+  function fillTrack(){if(!audio.duration)return;var pct=(audio.currentTime/audio.duration)*100;seek.style.background='linear-gradient(to right,var(--rp-accent) 0%,var(--rp-accent) '+pct+'%,var(--rp-track) '+pct+'%,var(--rp-track) 100%)'}
+  function updateTimes(){timeCur.textContent=fmt(audio.currentTime);timeRem.textContent='-'+fmt((audio.duration||0)-audio.currentTime);if(!seeking&&audio.duration)seek.value=(audio.currentTime/audio.duration)*100;fillTrack()}
+  function currentIndex(){var t=audio.currentTime*1000;for(var i=chapters.length-1;i>=0;i--)if(t>=chapters[i].start_ms)return i;return 0}
+  function updateNow(){if(!chapters.length)return;var ch=chapters[currentIndex()];if(ch)now.textContent=ch.title}
+  fetch(player.dataset.chapters).then(function(r){return r.json()}).then(function(d){chapters=d.chapters||[];updateNow()}).catch(function(){now.textContent=''});
+  audio.addEventListener('loadedmetadata',function(){updateTimes();updateNow()});
+  audio.addEventListener('timeupdate',function(){updateTimes();updateNow()});
+  audio.addEventListener('play',function(){playIcon.innerHTML=PAUSE_ICON});
+  audio.addEventListener('pause',function(){playIcon.innerHTML=PLAY_ICON});
+  audio.addEventListener('ended',function(){playIcon.innerHTML=PLAY_ICON});
+  playBtn.addEventListener('click',function(){if(audio.paused)audio.play();else audio.pause()});
+  seek.addEventListener('input',function(){seeking=true;if(audio.duration){audio.currentTime=(this.value/100)*audio.duration;timeCur.textContent=fmt(audio.currentTime);timeRem.textContent='-'+fmt(audio.duration-audio.currentTime);fillTrack()}});
+  seek.addEventListener('change',function(){seeking=false});
+  prevBtn.addEventListener('click',function(){if(!chapters.length)return;var t=audio.currentTime*1000,idx=currentIndex();if(t-chapters[idx].start_ms<3000&&idx>0)idx--;audio.currentTime=chapters[idx].start_ms/1000;updateNow()});
+  nextBtn.addEventListener('click',function(){if(!chapters.length)return;var idx=Math.min(chapters.length-1,currentIndex()+1);audio.currentTime=chapters[idx].start_ms/1000;updateNow()});
+  backBtn.addEventListener('click',function(){audio.currentTime=Math.max(0,audio.currentTime-10)});
+  fwdBtn.addEventListener('click',function(){audio.currentTime=Math.min(audio.duration||9999,audio.currentTime+10)});
+  document.querySelectorAll('.radio-speed-btn').forEach(function(b){b.addEventListener('click',function(){audio.playbackRate=parseFloat(this.dataset.rate);document.querySelectorAll('.radio-speed-btn').forEach(function(x){x.classList.remove('active')});this.classList.add('active')})});
+})();
+</script>
 
 <!-- ===== Main ===== -->
 <main class="main" style="max-width:1100px;margin:0 auto;padding:28px 20px 60px">
@@ -1776,136 +1961,135 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
   <!-- ===== 1. Market Summary ===== -->
   <section class="section-gap">
     <div class="section-label">
-      <span class="section-label-icon">📝</span>
-      <span class="section-label-text">昨夜美股概覽</span>
+      <span class="section-label-text">昨夜のマーケットサマリー</span>
       <span class="section-label-line"></span>
     </div>
 
     <div class="card card-pad">
       <div class="summary-text">
-        <p><span class="summary-num-label">1</span>美股在三大順風同時點火下急升：標普500指數收報6,967.38點（+1.18%），那斯達克100指數連續10日上漲，創2021年以來最長紀錄，道瓊斯工業指數亦上漲+0.66%，三大指數齊揚。標普500已迫近歷史高位區間。</p>
-        <p><span class="summary-num-label">2</span>本輪升勢由三大催化劑推動：(i) 巴基斯坦斡旋下，市場預期美伊將進行第二輪和談；(ii) 3月PPI錄得+0.5%，遠低於市場預期的+1.1%，通膨疑慮緩解；(iii) 摩根大通、花旗、嬌生三家公司財報超預期。WTI原油下挫-7%，跌穿$92，伊朗戰爭風險溢價迅速消散。</p>
-        <p><span class="summary-num-label">3</span>另一方面，富國銀行因多項指標不及預期下跌-5%；摩根大通亦將全年淨利息收入（NII）指引由$104.5B下調至$103B，凸顯銀行業內部分化明顯。Alphabet受花旗列入90日負面觀察名單影響，升勢受限。</p>
+        <p><span class="summary-num-label">1</span>NASDAQが12連騰で2009年7月以来の記録更新、S&amp;P 500・NASDAQ・ダウ揃って史上最高値。S&amp;P 500は7,041.28（+0.26%）、NASDAQ総合は24,102.70（+0.36%）、ダウ平均は48,578.72（+0.24%）で3指数が揃って史上最高値を更新。特にNASDAQは12営業日連続高となり、2009年7月以来最長の連騰記録。TSMCの決算が業界全体のAI需要楽観論を再燃させ、テクノロジー株主導の上昇となった。</p>
+        <p><span class="summary-num-label">2</span>VIXは低水準でも<span class="term">SKEW<span class="tip"><span class="tip-title">SKEW指数（テールリスク指標）</span>CBOEが算出する、S&amp;P 500オプション市場における「3シグマ級の下落発生確率」を数値化した指数。値は通常100〜150の範囲で、100が極端な下落リスクを織り込まない状態、150が歴史的に高い下落確率を織り込み中の状態。</span></span>は歴史的高水準、「沈黙の危機」シグナルが継続点灯。米10年債利回りは約4.31%、2-10年スプレッドは約+0.50%で正常化。VIXは18.17（-1%）と低水準が続き、表面的には落ち着いた相場。一方、SKEW指数（テールリスク指標）は4月8日時点で150.36と歴史的高水準に達しており、プロ投資家は極端な下落シナリオをヘッジし続けている「沈黙の危機」的状態を示唆。</p>
+        <p><span class="summary-num-label">3</span>イラン和平交渉は膠着、ダイモン・パウエル両氏がインフレ警鐘。イラン和平交渉が進展観測で原油は落ち着きを取り戻し、WTIは$92.56／バレル前後。トランプ大統領は「戦争終結に近い」と発言するも、イランはウラン濃縮20年停止の米国案を拒否し5年で反提案、米国側が拒否という膠着も。ドル円は159.24まで円安が進行。JPモルガンのダイモンCEOは「インフレはパーティーの招かれざる客」と警鐘を鳴らし、パウエルFRB議長も関税起因インフレの減速が未達なら利下げは「保証されない」と明言。</p>
       </div>
 
       <!-- Sector Heatmap -->
       <div class="sector-perf">
-        <div class="sector-perf-title">📊 類股表現（2026年4月14日美股收盤）</div>
+        <div class="sector-perf-title">セクター別パフォーマンス（4月16日終値）</div>
         <div class="sector-heatmap">
-          <div class="sector-tile" data-chg="3.8">
-            <span class="sector-tile-name">半導體</span>
+          <div class="sector-tile" data-chg="2.35">
+            <span class="sector-tile-name">半導体</span>
             <span class="sector-tile-ticker">SMH</span>
-            <span class="sector-tile-chg">+3.80%</span>
+            <span class="sector-tile-chg">+2.35%</span>
           </div>
-          <div class="sector-tile" data-chg="2.4">
-            <span class="sector-tile-name">科技</span>
+          <div class="sector-tile" data-chg="1.60">
+            <span class="sector-tile-name">テクノロジー</span>
             <span class="sector-tile-ticker">XLK</span>
-            <span class="sector-tile-chg">+2.40%</span>
+            <span class="sector-tile-chg">+1.60%</span>
           </div>
-          <div class="sector-tile" data-chg="1.8">
-            <span class="sector-tile-name">通訊服務</span>
+          <div class="sector-tile" data-chg="0.47">
+            <span class="sector-tile-name">通信サービス</span>
             <span class="sector-tile-ticker">XLC</span>
-            <span class="sector-tile-chg">+1.80%</span>
+            <span class="sector-tile-chg">+0.47%</span>
           </div>
-          <div class="sector-tile" data-chg="1.5">
-            <span class="sector-tile-name">非核心消費</span>
+          <div class="sector-tile" data-chg="0.22">
+            <span class="sector-tile-name">公益事業</span>
+            <span class="sector-tile-ticker">XLU</span>
+            <span class="sector-tile-chg">+0.22%</span>
+          </div>
+          <div class="sector-tile" data-chg="0.18">
+            <span class="sector-tile-name">素材</span>
+            <span class="sector-tile-ticker">XLB</span>
+            <span class="sector-tile-chg">+0.18%</span>
+          </div>
+          <div class="sector-tile" data-chg="0.13">
+            <span class="sector-tile-name">一般消費財</span>
             <span class="sector-tile-ticker">XLY</span>
-            <span class="sector-tile-chg">+1.50%</span>
+            <span class="sector-tile-chg">+0.13%</span>
           </div>
-          <div class="sector-tile" data-chg="1.1">
+          <div class="sector-tile" data-chg="0.07">
+            <span class="sector-tile-name">不動産</span>
+            <span class="sector-tile-ticker">XLRE</span>
+            <span class="sector-tile-chg">+0.07%</span>
+          </div>
+          <div class="sector-tile" data-chg="0.05">
+            <span class="sector-tile-name">生活必需品</span>
+            <span class="sector-tile-ticker">XLP</span>
+            <span class="sector-tile-chg">+0.05%</span>
+          </div>
+          <div class="sector-tile" data-chg="-0.13">
+            <span class="sector-tile-name">資本財</span>
+            <span class="sector-tile-ticker">XLI</span>
+            <span class="sector-tile-chg">-0.13%</span>
+          </div>
+          <div class="sector-tile" data-chg="-0.14">
             <span class="sector-tile-name">金融</span>
             <span class="sector-tile-ticker">XLF</span>
-            <span class="sector-tile-chg">+1.10%</span>
+            <span class="sector-tile-chg">-0.14%</span>
           </div>
-          <div class="sector-tile" data-chg="0.7">
-            <span class="sector-tile-name">工業</span>
-            <span class="sector-tile-ticker">XLI</span>
-            <span class="sector-tile-chg">+0.70%</span>
-          </div>
-          <div class="sector-tile" data-chg="0.4">
-            <span class="sector-tile-name">原物料</span>
-            <span class="sector-tile-ticker">XLB</span>
-            <span class="sector-tile-chg">+0.40%</span>
-          </div>
-          <div class="sector-tile" data-chg="0.3">
-            <span class="sector-tile-name">醫療保健</span>
-            <span class="sector-tile-ticker">XLV</span>
-            <span class="sector-tile-chg">+0.30%</span>
-          </div>
-          <div class="sector-tile" data-chg="-0.1">
-            <span class="sector-tile-name">房地產</span>
-            <span class="sector-tile-ticker">XLRE</span>
-            <span class="sector-tile-chg">-0.10%</span>
-          </div>
-          <div class="sector-tile" data-chg="-0.2">
-            <span class="sector-tile-name">民生必需</span>
-            <span class="sector-tile-ticker">XLP</span>
-            <span class="sector-tile-chg">-0.20%</span>
-          </div>
-          <div class="sector-tile" data-chg="-0.5">
-            <span class="sector-tile-name">公用事業</span>
-            <span class="sector-tile-ticker">XLU</span>
-            <span class="sector-tile-chg">-0.50%</span>
-          </div>
-          <div class="sector-tile" data-chg="-2.8">
-            <span class="sector-tile-name">能源</span>
+          <div class="sector-tile" data-chg="-0.34">
+            <span class="sector-tile-name">エネルギー</span>
             <span class="sector-tile-ticker">XLE</span>
-            <span class="sector-tile-chg">-2.80%</span>
+            <span class="sector-tile-chg">-0.34%</span>
+          </div>
+          <div class="sector-tile" data-chg="-0.71">
+            <span class="sector-tile-name">ヘルスケア</span>
+            <span class="sector-tile-ticker">XLV</span>
+            <span class="sector-tile-chg">-0.71%</span>
           </div>
         </div>
       </div>
 
       <!-- Market Indicator Panels -->
       <div class="market-panels no-currency">
-        <div class="market-panel" data-chg="1.18">
+        <div class="market-panel" data-chg="0.26">
           <span class="panel-name">S&amp;P 500</span>
-          <span class="panel-val">6,967.38</span>
-          <span class="panel-chg">+1.18%</span>
+          <span class="panel-val">7,041.28</span>
+          <span class="panel-chg">+0.26%</span>
         </div>
-        <div class="market-panel" data-chg="1.96">
+        <div class="market-panel" data-chg="0.36">
           <span class="panel-name">NASDAQ</span>
-          <span class="panel-val">23,639.08</span>
-          <span class="panel-chg">+1.96%</span>
+          <span class="panel-val">24,102.70</span>
+          <span class="panel-chg">+0.36%</span>
         </div>
-        <div class="market-panel" data-chg="0.66">
-          <span class="panel-name">Dow</span>
-          <span class="panel-val">48,535.99</span>
-          <span class="panel-chg">+0.66%</span>
+        <div class="market-panel" data-chg="0.24">
+          <span class="panel-name">ダウ</span>
+          <span class="panel-val">48,578.72</span>
+          <span class="panel-chg">+0.24%</span>
         </div>
-        <div class="market-panel" data-chg="1.25">
+        <div class="market-panel" data-chg="0.45">
           <span class="panel-name">Russell 2000</span>
-          <span class="panel-val">2,485.30</span>
-          <span class="panel-chg">+1.25%</span>
+          <span class="panel-val">2,394.80</span>
+          <span class="panel-chg">+0.45%</span>
         </div>
-        <div class="market-panel" data-chg="-4.80">
-          <span class="panel-name"><span class="term">VIX<span class="tip"><span class="tip-title">VIX（波動率指數）</span>衡量標普500期權隱含波動率的指標。低於20表示平靜，20–30為警戒，30以上為恐慌，40以上為極度恐慌。</span></span></span>
-          <span class="panel-val">19.12</span>
-          <span class="panel-chg">-4.80%</span>
+        <div class="market-panel" data-chg="-1.0">
+          <span class="panel-name"><span class="term">VIX<span class="tip"><span class="tip-title">VIX（恐怖指数・Volatility Index）</span>S&amp;P 500オプションの予想ボラティリティを示す指数。20以下が平穏、20〜30が警戒、30超が恐怖、40超がパニックの目安。</span></span></span>
+          <span class="panel-val">18.17</span>
+          <span class="panel-chg">-1.00%</span>
         </div>
-        <div class="market-panel" data-chg="-0.7">
-          <span class="panel-name">US 10Y</span>
-          <span class="panel-val">4.32%</span>
-          <span class="panel-chg">-3bp</span>
+        <div class="market-panel" data-chg="-0.02">
+          <span class="panel-name">米10年債</span>
+          <span class="panel-val">4.31%</span>
+          <span class="panel-chg">-2bp</span>
         </div>
-        <div class="market-panel" data-chg="0.35">
+        <div class="market-panel" data-chg="0.12">
           <span class="panel-name">USD/JPY</span>
-          <span class="panel-val">158.45</span>
-          <span class="panel-chg">+0.35%</span>
+          <span class="panel-val">159.24</span>
+          <span class="panel-chg">+0.12%</span>
         </div>
-        <div class="market-panel" data-chg="-7.02">
+        <div class="market-panel" data-chg="1.85">
           <span class="panel-name">WTI</span>
-          <span class="panel-val">$92.15</span>
-          <span class="panel-chg">-7.02%</span>
+          <span class="panel-val">$92.56</span>
+          <span class="panel-chg">+1.85%</span>
         </div>
-        <div class="market-panel" data-chg="0.32">
+        <div class="market-panel" data-chg="2.10">
           <span class="panel-name">Gold</span>
-          <span class="panel-val">$2,428</span>
-          <span class="panel-chg">+0.32%</span>
+          <span class="panel-val">$4,867.30</span>
+          <span class="panel-chg">+2.10%</span>
         </div>
-        <div class="market-panel" data-chg="2.14">
+        <div class="market-panel" data-chg="0.81">
           <span class="panel-name">BTC</span>
-          <span class="panel-val">$95,820</span>
-          <span class="panel-chg">+2.14%</span>
+          <span class="panel-val">$74,786</span>
+          <span class="panel-chg">+0.81%</span>
         </div>
       </div>
     </div>
@@ -1914,82 +2098,89 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
   <!-- ===== 1.5 Risk Meter ===== -->
   <section class="section-gap">
     <div class="section-label">
-      <span class="section-label-icon">🌡️</span>
-      <span class="section-label-text">Atlas 風險指標</span>
+      <span class="section-label-text">Atlas リスクメーター</span>
       <span class="section-label-line"></span>
     </div>
 
     <div class="risk-meter-card">
       <div class="risk-meter-top">
         <div class="risk-gauge-wrap">
-          <canvas id="riskGaugeChart" class="risk-gauge-canvas" data-score="30"></canvas>
+          <canvas id="riskGaugeChart" class="risk-gauge-canvas" data-score="39"></canvas>
           <div class="risk-gauge-score">
-            <div><span class="risk-gauge-num">30</span><span class="risk-gauge-num-suffix">/100</span></div>
-            <div class="risk-gauge-zone" style="background:rgba(34,197,94,0.15);color:#15803d;border:1px solid #22c55e">🟢 安全區</div>
+            <div><span class="risk-gauge-num">39</span><span class="risk-gauge-num-suffix">/100</span></div>
+            <div class="risk-gauge-zone" style="background:rgba(234,179,8,0.15);color:#854d0e;border:1px solid #eab308"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#eab308;vertical-align:middle;margin-right:6px"></span>注意圏</div>
           </div>
         </div>
         <div class="risk-meter-info">
-          <div class="risk-meter-title">8項指標綜合評分 — 安全區（0–30）</div>
-          <div class="risk-meter-prev">截至：2026年4月14日美股收盤 ｜ 相較上期（4/9→4/14）：37 → 30（-7pt ↓ 改善）</div>
+          <div class="risk-meter-title">8指標の総合評価 — 注意圏（31〜50）</div>
+          <div class="risk-meter-prev">基準日: 4月16日終値時点 ｜ 前号比（4/15→4/16）: 36 → 39（+3pt ↑ やや悪化）</div>
+          <div class="risk-signals" style="margin-top:12px">
+            <div class="risk-signal" style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(234,179,8,0.10);border:1px solid rgba(234,179,8,0.35);border-radius:8px;font-size:13px">
+              <span style="font-size:1.2em">🔔</span>
+              <strong>「沈黙の危機」シグナル点灯</strong>
+              <span class="risk-signal-stars">★★★★★</span>
+              <span style="color:var(--slate);font-size:12px">VIX&lt;20 かつ SKEW&gt;135</span>
+            </div>
+          </div>
         </div>
       </div>
 
       <details class="risk-bars-accordion">
-        <summary class="risk-bars-title">📊 顯示 8 項指標分數 <span class="risk-acc-hint">（點擊展開）</span></summary>
+        <summary class="risk-bars-title">8指標の内訳スコアを表示 <span class="risk-acc-hint">（クリックで開閉）</span></summary>
       <div class="risk-bars">
         <div class="risk-bar-row">
-          <div class="risk-bar-label"><span class="term">VIX<span class="tip"><span class="tip-title">VIX（恐慌指數）</span>衡量標普500期權隱含波動率的指標。高於20為警戒區，高於30為恐慌區。</span></span>（恐慌指數）</div>
+          <div class="risk-bar-label"><span class="term">VIX<span class="tip"><span class="tip-title">VIX（恐怖指数）</span>S&amp;P 500オプションの予想ボラティリティを示す指数。20超で警戒圏、30超で恐怖圏。</span></span>（恐怖指数）</div>
           <div class="risk-bar-track"><div class="risk-bar-fill" data-score="28"></div></div>
-          <div class="risk-bar-val">19.12</div>
+          <div class="risk-bar-val">18.17</div>
           <div class="risk-bar-score">28</div>
         </div>
         <div class="risk-bar-row">
-          <div class="risk-bar-label"><span class="term">SKEW<span class="tip"><span class="tip-title">SKEW指數</span>由CBOE發布的尾部風險指標，反映市場對標普500價外認沽期權的需求。100為中性，130以上為警戒，140以上為尾部風險升溫。</span></span>（尾部風險）</div>
-          <div class="risk-bar-track"><div class="risk-bar-fill" data-score="46"></div></div>
-          <div class="risk-bar-val">132</div>
-          <div class="risk-bar-score">46</div>
+          <div class="risk-bar-label"><span class="term">SKEW<span class="tip"><span class="tip-title">SKEW指数</span>CBOEが算出するテールリスク指標。S&amp;P 500のアウトオブザマネー・プットオプションの需要を反映し、100が中立、130超で警戒、140超でテールリスク高水準を示す。</span></span>（テールリスク）</div>
+          <div class="risk-bar-track"><div class="risk-bar-fill" data-score="97"></div></div>
+          <div class="risk-bar-val">150.36</div>
+          <div class="risk-bar-score">97</div>
         </div>
         <div class="risk-bar-row">
-          <div class="risk-bar-label"><span class="term">殖利率曲線<span class="tip"><span class="tip-title">殖利率曲線（10年-2年利差）</span>10年期美債殖利率減2年期殖利率。正值為正常形態（長端>短端）；負值（倒掛）通常被視為經濟衰退的先行訊號。</span></span>（10Y-2Y）</div>
+          <div class="risk-bar-label"><span class="term">イールドカーブ<span class="tip"><span class="tip-title">イールドカーブ（10年-2年スプレッド）</span>米国債10年物利回りから2年物利回りを差し引いたもの。プラスなら正常（長期金利＞短期金利）、マイナスなら逆イールドで景気後退の前兆とされる。</span></span>（10Y-2Y）</div>
           <div class="risk-bar-track"><div class="risk-bar-fill" data-score="28"></div></div>
-          <div class="risk-bar-val">+0.55%</div>
+          <div class="risk-bar-val">+0.50%</div>
           <div class="risk-bar-score">28</div>
         </div>
         <div class="risk-bar-row">
-          <div class="risk-bar-label">10年期美債殖利率</div>
+          <div class="risk-bar-label">10年債利回り</div>
           <div class="risk-bar-track"><div class="risk-bar-fill" data-score="42"></div></div>
-          <div class="risk-bar-val">4.32%</div>
+          <div class="risk-bar-val">4.31%</div>
           <div class="risk-bar-score">42</div>
         </div>
         <div class="risk-bar-row">
-          <div class="risk-bar-label"><span class="term">EPS<span class="tip"><span class="tip-title">EPS（每股盈餘）</span>公司淨利潤除以在外流通股數，是按每股計算的核心獲利指標。「EPS修訂」指分析師對每股盈餘預測的上調或下調。</span></span> 預測修訂</div>
-          <div class="risk-bar-track"><div class="risk-bar-fill" data-score="20"></div></div>
-          <div class="risk-bar-val">小幅上修</div>
-          <div class="risk-bar-score">20</div>
+          <div class="risk-bar-label"><span class="term">EPS<span class="tip"><span class="tip-title">EPS（Earnings Per Share・1株当たり利益）</span>企業の純利益を発行済株式数で割った値。株価の収益性を測る最重要指標。「EPSリビジョン」はアナリストのEPS予想の上方/下方修正動向を指す。</span></span>リビジョン</div>
+          <div class="risk-bar-track"><div class="risk-bar-fill" data-score="45"></div></div>
+          <div class="risk-bar-val">横ばい（80%ビート）</div>
+          <div class="risk-bar-score">45</div>
         </div>
         <div class="risk-bar-row">
-          <div class="risk-bar-label"><span class="term">恐懼與貪婪指數<span class="tip"><span class="tip-title">Fear &amp; Greed Index（恐懼與貪婪指數）</span>CNN發布的市場情緒指標（0–100）。0–25「極度恐懼」、25–45「恐懼」、45–55「中性」、55–75「貪婪」、75–100「極度貪婪」。常作為反向指標使用。</span></span></div>
-          <div class="risk-bar-track"><div class="risk-bar-fill" data-score="20"></div></div>
-          <div class="risk-bar-val">41</div>
-          <div class="risk-bar-score">20</div>
+          <div class="risk-bar-label"><span class="term">Fear &amp; Greed<span class="tip"><span class="tip-title">Fear &amp; Greed Index（恐怖と強欲指数）</span>CNNが算出する市場センチメント指数（0〜100）。0〜25が「Extreme Fear」、25〜45が「Fear」、45〜55が「Neutral」、55〜75が「Greed」、75〜100が「Extreme Greed」。逆張り指標として参照される。</span></span></div>
+          <div class="risk-bar-track"><div class="risk-bar-fill" data-score="40"></div></div>
+          <div class="risk-bar-val">72</div>
+          <div class="risk-bar-score">40</div>
         </div>
         <div class="risk-bar-row">
-          <div class="risk-bar-label">SPXA50R（市場廣度）</div>
+          <div class="risk-bar-label">SPXA50R（ブレッドス）</div>
           <div class="risk-bar-track"><div class="risk-bar-fill" data-score="30"></div></div>
-          <div class="risk-bar-val">72%</div>
+          <div class="risk-bar-val">68%</div>
           <div class="risk-bar-score">30</div>
         </div>
         <div class="risk-bar-row">
-          <div class="risk-bar-label">200日均線乖離率</div>
-          <div class="risk-bar-track"><div class="risk-bar-fill" data-score="65"></div></div>
-          <div class="risk-bar-val">+11.8%</div>
-          <div class="risk-bar-score">65</div>
+          <div class="risk-bar-label">200日線乖離率</div>
+          <div class="risk-bar-track"><div class="risk-bar-fill" data-score="38"></div></div>
+          <div class="risk-bar-val">+6.83%</div>
+          <div class="risk-bar-score">38</div>
         </div>
       </div>
       </details>
 
       <div class="risk-comment">
-        主要風險指標整體處於平靜水平。VIX維持於19區間，殖利率曲線保持正斜率，恐懼與貪婪指數亦處於中性區。伊朗停火預期擴散、3月PPI放緩（+0.5%，低於市場預期+1.1%）及銀行業財報超預期三大順風同時發酵，整體壓力指標全面改善。此環境下維持基礎部位配置屬合理選項。惟200日均線乖離率已擴大至+11.8%，需留意短線過熱風險。
+        表面の株価は史上最高値を更新し続けるが、SKEW指数は150.36（4/8）と歴史的高水準で、プロ投資家がテールリスクに備え続けている「沈黙の危機」シグナルが点灯しています。VIXが18.17と低いまま、S&amp;P 500は200日線から+6.83%に乖離。過熱の芽が複数の指標に見え始めている局面で、新規の大きなポジション追加は慎重に。一方でイールドカーブとEPSは崩れておらず、直ちに守りに転じる段階ではありません。
       </div>
     </div>
   </section>
@@ -1997,8 +2188,7 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
   <!-- ===== 2. Top News ===== -->
   <section class="section-gap">
     <div class="section-label">
-      <span class="section-label-icon">📰</span>
-      <span class="section-label-text">主要新聞</span>
+      <span class="section-label-text">主要ニュース</span>
       <span class="section-label-line"></span>
     </div>
 
@@ -2006,171 +2196,151 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
     <div class="top-story">
       <span class="top-story-badge">TOP STORY</span>
       <div class="section-hero">
-        <img src="https://images.pexels.com/photos/3532548/pexels-photo-3532548.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="紐約金融區天際線" loading="lazy">
+        <img src="https://images.pexels.com/photos/14887614/pexels-photo-14887614.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="半導体マイクロチップ接写" loading="lazy">
       </div>
       <div class="section-hero-caption">Photo: Pexels</div>
-      <span class="news-card-tag geopolitics" style="margin-bottom:10px;display:inline-block">地緣政治</span>
-      <h2 class="top-story-title">標普500完全收復伊朗戰爭跌幅——和談重啟預期重燃，重返歷史高位區間</h2>
+      <span class="news-card-tag earnings" style="margin-bottom:10px;display:inline-block">EARNINGS</span>
+      <h2 class="top-story-title">TSMC第1四半期決算、純利益58%増で過去最高更新 — AI需要「極めて旺盛」、2026年CapExは上限の560億ドルへ</h2>
       <p class="top-story-body">
-        市場對巴基斯坦斡旋下美伊重啟第二輪和談的預期擴散，推動標普500上漲1.18%，收報6,967.38點，完全收復約兩週前伊朗戰爭爆發前的水準。那斯達克100指數連續第10日上漲，創2021年以來最長升勢。WTI原油下挫-7%，跌穿$92，戰爭風險溢價幾近全面消散。市場已迫近歷史高位。
+        TSMC（台湾積体電路製造）は4月16日、2026年第1四半期決算を発表。売上高は新台湾ドルで1.134兆元（約357億ドル）と前年同期比+35.1%、純利益は5,725億元（+58%）で4四半期連続の過去最高。売上の61%をAI・HPC（高性能計算）が占め、3nm先端プロセスがTSMC総売上の25%に到達（2023年Q3は6%）。同社CEOのC.C.Wei氏は「AI需要は極めて旺盛」と表現し、2026年通期売上見通しをドル建てで30%超成長、設備投資は従来レンジ520〜560億ドルの上限へ引き上げ（80%を先端ノード2nmに集中）。Q2売上ガイダンスは390〜402億ドル（QoQ +10%）。Nvidia Rubin世代、AMD MI400、Google/Amazon/Metaのカスタムシリコン生産が「全てTSMC最先端ノードに集約」している構造が改めて確認された。
       </p>
       <div class="why-box positive">
-        <span class="why-icon">💡</span>
-        <div><span class="why-label">為何重要:</span> 戰爭衝擊所蒸發的市值（標普500約$3T）已於不到三週內全數回收。波動率、利率及原油三方向同步反轉，構築出過去一年最純粹的順風格局。</div>
+        <div><span class="why-label">なぜ重要か:</span> AIサプライチェーンの「本丸」とされるTSMCが、四半期単位ではなく年次でCapExを上限へ引き上げた意味は大きい。2026-2027年のAI設備投資サイクルに対する供給側の強気確信を示し、Nvidia/AMD/Googleなどの顧客側AIインフラ投資が継続する前提条件が整ったことを意味する。</div>
+      </div>
+      <div class="ed-take">
+        <span class="ed-take-icon">📝</span><span class="ed-take-label">編集部はこう見る</span>
+        <div class="ed-take-body">
+          2nmノードが顧客側で2026年下期から量産化へ向かう中、TSMCのCapEx引き上げは「AI需要は来年も崩れない」という需要側への強力なシグナル。ただしメモリ（HBM）・先端パッケージ（CoWoS）は依然ボトルネックで、TSMCが稼ぐ一方でNvidia等顧客の実配備スピードが追いつかない可能性もある。
+        </div>
       </div>
       <div class="top-story-footer">
-        <span class="top-story-source">彭博 / CNBC</span>
+        <span class="top-story-source">TSMC IR / Reuters / Bloomberg</span>
         <span>·</span>
-        <span>2026年4月14日</span>
+        <span>2026年4月16日</span>
         <span>·</span>
-        <span>地緣政治</span>
+        <span>Earnings</span>
       </div>
     </div>
 
     <!-- Sub News Grid -->
     <div class="news-grid">
 
-      <!-- サブニュース1: JPM決算 -->
+      <!-- サブニュース1: Netflix -->
       <div class="news-card">
         <div class="news-card-img-wrap">
-          <img class="news-card-img" src="https://images.pexels.com/photos/164527/pexels-photo-164527.jpeg?auto=compress&cs=tinysrgb&w=800" alt="銀行大樓" loading="lazy">
+          <img class="news-card-img" src="https://images.pexels.com/photos/4329870/pexels-photo-4329870.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Netflix画面" loading="lazy">
           <span class="news-card-img-caption">Photo: Pexels</span>
         </div>
         <div class="news-card-meta">
-          <span class="news-card-tag earnings">財報</span>
-          <span class="news-card-source">CNBC / 彭博 / 華爾街日報</span>
+          <span class="news-card-tag earnings">EARNINGS</span>
+          <span class="news-card-source">CNBC / Bloomberg</span>
         </div>
-        <div class="news-card-title">摩根大通Q1純利+13%達$16.5B——FICC創紀錄但下調全年NII指引</div>
-        <div class="news-card-excerpt">每股盈餘$5.94（市場預期$5.45），收入$50.54B（+10%），FICC收入+21%至$7.08B，投行手續費+28%至$2.88B。惟全年淨利息收入（NII）指引由$104.5B下調至$103B，市場反應分歧。執行長戴蒙對關稅及貿易不確定性語氣審慎。</div>
-        <div class="why-box default">
-          <span class="why-icon">💡</span>
-          <div><span class="why-label">為何重要:</span> 銀行業基本盤實力獲確認，但NII指引下修暗示提前降息劇本。聯準會寬鬆預期對銀行股構成逆風。</div>
+        <div class="news-card-title">Netflix、売上EPSビートも翌Q2見通し失望 — 創業者ヘイスティングス氏、29年の在籍で取締役退任</div>
+        <div class="news-card-excerpt">Netflixは4月16日の取引終了後、Q1売上を$12.25B（予想$12.18B）、調整後EPSを$1.23（予想$0.76）でいずれも市場予想を上回った。しかしQ2売上見通しは$12.57B（予想$12.64B）、EPS $0.78（予想$0.84）でいずれも予想に届かず失望売り。同時に共同創業者のリード・ヘイスティングス氏が次回株主総会で取締役を退任すると発表、同氏は1997年の創業から29年にわたり経営を牽引してきた。広告事業は2026年通期売上$30億（前年比ほぼ倍増）見込みを維持。株価は時間外で約-8%下落。</div>
+        <div class="why-box warning">
+        <div><span class="why-label">なぜ重要か:</span> Netflixの「創業者の卒業」と「成長鈍化の兆し」が重なった形。FY26通期ガイダンス（売上$50.7〜51.7B、+12〜14%）は据え置いたが、Q2の弱さは2025年下期から顕在化していた「先進国のサブスク成長天井」をより明確にする。</div>
         </div>
       </div>
 
-      <!-- サブニュース2: Citi決算 -->
+      <!-- サブニュース2: AMD -->
       <div class="news-card">
         <div class="news-card-img-wrap">
-          <img class="news-card-img" src="https://images.pexels.com/photos/6693655/pexels-photo-6693655.jpeg?auto=compress&cs=tinysrgb&w=800" alt="夜間金融區" loading="lazy">
+          <img class="news-card-img" src="https://images.pexels.com/photos/6799930/pexels-photo-6799930.jpeg?auto=compress&cs=tinysrgb&w=800" alt="AIチップ／プロセッサ基板" loading="lazy">
           <span class="news-card-img-caption">Photo: Pexels</span>
         </div>
         <div class="news-card-meta">
-          <span class="news-card-tag earnings">財報</span>
-          <span class="news-card-source">CNBC / 路透 / 彭博</span>
+          <span class="news-card-tag tech">TECH</span>
+          <span class="news-card-source">Reuters / CNBC</span>
         </div>
-        <div class="news-card-title">花旗EPS $3.06——改革奏效，單季收入創十年新高</div>
-        <div class="news-card-excerpt">每股盈餘$3.06（市場預期$2.65），收入$24.63B（市場預期$23.55B），為十年來最高水準。股票及FICC交易雙雙貢獻，執行長Jane Fraser的重組方案成果浮現於財務數據。</div>
+        <div class="news-card-title">AMD +7.8%急騰で$278.26 — OpenAI向けMI450シリーズ供給の波及効果が本格化</div>
+        <div class="news-card-excerpt">AMDは4月16日、+7.80%上昇して$278.26で引け、時価総額約$80B分を1日で積み増した。TSMC決算でAMDのMI400シリーズがN2ノードで製造される計画が顧客側から再確認されたことが買い材料。2025年10月に発表されたOpenAIとの6GW（ギガワット）規模のAIチップ供給契約（MI450シリーズ、2026年下期から収益認識開始）の履行に向けた進捗として、AMD経営陣は「同契約の波及効果で4年間で$100B超の新規売上を見込む」と言及している。ON Semiconductor（+9.75%）、Lumentum（+9.35%）も連れ高。</div>
         <div class="why-box positive">
-          <span class="why-icon">💡</span>
-          <div><span class="why-label">為何重要:</span> 長期落後同業的花旗，如今在表現上已與其他大型銀行並駕齊驅，成為零售銀行整合戰略的轉捩點。</div>
+        <div><span class="why-label">なぜ重要か:</span> AI GPU市場でのNvidiaの一人勝ち構造にAMDが食い込む最大の機会。TSMCの2nm/CoWoS供給計画が確定的に見えてきたことで、AMDの「2026年下期以降に収益認識」という物語に実体が伴い始めた。</div>
         </div>
       </div>
 
-      <!-- サブニュース3: 3月PPI -->
+      <!-- サブニュース3: 失業保険 -->
       <div class="news-card">
         <div class="news-card-img-wrap">
-          <img class="news-card-img" src="https://images.pexels.com/photos/210607/pexels-photo-210607.jpeg?auto=compress&cs=tinysrgb&w=800" alt="經濟數據" loading="lazy">
+          <img class="news-card-img" src="https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=800" alt="オフィス" loading="lazy">
           <span class="news-card-img-caption">Photo: Pexels</span>
         </div>
         <div class="news-card-meta">
-          <span class="news-card-tag economy">經濟</span>
-          <span class="news-card-source">BLS / CNBC / 路透</span>
+          <span class="news-card-tag economy">ECONOMY</span>
+          <span class="news-card-source">DOL / Bloomberg</span>
         </div>
-        <div class="news-card-title">3月 <span class="term">PPI<span class="tip"><span class="tip-title">PPI（生產者物價指數）</span>衡量生產端（批發層面）價格變動的指標，常被視為「上游通膨指標」，通常先行於CPI。分原物料、中間品、最終品三階段，由美國勞工統計局（BLS）按月發布，為聯準會貨幣政策重要參考之一。</span></span> +0.5%——遠低於+1.1%市場預期，核心PPI僅+0.1%</div>
-        <div class="news-card-excerpt">3月PPI月增+0.5%，遠低於市場預期的+1.1%。核心PPI（扣除食品及能源）月增僅+0.1%，大幅低於預期+0.5%。關稅引發通膨的疑慮緩解，聯準會降息空間再獲確認。</div>
-
-        <!-- PPI detail accordion -->
-        <details class="ppi-accordion">
-          <summary class="ppi-acc-summary">📊 查看市場預期 vs 實際詳情 <span class="ppi-acc-hint">（點擊展開）</span></summary>
-          <div class="ppi-acc-body">
-            <div class="ppi-stat-grid">
-              <div class="ppi-stat-col">
-                <div class="ppi-stat-label">市場預期</div>
-                <div class="ppi-stat-val ppi-consensus">
-                  <div><span class="ppi-stat-sub">整體</span> <strong>+1.1%</strong></div>
-                  <div><span class="ppi-stat-sub">核心PPI</span> <strong>+0.5%</strong></div>
-                </div>
-              </div>
-              <div class="ppi-stat-col">
-                <div class="ppi-stat-label">實際值</div>
-                <div class="ppi-stat-val ppi-actual">
-                  <div><span class="ppi-stat-sub">整體</span> <strong>+0.5%</strong></div>
-                  <div><span class="ppi-stat-sub">核心PPI</span> <strong>+0.1%</strong></div>
-                </div>
-              </div>
-              <div class="ppi-stat-col">
-                <div class="ppi-stat-label">偏離幅度</div>
-                <div class="ppi-stat-val ppi-delta">
-                  <div><span class="ppi-stat-sub">整體</span> <strong class="down">-0.6pt</strong></div>
-                  <div><span class="ppi-stat-sub">核心PPI</span> <strong class="down">-0.4pt</strong></div>
-                </div>
-              </div>
-            </div>
-            <div class="ppi-chart-wrap">
-              <div class="ppi-chart-title">PPI / 核心PPI 月增率走勢（2025年4月 – 2026年3月）</div>
-              <div class="ppi-chart-container"><canvas id="ppiTrendChart"></canvas></div>
-              <div class="ppi-chart-note">資料來源：美國勞工統計局（BLS）。Y軸為月增率（%）。3月實際值遠低於市場預期，核心PPI錄得一年來最低水準。</div>
-            </div>
-          </div>
-        </details>
-
-        <div class="why-box positive">
-          <span class="why-icon">💡</span>
-          <div><span class="why-label">為何重要:</span> 4月10日公布的CPI數據曾加速，引發通膨重燃疑慮；但上游PPI降溫強化了「CPI加速屬短暫現象」的看法。</div>
-        </div>
-      </div>
-
-      <!-- サブニュース4: Wells Fargo決算 -->
-      <div class="news-card">
-        <div class="news-card-img-wrap">
-          <img class="news-card-img" src="https://images.pexels.com/photos/259027/pexels-photo-259027.jpeg?auto=compress&cs=tinysrgb&w=800" alt="銀行" loading="lazy">
-          <span class="news-card-img-caption">Photo: Pexels</span>
-        </div>
-        <div class="news-card-meta">
-          <span class="news-card-tag earnings">財報</span>
-          <span class="news-card-source">CNBC / 彭博 / 路透</span>
-        </div>
-        <div class="news-card-title">富國銀行-5%——多項指標不及預期，凸顯銀行業內部分化</div>
-        <div class="news-card-excerpt">淨利息收入低於市場預期，手續費收入乏力，收盤下跌5%。相較於摩根大通與花旗，富國銀行在成長型銀行群中的相對弱勢表露無遺。</div>
+        <div class="news-card-title">米新規失業保険申請207千人、2月以降で最大の週次減少 — 労働市場の粘り腰</div>
+        <div class="news-card-excerpt">4月11日週の新規失業保険申請件数は207千件（前週比-11千件）と2月以降で最大の週次減少幅を記録、予想（220千件）を下回った。受給継続人数も188.5万人と低水準を維持。パウエルFRB議長や一部のFed高官は「関税起因インフレの減速が見えない」として年内利下げ観測を後退させつつあるが、労働市場の底堅さは当面の景気後退リスクを低下させる材料に。CME FedWatchでは年内1回利下げの確率が約1/3に留まる。</div>
         <div class="why-box default">
-          <span class="why-icon">💡</span>
-          <div><span class="why-label">為何重要:</span> 股價原已反映資產上限解除的利多，但核心收益的疲弱如今浮現。XLF內部選股的重要性愈發顯著。</div>
+        <div><span class="why-label">なぜ重要か:</span> 関税起因インフレ・地政学リスクの中でも労働市場が崩れない＝Fedの利下げ圧力は弱く、むしろ「長期高金利」が続く公算が高まる。金利感応度の高い小型株や長期債には逆風、コア・テック／AIには追い風の非対称環境。</div>
         </div>
       </div>
 
-      <!-- サブニュース5: J&J決算 -->
+      <!-- サブニュース4: イラン和平 -->
       <div class="news-card">
         <div class="news-card-img-wrap">
-          <img class="news-card-img" src="https://images.pexels.com/photos/3825540/pexels-photo-3825540.jpeg?auto=compress&cs=tinysrgb&w=800" alt="醫療保健與製藥" loading="lazy">
+          <img class="news-card-img" src="https://images.pexels.com/photos/87236/pexels-photo-87236.jpeg?auto=compress&cs=tinysrgb&w=800" alt="石油・エネルギー関連" loading="lazy">
           <span class="news-card-img-caption">Photo: Pexels</span>
         </div>
         <div class="news-card-meta">
-          <span class="news-card-tag earnings">財報</span>
-          <span class="news-card-source">CNBC / 路透 / 華爾街日報</span>
+          <span class="news-card-tag geopolitics">GEOPOLITICS</span>
+          <span class="news-card-source">Fox News / Reuters</span>
         </div>
-        <div class="news-card-title">嬌生Q1 EPS $2.70超預期，上調全年指引</div>
-        <div class="news-card-excerpt">每股盈餘$2.70（市場預期$2.67），收入$24.1B（+10%）。全年收入指引上調至1,003–$101.3B。製藥業務表現強勁，消費者事業部貢獻亦明顯可見。</div>
+        <div class="news-card-title">イラン和平交渉、膠着続く — トランプ氏「戦争終結に近い」も、濃縮20年停止案は拒否で応酬</div>
+        <div class="news-card-excerpt">トランプ大統領は4月15日、イラン戦争は「終結に極めて近い」とフォックス・ニュースで発言、追加協議は今週末パキスタンで行われる可能性を示唆。しかし直前のイスラマバード協議では、米国提示のウラン濃縮20年停止案をイランが拒否、5年で対案を出すも米国が拒絶し膠着。ホルムズ海峡の一部封鎖は継続中だが、対話継続観測でBrent原油は週初の$100台から$99.39台、WTIは$92台へと落ち着きを取り戻した。</div>
+        <div class="why-box warning">
+        <div><span class="why-label">なぜ重要か:</span> 地政学リスクの「ピーク感」は後退したが、交渉決裂時の原油急騰シナリオは消えていない。エネルギー株の足元の伸び悩みは、供給不安よりも「需要鈍化懸念＋景気減速シナリオ」のウェイトが増している可能性を示唆。</div>
+        </div>
+      </div>
+
+      <!-- サブニュース5: PepsiCo -->
+      <div class="news-card">
+        <div class="news-card-img-wrap">
+          <img class="news-card-img" src="https://images.pexels.com/photos/1414651/pexels-photo-1414651.jpeg?auto=compress&cs=tinysrgb&w=800" alt="食品・小売" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
+        <div class="news-card-meta">
+          <span class="news-card-tag earnings">EARNINGS</span>
+          <span class="news-card-source">PepsiCo IR / Reuters</span>
+        </div>
+        <div class="news-card-title">PepsiCo、売上EPSともにビート — 広告単価上昇とクーポン減で粗利改善</div>
+        <div class="news-card-excerpt">PepsiCoは4月16日、Q1決算でEPS $1.61（予想$1.55）、売上$19.44B（予想$18.94B）と予想を上回った。ノース・アメリカ飲料事業の単価改善と、昨年の割引クーポン減が奏功。高インフレ環境下で値上げ耐性を持つ消費財の強さが再確認された。</div>
         <div class="why-box positive">
-          <span class="why-icon">💡</span>
-          <div><span class="why-label">為何重要:</span> 嬌生是唯一一家上調全年指引的大型防禦性醫療保健股，類股內部分化如同銀行業般明顯。</div>
+        <div><span class="why-label">なぜ重要か:</span> 生活必需品セクターは4/16騰落 +0.05% と冴えないが、個別では粘り腰が目立つ。関税起因インフレが続くなら、価格転嫁力のあるブランドが相対的に選好される地合いが続く可能性。</div>
         </div>
       </div>
 
-      <!-- サブニュース6: Nasdaq 100 10連騰 -->
+      <!-- サブニュース6: Abbott -->
       <div class="news-card">
         <div class="news-card-img-wrap">
-          <img class="news-card-img" src="https://images.pexels.com/photos/5849592/pexels-photo-5849592.jpeg?auto=compress&cs=tinysrgb&w=800" alt="科技" loading="lazy">
+          <img class="news-card-img" src="https://images.pexels.com/photos/4226119/pexels-photo-4226119.jpeg?auto=compress&cs=tinysrgb&w=800" alt="医療機器" loading="lazy">
           <span class="news-card-img-caption">Photo: Pexels</span>
         </div>
         <div class="news-card-meta">
-          <span class="news-card-tag tech">科技</span>
-          <span class="news-card-source">CNBC / 彭博 / 路透</span>
+          <span class="news-card-tag earnings">EARNINGS</span>
+          <span class="news-card-source">Abbott IR / Reuters</span>
         </div>
-        <div class="news-card-title">那斯達克100連10漲——創2021年以來最長紀錄，美光與甲骨文領軍</div>
-        <div class="news-card-excerpt">那斯達克100指數連續10日上漲，為2021年9月以來最長升勢。美光因半導體需求預期急升，甲骨文則因與Bloom Energy簽訂燃料電池購電協議而上漲。動能正在加速。</div>
-        <div class="why-box default">
-          <span class="why-icon">💡</span>
-          <div><span class="why-label">為何重要:</span> 雖有短線過熱跡象，但買盤分佈廣泛。200日均線乖離+11.8%處於警戒區而非警報區。</div>
+        <div class="news-card-title">Abbott -5%で急落 — インフルエンザ検査キット売上が「最弱シーズン」で想定割れ</div>
+        <div class="news-card-excerpt">Abbott Laboratoriesは4月16日、Q1決算を発表し株価は約5%下落。診断事業のインフルエンザ検査キット売上が「ここ数年で最弱のシーズン」（経営陣）で想定を下回った。ヘルスケアセクター全体（XLV -0.71%）の軟調を主導。</div>
+        <div class="why-box negative">
+        <div><span class="why-label">なぜ重要か:</span> ヘルスケアは4/16で最下位セクターとなったが、Abbott単独ではなく医療機器全般の需要正常化（=コロナ特需の剥落）が続いている構造問題を反映。</div>
+        </div>
+      </div>
+
+      <!-- サブニュース7: Charles Schwab -->
+      <div class="news-card">
+        <div class="news-card-img-wrap">
+          <img class="news-card-img" src="https://images.pexels.com/photos/210990/pexels-photo-210990.jpeg?auto=compress&cs=tinysrgb&w=800" alt="オフィスビル" loading="lazy">
+          <span class="news-card-img-caption">Photo: Pexels</span>
+        </div>
+        <div class="news-card-meta">
+          <span class="news-card-tag earnings">EARNINGS</span>
+          <span class="news-card-source">Schwab IR / CNBC</span>
+        </div>
+        <div class="news-card-title">Charles Schwab -10%急落 — 記録的売上も「資産運用マージン」ミスで失望</div>
+        <div class="news-card-excerpt">証券大手Charles SchwabはQ1決算で売上は過去最高を更新したが、資産運用マージンが市場予想を下回り約10%下落。金融セクター（XLF -0.14%）の足を引っ張った。JPモルガン（14日）・Goldman Sachs（13日）は好決算だったが、個別銘柄の明暗は鮮明化。</div>
+        <div class="why-box negative">
+        <div><span class="why-label">なぜ重要か:</span> 金融セクター内でも「銀行（IBフィー・トレーディング中心）」と「証券リテール（資産運用フィー中心）」の収益構造差が鮮明に。同じ金融でもビジネスモデル別に選別する局面。</div>
         </div>
       </div>
 
@@ -2180,163 +2350,186 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
   <!-- ===== 3. 編集部の目線 ===== -->
   <section class="section-gap">
     <div class="section-label">
-      <span class="section-label-icon">🖋️</span>
-      <span class="section-label-text">編輯部觀點</span>
+      <span class="section-label-text">編集部の目線</span>
       <span class="section-label-line"></span>
     </div>
 
     <div class="editorial-card">
       <div class="ed-hero">
-        <span class="ed-badge">ATLAS 編輯部</span>
-        <h3 class="editorial-headline">三箭齊發之日——伊朗、PPI、銀行財報三重順風</h3>
-        <p class="editorial-sub">和談預期、通膨放緩、財報超預期同日點火。如何解讀這波風險偏好階段及下一批待觀察的數據。</p>
+        <span class="ed-badge">ATLAS EDITORIAL</span>
+        <h3 class="editorial-headline">NASDAQ12連騰は何を織り込み、何を織り込んでいないか</h3>
+        <p class="editorial-sub">TSMC決算で強化された「AIサイクル継続」シナリオと、その前提となる3条件の再点検</p>
       </div>
       <div class="editorial-body">
-        <p>4月14日或許會被記錄為2026年4月市場的轉折點。三大催化劑同日發酵——(1) 巴基斯坦斡旋下的美伊第二輪和談預期、(2) 3月PPI錄得+0.5%（市場預期+1.1%，核心僅+0.1%）、(3) 摩根大通、花旗、嬌生三家財報超預期——構築出自2025年以來最純粹的風險偏好格局。標普500已完全收復戰前水準，距歷史高位僅約1%。</p>
+        <p>4月16日のNASDAQ12連騰は、2009年7月以来の最長連騰記録を更新した。市場はTSMC決算で改めて「AI設備投資サイクルは2026年下期〜2027年も継続」というシナリオを確信し、NvidiaとAMDを含む広義の「AIサプライチェーン全体」が買われる展開となった。しかし当編集部は、この上昇が<strong>3つの楽観前提</strong>に支えられていることを指摘しておきたい。</p>
 
-        <p>然而並非一切皆為順風。摩根大通將全年NII指引由$104.5B下調至$103B，富國銀行下跌-5%，分化態勢明顯。200日均線乖離已擴大至+11.8%，短線過熱不能排除。恐懼與貪婪指數處於41（恐懼區），顯示市場參與者仍偏審慎——反倒可能為下檔韌性提供支撐。</p>
+        <p>第一に「関税起因インフレは中盤で減速する」という前提。パウエル議長はこれを<strong>条件付き</strong>でしか認めておらず、進展が見られなければ年内利下げは「保証されない」と明言している。JPモルガンのダイモンCEOは前日、「インフレはパーティーの招かれざる客」とも表現した。関税 + 地政学 + 賃金上昇が複合的にコア・インフレを押し上げる構造は、まだ解けていない。</p>
 
-        <p>我們認為對此風險偏好階段採取「不盲信、不過度質疑」的中性立場為宜。和談仍屬初步階段，一旦破裂，原油與VIX將瞬間反轉。近期關鍵節點密集：4月16日零售銷售數據、美銀（BAC）及摩根士丹利財報。本週避免大幅調整部位，於各數據公布時逐步修正，應屬合理策略。</p>
+        <p>第二に「イラン和平が近い」という前提。トランプ氏の「終結に近い」発言とは裏腹に、ウラン濃縮停止期間を巡る米イ交渉は膠着が続き、ホルムズ海峡封鎖も維持されている。米国案「20年」vs イラン案「5年」という4倍差の開きは、交渉のフレームワーク自体が収斂していないことを示唆する。</p>
+
+        <p>第三に「AI設備投資の需要側実配備が滞らない」という前提。TSMCのCapEx引き上げは供給側の確信を示すが、NvidiaのBlackwell/Rubin世代を含むデータセンター投資額は、電力網・冷却・不動産といった「物理的制約」に直面しつつある。供給が整っても顧客側で捌ききれなければ、2027年以降のトップラインは想定より鈍化しうる。</p>
+
+        <p><strong>SKEW指数が150を超える「沈黙の危機」シグナルは、これら3前提のいずれかが崩れたときに市場がどれだけ脆いかを機関投資家が計測し続けている証左だ。</strong> 記録更新を続ける市場の裏側で、この<strong>非対称リスク</strong>にプロが保険をかけ続けている事実は、一般投資家にとっても示唆に富む。目の前の上昇を楽しみつつ、<strong>ポジションサイズとヘッジ戦略を同時に見直す</strong>のが、今のフェーズで最も実践的な姿勢だろう。</p>
+
+        <p>編集部の見解: 4/18は土曜で米株式市場は通常休場。来週以降のUnitedHealth（4/21）、Tesla・IBM（4/22）などの決算を通じて、「AI楽観一辺倒」が他セクターの実体経済の重しに気づかされる局面が来るか否かを見極めたい。</p>
       </div>
-      <p class="editorial-note">本文並非買賣任何特定證券之建議，投資決策須由讀者自行負責。</p>
+      <p class="editorial-note">※本稿は特定の有価証券の売買推奨を行うものではありません。投資判断はご自身の責任においてお願いします。</p>
     </div>
   </section>
 
   <!-- ===== 4. 今日のキーワード ===== -->
   <section class="section-gap">
     <div class="section-label">
-      <span class="section-label-icon">📖</span>
-      <span class="section-label-text">今日關鍵詞</span>
+      <span class="section-label-text">今日のキーワード</span>
       <span class="section-label-line"></span>
     </div>
 
     <div class="keyword-card">
-      <div class="keyword-title">地緣政治風險溢價消散</div>
-      <div class="keyword-sub">Geopolitical Risk Premium Unwinding</div>
+      <div class="keyword-title">SKEW指数（テールリスク指標）</div>
+      <div class="keyword-sub">CBOE SKEW Index / Tail Risk Gauge</div>
       <div class="keyword-overview">
-        指因戰爭、衝突或政權風險等地緣事件而計入資產價格（原油、黃金、波動率、防禦股溢價等）的風險溢價，在局勢緩和時迅速消退的現象。溢價消散的幅度有多大，風險性資產就有多受惠。
+        CBOEが算出する、S&amp;P 500オプション市場における「3シグマ級の下落発生確率」を数値化した指標。値は通常100〜150の範囲で、<strong>100</strong>が「極端な下落リスクを市場が織り込んでいない」状態、<strong>150</strong>が「歴史的に高い下落確率を織り込み中」の状態。VIXが「現在の恐怖」を測るのに対し、SKEWは「裾野の破壊的な下落に対するヘッジ需要」を測る。
       </div>
       <div class="keyword-perspectives">
         <div class="keyword-perspective">
-          <div class="keyword-perspective-icon">📜</div>
-          <div class="keyword-perspective-label">歷史先例</div>
-          <div class="keyword-perspective-text">類似形態曾見於2022年3月（俄烏戰爭）、2003年5月（伊拉克戰爭結束預期）、及2019年1月（中美貿易協議預期）。</div>
+          <div class="keyword-perspective-label">歴史的前例</div>
+          <div class="keyword-perspective-text">2018年2月のボラティリティショック（VIXスパイク）、2020年3月のコロナ・ショック、2022年秋の金利急騰局面など、いずれも直前にSKEWが145超の高水準を続けていた。ただしSKEW高＝必ず急落というわけではなく、シグナルが持続する場合はむしろ「楽観と警戒の共存」が長期化することも多い。</div>
         </div>
         <div class="keyword-perspective">
-          <div class="keyword-perspective-icon">⚙️</div>
-          <div class="keyword-perspective-label">市場機制</div>
-          <div class="keyword-perspective-text">溢價消散時，通常出現「原油 ↓ × VIX ↓ × 長端利率 ↓ × 股市 ↑」的四向聯動。今夜美股即為教科書式的純粹四向反轉。</div>
+          <div class="keyword-perspective-label">市場メカニズム</div>
+          <div class="keyword-perspective-text">SKEWはアウト・オブ・マネー（権利行使価格が現値から離れた）プット（売り権利）の価格が、コール（買い権利）よりも相対的に高い時に上昇する。機関投資家がダウンサイドをヘッジするためにプットを積極的に買う時にこうした歪みが生じる。</div>
         </div>
         <div class="keyword-perspective">
-          <div class="keyword-perspective-icon">🎯</div>
-          <div class="keyword-perspective-label">投資啟示</div>
-          <div class="keyword-perspective-text">能源股與黃金面臨逆風（XLE -2.8%即為明證）。相反地，三大循環類股——科技、消費、金融——皆受惠於順風。</div>
+          <div class="keyword-perspective-label">投資への影響</div>
+          <div class="keyword-perspective-text">SKEWが高い中でVIXが低いのは「沈黙の危機」と呼ばれるパターン。表面の相場は静かだが、プロは陰で保険を積んでいる状態。新規ポジションを大きく取るのは慎重に、既存ポジションのヘッジ（プット購入・ストップ設定）を検討する目安として有用。</div>
         </div>
         <div class="keyword-perspective">
-          <div class="keyword-perspective-icon">📊</div>
-          <div class="keyword-perspective-label">今日關聯</div>
-          <div class="keyword-perspective-text">WTI -7%、VIX 19區間、10年期美債殖利率-3bp、標普500 +1.18%——教科書級的溢價消散日。</div>
+          <div class="keyword-perspective-label">当日の相場との関連性</div>
+          <div class="keyword-perspective-text">4月8日時点でSKEWは150.36と10年以上のレンジ上限に達している。NASDAQが12連騰する裏でプロ投資家は着実にヘッジを積み増しており、今週のリスクメーター総合スコアが「注意圏」に踏み込んだ最大の要因。</div>
         </div>
       </div>
       <div class="keyword-relation">
-        <span class="keyword-relation-label">💡 今日關聯</span>
-        4月14日美股是典型的「地緣政治溢價消散日」，原油、VIX、長端利率、股市同向朝風險偏好方向移動。和談進展的預期迅速計入價格，戰前水準獲完全收復。惟消散並非不可逆——和談若破裂將瞬間反轉，故過度集中部位仍需審慎。
+        <span class="keyword-relation-label">今日との関連</span>
+        NASDAQが12連騰・S&amp;P 500が<span class="no-currency">7,041</span>と史上最高値を更新する歴史的局面の裏で、SKEW指数は150.36と歴史的高水準を維持。Atlasリスクメーターはこの「沈黙の危機」シグナルを★★★★★で検知している。表面的な熱狂と水面下のヘッジ需要の乖離は、過去の主要な調整局面に共通するパターン。新規の大きなロング追加は控えめに、既存ポジションのヘッジを意識する局面。
       </div>
-      <a class="keyword-glossary-link" href="https://atlas-financials.jp/news/glossary/">📖 查閱更多詞彙表內容 →</a>
+      <a class="keyword-glossary-link" href="https://atlas-financials.jp/news/glossary/">用語辞典でもっと詳しく →</a>
     </div>
   </section>
 
   <!-- ===== 5. Economic Calendar ===== -->
   <section class="section-gap">
     <div class="section-label">
-      <span class="section-label-icon">📅</span>
-      <span class="section-label-text">本週重點經濟數據</span>
+      <span class="section-label-text">今週の注目イベント</span>
       <span class="section-label-line"></span>
     </div>
 
     <div class="calendar-list">
       <div class="calendar-day-block">
-        <div class="calendar-day-label"><div><span class="day-num">4/14</span><span class="day-week">週二</span></div></div>
+        <div class="calendar-day-label"><div><span class="day-num">4/15</span><span class="day-week">水</span></div></div>
         <div class="calendar-events">
-          <div class="calendar-item is-star">
-            <span class="calendar-time">08:30 ET</span>
-            <span class="calendar-flag">🇺🇸</span>
-            <span class="calendar-importance high">高</span>
-            <div class="calendar-event-body">
-              <div class="calendar-event"><span class="star-icon">★</span>PPI（生產者物價指數）</div>
-              <span class="calendar-detail">已公布：+0.5%（市場預期+1.1%）</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="calendar-day-block">
-        <div class="calendar-day-label"><div><span class="day-num">4/15</span><span class="day-week">週三</span></div></div>
-        <div class="calendar-events">
-          <div class="calendar-item">
-            <span class="calendar-time">09:15 ET</span>
-            <span class="calendar-flag">🇺🇸</span>
-            <span class="calendar-importance medium">中</span>
-            <div class="calendar-event-body">
-              <div class="calendar-event">工業生產指數 / 產能利用率</div>
-              <span class="calendar-detail">製造業動向</span>
-            </div>
-          </div>
-          <div class="calendar-item">
-            <span class="calendar-time">14:00 ET</span>
-            <span class="calendar-flag">🇺🇸</span>
-            <span class="calendar-importance medium">中</span>
-            <div class="calendar-event-body">
-              <div class="calendar-event">褐皮書（聯準會各地區經濟報告）</div>
-              <span class="calendar-detail">FOMC會議前的各區經濟評估</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="calendar-day-block">
-        <div class="calendar-day-label"><div><span class="day-num">4/16</span><span class="day-week">週四</span></div></div>
-        <div class="calendar-events">
-          <div class="calendar-item is-star">
-            <span class="calendar-time">08:30 ET</span>
-            <span class="calendar-flag">🇺🇸</span>
-            <span class="calendar-importance high">高</span>
-            <div class="calendar-event-body">
-              <div class="calendar-event"><span class="star-icon">★</span>零售銷售（3月）</div>
-              <span class="calendar-detail">市場預期+0.3% / 消費動向關鍵觀察點</span>
-            </div>
-          </div>
           <div class="calendar-item">
             <span class="calendar-time">08:30 ET</span>
             <span class="calendar-flag">🇺🇸</span>
-            <span class="calendar-importance medium">中</span>
+            <span class="calendar-importance medium">MID</span>
             <div class="calendar-event-body">
-              <div class="calendar-event">每週初領失業救濟金人數</div>
-              <span class="calendar-detail">每週勞動市場指標</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="calendar-day-block">
-        <div class="calendar-day-label"><div><span class="day-num">4/17</span><span class="day-week">週五</span></div></div>
-        <div class="calendar-events">
-          <div class="calendar-item">
-            <span class="calendar-time">10:00 ET</span>
-            <span class="calendar-flag">🇺🇸</span>
-            <span class="calendar-importance low">低</span>
-            <div class="calendar-event-body">
-              <div class="calendar-event">消費者信心指數</div>
-              <span class="calendar-detail">輔助性情緒指標</span>
+              <div class="calendar-event">Empire State製造業指数（3月）【済】</div>
+              <span class="calendar-detail">NY地区の製造業景況</span>
             </div>
           </div>
           <div class="calendar-item">
             <span class="calendar-time no-time">—</span>
-            <span class="calendar-flag">🇯🇵</span>
-            <span class="calendar-importance medium">中</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance low">LOW</span>
             <div class="calendar-event-body">
-              <div class="calendar-event">日本全國CPI（3月）</div>
-              <span class="calendar-detail">對日本央行貨幣政策之影響</span>
+              <div class="calendar-event">NY連銀総裁講演【済】</div>
+              <span class="calendar-detail">金融政策スタンス確認</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar-day-block">
+        <div class="calendar-day-label"><div><span class="day-num">4/16</span><span class="day-week">木</span></div></div>
+        <div class="calendar-events">
+          <div class="calendar-item is-star">
+            <span class="calendar-time">08:30 ET</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance high">HIGH</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event"><span class="star-icon">★</span>新規失業保険申請 207千件【済】</div>
+              <span class="calendar-detail">予想220K・前週218K、2月以降で最大の週次減少</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar-day-block">
+        <div class="calendar-day-label"><div><span class="day-num">4/17</span><span class="day-week">金</span></div></div>
+        <div class="calendar-events">
+          <div class="calendar-item is-star">
+            <span class="calendar-time">08:30 ET</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance high">HIGH</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event"><span class="star-icon">★</span>住宅着工・許可件数（3月）</div>
+              <span class="calendar-detail">住宅市場の先行指標</span>
+            </div>
+          </div>
+          <div class="calendar-item">
+            <span class="calendar-time">08:30 ET</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance medium">MID</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event">フィラデルフィア連銀製造業指数（4月）</div>
+              <span class="calendar-detail">中部大西洋地区の景況</span>
+            </div>
+          </div>
+          <div class="calendar-item">
+            <span class="calendar-time no-time">—</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance medium">MID</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event">ボウマンFRB理事講演</div>
+              <span class="calendar-detail">金融政策スタンス確認</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar-day-block">
+        <div class="calendar-day-label"><div><span class="day-num">4/18</span><span class="day-week">土</span></div></div>
+        <div class="calendar-events">
+          <div class="calendar-item">
+            <span class="calendar-time no-time">—</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance low">LOW</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event">週末（米国株式市場休場）</div>
+              <span class="calendar-detail">主要指標・決算の発表予定なし</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar-day-block">
+        <div class="calendar-day-label"><div><span class="day-num">4/21</span><span class="day-week">月</span></div></div>
+        <div class="calendar-events">
+          <div class="calendar-item">
+            <span class="calendar-time">10:00 ET</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance medium">MID</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event">先行指標（3月）</div>
+              <span class="calendar-detail">景気モメンタムの複合指数</span>
+            </div>
+          </div>
+          <div class="calendar-item">
+            <span class="calendar-time">08:30 ET</span>
+            <span class="calendar-flag">🇺🇸</span>
+            <span class="calendar-importance medium">MID</span>
+            <div class="calendar-event-body">
+              <div class="calendar-event">小売売上（3月、延期分）</div>
+              <span class="calendar-detail">消費トレンドの試金石</span>
             </div>
           </div>
         </div>
@@ -2347,191 +2540,149 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
   <!-- ===== 6. Earnings ===== -->
   <section class="section-gap">
     <div class="section-label">
-      <span class="section-label-icon">📊</span>
-      <span class="section-label-text">本週重點財報</span>
+      <span class="section-label-text">今週の注目決算</span>
       <span class="section-label-line"></span>
     </div>
 
-    <div style="font-size:13px;font-weight:700;color:var(--navy-mid);margin-bottom:10px;letter-spacing:.02em">📅 已公布 / 本週剩餘</div>
+    <div style="font-size:13px;font-weight:700;color:var(--navy-mid);margin-bottom:10px;letter-spacing:.02em">前日決算結果（4/16発表済） ／ 今週残りの注目</div>
     <div class="earnings-grid">
-      <div class="earnings-item" data-ticker="GS">
-        <div class="earnings-item-header">
-          <span class="earnings-item-ticker">GS</span>
-          <span class="earnings-item-timing bmo">盤前</span>
-          <span class="earnings-item-result beat">超預期</span>
-        </div>
-        <div class="earnings-item-name">高盛</div>
-        <div class="earnings-item-sector">金融</div>
-        <div class="earnings-item-consensus">
-          <span>已公布 4/13（週一）</span>
-        </div>
-        <div class="earnings-item-note">✓ 股票交易收入創紀錄</div>
-      </div>
-      <div class="earnings-item" data-ticker="JPM">
-        <div class="earnings-item-header">
-          <span class="earnings-item-ticker">JPM</span>
-          <span class="earnings-item-timing bmo">盤前</span>
-          <span class="earnings-item-result beat">超預期</span>
-        </div>
-        <div class="earnings-item-name">摩根大通</div>
-        <div class="earnings-item-sector">金融</div>
-        <div class="earnings-item-consensus">
-          <span>已公布 4/14（週二）</span>
-        </div>
-        <div class="earnings-item-note">✓ 純利+13%，惟NII指引下修</div>
-      </div>
-      <div class="earnings-item" data-ticker="C">
-        <div class="earnings-item-header">
-          <span class="earnings-item-ticker">C</span>
-          <span class="earnings-item-timing bmo">盤前</span>
-          <span class="earnings-item-result beat">超預期</span>
-        </div>
-        <div class="earnings-item-name">花旗</div>
-        <div class="earnings-item-sector">金融</div>
-        <div class="earnings-item-consensus">
-          <span>已公布 4/14（週二）</span>
-        </div>
-        <div class="earnings-item-note">✓ 收入創十年新高</div>
-      </div>
-      <div class="earnings-item" data-ticker="WFC">
-        <div class="earnings-item-header">
-          <span class="earnings-item-ticker">WFC</span>
-          <span class="earnings-item-timing bmo">盤前</span>
-          <span class="earnings-item-result miss">不及預期</span>
-        </div>
-        <div class="earnings-item-name">富國銀行</div>
-        <div class="earnings-item-sector">金融</div>
-        <div class="earnings-item-consensus">
-          <span>已公布 4/14（週二）</span>
-        </div>
-        <div class="earnings-item-note">✗ 股價下跌-5%</div>
-      </div>
-      <div class="earnings-item" data-ticker="JNJ">
-        <div class="earnings-item-header">
-          <span class="earnings-item-ticker">JNJ</span>
-          <span class="earnings-item-timing bmo">盤前</span>
-          <span class="earnings-item-result beat">超預期</span>
-        </div>
-        <div class="earnings-item-name">嬌生</div>
-        <div class="earnings-item-sector">醫療保健</div>
-        <div class="earnings-item-consensus">
-          <span>已公布 4/14（週二）</span>
-        </div>
-        <div class="earnings-item-note">✓ 上調全年指引</div>
-      </div>
-      <div class="earnings-item" data-ticker="BLK">
-        <div class="earnings-item-header">
-          <span class="earnings-item-ticker">BLK</span>
-          <span class="earnings-item-timing bmo">盤前</span>
-          <span class="earnings-item-result beat">超預期</span>
-        </div>
-        <div class="earnings-item-name">貝萊德</div>
-        <div class="earnings-item-sector">金融</div>
-        <div class="earnings-item-consensus">
-          <span>已公布</span>
-        </div>
-        <div class="earnings-item-note">✓ 資產管理規模創新高</div>
-      </div>
-      <div class="earnings-item" data-ticker="BAC">
-        <div class="earnings-item-header">
-          <span class="earnings-item-ticker">BAC</span>
-          <span class="earnings-item-timing bmo">盤前</span>
-        </div>
-        <div class="earnings-item-name">美國銀行</div>
-        <div class="earnings-item-sector">金融</div>
-        <div class="earnings-item-consensus">
-          <span>4/15（週三）收入$27.3B</span>
-          <span>EPS $0.82</span>
-        </div>
-        <div class="earnings-item-note">大型銀行財報的下一棒</div>
-      </div>
-      <div class="earnings-item" data-ticker="MS">
-        <div class="earnings-item-header">
-          <span class="earnings-item-ticker">MS</span>
-          <span class="earnings-item-timing bmo">盤前</span>
-        </div>
-        <div class="earnings-item-name">摩根士丹利</div>
-        <div class="earnings-item-sector">金融</div>
-        <div class="earnings-item-consensus">
-          <span>4/15（週三）收入$16.7B</span>
-          <span>EPS $2.16</span>
-        </div>
-        <div class="earnings-item-note">投行業務主場季</div>
-      </div>
-      <div class="earnings-item" data-ticker="ASML">
-        <div class="earnings-item-header">
-          <span class="earnings-item-ticker">ASML</span>
-          <span class="earnings-item-timing bmo">盤前</span>
-        </div>
-        <div class="earnings-item-name">艾司摩爾</div>
-        <div class="earnings-item-sector">半導體設備</div>
-        <div class="earnings-item-consensus">
-          <span>4/15（週三）EPS €5.15</span>
-        </div>
-        <div class="earnings-item-note">EUV設備訂單展望</div>
-      </div>
       <div class="earnings-item" data-ticker="TSM">
         <div class="earnings-item-header">
           <span class="earnings-item-ticker">TSM</span>
-          <span class="earnings-item-timing bmo">盤前</span>
+          <span class="earnings-item-badges"><span class="earnings-item-timing bmo">BMO</span>
+          <span class="earnings-item-result beat">ビート</span></span>
         </div>
-        <div class="earnings-item-name">台積電</div>
-        <div class="earnings-item-sector">科技</div>
+        <div class="earnings-item-name">Taiwan Semiconductor</div>
+        <div class="earnings-item-sector">テクノロジー</div>
         <div class="earnings-item-consensus">
-          <span>4/17（週四）收入$25.4B</span>
-          <span>EPS $2.03</span>
+          <span>4/16(木)発表済</span>
+          <span>売上$35.7B vs $35.3B / EPS $2.85 vs $2.56</span>
         </div>
-        <div class="earnings-item-note">AI基礎設施需求關鍵試金石</div>
+        <div class="earnings-item-note">✓ 純利益+58%、2026年CapEx上限560億ドルへ</div>
       </div>
       <div class="earnings-item" data-ticker="NFLX">
         <div class="earnings-item-header">
           <span class="earnings-item-ticker">NFLX</span>
-          <span class="earnings-item-timing amc">盤後</span>
+          <span class="earnings-item-badges"><span class="earnings-item-timing amc">AMC</span>
+          <span class="earnings-item-result beat">ビート</span></span>
         </div>
         <div class="earnings-item-name">Netflix</div>
-        <div class="earnings-item-sector">娛樂</div>
+        <div class="earnings-item-sector">エンターテイメント</div>
         <div class="earnings-item-consensus">
-          <span>4/17（週四）收入$10.5B</span>
-          <span>EPS $5.74</span>
+          <span>4/16(木)発表済</span>
+          <span>売上$12.25B vs $12.18B / EPS $1.23 vs $0.76</span>
         </div>
-        <div class="earnings-item-note">串流媒體市場動向</div>
+        <div class="earnings-item-note">△ EPSビートもQ2ガイダンス失望で-8%</div>
       </div>
-      <div class="earnings-item" data-ticker="UAL">
+      <div class="earnings-item" data-ticker="PEP">
         <div class="earnings-item-header">
-          <span class="earnings-item-ticker">UAL</span>
-          <span class="earnings-item-timing amc">盤後</span>
+          <span class="earnings-item-ticker">PEP</span>
+          <span class="earnings-item-badges"><span class="earnings-item-timing bmo">BMO</span>
+          <span class="earnings-item-result beat">ビート</span></span>
         </div>
-        <div class="earnings-item-name">聯合航空</div>
-        <div class="earnings-item-sector">航空</div>
+        <div class="earnings-item-name">PepsiCo</div>
+        <div class="earnings-item-sector">生活必需品</div>
         <div class="earnings-item-consensus">
-          <span>4/17（週四）EPS $0.85</span>
+          <span>4/16(木)発表済</span>
+          <span>売上$19.44B vs $18.94B / EPS $1.61 vs $1.55</span>
         </div>
-        <div class="earnings-item-note">航空類股首棒</div>
+        <div class="earnings-item-note">✓ 単価改善・クーポン減で粗利改善</div>
+      </div>
+      <div class="earnings-item" data-ticker="ABT">
+        <div class="earnings-item-header">
+          <span class="earnings-item-ticker">ABT</span>
+          <span class="earnings-item-badges"><span class="earnings-item-timing bmo">BMO</span>
+          <span class="earnings-item-result miss">ミス</span></span>
+        </div>
+        <div class="earnings-item-name">Abbott Laboratories</div>
+        <div class="earnings-item-sector">ヘルスケア</div>
+        <div class="earnings-item-consensus">
+          <span>4/16(木)発表済</span>
+          <span>インフルエンザ検査キット「最弱シーズン」</span>
+        </div>
+        <div class="earnings-item-note">× 株価-5%、診断事業が想定下振れ</div>
+      </div>
+      <div class="earnings-item" data-ticker="SCHW">
+        <div class="earnings-item-header">
+          <span class="earnings-item-ticker">SCHW</span>
+          <span class="earnings-item-badges"><span class="earnings-item-timing bmo">BMO</span>
+          <span class="earnings-item-result miss">ミス</span></span>
+        </div>
+        <div class="earnings-item-name">Charles Schwab</div>
+        <div class="earnings-item-sector">金融</div>
+        <div class="earnings-item-consensus">
+          <span>4/16(木)発表済</span>
+          <span>売上新記録も資産運用マージン不足</span>
+        </div>
+        <div class="earnings-item-note">× 株価-10%、フィー構造の課題</div>
+      </div>
+      <div class="earnings-item">
+        <div class="earnings-item-header">
+          <span class="earnings-item-ticker">4/17</span>
+          <span class="earnings-item-badges"><span class="earnings-item-timing amc">AMC</span></span>
+        </div>
+        <div class="earnings-item-name">Discover / Truist / Snap-On / State Street</div>
+        <div class="earnings-item-sector">金融ほか</div>
+        <div class="earnings-item-consensus">
+          <span>4/17(金)AMC</span>
+          <span>米リージョナル銀行の健全性確認</span>
+        </div>
+        <div class="earnings-item-note">消費者ローン・中堅銀行の品質</div>
+      </div>
+      <div class="earnings-item">
+        <div class="earnings-item-header">
+          <span class="earnings-item-ticker">—</span>
+        </div>
+        <div class="earnings-item-name">4/18(土) 週末</div>
+        <div class="earnings-item-sector">休場</div>
+        <div class="earnings-item-consensus">
+          <span>米国株式市場は週末休場</span>
+        </div>
+        <div class="earnings-item-note">主要決算発表なし</div>
+      </div>
+      <div class="earnings-item" data-ticker="UNH">
+        <div class="earnings-item-header">
+          <span class="earnings-item-ticker">UNH</span>
+          <span class="earnings-item-badges"><span class="earnings-item-timing bmo">BMO</span></span>
+        </div>
+        <div class="earnings-item-name">UnitedHealth</div>
+        <div class="earnings-item-sector">ヘルスケア</div>
+        <div class="earnings-item-consensus">
+          <span>4/21(月)BMO 売上$109.45B</span>
+          <span>EPS $7.48</span>
+        </div>
+        <div class="earnings-item-note">メディケア・アドバンテージ圧力が焦点</div>
       </div>
     </div>
   </section>
 
 </main>
 
-<!-- ===== Disclaimer ===== -->
-<div class="disclaimer-section">
-  <p class="disclaimer-text">本報道由AI輔助整理之資訊彙編而成，準確性及完整性不獲保證。</p>
-  <p class="disclaimer-text">本報道僅供參考，不構成買賣任何特定金融商品之建議。投資決策須由讀者自行負責。</p>
-</div>
-
 <!-- ===== Footer ===== -->
 <footer class="paper-footer">
   <div class="footer-day-nav">
-    <a href="9-zh.html">← 上期：4月9日</a>
+    <a class="day-nav-btn day-nav-prev" href="16.html">
+      <span class="day-nav-arrow">
+        <svg width="22" height="24" viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="13,6 5,12 13,18"/>
+          <polyline points="20,6 12,12 20,18"/>
+        </svg>
+      </span>
+      <div class="day-nav-meta">
+        <span class="day-nav-label">前号を読む</span>
+        <span class="day-nav-date">4月16日</span>
+      </div>
+    </a>
   </div>
   <nav class="footer-nav">
-    <a href="https://atlas-financials.jp/reports/about.html">關於 Atlas</a>
-    <a href="https://atlas-financials.jp/reports/">📊 財報分析</a>
-    <a href="https://atlas-financials.jp/news/glossary/">📖 詞彙表</a>
-    <a href="https://atlas-financials.jp/reports/faq.html">常見問題</a>
-    <a href="https://atlas-financials.jp/reports/terms.html">使用條款</a>
+    <a href="https://atlas-financials.jp/reports/about.html">Atlasとは</a>
+    <a href="https://atlas-financials.jp/reports/">決算分析</a>
+    <a href="https://atlas-financials.jp/news/glossary/">用語辞典</a>
+    <a href="https://atlas-financials.jp/reports/faq.html">FAQ</a>
+    <a href="https://atlas-financials.jp/reports/terms.html">利用規約</a>
   </nav>
   <div class="footer-copy">&copy; 2026 Atlas Daily — U&amp;I CO., LTD.</div>
+  <p class="footer-disclaimer">本記事はAIによる情報収集・要約を基に作成されています。正確性・完全性を保証するものではありません。本記事は情報提供を目的としており、特定の金融商品の売買を推奨するものではありません。投資判断はご自身の責任で行ってください。</p>
 </footer>
 
 <script>
@@ -2555,7 +2706,7 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
 (function(){
   var logoBase = 'https://raw.githubusercontent.com/AtlasFinancials/reports/main/logos/';
   var portalBase = 'https://atlas-financials.jp/reports/';
-  var portalTickers = ['ACN','ADBE','ADI','ALAB','AMZN','AVGO','BABA','CCL','CIEN','COST','DAL','DDOG','DG','DOCU','FDX','FN','GOOGL','IOT','JPM','LLY','LULU','META','MRVL','MSFT','MU','NKE','NVDA','OKTA','ORCL','PANW','PATH','PAYP','RBRK','RDDT','S','SMCI','SNAP','TM','TSLA','TSM','TXN','VFC','WMT','ZS'];
+  var portalTickers = ['ACN','ADBE','ADI','ALAB','AMZN','ASML','AVGO','BABA','BAC','C','CCL','CIEN','COST','DAL','DDOG','DG','DOCU','FDX','FN','GOOGL','GS','IOT','JPM','LLY','LULU','META','MRVL','MS','MSFT','MU','NKE','NVDA','OKTA','ORCL','PANW','PATH','PAYP','RBRK','RDDT','S','SMCI','SNAP','TM','TSLA','TSM','TXN','VFC','WMT','ZS'];
   var pngLogos = ['CIEN','S'];
 
   document.querySelectorAll('.earnings-item[data-ticker]').forEach(function(item){
@@ -2575,7 +2726,7 @@ body{font-family:'Noto Sans TC',var(--font-ui)}
     link.href = portalBase + ticker + '/';
     link.target = '_blank';
     link.className = 'earnings-item-link';
-    link.innerHTML = '📊 查閱過往財報分析 →';
+    link.innerHTML = '過去の決算分析を見る →';
     item.appendChild(link);
   });
 })();
@@ -2599,7 +2750,7 @@ document.querySelectorAll('.ed-take').forEach(function(el){
   if(bestTile){
     var badge = document.createElement('span');
     badge.className = 'sector-tile-best';
-    badge.textContent = '🔥';
+    badge.textContent = 'BEST'; badge.style.cssText = 'position:absolute;top:4px;right:6px;font-size:9px;font-weight:800;color:#B8912A;letter-spacing:.5px';
     bestTile.appendChild(badge);
   }
 
@@ -2692,7 +2843,7 @@ document.querySelectorAll('.ed-take').forEach(function(el){
   // Gauge: half-doughnut with needle
   var ctx = document.getElementById('riskGaugeChart');
   if(!ctx) return;
-  var totalScore = 37;
+  var totalScore = 39;
   var zoneColor = '#eab308';
 
   // Needle plugin
@@ -2918,7 +3069,7 @@ function cycleFontScale(){
       labels: labels,
       datasets: [
         {
-          label: 'PPI（整體）',
+          label: 'PPI（ヘッドライン）',
           data: ppi,
           borderColor: '#B8912A',
           backgroundColor: 'rgba(184,145,42,0.1)',
@@ -2930,7 +3081,7 @@ function cycleFontScale(){
           fill: false
         },
         {
-          label: '核心PPI（扣除食品及能源）',
+          label: 'コアPPI（食品・エネルギー除く）',
           data: corePpi,
           borderColor: '#1A2540',
           backgroundColor: 'rgba(26,37,64,0.08)',
@@ -3007,22 +3158,31 @@ document.addEventListener('keydown', function(e){
 </script>
 <script>
 /* === Atlas Currency Toggle (USD ⇄ 現地通貨) ===
- * Multi-currency support (2026-04-15 updated).
+ * Multi-currency + Multi-notation support (2026-04-16 updated).
  *
  * Configuration via window.ATLAS_FX:
- *   { code: 'JPY', symbol: '¥', rate: 158.45, date: '2026/4/14', fmt: 'cjk-ja' }
- *   { code: 'HKD', symbol: 'HK$', rate: 7.78,  date: '2026/4/14', fmt: 'western' }
- *   { code: 'KRW', symbol: '₩',  rate: 1420,   date: '2026/4/14', fmt: 'cjk-ko' }
+ *   { code: 'JPY', symbol: '¥', rate: 158.45, eur_usd: 1.10, date: '2026/4/15', fmt: 'cjk-ja' }
+ *   { code: 'HKD', symbol: 'HK$', rate: 7.78,  eur_usd: 1.10, date: '2026/4/15', fmt: 'western' }
+ *   { code: 'KRW', symbol: '₩',  rate: 1420,   eur_usd: 1.10, date: '2026/4/15', fmt: 'cjk-ko' }
+ *   eur_usd is optional; default 1.10. Used to convert EUR amounts → USD → local.
  *
  * If ATLAS_FX is undefined or { code: 'USD' }, the toggle is auto-hidden.
+ *
+ * Recognized notations (all converted to local currency when toggled):
+ *   Western: $X.XB / $X.XXM / $X.XXK / $X
+ *   Euro:    €X.XB / €X.XXM / €X.XXK / €X  (converted via eur_usd rate)
+ *   Japanese dollar: NNN[万億兆]?ドル       (e.g., 86億ドル, 25,000ドル)
+ *   Chinese dollar:  NNN[萬億兆]?美元       (e.g., 86億美元)
+ *   Korean dollar:   NNN[만억조]?\s*달러    (e.g., 86억 달러)
+ *   Japanese euro:   NNN[万億兆]?ユーロ     (e.g., 25億ユーロ)
  *
  * HTML button:
  *   <button class="currency-toggle" onclick="toggleCurrency()">
  *     <span class="cur-active">$</span><span class="cur-sep">/</span><span class="cur-inactive">¥</span>
  *   </button>
  *
- * Skip containers: add class "no-currency" to any element whose $ values
- * must stay in USD (stock prices, commodity prices, market caps in 兆, etc.)
+ * Skip containers: add class "no-currency" to any element whose values
+ * must stay in original notation (stock prices, commodity prices, market caps in 兆, etc.)
  */
 (function(){
   if(window.__ATLAS_CURRENCY_LOADED) return;
@@ -3039,72 +3199,103 @@ document.addEventListener('keydown', function(e){
     return;
   }
 
-  // Defaults for backward compatibility (old JP-only config without code/symbol)
+  // Defaults for backward compatibility
   if(!FX.code) FX.code = 'JPY';
   if(!FX.symbol) FX.symbol = '¥';
   if(!FX.fmt) FX.fmt = 'cjk-ja';
+  if(!FX.eur_usd) FX.eur_usd = 1.10;
 
   var localKey = 'atlas-currency';
   var currencyMode = localStorage.getItem(localKey) || 'USD';
-  // Normalize legacy 'JPY' mode for non-JPY languages
   if(currencyMode !== 'USD' && currencyMode !== FX.code) currencyMode = FX.code;
 
-  function fmtLocal(usd, unit){
-    // usd_b = amount in billions USD
-    var usd_b = unit==='T'?usd*1000:unit==='B'?usd:unit==='M'?usd/1000:unit==='K'?usd/1e6:null;
+  // CJK unit → multiplier (to raw USD dollars)
+  var CJK_UNITS = {
+    '万':1e4, '萬':1e4, '만':1e4,
+    '億':1e8, '억':1e8,
+    '兆':1e12, '조':1e12
+  };
+
+  // TBMK unit → multiplier to raw USD dollars
+  var TBMK_UNITS = { 'K':1e3, 'M':1e6, 'B':1e9, 'T':1e12 };
+
+  // Normalize raw USD $ amount → (num, TBMK unit) pair used by fmtLocal
+  function toBillionsPair(rawUsd){
+    if(rawUsd >= 1e12) return { num: rawUsd/1e12, unit: 'T' };
+    if(rawUsd >= 1e9)  return { num: rawUsd/1e9,  unit: 'B' };
+    if(rawUsd >= 1e6)  return { num: rawUsd/1e6,  unit: 'M' };
+    if(rawUsd >= 1e3)  return { num: rawUsd/1e3,  unit: 'K' };
+    return { num: rawUsd, unit: '' };
+  }
+
+  function fmtLocal(num, unit){
+    // num+unit: e.g., (20.6, 'B') means $20.6B. Convert to local.
+    var usd_b = unit==='T'?num*1000:unit==='B'?num:unit==='M'?num/1000:unit==='K'?num/1e6:null;
 
     if(FX.fmt === 'cjk-ja'){
-      // 日本円: 万 / 億 / 兆
       if(usd_b !== null){
         var jpy_b = usd_b * FX.rate;
         if(jpy_b >= 1000) return FX.symbol + (jpy_b/1000).toFixed(2) + '兆';
         if(jpy_b >= 1) return FX.symbol + (jpy_b*10).toFixed(0) + '億';
         return FX.symbol + (jpy_b*1000).toFixed(0) + '百万';
       }
-      var jpy = usd * FX.rate;
+      var jpy = num * FX.rate;
       if(jpy >= 10000) return FX.symbol + (jpy/10000).toFixed(2) + '万';
       return FX.symbol + Math.round(jpy).toLocaleString();
     }
 
     if(FX.fmt === 'cjk-ko'){
-      // 韓国ウォン: 만 / 억 / 조
-      // 1억 = 1e8 KRW, 1조 = 1e12 KRW
       if(usd_b !== null){
-        var krw_b = usd_b * FX.rate; // billions of KRW = 1e9 KRW each
-        // 1 billion KRW = 10억. So krw_b billions = krw_b * 10 억
-        // If krw_b >= 1000 (i.e., 1T KRW = 1조): express in 조
+        var krw_b = usd_b * FX.rate;
         if(krw_b >= 1000) return FX.symbol + (krw_b/1000).toFixed(2) + '조';
-        // Else express in 억
         return FX.symbol + (krw_b*10).toFixed(0) + '억';
       }
-      var krw = usd * FX.rate;
+      var krw = num * FX.rate;
       if(krw >= 10000) return FX.symbol + (krw/10000).toFixed(2) + '만';
       return FX.symbol + Math.round(krw).toLocaleString();
     }
 
     if(FX.fmt === 'western'){
-      // HKD / EUR / GBP etc: K / M / B / T
       if(usd_b !== null){
         var x_b = usd_b * FX.rate;
         if(x_b >= 1000) return FX.symbol + (x_b/1000).toFixed(2) + 'T';
         if(x_b >= 1) return FX.symbol + x_b.toFixed(2) + 'B';
         return FX.symbol + (x_b*1000).toFixed(0) + 'M';
       }
-      var x = usd * FX.rate;
+      var x = num * FX.rate;
       if(x >= 1e9) return FX.symbol + (x/1e9).toFixed(2) + 'B';
       if(x >= 1e6) return FX.symbol + (x/1e6).toFixed(2) + 'M';
       if(x >= 1e3) return FX.symbol + (x/1e3).toFixed(1) + 'K';
       return FX.symbol + Math.round(x).toLocaleString();
     }
 
-    // Fallback
-    return FX.symbol + Math.round(usd * FX.rate).toLocaleString();
+    return FX.symbol + Math.round(num * FX.rate).toLocaleString();
+  }
+
+  // Combined regex — captures 6 formats in one sweep
+  // Groups:
+  //   1=USD Western num, 2=TBMK unit
+  //   3=EUR Western num, 4=TBMK unit
+  //   5=CJK USD num, 6=CJK unit, 7=currency word (ドル|美元|달러)
+  //   8=CJK EUR num, 9=CJK unit (ユーロ)
+  var CURRENCY_RE = new RegExp(
+    '\\$(\\d+(?:,\\d{3})*(?:\\.\\d+)?)\\s*([TBMK])?(?![\\w%])' +                 // $X.XB
+    '|€(\\d+(?:,\\d{3})*(?:\\.\\d+)?)\\s*([TBMK])?(?![\\w%])' +                  // €X.XB
+    '|(\\d+(?:,\\d{3})*(?:\\.\\d+)?)\\s*([万億兆萬억조만])?\\s*(ドル|美元|달러)' +  // 86億ドル
+    '|(\\d+(?:,\\d{3})*(?:\\.\\d+)?)\\s*([万億兆萬억조만])?\\s*ユーロ',             // 25億ユーロ
+    'g'
+  );
+
+  // Decide if a text node should be scanned (fast prefilter)
+  function hasCurrency(s){
+    return s.indexOf('$')>=0 || s.indexOf('€')>=0 ||
+           s.indexOf('ドル')>=0 || s.indexOf('美元')>=0 ||
+           s.indexOf('달러')>=0 || s.indexOf('ユーロ')>=0;
   }
 
   var WRAP_DONE = false;
   function wrapCurrencyValues(){
     if(WRAP_DONE) return; WRAP_DONE = true;
-    var re = /\$(\d+(?:,\d{3})*(?:\.\d+)?)\s*([TBMK])?(?![\w%])/g;
     var skipTags = {SCRIPT:1,STYLE:1,NOSCRIPT:1,BUTTON:1,A:1};
     var skipClasses = ['portal-link','currency-toggle','theme-toggle','font-scale-btn','lang-switch','lang-menu','toc-toggle','toc-list','tradingview-widget-container','no-currency','nav-hamburger','overview-toggle-btn','market-panels'];
     function shouldSkip(node){
@@ -3121,22 +3312,40 @@ document.addEventListener('keydown', function(e){
     var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
     var nodes = [], n;
     while((n = walker.nextNode())){
-      if(n.nodeValue && n.nodeValue.indexOf('$') >= 0 && !shouldSkip(n)) nodes.push(n);
+      if(n.nodeValue && hasCurrency(n.nodeValue) && !shouldSkip(n)) nodes.push(n);
     }
     nodes.forEach(function(node){
       var text = node.nodeValue;
-      if(!re.test(text)) return;
-      re.lastIndex = 0;
+      CURRENCY_RE.lastIndex = 0;
+      if(!CURRENCY_RE.test(text)) return;
+      CURRENCY_RE.lastIndex = 0;
       var frag = document.createDocumentFragment();
       var lastIdx = 0, m;
-      while((m = re.exec(text)) !== null){
+      while((m = CURRENCY_RE.exec(text)) !== null){
         if(m.index > lastIdx) frag.appendChild(document.createTextNode(text.slice(lastIdx, m.index)));
-        var num = parseFloat(m[1].replace(/,/g,''));
-        var unit = m[2] || '';
+
+        var rawUsd = 0; // total raw USD dollars
+        if(m[1]){
+          // $X.XB (USD Western)
+          rawUsd = parseFloat(m[1].replace(/,/g,'')) * (TBMK_UNITS[m[2]] || 1);
+        } else if(m[3]){
+          // €X.XB (EUR Western)
+          var rawEur = parseFloat(m[3].replace(/,/g,'')) * (TBMK_UNITS[m[4]] || 1);
+          rawUsd = rawEur * FX.eur_usd;
+        } else if(m[5]){
+          // NNN[万億兆]? (ドル|美元|달러)
+          rawUsd = parseFloat(m[5].replace(/,/g,'')) * (CJK_UNITS[m[6]] || 1);
+        } else if(m[8]){
+          // NNN[万億兆]? ユーロ
+          var rawEur2 = parseFloat(m[8].replace(/,/g,'')) * (CJK_UNITS[m[9]] || 1);
+          rawUsd = rawEur2 * FX.eur_usd;
+        }
+
+        var pair = toBillionsPair(rawUsd);
         var span = document.createElement('span');
         span.className = 'cur-val';
-        span.setAttribute('data-usd', num);
-        span.setAttribute('data-unit', unit);
+        span.setAttribute('data-usd', pair.num);
+        span.setAttribute('data-unit', pair.unit);
         span.setAttribute('data-orig', m[0]);
         span.textContent = m[0];
         frag.appendChild(span);
@@ -3153,12 +3362,10 @@ document.addEventListener('keydown', function(e){
         var usd = parseFloat(el.getAttribute('data-usd'));
         var unit = el.getAttribute('data-unit') || '';
         el.textContent = fmtLocal(usd, unit);
-        el.classList.add('local-mode');
-        el.classList.add('jpy-mode'); // backward compat
+        el.classList.add('local-mode','jpy-mode');
       } else {
         el.textContent = el.getAttribute('data-orig');
-        el.classList.remove('local-mode');
-        el.classList.remove('jpy-mode');
+        el.classList.remove('local-mode','jpy-mode');
       }
     });
     document.querySelectorAll('.currency-toggle').forEach(function(btn){
@@ -3177,7 +3384,6 @@ document.addEventListener('keydown', function(e){
     });
   }
 
-  // Init toggle button's inactive symbol before any click
   function initButtons(){
     document.querySelectorAll('.currency-toggle').forEach(function(btn){
       var inact = btn.querySelector('.cur-inactive');

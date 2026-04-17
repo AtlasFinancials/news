@@ -2182,8 +2182,12 @@ new Chart(document.getElementById('forecastChart'), {
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (data) {
           if (!data || !data.user) return resolve(false);
+          // plan が 'pro' 以外は Pro 非会員
+          if (data.user.plan !== 'pro') return resolve(false);
+          // plan_expires_at が null → 解約予約無し = Pro継続中
           var exp = data.user.plan_expires_at;
-          if (!exp) return resolve(false);
+          if (!exp) return resolve(true);
+          // 期限あり → 期限前なら Pro 有効
           resolve(new Date(exp) > new Date());
         })
         .catch(function () { resolve(false); });
@@ -2315,7 +2319,7 @@ new Chart(document.getElementById('forecastChart'), {
       break;
     }
     var titles = {
-      morning: { kicker: 'Atlas 会員限定 — 過去のニュース', title: 'このニュースは Atlas 会員限定です。', desc: '当日・前日のニュースは無料でご覧いただけますが、過去のアーカイブをお読みいただくには会員登録が必要です。<br>米国市場の動きを毎朝定点観測し、意思決定の土台に。' },
+      morning: { kicker: 'Atlas 会員限定 — 過去の朝刊', title: 'この朝刊は Atlas 会員限定です。', desc: '当日・前日の朝刊は無料でご覧いただけますが、過去のアーカイブをお読みいただくには会員登録が必要です。<br>米国市場の動きを毎朝定点観測し、意思決定の土台に。' },
       special: { kicker: 'Atlas 会員限定 — 特集', title: 'この特集記事は Atlas 会員限定です。', desc: '財務・戦略・マクロ経済の観点から編集部が深掘りした長編分析記事です。<br>会員登録で、すべての特集をお楽しみいただけます。' },
       report: { kicker: 'Atlas 会員限定 — 決算分析', title: 'このレポートは Atlas 会員限定です。', desc: '主要7銘柄（NVDA/GOOGL/TSLA/MSFT/META/AMZN/AAPL）の直近四半期は無料でご覧いただけますが、<br>過去四半期や他の銘柄レポートをお読みいただくには会員登録が必要です。' }
     };
