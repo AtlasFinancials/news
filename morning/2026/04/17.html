@@ -322,6 +322,7 @@ body {
   color: #fff;
   white-space: nowrap;
 }
+.paper-title img { display: block; height: 52px; width: auto; }
 
 .paper-accent {
   display: block;
@@ -1494,6 +1495,7 @@ body {
   .main { padding: 36px 40px 60px; }
   .paper-header { padding: 48px 40px; }
   .paper-title { font-size: 52px; }
+  .paper-title img { height: 64px; }
   .paper-logo::before, .paper-logo::after { width: 80px; }
   .paper-logo { gap: 24px; }
   .paper-date { margin-bottom: 20px; }
@@ -1502,6 +1504,7 @@ body {
 @media (max-width: 767px) {
   .paper-header { padding: 28px 16px; }
   .paper-title { font-size: 28px; letter-spacing: .08em; }
+  .paper-title img { height: 32px; }
   .paper-accent { font-size: 11px; letter-spacing: .15em; }
   .paper-date { font-size: 11px; margin-bottom: 12px; }
   .paper-logo { gap: 12px; margin-bottom: 8px; }
@@ -1889,7 +1892,7 @@ body {
 <header class="paper-header">
   <div class="paper-date">2026年4月17日（金曜日）</div>
   <div class="paper-logo">
-    <h1 class="paper-title">Atlas Daily</h1>
+    <h1 class="paper-title"><img src="../../../assets/logos/atlas-daily-type-white-navy.png" alt="Atlas Daily"></h1>
   </div>
   <span class="paper-accent">The Morning Briefing</span>
   <div class="radio-player" id="radioPlayer" data-chapters="17-chapters.json">
