@@ -1,0 +1,98 @@
+{
+  "date": "2026-04-17",
+  "total_ms": 935332,
+  "total_label": "15:35",
+  "chapters": [
+    {
+      "id": "jingle",
+      "title": "ジングル+タイトルコール",
+      "start_ms": 0,
+      "end_ms": 6026,
+      "start_label": "0:00"
+    },
+    {
+      "id": "opening",
+      "title": "オープニング",
+      "start_ms": 6026,
+      "end_ms": 59138,
+      "start_label": "0:06"
+    },
+    {
+      "id": "market_summary",
+      "title": "マーケット・サマリー",
+      "start_ms": 59138,
+      "end_ms": 140186,
+      "start_label": "0:59"
+    },
+    {
+      "id": "news_tsmc",
+      "title": "ヘッドライン1　TSMC決算、純利益58%増で過去最高",
+      "start_ms": 140186,
+      "end_ms": 234770,
+      "start_label": "2:20"
+    },
+    {
+      "id": "news_netflix",
+      "title": "ヘッドライン2　Netflix決算、創業者ヘイスティングス氏退任",
+      "start_ms": 234770,
+      "end_ms": 318458,
+      "start_label": "3:54"
+    },
+    {
+      "id": "news_amd",
+      "title": "ヘッドライン3　AMD、7.8%急騰",
+      "start_ms": 318458,
+      "end_ms": 393722,
+      "start_label": "5:18"
+    },
+    {
+      "id": "news_jobless",
+      "title": "ヘッドライン4　新規失業保険申請、207千人で週次大幅減",
+      "start_ms": 393722,
+      "end_ms": 459626,
+      "start_label": "6:33"
+    },
+    {
+      "id": "news_iran",
+      "title": "ヘッドライン5　イラン和平交渉、膠着続く",
+      "start_ms": 459626,
+      "end_ms": 523226,
+      "start_label": "7:39"
+    },
+    {
+      "id": "news_earnings_misc",
+      "title": "ヘッドライン6　その他の主要決算",
+      "start_ms": 523226,
+      "end_ms": 593978,
+      "start_label": "8:43"
+    },
+    {
+      "id": "risk_meter",
+      "title": "Atlasリスクメーター　総合39、注意圏",
+      "start_ms": 593978,
+      "end_ms": 666098,
+      "start_label": "9:53"
+    },
+    {
+      "id": "keyword",
+      "title": "今日のキーワード　SKEW指数",
+      "start_ms": 666098,
+      "end_ms": 753794,
+      "start_label": "11:06"
+    },
+    {
+      "id": "editorial",
+      "title": "編集部の目線　NASDAQ12連騰は何を織り込んだか",
+      "start_ms": 753794,
+      "end_ms": 861266,
+      "start_label": "12:33"
+    },
+    {
+      "id": "closing",
+      "title": "クロージング",
+      "start_ms": 861266,
+      "end_ms": 935354,
+      "start_label": "14:21"
+    }
+  ]
+}
