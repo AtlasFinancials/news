@@ -1754,13 +1754,13 @@ body {
 .radio-ctl-skip span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;font-weight:700;color:var(--rp-text);pointer-events:none}
 .radio-ctl-play{width:52px;height:52px;border-radius:50%;background:var(--rp-text);color:#1A2540;box-shadow:0 4px 14px -4px rgba(245,242,236,.4)}
 .radio-ctl-play:hover{opacity:1;transform:scale(1.04)}
-.radio-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;padding-top:10px;border-top:1px solid var(--rp-border)}
+.radio-bottom{display:flex;align-items:center;justify-content:center;margin-top:8px;padding-top:10px;border-top:1px solid var(--rp-border);position:relative}.radio-bottom .label{position:absolute;right:calc(50% + 134px + 10px);top:calc(50% + 5px);transform:translateY(-50%);font-size:10px;color:var(--rp-sub);font-weight:600;letter-spacing:.08em;white-space:nowrap;pointer-events:none}
 .radio-speed-row{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:268px;margin:0 auto}
 
 .radio-speed-btn{font-family:inherit;font-size:11px;font-weight:600;padding:3px 9px;border-radius:14px;border:none;background:transparent;color:var(--rp-sub);cursor:pointer;transition:all .15s;font-variant-numeric:tabular-nums}
 .radio-speed-btn:hover{color:var(--rp-text)}
 .radio-speed-btn.active{background:rgba(245,242,236,0.15);color:var(--rp-text)}
-@media(max-width:480px){.radio-player{width:100%;padding:18px 16px 14px;border-radius:14px}.radio-artwork{width:56px;height:56px}.radio-artwork-logo{font-size:24px}.radio-title-main{font-size:14px}.radio-controls{gap:14px}.radio-ctl-play{width:48px;height:48px}.radio-speed-row{max-width:248px}}
+@media(max-width:480px){.radio-player{width:100%;padding:18px 16px 14px;border-radius:14px}.radio-artwork{width:56px;height:56px}.radio-artwork-logo{font-size:24px}.radio-title-main{font-size:14px}.radio-controls{gap:14px}.radio-ctl-play{width:48px;height:48px}.radio-speed-row{max-width:248px}.radio-bottom .label{right:calc(50% + 124px + 8px);font-size:9px}}
 [data-theme="light"] .radio-player{background:linear-gradient(160deg,#F5F2EC 0%,#EAE6DA 100%);border-color:rgba(26,37,64,0.1);--rp-text:#1A2540;--rp-sub:rgba(26,37,64,0.55);--rp-track:rgba(26,37,64,0.15);--rp-thumb:#1A2540}
 [data-theme="light"] .radio-ctl-play{background:#1A2540;color:#F5F2EC}
 [data-theme="light"] .radio-speed-btn.active{background:rgba(26,37,64,0.12)}
@@ -1919,6 +1919,7 @@ body {
       <button class="radio-ctl" id="radioNext" aria-label="次のチャプター"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg></button>
     </div>
     <div class="radio-bottom">
+      <span class="label">SPEED</span>
       <div class="radio-speed-row">
         <button class="radio-speed-btn" data-rate="0.9">0.9x</button>
         <button class="radio-speed-btn active" data-rate="1">1x</button>
