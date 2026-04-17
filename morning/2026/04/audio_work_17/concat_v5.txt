@@ -1,0 +1,2 @@
+file '/Users/yskzz121/ui-kabu-times/morning/2026/04/audio_work_17/intro_overlap.mp3'
+file '/Users/yskzz121/ui-kabu-times/morning/2026/04/audio_work_17/main_with_bgm_v5.mp3'

@@ -1,0 +1,39 @@
+/Users/yskzz121/Library/Python/3.9/lib/python/site-packages/google/api_core/_python_version_support.py:234: FutureWarning: You are using a non-supported Python version (3.9.6). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/Users/yskzz121/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/yskzz121/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/yskzz121/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/yskzz121/Library/Python/3.9/lib/python/site-packages/google/api_core/_python_version_support.py:234: FutureWarning: You are using a non-supported Python version (3.9.6). Google will not post any further updates to google.cloud.texttospeech_v1 supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.cloud.texttospeech_v1.
+  warnings.warn(message, FutureWarning)
+I0417 11:52:36.670687 1156006 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(8, generation: 1)
+I0417 11:52:39.899113 1156083 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(8, generation: 1)
+I0417 11:52:42.660095 1156146 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(8, generation: 1)
+I0417 11:52:44.893626 1156179 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(8, generation: 1)
+I0417 11:52:47.431198 1156266 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(8, generation: 1)
+I0417 11:52:49.622961 1156324 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(8, generation: 1)
+I0417 11:52:52.655849 1156375 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(8, generation: 1)
+I0417 11:52:55.504120 1156408 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(8, generation: 1)
+I0417 11:52:59.598606 1156464 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(8, generation: 1)
+I0417 11:53:02.841904 1156520 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(8, generation: 1)
+I0417 11:53:05.215732 1156562 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(8, generation: 1)
+I0417 11:53:05.260274 1156589 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(8, generation: 1)
+[1/12] オープニング...
+[2/12] マーケット・サマリー...
+[3/12] ヘッドライン1　TSMC決算、純利益58%増で過去最高...
+[4/12] ヘッドライン2　Netflix決算、創業者ヘイスティングス氏退任...
+[5/12] ヘッドライン3　AMD、7.8%急騰...
+[6/12] ヘッドライン4　新規失業保険申請、207千人で週次大幅減...
+[7/12] ヘッドライン5　イラン和平交渉、膠着続く...
+[8/12] ヘッドライン6　その他の主要決算...
+[9/12] Atlasリスクメーター　総合39、注意圏...
+[10/12] 今日のキーワード　SKEW指数...
+[11/12] 編集部の目線　NASDAQ12連騰は何を織り込んだか...
+[12/12] クロージング...
+
+完成: /Users/yskzz121/ui-kabu-times/morning/2026/04/17.mp3
+  全長: 15:29
+  サイズ: 7.1 MB
+  チャプター数: 12

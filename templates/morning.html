@@ -1333,16 +1333,22 @@ body {
   </div>
 </header>
 
-<!-- ===== Newspaper Header ===== -->
+<!-- ===== Newspaper Header =====
+     ロゴ仕様（2026-04-17 確定・必須）:
+     - .paper-title 内は常に <img> でロゴ画像を出力（テキスト直書き禁止）
+     - 使用ファイル: atlas-daily-type-white-transparent.png（白文字×透過背景）
+     - 公開URL: https://atlas-financials.jp/news/assets/logos/atlas-daily-type-white-transparent.png
+     - 相対パス（morning/YYYY/MM/D.html から）: ../../../assets/logos/atlas-daily-type-white-transparent.png
+     - CSS 高さ: .paper-title img { height: 44px }（デフォルト）/ 52px（768+）/ 28px（767-）
+       → 既存の .paper-title font-size と完全一致させる（幅 auto で比率維持）
+     - 禁止: white-navy / white-gold / white-black 等の背景付きロゴ使用禁止
+  -->
 <header class="paper-header">
   <div class="paper-date">{DATE_FULL}</div>
   <div class="paper-logo">
-    <h1 class="paper-title">
-      Atlas Daily
-      <span class="paper-accent">The Morning Briefing</span>
-    </h1>
+    <h1 class="paper-title"><img src="../../../assets/logos/atlas-daily-type-white-transparent.png" alt="Atlas Daily"></h1>
   </div>
-  <div class="paper-edition">{EDITION}</div>
+  <span class="paper-accent">The Morning Briefing</span>
 </header>
 
 <!-- ===== Main ===== -->
