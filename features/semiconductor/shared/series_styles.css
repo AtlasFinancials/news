@@ -1,0 +1,892 @@
+/*
+  series_styles.css — 半導体物語シリーズ 共通スタイルシート
+  保存先: ~/projects-wiki/atlas-daily-features/semiconductor/shared/series_styles.css
+
+  構成:
+  1.  Atlas VI カラートークン (ダーク/ライト両対応)
+  2.  タイポグラフィ変数
+  3.  章扉クラス
+  4.  本文レイアウト
+  5.  サイドボックス
+  6.  投資家価値コラム
+  7.  引用 (プルクォート)
+  8.  シリーズナビ
+  9.  タイムライン埋込み枠
+  10. 人物相関図埋込み枠
+  11. ローマ数字装飾 (Gold横罫線 + ローマ数字)
+  12. 絵文字代替 SVG アイコン <symbol>
+
+  使い方:
+    <link rel="stylesheet" href="../shared/series_styles.css">
+    または @import url('../shared/series_styles.css');
+
+  Brand Book 遵守事項:
+    - 絵文字禁止 (機能UI: 🌙☀️☰ のみ例外)
+    - カードパネルのアクセントカラー禁止 (Navy + Gold のみ)
+    - border-left 色帯アクセント禁止 → ::before 3px以内の擬似要素で代替
+    - Playfair Display 廃止 → Shippori Mincho B1 優先
+
+  最終更新: 2026-04-17
+*/
+
+/* ==========================================================================
+   1. Atlas VI カラートークン
+   ========================================================================== */
+
+:root {
+  /* ─── Navy 系 ─── */
+  --bg:           #0F1829;
+  --card:         #1A2540;
+  --card-2:       #1E2D4F;
+  --nav-bg:       #0F1829;
+
+  /* ─── Gold 系 ─── */
+  --gold:         #B8912A;
+  --gold-lt:      #D4A843;
+  --gold-pale:    #F0E6C8;
+
+  /* ─── テキスト ─── */
+  --text-1:       #F5F2EC;
+  --text-2:       rgba(245,242,236,0.72);
+  --text-3:       rgba(245,242,236,0.50);
+
+  /* ─── ボーダー ─── */
+  --border:       rgba(184,145,42,0.18);
+  --border-card:  rgba(184,145,42,0.22);
+
+  /* ─── アラート ─── */
+  --alert:        #8B2020;
+
+  /* ─── シャドウ ─── */
+  --shadow-card:  0 2px 16px rgba(0,0,0,0.20);
+  --shadow-deep:  0 8px 32px rgba(0,0,0,0.35);
+
+  /* ─── Gold ボーダー 半透明 (ゾーン/装飾限定) ─── */
+  --gold-glow:    rgba(184,145,42,0.08);
+}
+
+/* ライトモード オーバーライド */
+[data-theme="light"] {
+  --bg:           #F5F2EC;
+  --card:         #FDFCFA;
+  --card-2:       #F0EDE5;
+  --nav-bg:       #0F1829; /* ナビはダーク固定 */
+
+  --gold:         #9A7A22;
+  --gold-lt:      #B8912A;
+  --gold-pale:    #7A6018;
+
+  --text-1:       #0F1829;
+  --text-2:       rgba(15,24,41,0.70);
+  --text-3:       rgba(15,24,41,0.45);
+
+  --border:       rgba(26,37,64,0.12);
+  --border-card:  rgba(26,37,64,0.16);
+
+  --shadow-card:  0 2px 8px rgba(0,0,0,0.06);
+  --shadow-deep:  0 8px 24px rgba(0,0,0,0.10);
+
+  --gold-glow:    rgba(184,145,42,0.06);
+}
+
+/* ==========================================================================
+   2. タイポグラフィ変数
+   ========================================================================== */
+
+:root {
+  --font-h:     'Shippori Mincho B1', serif;  /* 見出し・章扉・ローマ数字 */
+  --font-body:  'Noto Serif JP', serif;        /* 本文読み物・プルクォート */
+  --font-ui:    'Noto Sans JP', sans-serif;    /* UI・ラベル・凡例 */
+  --font-data:  'Inter', 'Noto Sans JP', sans-serif; /* 数値・英字・年号 */
+}
+
+/* Google Fonts 読み込み (各話HTMLの <head> に直接記述することを推奨) */
+/*
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=Noto+Serif+JP:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap');
+*/
+
+/* ==========================================================================
+   3. 章扉クラス
+   ========================================================================== */
+
+.chapter-cover {
+  position: relative;
+  width: 100%;
+  padding: 80px 32px 64px;
+  text-align: center;
+  background: linear-gradient(160deg, #1a2332 0%, #1A2540 50%, #0F1829 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+
+.chapter-cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 40%, rgba(184,145,42,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 60%, rgba(184,145,42,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.chapter-cover-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* ローマ数字 */
+.chapter-roman {
+  font-family: var(--font-h);
+  font-size: clamp(56px, 8vw, 80px);
+  font-weight: 800;
+  color: var(--gold-lt);
+  line-height: 1;
+  margin-bottom: 14px;
+  letter-spacing: 0.04em;
+}
+
+/* Gold 横罫線 (章扉用) */
+.chapter-divider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 24px;
+}
+
+/* 章タイトル */
+.chapter-title {
+  font-family: var(--font-h);
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 800;
+  color: var(--text-1);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+}
+
+/* キャッチコピー */
+.chapter-catch {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.75;
+  max-width: 560px;
+  margin: 0 auto 28px;
+}
+
+/* 時代副題 */
+.chapter-era {
+  display: inline-block;
+  font-family: var(--font-data);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold-lt);
+  letter-spacing: 0.12em;
+  border: 1px solid rgba(184,145,42,0.35);
+  border-radius: 6px;
+  padding: 6px 18px;
+  background: rgba(184,145,42,0.08);
+  margin-bottom: 36px;
+}
+
+/* スクロール誘導矢印 */
+.chapter-scroll-arrow {
+  display: flex;
+  justify-content: center;
+  animation: chapter-bounce 2s ease-in-out infinite;
+}
+.chapter-scroll-arrow svg { opacity: 0.55; }
+@keyframes chapter-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
+}
+
+/* ==========================================================================
+   4. 本文レイアウト
+   ========================================================================== */
+
+.article-body {
+  max-width: 680px;
+  margin: 0 auto;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 2.0;
+  color: var(--text-1);
+}
+
+/* 段落間スペース */
+.article-body p {
+  margin-bottom: 28px;
+}
+.article-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* 本文内リード (最初の1段落を大きく) */
+.article-body .lead {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: var(--text-1);
+  margin-bottom: 36px;
+}
+
+/* h2 見出し (Gold横罫線付き) */
+.article-body h2 {
+  font-family: var(--font-h);
+  font-size: clamp(20px, 2.8vw, 26px);
+  font-weight: 800;
+  color: var(--text-1);
+  line-height: 1.3;
+  margin: 56px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* h3 見出し */
+.article-body h3 {
+  font-family: var(--font-h);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin: 40px 0 14px;
+}
+
+/* 強調テキスト */
+.article-body strong {
+  font-weight: 700;
+  color: var(--text-1);
+}
+
+/* em (引用内等の傍点代替) */
+.article-body em {
+  font-style: italic;
+  color: var(--text-2);
+}
+
+/* ==========================================================================
+   5. サイドボックス
+   ========================================================================== */
+
+/* .side-note: 本文と別の "音" ─ 冷静・簡潔な用語メモ等 */
+.side-note {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  padding: 20px 24px;
+  margin: 32px 0;
+  box-shadow: var(--shadow-card);
+}
+
+/* 見出し: 「用語メモ|タイトル」形式 */
+.side-note-heading {
+  font-family: var(--font-data);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--gold-lt);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.side-note-heading .pipe {
+  color: var(--text-3);
+  margin: 0 6px;
+  font-weight: 400;
+}
+
+.side-note-body {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-2);
+}
+
+.side-note-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.side-note-body ul li {
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+}
+.side-note-body ul li:last-child { border-bottom: none; }
+
+/* 右寄せバリアント (float) */
+.side-note.float-right {
+  float: right;
+  width: 260px;
+  margin: 0 0 24px 28px;
+}
+/* 中央寄せバリアント */
+.side-note.center {
+  max-width: 520px;
+  margin: 32px auto;
+}
+
+/* float解除 */
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+@media (max-width: 600px) {
+  .side-note.float-right {
+    float: none;
+    width: 100%;
+    margin: 24px 0;
+  }
+}
+
+/* ==========================================================================
+   6. 投資家価値コラム
+   ========================================================================== */
+
+.investor-box {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  padding: 28px 32px 28px 40px;
+  margin: 48px 0;
+  box-shadow: var(--shadow-card);
+}
+
+/* Gold 縦細線 (::before 擬似要素、3px以内) — 朝刊系拡張として許容 */
+.investor-box::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, transparent 0%, var(--gold) 15%, var(--gold) 85%, transparent 100%);
+  border-radius: 3px 0 0 3px;
+}
+
+.investor-heading {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  color: var(--gold-lt);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.investor-heading .inv-pipe {
+  color: var(--text-3);
+  margin: 0 8px;
+  font-weight: 400;
+}
+.investor-heading svg {
+  flex-shrink: 0;
+  margin-right: 6px;
+}
+
+.investor-body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 2.0;
+  color: var(--text-2);
+  margin-bottom: 20px;
+}
+
+/* 関連銘柄 */
+.investor-tickers {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.inv-ticker-label {
+  font-family: var(--font-data);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+.ticker-link {
+  display: inline-block;
+  font-family: var(--font-data);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-lt);
+  text-decoration: none;
+  border: 1px solid rgba(184,145,42,0.28);
+  border-radius: 5px;
+  padding: 3px 10px;
+  letter-spacing: 0.05em;
+  background: rgba(184,145,42,0.06);
+  transition: background 0.15s, border-color 0.15s;
+}
+.ticker-link:hover {
+  background: rgba(184,145,42,0.14);
+  border-color: rgba(184,145,42,0.50);
+}
+
+/* ==========================================================================
+   7. 引用 (プルクォート)
+   ========================================================================== */
+
+.pull-quote {
+  position: relative;
+  margin: 48px 0;
+  padding: 28px 36px 28px 56px;
+  font-family: var(--font-h);
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-1);
+  border: none;
+  background: rgba(184,145,42,0.04);
+  border-radius: 8px;
+}
+
+/* Gold 引用記号 (SVG 代替) — ::before で大きな « » 装飾 */
+.pull-quote::before {
+  content: '\201C'; /* " (typographic left double quote) */
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  font-family: var(--font-h);
+  font-size: 72px;
+  line-height: 1;
+  color: rgba(184,145,42,0.35);
+  font-weight: 800;
+}
+
+/* Gold 右装飾線 (縦) */
+.pull-quote::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+}
+
+.pull-quote cite {
+  display: block;
+  margin-top: 14px;
+  font-family: var(--font-data);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--gold-lt);
+  letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   8. シリーズナビ
+   ========================================================================== */
+
+.series-nav-section {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.series-nav-label {
+  font-family: var(--font-data);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--gold-lt);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.series-nav-label::before,
+.series-nav-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.series-nav-label::before { max-width: 32px; }
+
+.series-nav {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.series-nav-item {
+  display: block;
+  padding: 16px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+  position: relative;
+}
+.series-nav-item:hover {
+  border-color: rgba(184,145,42,0.45);
+  background: var(--card-2);
+}
+
+/* 現在話 */
+.series-nav-item.current,
+.series-nav-item[data-read="current"] {
+  border-color: rgba(184,145,42,0.70);
+  background: rgba(184,145,42,0.08);
+}
+.series-nav-item.current::after,
+.series-nav-item[data-read="current"]::after {
+  content: '現在';
+  position: absolute;
+  top: 6px; right: 8px;
+  font-family: var(--font-data);
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--gold-lt);
+  letter-spacing: 0.05em;
+}
+
+/* 読了済み */
+.series-nav-item[data-read="read"]::after {
+  content: '✓';
+  position: absolute;
+  top: 6px; right: 8px;
+  font-size: 10px;
+  color: var(--text-3);
+}
+
+/* 未公開 */
+.series-nav-item[data-read="upcoming"] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+.series-nav-item[data-read="upcoming"]::after {
+  content: '近刊';
+  position: absolute;
+  top: 6px; right: 8px;
+  font-size: 8px;
+  color: var(--text-3);
+}
+
+.series-nav-roman {
+  font-family: var(--font-h);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--gold-lt);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.series-nav-era {
+  font-family: var(--font-data);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+.series-nav-title {
+  font-family: var(--font-h);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-1);
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .series-nav { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .series-nav-roman { font-size: 20px; }
+  .series-nav-title  { font-size: 11px; }
+}
+@media (max-width: 400px) {
+  .series-nav { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   9. タイムライン埋込み枠
+   ========================================================================== */
+
+.timeline-embed {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  margin: 40px 0;
+  padding: 4px;
+  box-shadow: var(--shadow-card);
+}
+
+.timeline-embed img,
+.timeline-embed svg {
+  display: block;
+  min-width: 3200px; /* SVGの実寸に合わせる */
+  height: auto;
+}
+
+/* 各話ハイライト用 — JSで data-episode 属性を参照して付与 */
+/* 例:
+   document.querySelectorAll('.milestone:not([data-episode="1"])').forEach(
+     el => el.classList.add('dimmed')
+   );
+*/
+.milestone.dimmed { opacity: 0.25; }
+.milestone.active circle { filter: drop-shadow(0 0 6px #D4A843); }
+
+/* スクロール説明テキスト — 常時表示 */
+.timeline-scroll-hint {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  color: var(--text-3);
+  text-align: right;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+.timeline-scroll-hint::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.50;
+  margin-left: 4px;
+  animation: scroll-hint-pulse 2s ease-in-out infinite;
+}
+@keyframes scroll-hint-pulse {
+  0%, 100% { opacity: 0.50; transform: translateX(0); }
+  50%       { opacity: 0.90; transform: translateX(4px); }
+}
+
+/* タイムライン内の SVGコンテナ — 横スクロール確実化 */
+.timeline-embed > div {
+  min-width: 3200px;
+}
+.timeline-embed svg,
+.timeline-embed img {
+  min-width: 3200px;
+}
+
+/* ==========================================================================
+   タイムライン レスポンシブ切替
+   デスクトップ: 横型SVG (.timeline-horizontal)
+   モバイル: 縦型SVG (.timeline-vertical)
+   ========================================================================== */
+
+/* デスクトップ: 横型を表示、縦型を非表示 */
+.timeline-embed .timeline-horizontal {
+  display: block;
+}
+.timeline-embed .timeline-vertical {
+  display: none;
+}
+
+/* モバイル (768px以下): 横型を非表示、縦型を表示 */
+@media (max-width: 768px) {
+  .timeline-embed .timeline-horizontal {
+    display: none;
+  }
+  .timeline-embed .timeline-vertical {
+    display: block;
+    min-width: unset;   /* 縦型は min-width リセット */
+    width: 100%;
+    height: auto;
+  }
+  .timeline-embed {
+    overflow-x: hidden; /* 横スクロール封じ */
+    min-height: unset;
+  }
+  /* 縦型専用: ラッパーは min-width 不要 */
+  .timeline-embed.vertical-active {
+    overflow-x: hidden;
+  }
+  /* スクロール誘導UI非表示 (縦型では不要) */
+  .timeline-scroll-hint {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   10. 人物相関図埋込み枠
+   ========================================================================== */
+
+.character-map-embed {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  margin: 40px 0;
+  padding: 4px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.character-map-embed img,
+.character-map-embed svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* キャプション */
+.embed-caption {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  color: var(--text-3);
+  text-align: center;
+  padding: 8px 16px;
+  border-top: 1px solid var(--border);
+}
+
+/* ==========================================================================
+   11. ローマ数字装飾 (roman-divider)
+   Gold横罫線 + ローマ数字 セクション区切り
+   ========================================================================== */
+
+.roman-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 56px 0;
+}
+
+/* Gold 横罫線 120px */
+.roman-divider::before,
+.roman-divider::after {
+  content: '';
+  flex: 0 0 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.roman-divider::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.roman-divider-num {
+  font-family: var(--font-h);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--gold-lt);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* 中央 Gold ドット (別バリアント) */
+.roman-divider-dot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 48px 0;
+}
+.roman-divider-dot::before,
+.roman-divider-dot::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.roman-divider-dot-inner {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* ==========================================================================
+   12. 絵文字代替 SVG アイコン (<symbol> 定義)
+   使い方: <svg width="18" height="18"><use href="#icon-book"/></svg>
+   ========================================================================== */
+/*
+  以下を各話HTMLの <body> 直後に貼り付けること:
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </symbol>
+    <symbol id="icon-invest" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+    </symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <polyline points="12 6 12 12 16 14"/>
+    </symbol>
+    <symbol id="icon-person" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+      <circle cx="12" cy="7" r="4"/>
+    </symbol>
+    <symbol id="icon-chip" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="9" y="9" width="6" height="6"/>
+      <path d="M15 9V5h-2M9 9V5h2M9 15v4h2M15 15v4h-2M20 9h-4M20 15h-4M4 9h4M4 15h4"/>
+    </symbol>
+  </svg>
+*/
+
+/* アイコン共通スタイル */
+.icon-inline {
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--gold-lt);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   モバイル対応 (共通)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .article-body {
+    font-size: 15px;
+    padding: 0 4px;
+  }
+  .pull-quote {
+    padding: 20px 20px 20px 42px;
+    font-size: 17px;
+  }
+  .pull-quote::before {
+    font-size: 56px;
+    left: 8px;
+    top: 8px;
+  }
+  .investor-box {
+    padding: 22px 20px 22px 30px;
+  }
+  .chapter-cover {
+    padding: 56px 20px 44px;
+    border-radius: 10px;
+  }
+  .roman-divider::before,
+  .roman-divider::after {
+    flex: 0 0 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .article-body { font-size: 14.5px; line-height: 1.95; }
+  .chapter-roman { font-size: 48px; }
+  .chapter-title  { font-size: 22px; }
+  .chapter-catch  { font-size: 15px; }
+  .pull-quote     { font-size: 16px; }
+}
