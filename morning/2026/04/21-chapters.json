@@ -1,0 +1,105 @@
+{
+  "date": "2026-04-21",
+  "total_ms": 1171180,
+  "total_label": "19:31",
+  "chapters": [
+    {
+      "id": "jingle",
+      "title": "ジングル+タイトルコール",
+      "start_ms": 0,
+      "end_ms": 6026,
+      "start_label": "0:00"
+    },
+    {
+      "id": "opening",
+      "title": "オープニング",
+      "start_ms": 6026,
+      "end_ms": 66194,
+      "start_label": "0:06"
+    },
+    {
+      "id": "market_summary",
+      "title": "マーケット・サマリー",
+      "start_ms": 66194,
+      "end_ms": 166514,
+      "start_label": "1:06"
+    },
+    {
+      "id": "news_hormuz",
+      "title": "ヘッドライン1　米海軍イラン船拿捕でホルムズ緊張再燃",
+      "start_ms": 166514,
+      "end_ms": 250994,
+      "start_label": "2:46"
+    },
+    {
+      "id": "news_amazon_anthropic",
+      "title": "ヘッドライン2　アマゾンがアンソロピックと10年1,000億ドル契約を拡大",
+      "start_ms": 250994,
+      "end_ms": 351674,
+      "start_label": "4:10"
+    },
+    {
+      "id": "news_network",
+      "title": "ヘッドライン3　クレド6%高・アステララボ、AIネットワーク受益銘柄",
+      "start_ms": 351674,
+      "end_ms": 465554,
+      "start_label": "5:51"
+    },
+    {
+      "id": "news_warsh",
+      "title": "ヘッドライン4　本日、ウォーシュFED議長候補の上院銀行委公聴会",
+      "start_ms": 465554,
+      "end_ms": 527450,
+      "start_label": "7:45"
+    },
+    {
+      "id": "news_russell",
+      "title": "ヘッドライン5　ナスダック13連勝終了、ラッセル2000は史上最高値",
+      "start_ms": 527450,
+      "end_ms": 580682,
+      "start_label": "8:47"
+    },
+    {
+      "id": "news_psychedelic",
+      "title": "ヘッドライン6　サイケデリック令でCMPS42%高、ATAI22%高",
+      "start_ms": 580682,
+      "end_ms": 652298,
+      "start_label": "9:40"
+    },
+    {
+      "id": "news_tesla",
+      "title": "ヘッドライン7　Tesla決算プレビュー、明日4月22日アワー後",
+      "start_ms": 652298,
+      "end_ms": 723818,
+      "start_label": "10:52"
+    },
+    {
+      "id": "risk_meter",
+      "title": "Atlasリスクメーター　総合41、注意圏",
+      "start_ms": 723818,
+      "end_ms": 840242,
+      "start_label": "12:03"
+    },
+    {
+      "id": "keyword",
+      "title": "今日のキーワード　AEC、アクティブ・エレクトリカル・ケーブル",
+      "start_ms": 840242,
+      "end_ms": 930794,
+      "start_label": "14:00"
+    },
+    {
+      "id": "editorial",
+      "title": "編集部の目線　AI資本支出、第2の扉が開いた",
+      "start_ms": 930794,
+      "end_ms": 1098602,
+      "start_label": "15:30"
+    },
+    {
+      "id": "closing",
+      "title": "クロージング",
+      "start_ms": 1098602,
+      "end_ms": 1171202,
+      "start_label": "18:18"
+    }
+  ]
+}
