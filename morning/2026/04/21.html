@@ -1854,9 +1854,9 @@ body {
           <button class="lang-menu-btn" aria-label="言語切替" onclick="toggleLangMenu(event)"><span class="lang-menu-flag">🇯🇵</span><svg width="9" height="9" viewBox="0 0 10 10"><path d="M1 3.5l4 3 4-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <div class="lang-menu-dropdown">
             <span class="lang-option active">🇯🇵 日本語</span>
-            <a class="lang-option" href="21-en.html">🇺🇸 English</a>
-            <a class="lang-option" href="21-zh.html">🇭🇰 繁體中文</a>
-            <a class="lang-option" href="21-ko.html">🇰🇷 한국어</a>
+            <span class="lang-option" style="opacity:0.45;cursor:not-allowed;" title="準備中">🇺🇸 English（準備中）</span>
+            <span class="lang-option" style="opacity:0.45;cursor:not-allowed;" title="準備中">🇭🇰 繁體中文（準備中）</span>
+            <span class="lang-option" style="opacity:0.45;cursor:not-allowed;" title="準備中">🇰🇷 한국어（準備中）</span>
           </div>
         </div>
         <button class="nav-tool-btn font-scale-btn" aria-label="文字サイズ切替" onclick="cycleFontScale()" title="文字サイズ"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
@@ -1869,9 +1869,9 @@ body {
         <button class="lang-menu-btn" aria-label="言語切替" onclick="toggleLangMenu(event)"><span class="lang-menu-flag">🇯🇵</span><svg width="9" height="9" viewBox="0 0 10 10"><path d="M1 3.5l4 3 4-3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="lang-menu-dropdown">
           <span class="lang-option active">🇯🇵 日本語</span>
-          <a class="lang-option" href="21-en.html">🇺🇸 English</a>
-          <a class="lang-option" href="21-zh.html">🇭🇰 繁體中文</a>
-          <a class="lang-option" href="21-ko.html">🇰🇷 한국어</a>
+          <span class="lang-option" style="opacity:0.45;cursor:not-allowed;" title="準備中">🇺🇸 English（準備中）</span>
+          <span class="lang-option" style="opacity:0.45;cursor:not-allowed;" title="準備中">🇭🇰 繁體中文（準備中）</span>
+          <span class="lang-option" style="opacity:0.45;cursor:not-allowed;" title="準備中">🇰🇷 한국어（準備中）</span>
         </div>
       </div>
       <button class="nav-tool-btn font-scale-btn" aria-label="文字サイズ切替" onclick="cycleFontScale()" title="文字サイズ"><span class="fs-sm">A</span><span class="fs-lg">A</span><span class="fs-level">1/4</span></button>
@@ -2733,6 +2733,7 @@ body {
     var link = document.createElement('a');
     link.href = portalBase + ticker + '/';
     link.target = '_blank';
+    link.rel = 'noopener noreferrer';
     link.className = 'earnings-item-link';
     link.innerHTML = '過去の決算分析を見る →';
     item.appendChild(link);

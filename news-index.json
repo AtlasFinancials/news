@@ -1,11 +1,372 @@
 [
   {
-    "url": "/news/morning/2026/04/15-zh.html",
-    "title": "Atlas Daily — 2026年4月15日 早報 | 標普500完全收復伊朗戰爭跌幅",
-    "date": "2026-04-15",
+    "url": "/news/extra/2026/03/17-gtc-2026.html",
+    "title": "Atlas Daily 号外 — NVIDIA GTC 2026",
+    "date": "",
+    "kind": "extra",
+    "tickers": [
+      "NVDA"
+    ]
+  },
+  {
+    "url": "/news/extra/2026/03/20-us-japan-summit.html",
+    "title": "Atlas Daily 号外 — 日米首脳会談 2026.3.19",
+    "date": "",
+    "kind": "extra",
+    "tickers": [
+      "C"
+    ]
+  },
+  {
+    "url": "/news/extra/2026/04/14-neocloud-2026.html",
+    "title": "Atlas Daily 特集 | ネオクラウド徹底比較",
+    "date": "",
+    "kind": "extra",
+    "tickers": [
+      "MSFT",
+      "ORCL"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/13.html",
+    "title": "Atlas Daily — 2026年3月13日",
+    "date": "2026-03-13",
+    "kind": "morning",
+    "tickers": [
+      "ADBE",
+      "DG",
+      "ORCL",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/18.html",
+    "title": "Atlas Daily — 2026年3月18日",
+    "date": "2026-03-18",
+    "kind": "morning",
+    "tickers": [
+      "ACN",
+      "FDX",
+      "MU",
+      "NKE",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/19.html",
+    "title": "Atlas Daily — 2026年3月19日",
+    "date": "2026-03-19",
+    "kind": "morning",
+    "tickers": [
+      "ACN",
+      "FDX",
+      "MU",
+      "NKE",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/20.html",
+    "title": "Atlas Daily — 2026年3月20日",
+    "date": "2026-03-20",
+    "kind": "morning",
+    "tickers": [
+      "BABA",
+      "DOCU",
+      "MU",
+      "NKE",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/21.html",
+    "title": "Atlas Daily — 2026年3月21日",
+    "date": "2026-03-21",
+    "kind": "morning",
+    "tickers": [
+      "FDX",
+      "NKE",
+      "S",
+      "SMCI"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/22.html",
+    "title": "Atlas Daily — 2026年3月22日",
+    "date": "2026-03-22",
+    "kind": "morning",
+    "tickers": [
+      "FDX",
+      "NKE",
+      "S",
+      "SMCI"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/23.html",
+    "title": "Atlas Daily — 2026年3月23日",
+    "date": "2026-03-23",
+    "kind": "morning",
+    "tickers": [
+      "ACN",
+      "FDX",
+      "MU",
+      "NKE",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/24.html",
+    "title": "Atlas Daily — 2026年3月24日",
+    "date": "2026-03-24",
+    "kind": "morning",
+    "tickers": [
+      "CCL",
+      "NKE",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/25.html",
+    "title": "Atlas Daily — 2026年3月25日",
+    "date": "2026-03-25",
+    "kind": "morning",
+    "tickers": [
+      "CCL",
+      "LULU",
+      "NKE",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/27.html",
+    "title": "Atlas Daily — 2026年3月27日 経済ニュース",
+    "date": "2026-03-27",
+    "kind": "morning",
+    "tickers": [
+      "CCL",
+      "LULU",
+      "NKE",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/28.html",
+    "title": "Atlas Daily — 2026年3月28日 経済ニュース",
+    "date": "2026-03-28",
+    "kind": "morning",
+    "tickers": [
+      "CCL",
+      "NKE",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/31-en.html",
+    "title": "Atlas Daily — March 31, 2026 Morning Briefing",
+    "date": "2026-03-31",
+    "kind": "morning",
+    "tickers": [
+      "MU",
+      "NKE",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/31-ko.html",
+    "title": "Atlas Daily — 2026년 3월 31일 조간",
+    "date": "2026-03-31",
+    "kind": "morning",
+    "tickers": [
+      "MU",
+      "NKE",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/31-zh.html",
+    "title": "Atlas Daily — 2026年3月31日 晨報",
+    "date": "2026-03-31",
+    "kind": "morning",
+    "tickers": [
+      "MU",
+      "NKE",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/03/31.html",
+    "title": "Atlas Daily — 2026年3月31日 経済ニュース",
+    "date": "2026-03-31",
+    "kind": "morning",
+    "tickers": [
+      "MU",
+      "NKE",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/1.html",
+    "title": "Atlas Daily — 2026年4月1日 経済ニュース",
+    "date": "2026-04-01",
+    "kind": "morning",
+    "tickers": [
+      "META",
+      "MSFT",
+      "NKE",
+      "NVDA",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/3.html",
+    "title": "Atlas Daily — 2026年4月3日 経済ニュース",
+    "date": "2026-04-03",
+    "kind": "morning",
+    "tickers": [
+      "DAL",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/4-en.html",
+    "title": "Atlas Daily — April 4, 2026 Morning Edition",
+    "date": "2026-04-04",
+    "kind": "morning",
+    "tickers": [
+      "DAL",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/4-ko.html",
+    "title": "Atlas Daily — 2026년 4월 4일 조간",
+    "date": "2026-04-04",
+    "kind": "morning",
+    "tickers": [
+      "AMZN",
+      "DAL",
+      "S",
+      "TSLA"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/4-zh.html",
+    "title": "Atlas Daily — 2026年4月4日 晨報",
+    "date": "2026-04-04",
+    "kind": "morning",
+    "tickers": [
+      "DAL",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/4.html",
+    "title": "Atlas Daily — 2026年4月4日 経済ニュース",
+    "date": "2026-04-04",
+    "kind": "morning",
+    "tickers": [
+      "DAL",
+      "S"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/7-en.html",
+    "title": "Atlas Daily — April 7, 2026 Morning Briefing",
+    "date": "2026-04-07",
+    "kind": "morning",
+    "tickers": [
+      "DAL",
+      "S",
+      "TSM"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/7-ko.html",
+    "title": "Atlas Daily — 2026년 4월 7일 조간",
+    "date": "2026-04-07",
+    "kind": "morning",
+    "tickers": [
+      "DAL",
+      "S",
+      "TSM"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/7-zh.html",
+    "title": "Atlas Daily — 2026年4月7日 早報",
+    "date": "2026-04-07",
+    "kind": "morning",
+    "tickers": [
+      "DAL",
+      "S",
+      "TSM"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/7.html",
+    "title": "Atlas Daily — 2026年4月7日 経済ニュース",
+    "date": "2026-04-07",
+    "kind": "morning",
+    "tickers": [
+      "DAL",
+      "S",
+      "TSM"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/8.html",
+    "title": "Atlas Daily — 2026年4月8日 経済ニュース",
+    "date": "2026-04-08",
+    "kind": "morning",
+    "tickers": [
+      "AVGO",
+      "DAL",
+      "NVDA",
+      "S",
+      "TSLA",
+      "TSM"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/9.html",
+    "title": "Atlas Daily — 2026年4月9日 経済ニュース",
+    "date": "2026-04-09",
     "kind": "morning",
     "tickers": [
       "ASML",
+      "AVGO",
+      "C",
+      "DAL",
+      "JPM",
+      "MU",
+      "S",
+      "TSM"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/10.html",
+    "title": "Atlas Daily — 2026年4月10日 経済ニュース",
+    "date": "2026-04-10",
+    "kind": "morning",
+    "tickers": [
+      "C",
+      "DAL",
+      "JPM",
+      "OKTA",
+      "PANW",
+      "RBRK",
+      "S",
+      "TSM",
+      "ZS"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/13-en.html",
+    "title": "Atlas Daily — April 13, 2026 Morning Edition",
+    "date": "2026-04-13",
+    "kind": "morning",
+    "tickers": [
       "BAC",
       "C",
       "GS",
@@ -16,17 +377,103 @@
     ]
   },
   {
-    "url": "/news/morning/2026/04/15.html",
-    "title": "Atlas Daily — 2026年4月15日 経済ニュース | S&P 500、イラン戦争損失を完全回復",
-    "date": "2026-04-15",
+    "url": "/news/morning/2026/04/13-ko.html",
+    "title": "Atlas Daily — 2026년 4월 13일 조간",
+    "date": "2026-04-13",
     "kind": "morning",
     "tickers": [
-      "ASML",
       "BAC",
       "C",
       "GS",
       "JPM",
       "MS",
+      "S",
+      "TSM"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/13-zh.html",
+    "title": "Atlas Daily — 2026年4月13日 晨報",
+    "date": "2026-04-13",
+    "kind": "morning",
+    "tickers": [
+      "BAC",
+      "C",
+      "GS",
+      "JPM",
+      "MS",
+      "S",
+      "TSM"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/13.html",
+    "title": "Atlas Daily — 2026年4月13日 経済ニュース",
+    "date": "2026-04-13",
+    "kind": "morning",
+    "tickers": [
+      "BAC",
+      "C",
+      "GS",
+      "JPM",
+      "MS",
+      "S",
+      "TSM"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/14-en.html",
+    "title": "Atlas Daily — April 14, 2026 Morning Briefing",
+    "date": "2026-04-14",
+    "kind": "morning",
+    "tickers": [
+      "ASML",
+      "BAC",
+      "GS",
+      "JPM",
+      "ORCL",
+      "S",
+      "TSM"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/14-ko.html",
+    "title": "Atlas Daily — 2026년 4월 14일 조간",
+    "date": "2026-04-14",
+    "kind": "morning",
+    "tickers": [
+      "ASML",
+      "BAC",
+      "JPM",
+      "ORCL",
+      "S",
+      "TSM"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/14-zh.html",
+    "title": "Atlas Daily — 2026年4月14日 晨報",
+    "date": "2026-04-14",
+    "kind": "morning",
+    "tickers": [
+      "ASML",
+      "ORCL",
+      "S",
+      "TSM"
+    ]
+  },
+  {
+    "url": "/news/morning/2026/04/14.html",
+    "title": "Atlas Daily — 2026年4月14日 経済ニュース",
+    "date": "2026-04-14",
+    "kind": "morning",
+    "tickers": [
+      "ADBE",
+      "ASML",
+      "BAC",
+      "JPM",
+      "MSFT",
+      "ORCL",
       "S",
       "TSM"
     ]
@@ -66,68 +513,12 @@
     ]
   },
   {
-    "url": "/news/morning/2026/04/14.html",
-    "title": "Atlas Daily — 2026年4月14日 経済ニュース",
-    "date": "2026-04-14",
-    "kind": "morning",
-    "tickers": [
-      "ADBE",
-      "ASML",
-      "BAC",
-      "JPM",
-      "MSFT",
-      "ORCL",
-      "S",
-      "TSM"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/04/14-zh.html",
-    "title": "Atlas Daily — 2026年4月14日 晨報",
-    "date": "2026-04-14",
+    "url": "/news/morning/2026/04/15-zh.html",
+    "title": "Atlas Daily — 2026年4月15日 早報 | 標普500完全收復伊朗戰爭跌幅",
+    "date": "2026-04-15",
     "kind": "morning",
     "tickers": [
       "ASML",
-      "ORCL",
-      "S",
-      "TSM"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/04/14-en.html",
-    "title": "Atlas Daily — April 14, 2026 Morning Briefing",
-    "date": "2026-04-14",
-    "kind": "morning",
-    "tickers": [
-      "ASML",
-      "BAC",
-      "GS",
-      "JPM",
-      "ORCL",
-      "S",
-      "TSM"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/04/14-ko.html",
-    "title": "Atlas Daily — 2026년 4월 14일 조간",
-    "date": "2026-04-14",
-    "kind": "morning",
-    "tickers": [
-      "ASML",
-      "BAC",
-      "JPM",
-      "ORCL",
-      "S",
-      "TSM"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/04/13-ko.html",
-    "title": "Atlas Daily — 2026년 4월 13일 조간",
-    "date": "2026-04-13",
-    "kind": "morning",
-    "tickers": [
       "BAC",
       "C",
       "GS",
@@ -138,410 +529,164 @@
     ]
   },
   {
-    "url": "/news/morning/2026/04/13.html",
-    "title": "Atlas Daily — 2026年4月13日 経済ニュース",
-    "date": "2026-04-13",
-    "kind": "morning",
-    "tickers": [
-      "BAC",
-      "C",
-      "GS",
-      "JPM",
-      "MS",
-      "S",
-      "TSM"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/04/13-zh.html",
-    "title": "Atlas Daily — 2026年4月13日 晨報",
-    "date": "2026-04-13",
-    "kind": "morning",
-    "tickers": [
-      "BAC",
-      "C",
-      "GS",
-      "JPM",
-      "MS",
-      "S",
-      "TSM"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/04/13-en.html",
-    "title": "Atlas Daily — April 13, 2026 Morning Edition",
-    "date": "2026-04-13",
-    "kind": "morning",
-    "tickers": [
-      "BAC",
-      "C",
-      "GS",
-      "JPM",
-      "MS",
-      "S",
-      "TSM"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/04/10.html",
-    "title": "Atlas Daily — 2026年4月10日 経済ニュース",
-    "date": "2026-04-10",
-    "kind": "morning",
-    "tickers": [
-      "C",
-      "DAL",
-      "JPM",
-      "OKTA",
-      "PANW",
-      "RBRK",
-      "S",
-      "TSM",
-      "ZS"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/04/9.html",
-    "title": "Atlas Daily — 2026年4月9日 経済ニュース",
-    "date": "2026-04-09",
+    "url": "/news/morning/2026/04/15.html",
+    "title": "Atlas Daily — 2026年4月15日 経済ニュース | S&P 500、イラン戦争損失を完全回復",
+    "date": "2026-04-15",
     "kind": "morning",
     "tickers": [
       "ASML",
-      "AVGO",
+      "BAC",
       "C",
-      "DAL",
+      "GS",
       "JPM",
-      "MU",
+      "MS",
       "S",
       "TSM"
     ]
   },
   {
-    "url": "/news/morning/2026/04/8.html",
-    "title": "Atlas Daily — 2026年4月8日 経済ニュース",
-    "date": "2026-04-08",
+    "url": "/news/morning/2026/04/16-en.html",
+    "title": "Atlas Daily — 2026年4月16日 (English)",
+    "date": "2026-04-16",
     "kind": "morning",
     "tickers": [
-      "AVGO",
-      "DAL",
-      "NVDA",
-      "S",
       "TSLA",
-      "TSM"
+      "MS",
+      "BAC",
+      "GS"
     ]
   },
   {
-    "url": "/news/morning/2026/04/7-zh.html",
-    "title": "Atlas Daily — 2026年4月7日 早報",
-    "date": "2026-04-07",
+    "url": "/news/morning/2026/04/16-ko.html",
+    "title": "Atlas Daily — 2026年4月16日 (한국어)",
+    "date": "2026-04-16",
     "kind": "morning",
     "tickers": [
-      "DAL",
-      "S",
-      "TSM"
+      "TSLA",
+      "MS",
+      "BAC",
+      "GS"
     ]
   },
   {
-    "url": "/news/morning/2026/04/7-en.html",
-    "title": "Atlas Daily — April 7, 2026 Morning Briefing",
-    "date": "2026-04-07",
+    "url": "/news/morning/2026/04/16-zh.html",
+    "title": "Atlas Daily — 2026年4月16日 (繁體中文)",
+    "date": "2026-04-16",
     "kind": "morning",
     "tickers": [
-      "DAL",
-      "S",
-      "TSM"
+      "TSLA",
+      "MS",
+      "BAC",
+      "GS"
     ]
   },
   {
-    "url": "/news/morning/2026/04/7-ko.html",
-    "title": "Atlas Daily — 2026년 4월 7일 조간",
-    "date": "2026-04-07",
+    "url": "/news/morning/2026/04/16.html",
+    "title": "Atlas Daily — 2026年4月16日 経済ニュース | S&P 500、史上初7,000突破・Wall Street記録的決算",
+    "date": "2026-04-16",
     "kind": "morning",
     "tickers": [
-      "DAL",
-      "S",
-      "TSM"
+      "TSLA",
+      "MS",
+      "BAC",
+      "GS"
     ]
   },
   {
-    "url": "/news/morning/2026/04/7.html",
-    "title": "Atlas Daily — 2026年4月7日 経済ニュース",
-    "date": "2026-04-07",
+    "url": "/news/morning/2026/04/17-en.html",
+    "title": "Atlas Daily — 2026年4月17日 (English)",
+    "date": "2026-04-17",
     "kind": "morning",
     "tickers": [
-      "DAL",
-      "S",
-      "TSM"
+      "TSM",
+      "NFLX"
     ]
   },
   {
-    "url": "/news/morning/2026/04/4-en.html",
-    "title": "Atlas Daily — April 4, 2026 Morning Edition",
-    "date": "2026-04-04",
+    "url": "/news/morning/2026/04/17-ko.html",
+    "title": "Atlas Daily — 2026年4月17日 (한국어)",
+    "date": "2026-04-17",
     "kind": "morning",
     "tickers": [
-      "DAL",
-      "S"
+      "TSM",
+      "NFLX"
     ]
   },
   {
-    "url": "/news/morning/2026/04/4.html",
-    "title": "Atlas Daily — 2026年4月4日 経済ニュース",
-    "date": "2026-04-04",
+    "url": "/news/morning/2026/04/17-zh.html",
+    "title": "Atlas Daily — 2026年4月17日 (繁體中文)",
+    "date": "2026-04-17",
     "kind": "morning",
     "tickers": [
-      "DAL",
-      "S"
+      "TSM",
+      "NFLX"
     ]
   },
   {
-    "url": "/news/morning/2026/04/4-zh.html",
-    "title": "Atlas Daily — 2026年4月4日 晨報",
-    "date": "2026-04-04",
+    "url": "/news/morning/2026/04/17.html",
+    "title": "Atlas Daily — 2026年4月17日朝刊｜NASDAQ12連騰で史上最高値更新、TSMC決算でAI需要再確認",
+    "date": "2026-04-17",
     "kind": "morning",
     "tickers": [
-      "DAL",
-      "S"
+      "TSM",
+      "NFLX"
     ]
   },
   {
-    "url": "/news/morning/2026/04/4-ko.html",
-    "title": "Atlas Daily — 2026년 4월 4일 조간",
-    "date": "2026-04-04",
+    "url": "/news/morning/2026/04/18-en.html",
+    "title": "Atlas Daily — 2026年4月18日 (English)",
+    "date": "2026-04-18",
+    "kind": "morning",
+    "tickers": []
+  },
+  {
+    "url": "/news/morning/2026/04/18-ko.html",
+    "title": "Atlas Daily — 2026年4月18日 (한국어)",
+    "date": "2026-04-18",
+    "kind": "morning",
+    "tickers": []
+  },
+  {
+    "url": "/news/morning/2026/04/18-zh.html",
+    "title": "Atlas Daily — 2026年4月18日 (繁體中文)",
+    "date": "2026-04-18",
+    "kind": "morning",
+    "tickers": []
+  },
+  {
+    "url": "/news/morning/2026/04/18.html",
+    "title": "Atlas Daily — 2026年4月18日｜ホルムズ海峡開通で原油急落、3指数そろって急騰",
+    "date": "2026-04-18",
+    "kind": "morning",
+    "tickers": []
+  },
+  {
+    "url": "/news/morning/2026/04/21.html",
+    "title": "Atlas Daily — 2026年4月21日｜ホルムズ封鎖再燃で原油反発、NASDAQ 13連勝止まる・Russell 2000は新高値",
+    "date": "2026-04-21",
+    "kind": "morning",
+    "tickers": []
+  },
+  {
+    "url": "/news/morning/2026/04/22.html",
+    "title": "Atlas Daily — 2026年4月22日｜Tim Cook時代終幕、John TernusがApple次期CEOに／イラン交渉停滞でWTI 91ドル超、S&P -0.63%",
+    "date": "2026-04-22",
     "kind": "morning",
     "tickers": [
-      "AMZN",
-      "DAL",
-      "S",
-      "TSLA"
+      "AAPL",
+      "UNH"
     ]
   },
   {
-    "url": "/news/morning/2026/04/3.html",
-    "title": "Atlas Daily — 2026年4月3日 経済ニュース",
-    "date": "2026-04-03",
+    "url": "/news/morning/2026/04/23.html",
+    "title": "Atlas Daily — 2026年4月23日｜停戦延長でS&P +1.05%・NASDAQが新高値、Tesla決算EPS小幅ビートもCapEx急増で時間外失速、FICO -13%",
+    "date": "2026-04-23",
     "kind": "morning",
     "tickers": [
-      "DAL",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/04/1.html",
-    "title": "Atlas Daily — 2026年4月1日 経済ニュース",
-    "date": "2026-04-01",
-    "kind": "morning",
-    "tickers": [
-      "META",
-      "MSFT",
-      "NKE",
-      "NVDA",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/31-en.html",
-    "title": "Atlas Daily — March 31, 2026 Morning Briefing",
-    "date": "2026-03-31",
-    "kind": "morning",
-    "tickers": [
-      "MU",
-      "NKE",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/31-zh.html",
-    "title": "Atlas Daily — 2026年3月31日 晨報",
-    "date": "2026-03-31",
-    "kind": "morning",
-    "tickers": [
-      "MU",
-      "NKE",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/31.html",
-    "title": "Atlas Daily — 2026年3月31日 経済ニュース",
-    "date": "2026-03-31",
-    "kind": "morning",
-    "tickers": [
-      "MU",
-      "NKE",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/31-ko.html",
-    "title": "Atlas Daily — 2026년 3월 31일 조간",
-    "date": "2026-03-31",
-    "kind": "morning",
-    "tickers": [
-      "MU",
-      "NKE",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/28.html",
-    "title": "Atlas Daily — 2026年3月28日 経済ニュース",
-    "date": "2026-03-28",
-    "kind": "morning",
-    "tickers": [
-      "CCL",
-      "NKE",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/27.html",
-    "title": "Atlas Daily — 2026年3月27日 経済ニュース",
-    "date": "2026-03-27",
-    "kind": "morning",
-    "tickers": [
-      "CCL",
-      "LULU",
-      "NKE",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/25.html",
-    "title": "Atlas Daily — 2026年3月25日",
-    "date": "2026-03-25",
-    "kind": "morning",
-    "tickers": [
-      "CCL",
-      "LULU",
-      "NKE",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/24.html",
-    "title": "Atlas Daily — 2026年3月24日",
-    "date": "2026-03-24",
-    "kind": "morning",
-    "tickers": [
-      "CCL",
-      "NKE",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/23.html",
-    "title": "Atlas Daily — 2026年3月23日",
-    "date": "2026-03-23",
-    "kind": "morning",
-    "tickers": [
-      "ACN",
-      "FDX",
-      "MU",
-      "NKE",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/22.html",
-    "title": "Atlas Daily — 2026年3月22日",
-    "date": "2026-03-22",
-    "kind": "morning",
-    "tickers": [
-      "FDX",
-      "NKE",
-      "S",
-      "SMCI"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/21.html",
-    "title": "Atlas Daily — 2026年3月21日",
-    "date": "2026-03-21",
-    "kind": "morning",
-    "tickers": [
-      "FDX",
-      "NKE",
-      "S",
-      "SMCI"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/20.html",
-    "title": "Atlas Daily — 2026年3月20日",
-    "date": "2026-03-20",
-    "kind": "morning",
-    "tickers": [
-      "BABA",
-      "DOCU",
-      "MU",
-      "NKE",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/19.html",
-    "title": "Atlas Daily — 2026年3月19日",
-    "date": "2026-03-19",
-    "kind": "morning",
-    "tickers": [
-      "ACN",
-      "FDX",
-      "MU",
-      "NKE",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/18.html",
-    "title": "Atlas Daily — 2026年3月18日",
-    "date": "2026-03-18",
-    "kind": "morning",
-    "tickers": [
-      "ACN",
-      "FDX",
-      "MU",
-      "NKE",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/morning/2026/03/13.html",
-    "title": "Atlas Daily — 2026年3月13日",
-    "date": "2026-03-13",
-    "kind": "morning",
-    "tickers": [
-      "ADBE",
-      "DG",
-      "ORCL",
-      "S"
-    ]
-  },
-  {
-    "url": "/news/extra/2026/03/20-us-japan-summit.html",
-    "title": "Atlas Daily 号外 — 日米首脳会談 2026.3.19",
-    "date": "",
-    "kind": "extra",
-    "tickers": [
-      "C"
-    ]
-  },
-  {
-    "url": "/news/extra/2026/03/17-gtc-2026.html",
-    "title": "Atlas Daily 号外 — NVIDIA GTC 2026",
-    "date": "",
-    "kind": "extra",
-    "tickers": [
-      "NVDA"
-    ]
-  },
-  {
-    "url": "/news/extra/2026/04/14-neocloud-2026.html",
-    "title": "Atlas Daily 特集 | ネオクラウド徹底比較",
-    "date": "",
-    "kind": "extra",
-    "tickers": [
-      "MSFT",
-      "ORCL"
+      "TSLA",
+      "BA",
+      "FICO",
+      "NOW"
     ]
   }
 ]

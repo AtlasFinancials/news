@@ -1,0 +1,98 @@
+{
+  "date": "2026-04-18",
+  "total_ms": 999700,
+  "total_label": "16:39",
+  "chapters": [
+    {
+      "id": "jingle",
+      "title": "ジングル+タイトルコール",
+      "start_ms": 0,
+      "end_ms": 6026,
+      "start_label": "0:00"
+    },
+    {
+      "id": "opening",
+      "title": "オープニング",
+      "start_ms": 6026,
+      "end_ms": 59906,
+      "start_label": "0:06"
+    },
+    {
+      "id": "market_summary",
+      "title": "マーケット・サマリー",
+      "start_ms": 59906,
+      "end_ms": 178514,
+      "start_label": "0:59"
+    },
+    {
+      "id": "news_hormuz",
+      "title": "ヘッドライン1　ホルムズ海峡『完全開通』で原油急落、3指数急騰",
+      "start_ms": 178514,
+      "end_ms": 263810,
+      "start_label": "2:58"
+    },
+    {
+      "id": "news_netflix",
+      "title": "ヘッドライン2　Netflix9.72%急落、ヘイスティングス氏退任",
+      "start_ms": 263810,
+      "end_ms": 336026,
+      "start_label": "4:23"
+    },
+    {
+      "id": "news_nasdaq13",
+      "title": "ヘッドライン3　ナスダック13連騰で1992年以来最長に並ぶ",
+      "start_ms": 336026,
+      "end_ms": 416690,
+      "start_label": "5:36"
+    },
+    {
+      "id": "news_tsmc",
+      "title": "ヘッドライン4　TSMC決算、純利益58%増で過去最高",
+      "start_ms": 416690,
+      "end_ms": 486530,
+      "start_label": "6:56"
+    },
+    {
+      "id": "news_banks",
+      "title": "ヘッドライン5　米大手銀行そろって強決算",
+      "start_ms": 486530,
+      "end_ms": 547250,
+      "start_label": "8:06"
+    },
+    {
+      "id": "news_tesla",
+      "title": "ヘッドライン6　Tesla3.01%高で連敗脱出、来週決算へ",
+      "start_ms": 547250,
+      "end_ms": 622706,
+      "start_label": "9:07"
+    },
+    {
+      "id": "risk_meter",
+      "title": "Atlasリスクメーター　総合33、注意圏",
+      "start_ms": 622706,
+      "end_ms": 703634,
+      "start_label": "10:22"
+    },
+    {
+      "id": "keyword",
+      "title": "今日のキーワード　ストレート・オブ・ホルムズ",
+      "start_ms": 703634,
+      "end_ms": 800426,
+      "start_label": "11:43"
+    },
+    {
+      "id": "editorial",
+      "title": "編集部の目線　Nasdaq13連騰の裏で『沈黙の危機』",
+      "start_ms": 800426,
+      "end_ms": 930721,
+      "start_label": "13:20"
+    },
+    {
+      "id": "closing",
+      "title": "クロージング",
+      "start_ms": 930721,
+      "end_ms": 999721,
+      "start_label": "15:30"
+    }
+  ]
+}

@@ -1,1 +1,6 @@
 morning/2026/04/audio_work/
+morning/**/audio_work_*/
+.wrangler/
+.DS_Store
+*.bak
+node_modules/

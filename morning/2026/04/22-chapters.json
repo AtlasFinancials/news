@@ -1,0 +1,112 @@
+{
+  "date": "2026-04-22",
+  "total_ms": 1673956,
+  "total_label": "27:53",
+  "chapters": [
+    {
+      "id": "jingle",
+      "title": "ジングル+タイトルコール",
+      "start_ms": 0,
+      "end_ms": 6026,
+      "start_label": "0:00"
+    },
+    {
+      "id": "opening",
+      "title": "オープニング",
+      "start_ms": 6026,
+      "end_ms": 64658,
+      "start_label": "0:06"
+    },
+    {
+      "id": "market_summary",
+      "title": "マーケット・サマリー",
+      "start_ms": 64658,
+      "end_ms": 182042,
+      "start_label": "1:04"
+    },
+    {
+      "id": "news_apple",
+      "title": "トップストーリー　ティム・クック時代終幕、ジョン・ターナス氏が次期Apple CEOに",
+      "start_ms": 182042,
+      "end_ms": 348746,
+      "start_label": "3:02"
+    },
+    {
+      "id": "news_iran_oil",
+      "title": "ヘッドライン1　イラン交渉停滞、ヴァンス副大統領訪問延期でWTIは91ドル超へ",
+      "start_ms": 348746,
+      "end_ms": 431186,
+      "start_label": "5:48"
+    },
+    {
+      "id": "news_unh",
+      "title": "ヘッドライン2　ユナイテッドヘルスがQ1大幅ビート、プラス9.28%",
+      "start_ms": 431186,
+      "end_ms": 540530,
+      "start_label": "7:11"
+    },
+    {
+      "id": "news_warsh",
+      "title": "ヘッドライン3　ウォーシュFED議長候補公聴会、「操り人形にはならない」",
+      "start_ms": 540530,
+      "end_ms": 629330,
+      "start_label": "9:00"
+    },
+    {
+      "id": "news_russell",
+      "title": "ヘッドライン4　ラッセル2000マイナス1.00%で反落、ローテーション一服",
+      "start_ms": 629330,
+      "end_ms": 704786,
+      "start_label": "10:29"
+    },
+    {
+      "id": "news_tesla",
+      "title": "ヘッドライン5　Tesla決算プレビュー、本日引け後発表",
+      "start_ms": 704786,
+      "end_ms": 809978,
+      "start_label": "11:44"
+    },
+    {
+      "id": "news_movers",
+      "title": "ヘッドライン6　火曜の大きな値動き、CARプラス17%・XNDUマイナス17%",
+      "start_ms": 809978,
+      "end_ms": 923474,
+      "start_label": "13:29"
+    },
+    {
+      "id": "risk_meter",
+      "title": "Atlasリスクメーター　総合42、注意圏",
+      "start_ms": 923474,
+      "end_ms": 1055642,
+      "start_label": "15:23"
+    },
+    {
+      "id": "keyword",
+      "title": "今日のキーワード　フォワード・ガイダンス、決算シーズンの主役",
+      "start_ms": 1055642,
+      "end_ms": 1188722,
+      "start_label": "17:35"
+    },
+    {
+      "id": "editorial_macro",
+      "title": "編集部の目線・前編　今決算シーズンの、マクロ3大テーマ",
+      "start_ms": 1188722,
+      "end_ms": 1325162,
+      "start_label": "19:48"
+    },
+    {
+      "id": "editorial_sectors",
+      "title": "編集部の目線・後編　6セクター別チェックポイントと、編集部のスタンス",
+      "start_ms": 1325162,
+      "end_ms": 1581169,
+      "start_label": "22:05"
+    },
+    {
+      "id": "closing",
+      "title": "クロージング",
+      "start_ms": 1581169,
+      "end_ms": 1673977,
+      "start_label": "26:21"
+    }
+  ]
+}
