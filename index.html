@@ -55,11 +55,12 @@ body{font-family:var(--font-ui);background:var(--paper);color:var(--ink);font-si
 .portal-header{position:relative;text-align:center;padding:52px 20px 40px;overflow:hidden;background:var(--navy-deep);border-bottom:3px solid rgba(184,145,42,0.25)}
 .portal-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,145,42,0.07) 0%,transparent 65%);pointer-events:none}
 .portal-header>*{position:relative;z-index:2}
-.header-rule{display:flex;align-items:center;gap:16px;margin-bottom:14px;justify-content:center}
+.header-rule{display:flex;align-items:center;gap:16px;margin-bottom:-22px;justify-content:center}
 .header-rule-line{flex:1;max-width:100px;height:1px;background:var(--gold);opacity:0.2}
-.header-rule-text{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;opacity:0.55}
-.portal-title{font-family:var(--font-heading);font-size:46px;font-weight:800;letter-spacing:0.08em;line-height:1.15;color:#fff}
-.portal-subtitle{display:block;font-family:var(--font-display);font-size:13px;font-weight:400;letter-spacing:0.25em;color:rgba(212,168,67,0.65);margin-top:10px;text-transform:uppercase;font-style:italic}
+.header-rule-text{font-family:var(--font-display);font-size:13px;font-weight:600;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;opacity:0.55}
+.portal-title{margin:0;line-height:1}
+.portal-title img{display:block;height:130px;width:auto;max-width:min(1120px,90vw);margin:0 auto}
+.portal-subtitle{display:block;font-family:var(--font-display);font-size:13px;font-weight:400;letter-spacing:0.2em;color:rgba(212,168,67,0.7);margin-top:-38px;text-transform:uppercase;font-style:italic}
 .header-bottom-rule{display:flex;align-items:center;gap:12px;margin-top:18px;justify-content:center;font-size:11.5px;color:rgba(255,255,255,0.35);letter-spacing:0.04em;font-family:var(--font-body)}
 .header-bottom-rule .hbr-line{flex:1;max-width:70px;height:1px;background:var(--gold);opacity:0.15}
 .header-bottom-rule .hbr-dot{width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:0.3}
@@ -180,18 +181,25 @@ footer{background:var(--navy);padding:28px 20px;text-align:center}
 [data-theme="dark"] .disclaimer-text{color:#6e7681}
 
 /* === Responsive === */
-@media(max-width:768px){
+@media(min-width:768px){
+  .portal-title img{height:156px}
+  .header-rule{margin-bottom:-18px}
+  .portal-subtitle{margin-top:-38px}
+}
+@media(max-width:767px){
   .site-header{padding:0 16px}
   .nav-links{display:none}
   .nav-hamburger{display:block}
   .portal-header{padding:36px 16px 28px}
-  .portal-title{font-size:32px;letter-spacing:0.06em}
+  .portal-title img{height:84px}
+  .header-rule{margin-bottom:-8px;gap:10px}
+  .header-rule-text{font-size:11px;letter-spacing:0.15em}
+  .portal-subtitle{font-size:11px;letter-spacing:0.15em;margin-top:-20px}
   .hero-title{font-size:18px}
   .filter-bar{padding:12px 0 10px;gap:10px}
   .type-btn{padding:6px 12px 8px;font-size:12px}
 }
 @media(max-width:480px){
-  .portal-title{font-size:28px}
   .section-title{font-size:17px}
   .type-btn{padding:5px 10px 7px;font-size:11.5px}
 }
@@ -208,7 +216,7 @@ footer{background:var(--navy);padding:28px 20px;text-align:center}
 <header class="atlas-nav" data-atlas-nav>
   <div class="atlas-nav-inner">
     <a href="https://atlas-financials.jp/" class="atlas-nav-brand" aria-label="Atlas ホーム">
-      <span class="atlas-nav-logo">Atlas<span class="atlas-nav-dot">.</span></span>
+      <img class="atlas-nav-logo atlas-nav-logo-dark" src="/logos/atlas-master-type-white-transparent-300w.png" alt="Atlas"><img class="atlas-nav-logo atlas-nav-logo-light" src="/logos/atlas-master-type-navy-transparent-300w.png" alt="Atlas">
       <span class="atlas-nav-tag">U.S. Market Intelligence</span>
     </a>
     <nav class="atlas-nav-links" aria-label="グローバルナビ">
@@ -262,8 +270,11 @@ footer{background:var(--navy);padding:28px 20px;text-align:center}
 <style>
 .atlas-nav{position:sticky;top:0;z-index:200;background:rgba(15,24,41,0.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(184,145,42,0.18);font-family:'Noto Sans JP',sans-serif}
 .atlas-nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.atlas-nav-brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:#fff;flex-shrink:0}
-.atlas-nav-logo{font-family:'Playfair Display','Shippori Mincho B1',serif;font-size:22px;font-weight:700;letter-spacing:.04em;line-height:1}
+.atlas-nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;flex-shrink:0}
+.atlas-nav-logo{height:38px;width:auto;display:block}
+.atlas-nav-logo-light{display:none}
+html[data-theme="light"] .atlas-nav-logo-dark{display:none}
+html[data-theme="light"] .atlas-nav-logo-light{display:block}
 .atlas-nav-dot{color:#D4A843}
 .atlas-nav-tag{font-size:10px;color:rgba(212,168,67,.6);letter-spacing:.08em;white-space:nowrap}
 .atlas-nav-links{display:flex;gap:22px;align-items:center}
@@ -310,7 +321,7 @@ footer{background:var(--navy);padding:28px 20px;text-align:center}
   .atlas-nav-burger{display:flex}
   .atlas-nav-tag{display:none}
   .atlas-nav-inner{padding:0 16px;height:52px}
-  .atlas-nav-logo{font-size:19px}
+  .atlas-nav-logo{height:30px}
 }
 /* Light theme override */
 html[data-theme="light"] .atlas-nav{background:rgba(245,242,236,.96);border-bottom-color:rgba(26,37,64,.12)}
@@ -479,7 +490,7 @@ html[data-theme="light"] .atlas-nav-username{color:#1A2540}
     <span class="header-rule-text">Est. 2026 — U.S. Stock Market Intelligence</span>
     <span class="header-rule-line"></span>
   </div>
-  <h1 class="portal-title">Atlas Daily</h1>
+  <h1 class="portal-title"><img src="https://atlas-financials.jp/logos/atlas-daily-type-white-transparent-1200w.png" alt="Atlas Daily"></h1>
   <span class="portal-subtitle">The Morning Briefing</span>
   <div class="header-bottom-rule">
     <span class="hbr-line"></span>
@@ -523,11 +534,12 @@ html[data-theme="light"] .atlas-nav-username{color:#1A2540}
     <!-- Archive raw data: deploy_times.py が生成する -->
     <!-- Archive -->
         <div class="archive-list" id="archiveList">
-      <a class="article-item" href="morning/2026/04/25.html" data-type="morning" data-date="2026-04-25" data-month="2026/04" data-title="Intel決算+23.6%で半導体爆発、S&amp;amp;P 7,165・NASDAQ 24,836が最高値更新、SMH +5.10%・NVDA時価総額5兆ドル回復、CHTR -25.5%"></a>
-      <a class="article-item" href="morning/2026/04/23.html" data-type="morning" data-date="2026-04-23" data-month="2026/04" data-title="停戦延長でS&amp;amp;P 500が7,137.90で史上最高値、SMH月間+21.91%は2003年来最大の月次上昇。Tesla CapEx 250億ドル超への急増で時間外失速、FICOは-13%急落。"></a>
-      <a class="article-item" href="morning/2026/04/22.html" data-type="morning" data-date="2026-04-22" data-month="2026/04" data-title="Tim Cook時代終幕、John Ternus氏が次期Apple CEOに。イラン交渉停滞でWTI +4.5%・91ドル超、S&amp;amp;P 500は-0.63%。UnitedHealth Q1ビートで+9.28%。"></a>
-      <a class="article-item" href="morning/2026/04/21.html" data-type="morning" data-date="2026-04-21" data-month="2026/04" data-title="米海軍のイラン船拿捕でホルムズ緊張再燃。WTI +5%、VIX +8%。S&amp;amp;P 500はわずか-0.24%、Russell 2000は史上最高値更新。本"></a>
-      <a class="article-item" href="morning/2026/04/18.html" data-type="morning" data-date="2026-04-18" data-month="2026/04" data-title="WTI原油は-11.5%の急落。S&amp;amp;P 500・NASDAQ・ダウがそろって大幅高。ナスダックは13連騰で1992年以来の最長記録に迫る。"></a>
+      <a class="article-item" href="morning/2026/04/24.html" data-type="morning" data-date="2026-04-24" data-month="2026/04" data-title="ホルムズ再緊張でS&amp;P -0.41%・ソフト株崩落、ServiceNow -17%・IBM -8%でAI破壊懸念再燃、Intel 時間外+20%"></a>
+      <a class="article-item" href="morning/2026/04/25.html" data-type="morning" data-date="2026-04-25" data-month="2026/04" data-title="Intel決算+23.6%で半導体爆発、S&amp;P 7,165・NASDAQ 24,836が最高値更新、SMH +5.10%・NVDA時価総額5兆ドル回復、CHTR -25.5%"></a>
+      <a class="article-item" href="morning/2026/04/23.html" data-type="morning" data-date="2026-04-23" data-month="2026/04" data-title="停戦延長でS&amp;P 500が7,137.90で史上最高値、SMH月間+21.91%は2003年来最大の月次上昇。Tesla CapEx 250億ドル超への急増で時間外失速、FICOは-13%急落。"></a>
+      <a class="article-item" href="morning/2026/04/22.html" data-type="morning" data-date="2026-04-22" data-month="2026/04" data-title="Tim Cook時代終幕、John Ternus氏が次期Apple CEOに。イラン交渉停滞でWTI +4.5%・91ドル超、S&amp;P 500は-0.63%。UnitedHealth Q1ビートで+9.28%。"></a>
+      <a class="article-item" href="morning/2026/04/21.html" data-type="morning" data-date="2026-04-21" data-month="2026/04" data-title="米海軍のイラン船拿捕でホルムズ緊張再燃。WTI +5%、VIX +8%。S&amp;P 500はわずか-0.24%、Russell 2000は史上最高値更新。本"></a>
+      <a class="article-item" href="morning/2026/04/18.html" data-type="morning" data-date="2026-04-18" data-month="2026/04" data-title="WTI原油は-11.5%の急落。S&amp;P 500・NASDAQ・ダウがそろって大幅高。ナスダックは13連騰で1992年以来の最長記録に迫る。"></a>
       <a class="article-item" href="morning/2026/04/17.html" data-type="morning" data-date="2026-04-17" data-month="2026/04" data-title="TSMCがQ1純利益+58%と過去最高、2026年CapEx上限へ引き上げ。NASDAQは12営業日連続高で2009年以来の連騰記録。Netflixは業績ビート"></a>
       <a class="article-item" href="morning/2026/04/16.html" data-type="morning" data-date="2026-04-16" data-month="2026/04" data-title="Morgan Stanley・BAC Q1決算ダブルビートで銀行株急伸、Tesla AI5チップ・タペアウト発表で+8%、Fed Beige Bookはイラン戦"></a>
       <a class="article-item" href="special/okinawa-chika-2026.html" data-type="special" data-date="2026-04-16" data-month="2026/04" data-title="沖縄不動産地価分析 2026"></a>

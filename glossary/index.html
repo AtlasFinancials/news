@@ -66,31 +66,36 @@ body {
     radial-gradient(ellipse at 70% 50%, rgba(212,168,67,0.04) 0%, transparent 60%);
 }
 .header-content { position: relative; z-index: 1; }
-.header-icon { font-size: 2.8em; margin-bottom: 8px; }
-.header h1 {
+.header h1.dictionary-logo {
+  margin: 0 0 12px;
+  line-height: 1;
+}
+.header h1.dictionary-logo img {
+  display: block;
+  height: 140px;
+  width: auto;
+  max-width: min(900px, 90vw);
+  margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .header h1.dictionary-logo img { height: 96px; }
+}
+@media (max-width: 480px) {
+  .header h1.dictionary-logo img { height: 72px; }
+}
+.header .dictionary-subtitle {
   font-family: var(--font-serif);
-  font-size: 2.2em;
-  font-weight: 800;
-  letter-spacing: .06em;
-  margin-bottom: 4px;
-  color: #fff;
-}
-.header .subtitle {
-  color: #bbb;
-  font-size: 1em;
+  font-size: 18px;
   font-weight: 500;
-  letter-spacing: .08em;
+  color: rgba(212,168,67,.92);
+  letter-spacing: .35em;
+  margin-top: 6px;
 }
-.header .paper-badge {
-  display: inline-block;
-  background: rgba(184,145,42,0.15);
-  border: 1px solid rgba(184,145,42,0.3);
-  border-radius: 20px;
-  padding: 4px 16px;
-  font-size: 12px;
-  color: #D4A843;
-  margin-top: 14px;
-  letter-spacing: .05em;
+@media (max-width: 768px) {
+  .header .dictionary-subtitle { font-size: 14px; letter-spacing: .25em }
+}
+@media (max-width: 480px) {
+  .header .dictionary-subtitle { font-size: 12px; letter-spacing: .2em }
 }
 
 /* Search */
@@ -648,7 +653,7 @@ body {
 <header class="atlas-nav" data-atlas-nav>
   <div class="atlas-nav-inner">
     <a href="https://atlas-financials.jp/" class="atlas-nav-brand" aria-label="Atlas ホーム">
-      <span class="atlas-nav-logo">Atlas<span class="atlas-nav-dot">.</span></span>
+      <img class="atlas-nav-logo atlas-nav-logo-dark" src="/logos/atlas-master-type-white-transparent-300w.png" alt="Atlas"><img class="atlas-nav-logo atlas-nav-logo-light" src="/logos/atlas-master-type-navy-transparent-300w.png" alt="Atlas">
       <span class="atlas-nav-tag">U.S. Market Intelligence</span>
     </a>
     <nav class="atlas-nav-links" aria-label="グローバルナビ">
@@ -702,8 +707,11 @@ body {
 <style>
 .atlas-nav{position:sticky;top:0;z-index:200;background:rgba(15,24,41,0.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(184,145,42,0.18);font-family:'Noto Sans JP',sans-serif}
 .atlas-nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.atlas-nav-brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:#fff;flex-shrink:0}
-.atlas-nav-logo{font-family:'Playfair Display','Shippori Mincho B1',serif;font-size:22px;font-weight:700;letter-spacing:.04em;line-height:1}
+.atlas-nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;flex-shrink:0}
+.atlas-nav-logo{height:38px;width:auto;display:block}
+.atlas-nav-logo-light{display:none}
+html[data-theme="light"] .atlas-nav-logo-dark{display:none}
+html[data-theme="light"] .atlas-nav-logo-light{display:block}
 .atlas-nav-dot{color:#D4A843}
 .atlas-nav-tag{font-size:10px;color:rgba(212,168,67,.6);letter-spacing:.08em;white-space:nowrap}
 .atlas-nav-links{display:flex;gap:22px;align-items:center}
@@ -750,7 +758,7 @@ body {
   .atlas-nav-burger{display:flex}
   .atlas-nav-tag{display:none}
   .atlas-nav-inner{padding:0 16px;height:52px}
-  .atlas-nav-logo{font-size:19px}
+  .atlas-nav-logo{height:30px}
 }
 /* Light theme override */
 html[data-theme="light"] .atlas-nav{background:rgba(245,242,236,.96);border-bottom-color:rgba(26,37,64,.12)}
@@ -912,19 +920,11 @@ html[data-theme="light"] .atlas-nav-username{color:#1A2540}
 })();
 </script>
 <!-- ATLAS-NAV-END -->
-<header style="background:rgba(26,37,64,0.97);padding:0 5vw;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(184,145,42,0.12)">
-<div style="display:flex;justify-content:space-between;align-items:center;height:52px;max-width:1100px;margin:0 auto">
-<a href="https://atlas-financials.jp/" style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;text-decoration:none">Atlas<span style="color:#D4A843">.</span></a>
-<nav style="display:flex;gap:20px"><a href="https://atlas-financials.jp/news/" style="font-size:12px;color:#D4A843;text-decoration:none">ニュース</a><a href="https://atlas-financials.jp/reports/" style="font-size:12px;color:#D4A843;text-decoration:none">分析</a><a href="https://atlas-financials.jp/news/glossary/" style="font-size:12px;color:#D4A843;text-decoration:none">用語辞典</a></nav>
-</div></header>
-
 <!-- Header -->
 <div class="header">
   <div class="header-content">
-    <div class="header-icon">📖</div>
-    <h1>Atlas 用語辞典</h1>
-    <div class="subtitle">Financial Glossary</div>
-    <div class="paper-badge">Atlas Financials</div>
+    <h1 class="dictionary-logo"><img src="https://atlas-financials.jp/logos/atlas-dictionary-type-white-transparent-1200w.png" alt="Atlas Dictionary"></h1>
+    <div class="dictionary-subtitle">経済金融用語辞書</div>
   </div>
 </div>
 

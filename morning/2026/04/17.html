@@ -155,22 +155,22 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  height: 56px;
+  height: 80px;
 }
 .nav-brand {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 10px;
   text-decoration: none;
 }
 .nav-logo {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.02em;
+  height: 68px;
+  width: auto;
+  display: block;
 }
-.nav-logo span { color: var(--gold); }
+.nav-logo-light { display: none; }
+html[data-theme="light"] .nav-logo-dark { display: none; }
+html[data-theme="light"] .nav-logo-light { display: block; }
 .nav-sub {
   font-family: var(--font-ui);
   font-size: 10px;
@@ -217,7 +217,7 @@ body {
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 56px;
+  top: 80px;
   left: 0;
   right: 0;
   background: rgba(15,24,41,0.98);
@@ -290,7 +290,7 @@ body {
   font-weight: 600;
   color: rgba(255,255,255,0.5);
   letter-spacing: .1em;
-  margin-bottom: 16px;
+  margin-bottom: -22px;
 }
 
 .paper-logo {
@@ -315,14 +315,14 @@ body {
 
 .paper-title {
   font-family: var(--font-heading);
-  font-size: 44px;
+  font-size: 104px;
   font-weight: 800;
   letter-spacing: .14em;
   line-height: 1;
   color: #fff;
   white-space: nowrap;
 }
-.paper-title img { display: block; height: 44px; width: auto; }
+.paper-title img { display: block; height: 130px; width: auto; }
 
 .paper-accent {
   display: block;
@@ -333,6 +333,7 @@ body {
   letter-spacing: .2em;
   color: var(--gold);
   opacity: .7;
+  margin-top: -38px;
 }
 
 /* ==========================================
@@ -1494,19 +1495,20 @@ body {
 @media (min-width: 768px) {
   .main { padding: 36px 40px 60px; }
   .paper-header { padding: 48px 40px; }
-  .paper-title { font-size: 52px; }
-  .paper-title img { height: 52px; }
+  .paper-title { font-size: 124px; }
+  .paper-title img { height: 156px; }
   .paper-logo::before, .paper-logo::after { width: 80px; }
   .paper-logo { gap: 24px; }
-  .paper-date { margin-bottom: 20px; }
+  .paper-date { margin-bottom: -18px; }
+  .paper-accent { margin-top: -38px; }
 }
 
 @media (max-width: 767px) {
   .paper-header { padding: 28px 16px; }
-  .paper-title { font-size: 28px; letter-spacing: .08em; }
-  .paper-title img { height: 28px; }
-  .paper-accent { font-size: 11px; letter-spacing: .15em; }
-  .paper-date { font-size: 11px; margin-bottom: 12px; }
+  .paper-title { font-size: 68px; letter-spacing: .08em; }
+  .paper-title img { height: 84px; }
+  .paper-accent { font-size: 11px; letter-spacing: .15em; margin-top: -20px; }
+  .paper-date { font-size: 11px; margin-bottom: -8px; }
   .paper-logo { gap: 12px; margin-bottom: 8px; }
   .paper-logo::before, .paper-logo::after { width: 24px; }
   .news-grid { grid-template-columns: 1fr; }
@@ -1523,8 +1525,8 @@ body {
   .editorial-body { padding: 20px; }
   .editorial-note { padding: 12px 20px; }
 
-  .nav-inner { padding: 0 16px; height: 48px; }
-  .nav-logo { font-size: 18px; }
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .nav-logo { height: 48px; }
   .nav-sub { display: none; }
   .nav-links { display: none; }
   .nav-hamburger { display: block; }
@@ -1839,7 +1841,7 @@ body {
 <header class="site-header">
   <nav class="nav-inner">
     <a href="https://atlas-financials.jp/reports/" class="nav-brand">
-      <span class="nav-logo">Atlas<span>.</span></span>
+      <img class="nav-logo" src="https://atlas-financials.jp/logos/atlas-master-type-white-transparent-1200w.png" alt="Atlas">
       <span class="nav-sub">Powered by U&amp;I CO., LTD.</span>
     </a>
     <div class="nav-links">
