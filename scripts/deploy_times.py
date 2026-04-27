@@ -21,7 +21,7 @@ LINE U&I株倶楽部グループに自動通知するスクリプト。
   python3 deploy_times.py extra ~/Desktop/UI_KabuClub_HP/gogai_gtc2026.html 2026-03-17 gtc-2026 "NVIDIA GTC 2026 完全レポート"
 """
 
-import sys, os, shutil, subprocess, json, re
+import sys, os, shutil, subprocess, json, re, html
 from datetime import datetime
 try:
     import urllib.request as urlreq
@@ -227,6 +227,108 @@ def scan_articles(section_dir, article_type):
     return articles
 
 
+# ─────────────────────────────────────────
+# news-index.json updater
+# ─────────────────────────────────────────
+def extract_full_title(html_path):
+    """HTML の <title> タグの中身を取り出して HTML エンティティを復号"""
+    try:
+        with open(html_path, encoding="utf-8") as f:
+            content = f.read(30000)
+        m = re.search(r"<title>([^<]+)</title>", content)
+        if m:
+            return html.unescape(m.group(1).strip())
+    except Exception:
+        pass
+    return ""
+
+
+def extract_tickers_from_html(html_path):
+    """HTML 内の data-ticker="XXX" 属性をすべて取り出して重複排除・ソート"""
+    try:
+        with open(html_path, encoding="utf-8") as f:
+            content = f.read()
+        return sorted(set(re.findall(r'data-ticker="([A-Z]+)"', content)))
+    except Exception:
+        return []
+
+
+def update_news_index(article_type, date_obj, html_path, slug=None):
+    """news-index.json に新規エントリを追加・更新（idempotent）
+
+    - morning: 日付昇順の morning ブロック内に挿入
+    - extra/special: 末尾に追加
+    - 同一 URL のエントリが既存の場合は title/tickers を更新
+    """
+    if article_type not in ("morning", "extra", "special"):
+        return
+
+    index_path = os.path.join(REPO_DIR, "news-index.json")
+    if not os.path.exists(index_path):
+        print("   ⚠️  news-index.json が存在しません、スキップ")
+        return
+
+    # URL 構築（rebuild_portal_index と同じパターン）
+    if article_type == "morning":
+        y = date_obj.strftime("%Y")
+        m = date_obj.strftime("%m")
+        d = str(date_obj.day)
+        url = f"/news/morning/{y}/{m}/{d}.html"
+    elif article_type == "extra":
+        y = date_obj.strftime("%Y")
+        m = date_obj.strftime("%m")
+        d = str(date_obj.day)
+        url = f"/news/extra/{y}/{m}/{d}-{slug}.html"
+    else:  # special
+        url = f"/news/special/{slug}.html"
+
+    title = extract_full_title(html_path) or url
+    tickers = extract_tickers_from_html(html_path)
+    date_str = date_obj.strftime("%Y-%m-%d") if article_type == "morning" else ""
+
+    entry = {
+        "url": url,
+        "title": title,
+        "date": date_str,
+        "kind": article_type,
+        "tickers": tickers,
+    }
+
+    try:
+        with open(index_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except json.JSONDecodeError as e:
+        print(f"   ⚠️  news-index.json が壊れています、スキップ: {e}")
+        return
+
+    # 既存の同一 URL を更新、なければ挿入
+    existing_idx = next((i for i, x in enumerate(data) if x.get("url") == url), -1)
+    if existing_idx >= 0:
+        data[existing_idx] = entry
+        action = "更新"
+    else:
+        if article_type == "morning":
+            # date 昇順の morning ブロック内に挿入
+            insert_idx = None
+            for i, x in enumerate(data):
+                if x.get("kind") == "morning" and x.get("date") and x.get("date") > date_str:
+                    insert_idx = i
+                    break
+            if insert_idx is None:
+                data.append(entry)
+            else:
+                data.insert(insert_idx, entry)
+        else:
+            data.append(entry)
+        action = "追加"
+
+    with open(index_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+
+    print(f"   📋 news-index.json を{action}（全 {len(data)} 件）")
+
+
 def rebuild_portal_index():
     """ポータルindex.htmlの統合アーカイブリストを更新"""
     index_path = os.path.join(REPO_DIR, "index.html")
@@ -375,8 +477,12 @@ def main():
     rebuild_portal_index()
     print("3️⃣  ポータル index.html を再構築")
 
-    # 5. Cloudflare Pages にデプロイ
-    print("4️⃣  Cloudflare Pages にデプロイ...")
+    # 5. news-index.json 更新（atlas-router の rolling-window paywall がこれを参照）
+    update_news_index(article_type, date_obj, dest_file, slug=slug)
+    print("4️⃣  news-index.json を更新")
+
+    # 6. Cloudflare Pages にデプロイ
+    print("5️⃣  Cloudflare Pages にデプロイ...")
     run(f"npx wrangler pages deploy {REPO_DIR} --project-name atlas-news --commit-dirty=true", cwd=REPO_DIR)
     print("   ✅ Cloudflare Pages にデプロイ完了")
 
@@ -393,9 +499,9 @@ def main():
 
     # 7. LINE通知
     if not send_line_flag:
-        print("5️⃣  LINE通知... スキップ（--line フラグなし）")
+        print("6️⃣  LINE通知... スキップ（--line フラグなし）")
     else:
-        print("5️⃣  LINE通知...")
+        print("6️⃣  LINE通知...")
     line_cfg = load_line_config() if send_line_flag else {}
     token = line_cfg.get("LINE_TOKEN")
     group_id = line_cfg.get("LINE_GROUP_ID")
