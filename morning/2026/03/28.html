@@ -2270,8 +2270,8 @@ document.querySelectorAll('.ed-take').forEach(function(el){
   function resolveStatus(cfg) {
     if (!cfg || !cfg.kind) return 'full';
     if (cfg.kind === 'morning') {
-      var diff = daysAgoJST(cfg.date);
-      return diff < MORNING_FREE_DAYS ? 'full' : 'gated';
+      // atlas-router injects this meta tag when paywalled (rolling-window logic)
+      return document.querySelector('meta[name="atlas-gate-required"]') ? 'gated' : 'full';
     }
     if (cfg.kind === 'extra') return 'truncate';
     if (cfg.kind === 'special') return 'gated';
