@@ -481,18 +481,31 @@ def main():
     update_news_index(article_type, date_obj, dest_file, slug=slug)
     print("4️⃣  news-index.json を更新")
 
-    # 6. Cloudflare Pages にデプロイ
-    print("5️⃣  Cloudflare Pages にデプロイ...")
-    run(f"npx wrangler pages deploy {REPO_DIR} --project-name atlas-news --commit-dirty=true", cwd=REPO_DIR)
-    print("   ✅ Cloudflare Pages にデプロイ完了")
-
-    # 6. Gitにもコミット（バックアップ・履歴管理用）
+    # 6. commit メッセージを先に構築（wrangler --commit-message と git commit で共有）
     commit_msg = f"{type_icon} {type_label} {y}/{int(m)}/{d}（{weekday}）"
     if slug:
         commit_msg += f" {slug}"
+    # シェル渡しの安全化: 内部のダブルクオートのみ除去（現状の絵文字や日本語はOK）
+    commit_msg_safe = commit_msg.replace('"', "'")
+
+    # 7. Cloudflare Pages にデプロイ
+    # --branch gh-pages: preview 環境への誤投入を防止（N-1）
+    # --commit-message: wrangler が環境情報から不正 UTF-8 を生成するクラッシュ罠を回避（N-2）
+    print("5️⃣  Cloudflare Pages にデプロイ...")
+    run(
+        f'npx wrangler pages deploy {REPO_DIR} '
+        f'--project-name atlas-news '
+        f'--branch gh-pages '
+        f'--commit-message "{commit_msg_safe}" '
+        f'--commit-dirty=true',
+        cwd=REPO_DIR,
+    )
+    print("   ✅ Cloudflare Pages にデプロイ完了")
+
+    # 8. Git にもコミット（バックアップ・履歴管理用）
     try:
         run("git add -A", cwd=REPO_DIR)
-        run(f'git commit -m "{commit_msg}"', cwd=REPO_DIR)
+        run(f'git commit -m "{commit_msg_safe}"', cwd=REPO_DIR)
         run("git push", cwd=REPO_DIR)
     except Exception as e:
         print(f"   ⚠️ Git push スキップ（Cloudflareデプロイは成功済み）: {e}")
