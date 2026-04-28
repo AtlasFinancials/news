@@ -535,6 +535,24 @@ def main():
         run("git push", cwd=REPO_DIR)
     except Exception as e:
         print(f"   ⚠️ Git push スキップ（Cloudflareデプロイは成功済み）: {e}")
+        # N-4: git push 失敗を LINE で通知（line_config があれば --line フラグ関係なく送信）
+        # 本番反映は成功しているが、git ローカルと remote が乖離 → 次回手動 push 必要。
+        # サイレント失敗を防ぐ fail-safe。
+        try:
+            warn_cfg = load_line_config()
+            warn_token = warn_cfg.get("LINE_TOKEN")
+            warn_group = warn_cfg.get("LINE_GROUP_ID")
+            if warn_token and warn_group:
+                warn_msg = (
+                    f"⚠️ Atlas Daily {y}/{int(m)}/{d}（{weekday}） デプロイ警告\n"
+                    f"Cloudflare Pages 反映済 / git push 失敗\n"
+                    f"git ローカルと remote が乖離 → 手動 push が必要\n"
+                    f"エラー: {str(e)[:120]}"
+                )
+                send_line(warn_token, warn_group, warn_msg)
+                print("   📢 LINE に git push 失敗警告を送信")
+        except Exception:
+            pass  # 通知失敗は黙殺（本流に影響させない）
 
     # 7. LINE通知
     if not send_line_flag:
