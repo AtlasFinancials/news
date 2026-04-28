@@ -6,7 +6,8 @@
     "kind": "extra",
     "tickers": [
       "NVDA"
-    ]
+    ],
+    "summary": "Vera Rubin量産開始、Feynman詳細発表、受注1兆ドル。NVIDIA GTC 2026の全発表を完全レポート。"
   },
   {
     "url": "/news/extra/2026/03/20-us-japan-summit.html",
@@ -15,7 +16,8 @@
     "kind": "extra",
     "tickers": [
       "C"
-    ]
+    ],
+    "summary": "対米投資730億ドル第2弾、関税15%据置、ホルムズ海峡問題。高市首相「ほぼ無傷で乗り切った」日米首脳会談を徹底解説。"
   },
   {
     "url": "/news/extra/2026/04/14-neocloud-2026.html",
@@ -25,7 +27,8 @@
     "tickers": [
       "MSFT",
       "ORCL"
-    ]
+    ],
+    "summary": "CoreWeave・Nebius・Oracle・IREN等13社をフラット比較。薄利多売リスクと編集部のOracle選定"
   },
   {
     "url": "/news/morning/2026/03/13.html",
@@ -50,7 +53,8 @@
       "MU",
       "NKE",
       "S"
-    ]
+    ],
+    "summary": "NVIDIA GTC効果で反発、本日FOMC+ドットプロット — VIX急落。マーケットサマリー・主要ニュース・経済イベント・決算予定。"
   },
   {
     "url": "/news/morning/2026/03/19.html",
@@ -63,7 +67,8 @@
       "MU",
       "NKE",
       "S"
-    ]
+    ],
+    "summary": "FOMC据え置き＋利下げ年1回見通し維持でタカ派的 — ダウ-768pt、3指数急落。Micron決算は大幅ビートも売りの洗礼。"
   },
   {
     "url": "/news/morning/2026/03/20.html",
@@ -76,7 +81,8 @@
       "MU",
       "NKE",
       "S"
-    ]
+    ],
+    "summary": "ホルムズ海峡危機激化 — イランがカタールLNG施設攻撃、原油一時$119。金フラッシュクラッシュ-7%、日経-1,866円の暴落。"
   },
   {
     "url": "/news/morning/2026/03/21.html",
@@ -88,7 +94,8 @@
       "NKE",
       "S",
       "SMCI"
-    ]
+    ],
+    "summary": "S&P 500が200日線割れ、4週連続安。SMCI-33%暴落、トリプルウィッチング×FOMC×原油高の4重苦。VIX 26.78に急騰。"
   },
   {
     "url": "/news/morning/2026/03/22.html",
@@ -100,7 +107,8 @@
       "NKE",
       "S",
       "SMCI"
-    ]
+    ],
+    "summary": "SMCI暴落-28% — Nvidia AIチップ中国密輸で起訴。S&P 500が200日線割れ、4週連続安。VIX 26.78に急騰。"
   },
   {
     "url": "/news/morning/2026/03/23.html",
@@ -113,7 +121,8 @@
       "MU",
       "NKE",
       "S"
-    ]
+    ],
+    "summary": "イラン戦争「縮小検討」も停戦は否定 — 原油$98超、3指数4週連続安。NVIDIA GTC「Vera Rubin」発表、受注1兆ドル。"
   },
   {
     "url": "/news/morning/2026/03/24.html",
@@ -124,7 +133,8 @@
       "CCL",
       "NKE",
       "S"
-    ]
+    ],
+    "summary": "トランプ、イラン攻撃5日間停止 — ダウ+631pt、原油$91急落の大型リリーフラリー。マスク「Terafab」250億ドル半導体工場発表。"
   },
   {
     "url": "/news/morning/2026/03/25.html",
@@ -136,7 +146,8 @@
       "LULU",
       "NKE",
       "S"
-    ]
+    ],
+    "summary": "NYSEがブロックチェーン取引PFを発表 — Amazon AI報道でSaaS株急落、プライベートクレジット危機がAres・Apolloに波及。"
   },
   {
     "url": "/news/morning/2026/03/27.html",
@@ -148,7 +159,8 @@
       "LULU",
       "NKE",
       "S"
-    ]
+    ],
+    "summary": "イラン情勢悪化で原油$94急騰、NASDAQ調整局面入り — OECDがインフレ見通し4.2%に引き上げ、スタグフレーション懸念が市場を直撃。"
   },
   {
     "url": "/news/morning/2026/03/28.html",
@@ -159,7 +171,8 @@
       "CCL",
       "NKE",
       "S"
-    ]
+    ],
+    "summary": "ダウ793pt暴落で調整局面入り、S&P 500は5週連続下落 — Brent原油$112超え、イスラエルがイラン核施設攻撃、VIX 31と恐怖拡大"
   },
   {
     "url": "/news/morning/2026/03/31-en.html",
@@ -170,7 +183,8 @@
       "MU",
       "NKE",
       "S"
-    ]
+    ],
+    "summary": "Fed Chair Powell says 'rates are in a good place' — signals no hike needed despite Iran war oil surge. Energy sector +22% YTD as tech continues to slide in a bifurcated market."
   },
   {
     "url": "/news/morning/2026/03/31-ko.html",
@@ -181,7 +195,8 @@
       "MU",
       "NKE",
       "S"
-    ]
+    ],
+    "summary": "파월 연준 의장 \"금리는 적절한 수준\" — 이란 전쟁발 유가 급등에도 금리 인상 불필요 표명. 에너지 섹터 +22% YTD, 테크 하락세 지속하는 양극화 장세."
   },
   {
     "url": "/news/morning/2026/03/31-zh.html",
@@ -192,7 +207,8 @@
       "MU",
       "NKE",
       "S"
-    ]
+    ],
+    "summary": "鮑威爾Fed主席「利率處於良好位置」— 伊朗戰爭推升油價仍表明無需加息。能源板塊年初至今+22%，科技股持續下跌的兩極化行情。"
   },
   {
     "url": "/news/morning/2026/03/31.html",
@@ -203,7 +219,8 @@
       "MU",
       "NKE",
       "S"
-    ]
+    ],
+    "summary": "パウエルFRB議長「金利は良い位置」— イラン戦争の原油高でも利上げ不要と表明。エネルギーセクター+22% YTD、テック続落の二極化相場。"
   },
   {
     "url": "/news/morning/2026/04/1.html",
@@ -216,7 +233,8 @@
       "NKE",
       "NVDA",
       "S"
-    ]
+    ],
+    "summary": "イラン戦争終結の光明 — ペゼシュキアン大統領「必要な意志あり」、トランプ「2〜3週間で撤退」。S&P 500 +2.91%、NASDAQ +3.83%、ダウ1,125pt急騰。"
   },
   {
     "url": "/news/morning/2026/04/3.html",
@@ -226,7 +244,8 @@
     "tickers": [
       "DAL",
       "S"
-    ]
+    ],
+    "summary": "トランプのイラン戦争演説で市場激震 — 朝の急落から劇的回復"
   },
   {
     "url": "/news/morning/2026/04/4-en.html",
@@ -236,7 +255,8 @@
     "tickers": [
       "DAL",
       "S"
-    ]
+    ],
+    "summary": "Jobs Report Surprise, Crude Above $111 — Good Friday Shock Data and Key Themes for Monday"
   },
   {
     "url": "/news/morning/2026/04/4-ko.html",
@@ -248,7 +268,8 @@
       "DAL",
       "S",
       "TSLA"
-    ]
+    ],
+    "summary": "고용지표 서프라이즈, 원유 $111 돌파 — Good Friday 충격 데이터와 주초 시장 전망"
   },
   {
     "url": "/news/morning/2026/04/4-zh.html",
@@ -258,7 +279,8 @@
     "tickers": [
       "DAL",
       "S"
-    ]
+    ],
+    "summary": "就業數據大幅超預期、原油突破$111 — Good Friday震撼數據與下週焦點"
   },
   {
     "url": "/news/morning/2026/04/4.html",
@@ -268,7 +290,8 @@
     "tickers": [
       "DAL",
       "S"
-    ]
+    ],
+    "summary": "雇用統計サプライズ、原油$111超 — Good Fridayの衝撃データと週明けの焦点"
   },
   {
     "url": "/news/morning/2026/04/7-en.html",
@@ -279,7 +302,8 @@
       "DAL",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "Hormuz Ultimatum, ISM Stagflation Warning — Tuesday Night's Inflection Point and Friday's CPI"
   },
   {
     "url": "/news/morning/2026/04/7-ko.html",
@@ -290,7 +314,8 @@
       "DAL",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "호르무즈 최후통첩, ISM 스태그플레이션 경고 — 화요일 밤 분기점과 금요일 CPI"
   },
   {
     "url": "/news/morning/2026/04/7-zh.html",
@@ -301,7 +326,8 @@
       "DAL",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "荷姆茲最後通牒、ISM停滯性通膨警告 — 週二夜的分岔點與週五CPI"
   },
   {
     "url": "/news/morning/2026/04/7.html",
@@ -312,7 +338,8 @@
       "DAL",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "ホルムズ最後通牒、ISMスタグフレ警告 — 火曜夜の分岐点と金曜CPI"
   },
   {
     "url": "/news/morning/2026/04/8.html",
@@ -326,7 +353,8 @@
       "S",
       "TSLA",
       "TSM"
-    ]
+    ],
+    "summary": "米軍カーグ島攻撃、Anthropic-Google-Broadcom 3.5GW契約 — 火曜夜の最終期限と火種"
   },
   {
     "url": "/news/morning/2026/04/9.html",
@@ -342,7 +370,8 @@
       "MU",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "米イラン停戦でダウ+1,312pt — Meta Muse Spark発表、夏場ラリーシナリオ"
   },
   {
     "url": "/news/morning/2026/04/10.html",
@@ -359,7 +388,8 @@
       "S",
       "TSM",
       "ZS"
-    ]
+    ],
+    "summary": "Claude Mythosでセキュリティ株暴落、ベッセント＆パウエル緊急会合 — SK Hynix 40兆ウォンと明日CPI"
   },
   {
     "url": "/news/morning/2026/04/13-en.html",
@@ -374,7 +404,8 @@
       "MS",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "BREAKING: US Naval Blockade of Strait of Hormuz — Consumer Sentiment Hits All-Time Low 47.6, CPI +0.9% Energy Shock"
   },
   {
     "url": "/news/morning/2026/04/13-ko.html",
@@ -389,7 +420,8 @@
       "MS",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "소비자 심리지수 역대 최저 47.6, CPI +0.9% 에너지 충격 — 이슬라마바드 평화 협상 결렬"
   },
   {
     "url": "/news/morning/2026/04/13-zh.html",
@@ -404,7 +436,8 @@
       "MS",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "消費者信心創歷史新低47.6、CPI+0.9%能源衝擊 — 伊斯蘭堡和談破裂"
   },
   {
     "url": "/news/morning/2026/04/13.html",
@@ -419,7 +452,8 @@
       "MS",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "消費者信頼感が史上最低47.6、CPI+0.9%のエネルギーショック — イスラマバード和平交渉は決裂"
   },
   {
     "url": "/news/morning/2026/04/14-en.html",
@@ -434,7 +468,8 @@
       "ORCL",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "Oracle +12.74% leads software rebound; WTI breaks $100; yield curve un-inverts at 4.32%"
   },
   {
     "url": "/news/morning/2026/04/14-ko.html",
@@ -448,7 +483,8 @@
       "ORCL",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "오라클 +12.74% 소프트웨어 반등 주도; WTI 100달러 돌파; 수익률 곡선 4.32%에서 정상화"
   },
   {
     "url": "/news/morning/2026/04/14-zh.html",
@@ -460,7 +496,8 @@
       "ORCL",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "甲骨文+12.74%引領軟件反彈；WTI突破100美元；收益率曲線重新正常化4.32%"
   },
   {
     "url": "/news/morning/2026/04/14.html",
@@ -476,7 +513,9 @@
       "ORCL",
       "S",
       "TSM"
-    ]
+    ],
+    "audioUrl": "https://atlas-financials.jp/news/morning/2026/04/14.mp3",
+    "summary": "Oracle +12.74%でソフトウェア反騰 — 原油100ドル超、逆イールド解消で4.32%"
   },
   {
     "url": "/news/morning/2026/04/15-en.html",
@@ -492,7 +531,8 @@
       "MS",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "US-Iran peace talks revival expectations, March PPI deceleration, and bank earnings beats fired three tailwinds simultaneously. Nasdaq 100 logs 10 straight gains — longest streak since 2021."
   },
   {
     "url": "/news/morning/2026/04/15-ko.html",
@@ -510,7 +550,8 @@
       "ORCL",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "미·이란 평화협상 재개 기대 + 3월 PPI 둔화 + 은행 실적 비트로 3대 호재 동시 점화. 나스닥 100은 10거래일 연속 상승으로 2021년 이후 최장."
   },
   {
     "url": "/news/morning/2026/04/15-zh.html",
@@ -526,7 +567,8 @@
       "MS",
       "S",
       "TSM"
-    ]
+    ],
+    "summary": "美伊和談重啟預期、3月PPI放緩、銀行業財報超預期——三大順風同時點火。那斯達克100連續10日上漲，創2021年以來最長紀錄。"
   },
   {
     "url": "/news/morning/2026/04/15.html",
@@ -542,7 +584,9 @@
       "MS",
       "S",
       "TSM"
-    ]
+    ],
+    "audioUrl": "https://atlas-financials.jp/news/morning/2026/04/15.mp3",
+    "summary": "米イラン和平協議再開期待＋3月PPI鈍化＋銀行決算ビートで3つの追い風同時発火。Nasdaq100は10連騰で2021年以来最長。"
   },
   {
     "url": "/news/morning/2026/04/16-en.html",
@@ -554,7 +598,8 @@
       "MS",
       "BAC",
       "GS"
-    ]
+    ],
+    "summary": "Morgan Stanley and BAC Q1 double beats lift bank stocks, Tesla's AI5 chip tape-out sends shares +8%, and Fed Beige Book flags Iran-war drag on lower-income households."
   },
   {
     "url": "/news/morning/2026/04/16-ko.html",
@@ -566,7 +611,8 @@
       "MS",
       "BAC",
       "GS"
-    ]
+    ],
+    "summary": "Morgan Stanley·BAC Q1 실적 더블 비트로 은행주 급등, Tesla AI5 칩 테이프아웃 발표로 +8%, Fed 베이지북은 이란 전쟁으로 혼조"
   },
   {
     "url": "/news/morning/2026/04/16-zh.html",
@@ -578,7 +624,8 @@
       "MS",
       "BAC",
       "GS"
-    ]
+    ],
+    "summary": "摩根士丹利、美銀Q1雙重超預期推動銀行股飆漲；特斯拉AI5晶片Tape-out發表+8%；Fed褐皮書因伊朗戰爭呈現分化。"
   },
   {
     "url": "/news/morning/2026/04/16.html",
@@ -590,7 +637,9 @@
       "MS",
       "BAC",
       "GS"
-    ]
+    ],
+    "audioUrl": "https://atlas-financials.jp/news/morning/2026/04/16.mp3",
+    "summary": "Morgan Stanley・BAC Q1決算ダブルビートで銀行株急伸、Tesla AI5チップ・タペアウト発表で+8%、Fed Beige Bookはイラン戦争でまだら模様"
   },
   {
     "url": "/news/morning/2026/04/17-en.html",
@@ -600,7 +649,8 @@
     "tickers": [
       "TSM",
       "NFLX"
-    ]
+    ],
+    "summary": "TSMC Q1 net income surged +58% to an all-time high, with 2026 CapEx lifted to the top of the $56B range. Nasdaq extended its winning streak to 12 sessions — the longest since 2009. Netflix beat on res"
   },
   {
     "url": "/news/morning/2026/04/17-ko.html",
@@ -610,7 +660,8 @@
     "tickers": [
       "TSM",
       "NFLX"
-    ]
+    ],
+    "summary": "TSMC가 Q1 순이익 +58%로 사상 최고, 2026년 CapEx 상한까지 상향. NASDAQ은 12거래일 연속 상승으로 2009년 이후 최장 연속 상승 기록. Netflix는 실적 어닝 서프라이즈에도 다음 Q2 가이던스 실망으로 헤이스팅스 창업자 이사 퇴임. VIX 저수준이지만 SKEW는 역사적 고수준, 리스크 미터는 「주의권」."
   },
   {
     "url": "/news/morning/2026/04/17-zh.html",
@@ -620,7 +671,8 @@
     "tickers": [
       "TSM",
       "NFLX"
-    ]
+    ],
+    "summary": "台積電Q1淨利+58%創歷史新高，2026年資本支出上調至上限。那斯達克連12日上漲，創2009年以來最長紀錄。Netflix雖業績超預期但Q2展望指引令人失望，海斯汀退任董事。VIX低位但SKEW處歷史高位，風險計量表進入「注意區」。"
   },
   {
     "url": "/news/morning/2026/04/17.html",
@@ -630,42 +682,51 @@
     "tickers": [
       "TSM",
       "NFLX"
-    ]
+    ],
+    "audioUrl": "https://atlas-financials.jp/news/morning/2026/04/17.mp3",
+    "summary": "TSMCがQ1純利益+58%と過去最高、2026年CapEx上限へ引き上げ。NASDAQは12営業日連続高で2009年以来の連騰記録。Netflixは業績ビートも翌Q2ガイダンス失望でヘイスティングス氏取締役退任。VIX低位でもSKEWは歴史的高水準、リスクメーターは「注意圏」。"
   },
   {
     "url": "/news/morning/2026/04/18-en.html",
     "title": "Atlas Daily — 2026年4月18日 (English)",
     "date": "2026-04-18",
     "kind": "morning",
-    "tickers": []
+    "tickers": [],
+    "summary": "WTI crude plunges -11.5%. S&P 500, NASDAQ, and Dow all rally sharply. NASDAQ notches 13-session winning streak, closing in on longest run since 1992."
   },
   {
     "url": "/news/morning/2026/04/18-ko.html",
     "title": "Atlas Daily — 2026年4月18日 (한국어)",
     "date": "2026-04-18",
     "kind": "morning",
-    "tickers": []
+    "tickers": [],
+    "summary": "WTI 원유는 -11.5% 급락. S&P 500·NASDAQ·다우가 동반 큰 폭 상승. NASDAQ은 13거래일 연속 상승으로 1992년 이후 최장 기록에 근접."
   },
   {
     "url": "/news/morning/2026/04/18-zh.html",
     "title": "Atlas Daily — 2026年4月18日 (繁體中文)",
     "date": "2026-04-18",
     "kind": "morning",
-    "tickers": []
+    "tickers": [],
+    "summary": "WTI原油急跌-11.5%。標普500、那斯達克、道指齊創大幅漲幅。那斯達克13連陽，迫近1992年以來最長紀錄。"
   },
   {
     "url": "/news/morning/2026/04/18.html",
     "title": "Atlas Daily — 2026年4月18日｜ホルムズ海峡開通で原油急落、3指数そろって急騰",
     "date": "2026-04-18",
     "kind": "morning",
-    "tickers": []
+    "tickers": [],
+    "audioUrl": "https://atlas-financials.jp/news/morning/2026/04/18.mp3",
+    "summary": "WTI原油は-11.5%の急落。S&P 500・NASDAQ・ダウがそろって大幅高。ナスダックは13連騰で1992年以来の最長記録に迫る。"
   },
   {
     "url": "/news/morning/2026/04/21.html",
     "title": "Atlas Daily — 2026年4月21日｜ホルムズ封鎖再燃で原油反発、NASDAQ 13連勝止まる・Russell 2000は新高値",
     "date": "2026-04-21",
     "kind": "morning",
-    "tickers": []
+    "tickers": [],
+    "audioUrl": "https://atlas-financials.jp/news/morning/2026/04/21.mp3",
+    "summary": "米海軍のイラン船拿捕でホルムズ緊張再燃。WTI +5%、VIX +8%。S&P 500はわずか-0.24%、Russell 2000は史上最高値更新。本日はWarsh Fed議長候補の公聴会。"
   },
   {
     "url": "/news/morning/2026/04/22.html",
@@ -675,7 +736,9 @@
     "tickers": [
       "AAPL",
       "UNH"
-    ]
+    ],
+    "audioUrl": "https://atlas-financials.jp/news/morning/2026/04/22.mp3",
+    "summary": "15年続いたTim Cook時代が9月1日に終幕、次期CEOはハードウェア担当SVP John Ternus氏。一方イラン交渉はVance副大統領のパキスタン訪問が無期延期、WTIは+4.5%で91ドル超へ。UNHは決算ビートで+9.28%。本日夕はTesla・明日はGOOGL/INTC決算。"
   },
   {
     "url": "/news/morning/2026/04/23.html",
@@ -687,7 +750,9 @@
       "BA",
       "FICO",
       "NOW"
-    ]
+    ],
+    "audioUrl": "https://atlas-financials.jp/news/morning/2026/04/23.mp3",
+    "summary": "Trumpが米イラン停戦を無期限延長、地政学リスクが後退しS&P 500は7,137.90(+1.05%)・NASDAQは24,657.57(+1.64%)で最高値更新。TeslaはQ1 EPS $0.41でビートも2026年CapEx $25B超に急増で時間外-0.6%。FICOは住宅ローン代替スコア容認で-13%急落。本日夕はINTC決算（GOOGL は4/29）。"
   },
   {
     "url": "/news/morning/2026/04/24.html",
@@ -699,7 +764,9 @@
       "IBM",
       "INTC",
       "BA"
-    ]
+    ],
+    "audioUrl": "https://atlas-financials.jp/news/morning/2026/04/24.mp3",
+    "summary": "ホルムズ海峡の緊張でWTI+3%・Brent 105ドル突破、エネルギー買いの一方でソフトウェア株が崩落。S&P 500は7,108.40(-0.41%)・NASDAQ 24,438.50(-0.89%)。ServiceNow -17%・IBM -8%でAI破壊懸念再燃。IntelはQ1 EPS 0.29ドル（予想0.01ドル大幅ビート）で時間外+20%。新規失業保険申請21.4万件・PMI製造業"
   },
   {
     "url": "/news/morning/2026/04/25.html",
@@ -710,7 +777,9 @@
       "INTC",
       "NVDA",
       "CHTR"
-    ]
+    ],
+    "audioUrl": "https://atlas-financials.jp/news/morning/2026/04/25.mp3",
+    "summary": "Intel Q1 がEPS $0.29 vs $0.01予想で爆発的ビート、株価+23.6%は1987年来最大の単日上昇。半導体セクター全面高でSMH +5.10%・NVDA +4.3%（時価総額5兆ドル突破）。S&P 500は7,165.08(+0.80%)・NASDAQは24,836.60(+1.63%)で最高値更新。Charter -25.5%（加入者純減）、DOJはパウエル議長捜査を取り下"
   },
   {
     "url": "/news/morning/2026/04/28.html",
@@ -737,6 +806,8 @@
       "TXN",
       "UNH",
       "VZ"
-    ]
+    ],
+    "audioUrl": "https://atlas-financials.jp/news/morning/2026/04/28.mp3",
+    "summary": "POET Technologiesが -47.35%大暴落（$15.10→$7.95）。Marvell が買収済み Celestial AI からの全発注を「機密保持違反」を理由に取消、先週 +108%急騰の全戻し。POETは通期売上1.07Mドル・営業利益率-3,915%・1年で54.6%希薄化と財務体質脆弱。QCOMは +12%（OpenAI/MediaTek/Luxshareと AIスマホ共"
   }
 ]
