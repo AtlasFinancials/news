@@ -502,6 +502,23 @@ def main():
     )
     print("   ✅ Cloudflare Pages にデプロイ完了")
 
+    # 7.5. R2 にも MP3 をアップロード（Pages 25MB 制限回避、A-1 対策）
+    # atlas-router 側 Worker が R2 優先 → Pages フォールバックで配信
+    # 失敗しても Pages にも同ファイルがあるので fail-safe
+    if article_type == "morning":
+        mp3_path = os.path.join(dest_dir, f"{d}.mp3")
+        if os.path.exists(mp3_path):
+            r2_key = f"morning/{y}/{m}/{d}.mp3"
+            try:
+                run(
+                    f'npx wrangler r2 object put "atlas-news-mp3/{r2_key}" '
+                    f'--file "{mp3_path}" --remote',
+                    cwd=REPO_DIR,
+                )
+                print(f"   📤 R2 アップロード: {r2_key}")
+            except Exception as e:
+                print(f"   ⚠️  R2 アップロード失敗（Pages フォールバックで配信継続）: {e}")
+
     # 8. Git にもコミット（バックアップ・履歴管理用）
     try:
         run("git add -A", cwd=REPO_DIR)
