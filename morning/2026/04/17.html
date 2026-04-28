@@ -3603,7 +3603,7 @@ document.addEventListener('keydown', function(e){
  * 非会員に対して overlay または truncate を表示する。
  *
  * kind:
- *   - "morning"  : date (YYYY-MM-DD) を持つ。今日/昨日なら free、それ以外は gated
+ *   - "morning"  : 当日サーバ判定。<meta name="atlas-gate-required"> があれば gated
  *   - "extra"    : 常に truncate（本文文字数の1/3だけ無料公開）
  *   - "special"  : 常に gated（冒頭プレビュー以外は非表示）
  *   - "report"   : ticker + isLatest。flagship かつ latest なら free、それ以外は gated
@@ -3618,7 +3618,6 @@ document.addEventListener('keydown', function(e){
  */
 (function () {
   var FLAGSHIP = { NVDA: 1, GOOGL: 1, TSLA: 1, MSFT: 1, META: 1, AMZN: 1, AAPL: 1 };
-  var MORNING_FREE_DAYS = 2;       // today + yesterday = 2 calendar days
   var EXTRA_FREE_FRACTION = 1 / 3; // 号外: 本文文字数の1/3
 
   function readAccess() {
@@ -3626,18 +3625,6 @@ document.addEventListener('keydown', function(e){
     if (!meta) return null;
     try { return JSON.parse(meta.getAttribute('content') || '{}'); }
     catch (e) { return null; }
-  }
-
-  function daysAgoJST(ymd) {
-    // ymd: "2026-04-15". Compare JST midnight to JST midnight.
-    if (!ymd || !/^\d{4}-\d{2}-\d{2}$/.test(ymd)) return Infinity;
-    var parts = ymd.split('-').map(Number);
-    var pubUTC = Date.UTC(parts[0], parts[1] - 1, parts[2]);
-    var now = new Date();
-    // JST = UTC+9. Midnight JST today = today's UTC date at 15:00 prev day in UTC.
-    var jstNow = new Date(now.getTime() + 9 * 3600 * 1000);
-    var jstToday = Date.UTC(jstNow.getUTCFullYear(), jstNow.getUTCMonth(), jstNow.getUTCDate());
-    return Math.floor((jstToday - pubUTC) / 86400000);
   }
 
   function resolveStatus(cfg) {
