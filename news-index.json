@@ -711,5 +711,32 @@
       "NVDA",
       "CHTR"
     ]
+  },
+  {
+    "url": "/news/morning/2026/04/28.html",
+    "title": "Atlas Daily — 2026年4月28日｜POET -47%大暴落・Marvellが Celestial AI 全発注を取消、QCOM +12%（OpenAI連合）・S&P 7,173最高値更新、Mag7決算+FOMC直前",
+    "date": "2026-04-28",
+    "kind": "morning",
+    "tickers": [
+      "AAPL",
+      "AMZN",
+      "ASML",
+      "BA",
+      "CHTR",
+      "DPZ",
+      "GOOGL",
+      "IBM",
+      "INTC",
+      "META",
+      "MSFT",
+      "NFLX",
+      "NOW",
+      "QCOM",
+      "TSLA",
+      "TSM",
+      "TXN",
+      "UNH",
+      "VZ"
+    ]
   }
 ]
