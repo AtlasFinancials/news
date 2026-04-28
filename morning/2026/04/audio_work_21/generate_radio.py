@@ -5,6 +5,9 @@ Atlas Morning Brief — 2026年4月21日 ラジオ版生成（ナレーション
 - speaking_rate=1.12
 """
 import json, os, subprocess
+
+# Cloudflare/Claude Code 環境での DNS 解決罠回避（grpc が systemd resolved に失敗するケース）
+os.environ.setdefault("GRPC_DNS_RESOLVER", "native")
 from google.cloud import texttospeech
 from mutagen.id3 import ID3, CHAP, CTOC, TIT2, CTOCFlags
 

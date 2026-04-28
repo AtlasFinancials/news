@@ -380,6 +380,15 @@ def rebuild_portal_index():
 # Main
 # ─────────────────────────────────────────
 def main():
+    # N-5: CLOUDFLARE_API_TOKEN 起動時バリデーション
+    # 後段の wrangler 呼び出しでようやく失敗するのを未然に防止。
+    # Step 1〜3（HTML コピー / latest 更新 / index 再構築）が走った後で
+    # Step 5 がコケると、git とローカルが乖離する不整合が起きる。
+    if not os.environ.get("CLOUDFLARE_API_TOKEN"):
+        print("❌ CLOUDFLARE_API_TOKEN が未設定です。")
+        print("   → source ~/.zshrc を実行してから再度このスクリプトを呼び出してください。")
+        sys.exit(1)
+
     if len(sys.argv) < 4:
         print("使い方:")
         print('  python3 deploy_times.py morning <HTMLパス> <YYYY-MM-DD> "<見出し>"')

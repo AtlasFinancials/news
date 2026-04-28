@@ -6,6 +6,9 @@ Atlas Morning Brief — 2026年4月16日 ラジオ版生成
 - セクション別にTTS→連結、ID3v2 CHAPでチャプター埋め込み、JSON出力
 """
 import json, os, subprocess, sys
+
+# Cloudflare/Claude Code 環境での DNS 解決罠回避
+os.environ.setdefault("GRPC_DNS_RESOLVER", "native")
 from google.cloud import texttospeech
 from mutagen.id3 import ID3, CHAP, CTOC, TIT2, CTOCFlags
 
